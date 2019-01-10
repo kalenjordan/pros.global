@@ -4,40 +4,5 @@
 
 // Variables
 @import 'variables';
-
-body, html {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: $grayLightest;
-}
-
-.card {
-  background-color: white;
-  border-radius: 8px;
-  padding: 40px;
-  box-shadow: 0 13px 27px -5px rgba(50,50,93,.25), 0 8px 16px -8px rgba(0,0,0,.3);
-
-  -webkit-transition: margin 0.1s ease-out;
-  -moz-transition: margin 0.1s ease-out;
-  -o-transition: margin 0.1s ease-out;
-
-  &:hover {
-    cursor: pointer;
-    margin-top: -3px;
-
-    img {
-      filter: grayscale(100%);
-    }
-  }
-
-  img {
-    -webkit-transition: all 0.1s ease;
-    -moz-transition: all 0.1s ease;
-    -o-transition: all 0.1s ease;
-
-    border-radius: 50%;
-    max-width: 100px;
-  }
-}
+@import 'layout';
+@import 'card';
