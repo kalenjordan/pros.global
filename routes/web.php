@@ -16,5 +16,5 @@ Route::get('/', function () {
 });
 
 Route::get('/app', function () {
-    return view('app.blade.php');
+    return view('app');
 });
