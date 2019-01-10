@@ -1,9 +1,8 @@
 _ide_helper.php
 /node_modules
 /public/storage
-/public/css/main.css
-/public/css/admin.css
-/public/css/spa.css
+/public/css/app.css
+
 /public/.htaccess
 /public/robots.txt
 
