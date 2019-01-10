@@ -13,8 +13,10 @@
 </head>
 <body>
     <div class="wrapper">
-        App
-
+        <div class="card">
+            <img src="https://pbs.twimg.com/profile_images/959539398210547712/U5lQBX2N_400x400.jpg">
+            Kalen Jordan
+        </div>
     </div>
 </body>
 </html>

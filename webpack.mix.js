@@ -16,4 +16,5 @@ mix.js('resources/js/app.js', 'public/js')
     .webpackConfig({
         devtool: 'source-map'
     })
+    .disableNotifications()
     .sourceMaps();
