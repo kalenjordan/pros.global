@@ -1,0 +1,22 @@
+.tag {
+    display: inline-block;
+    border-radius: 5px;
+    background-color: $grayLightest;
+
+    margin: 0.25em;
+    color: $grayLight;
+    padding: 0.25em 0.8em;
+
+    i {
+        font-size: 76%;
+        opacity: 0.6;
+    }
+}
+
+a.tag {
+    text-decoration: none;
+    &:hover {
+        background-color: $grayLighter;
+        color: $gray;
+    }
+}

@@ -37,6 +37,7 @@
                     Magento fanboy. Small-time entrepreneur. Wannabe Youtuber. Not a recruiter. Founder @commercehero. Advisor @getmagemail. Co-host @magetalk
                 </div>
                 <div class="card--tags font-small">
+                    <a class="tag" href="#"><i class="fa fa-location-arrow"></i> Austin</a>
                     <a class="tag" href="#">Magento</a>
                     <a class="tag" href="#">SaaS</a>
                     <a class="tag" href="#">Seeking Advisees</a>
