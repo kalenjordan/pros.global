@@ -3,18 +3,6 @@ body, html {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: $grayLightest;
+    background-color: $blueColorLightest;
     font-family: Nunito, sans-serif;
-}
-
-.bold {
-    font-weight: bold;
-}
-
-.font-small {
-    font-size: 80%;
-}
-
-.mb-1 {
-    margin-bottom: 0.8em;
 }

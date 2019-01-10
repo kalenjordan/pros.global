@@ -6,14 +6,11 @@
     overflow: hidden;
     position: relative;
 
-    transition: margin 0.25s ease;
+    transition: all 0.1s ease;
 
     &:hover {
-        cursor: pointer;
         margin-top: -5px;
-        img {
-            filter: grayscale(100%);
-        }
+        box-shadow: 0 30px 60px -12px rgba(50,50,93,.25), 0 18px 36px -18px rgba(0,0,0,.3);
     }
 
     .card--background {
@@ -42,16 +39,28 @@
             }
         }
 
+        .card--cta {
+            float: right;
+            margin-top: -45px;
+        }
+
         .card--tags {
             margin: -0.25em;
             .tag {
                 display: inline-block;
                 border-radius: 5px;
-                background-color: $grayLighter;
+                background-color: $grayLightest;
 
                 margin: 0.25em;
                 color: $grayDark;
                 padding: 0.25em 0.8em;
+            }
+
+            a.tag {
+                text-decoration: none;
+                &:hover {
+                    background-color: $grayLighter;
+                }
             }
         }
     }
