@@ -1,4 +1,12 @@
+.card-group {
+    display: flex;
+    justify-content: center;
+}
+
 .card {
+    top: 0;
+    margin: 1em;
+    text-align: left;
     box-shadow: 0 13px 27px -5px rgba(50,50,93,.25), 0 8px 16px -8px rgba(0,0,0,.3);
     width: 350px;
     border-radius: 8px;
@@ -6,10 +14,10 @@
     overflow: hidden;
     position: relative;
 
-    transition: all 0.1s ease;
+    transition: all 0.25s ease;
 
     &:hover {
-        margin-top: -5px;
+        top: -5px;
         box-shadow: 0 30px 60px -12px rgba(50,50,93,.25), 0 18px 36px -18px rgba(0,0,0,.3);
     }
 

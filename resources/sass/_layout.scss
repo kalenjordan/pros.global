@@ -1,8 +1,56 @@
 body, html {
+    margin: 0;
     height: 100%;
     //display: flex;
     //align-items: center;
     //justify-content: center;
     background-color: $blueColorLightest;
     font-family: Nunito, sans-serif;
+}
+
+.header {
+    background-color: $primaryColorLightest;
+    padding: 2em;
+    @extend .centered;
+    h1 {
+        max-width: 700px;
+        @extend .margin-auto;
+    }
+}
+
+.margin-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.centered {
+    text-align: center;
+}
+
+.mb-1 {
+    margin-bottom: 14px;
+}
+
+.mt-1 {
+    margin-top: 14px;
+}
+
+.mt-2 {
+    margin-top: 30px;
+}
+
+.pt-1 {
+    padding-top: 14px;
+}
+
+.pt-2 {
+    padding-top: 30px;
+}
+
+.pb-1 {
+    padding-bottom: 14px;
+}
+
+.pb-2 {
+    padding-bottom: 30px;
 }

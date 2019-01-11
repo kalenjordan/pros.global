@@ -42,3 +42,7 @@ $secondaryColorLightest: #DDF1F4;
 
 $highlightColor: #F5821F;
 $highlightColorLight: #F8AF70;
+
+.bg-secondary-color-lightest {
+    background-color: $secondaryColorLightest;
+}
