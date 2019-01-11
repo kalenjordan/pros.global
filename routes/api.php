@@ -26,10 +26,11 @@ Route::get('/v1/users', function (Request $request) {
             'city'        => 'Austin',
             'tags'        => [
                 'Bootstrapper',
+                'Founder',
                 'Magento',
                 'Laravel',
                 'Homeschool Dad',
-                'SaaS', 
+                'SaaS',
                 'Seeking Advisees',
                 'Developer',
             ],
@@ -40,7 +41,13 @@ Route::get('/v1/users', function (Request $request) {
             'handle'      => '@andrewculver',
             'image_url'   => 'https://pbs.twimg.com/profile_images/976527971140845568/iniQmnYi_400x400.jpg',
             'city'        => 'Los Angeles',
-            'tags'        => ['Rails', 'SaaS', 'Japanophile', 'Bootstrapper'],
+            'tags'        => [
+                'Founder',
+                'Rails', 
+                'SaaS',
+                'Japanophile',
+                'Bootstrapper',
+            ],
             'description' => 'Founder and Lead Developer at bullettrain.co . Founded and sold churnbuster.io . Bootstrapper. Remote. Canadian. Love️ Japan.',
         ]
     ];
