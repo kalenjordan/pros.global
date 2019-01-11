@@ -4,6 +4,7 @@ _ide_helper.php
 /public/css/app.css
 /public/css/app.css.map
 /public/js/app.js
+/public/js/app.js.map
 
 /public/.htaccess
 /public/robots.txt
