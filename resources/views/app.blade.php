@@ -16,16 +16,7 @@
 </head>
 <body class="bg-secondary-color-lightest">
     <div id="app" class="wrapper">
-        <div class="header">
-            <h1>
-                Meet a co-founder, advisor, or team member&mdash;or just mingle with other
-                like-minded founders
-            </h1>
-        </div>
-        <div class="centered bg-secondary-color-lightest pb-2 pt-2">
-            <!-- <h2 class="mb-1">Founders that are interested in advising:</h2> -->
-            <card-group></card-group>
-        </div>
+        <router-view></router-view>
     </div>
 
     <script src="/js/app.js"></script>

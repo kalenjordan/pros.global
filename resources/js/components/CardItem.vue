@@ -3,9 +3,9 @@
         <div class="card--background"></div>
         <div class="card--inner">
             <div class="card--avatar">
-                <a href="#">
+                <router-link to="/user/1">
                     <img v-bind:src="user.image_url">
-                </a>
+                </router-link>
             </div>
             <div class="card--cta">
                 <a class="btn" href="javascript://" @click="giveProps"><i class="far fa-thumbs-up"></i> Give Props</a>
@@ -23,7 +23,7 @@
             </div>
             <div class="card--tags font-70">
                 <a class="tag" href="#"><i class="fa fa-location-arrow"></i> {{ user.city }}</a>
-                <a class="tag" href="#" v-for="tag in user.tags" >{{ tag}}</a>
+                <a class="tag" href="#" v-for="tag in user.tags" :key="tag" >{{ tag}}</a>
             </div>
         </div>
     </div>
