@@ -4,12 +4,12 @@ body, html {
     //display: flex;
     //align-items: center;
     //justify-content: center;
-    background-color: $blueColorLightest;
+    background-color: $primaryColorLightest;
     font-family: Nunito, sans-serif;
 }
 
 .header {
-    background-color: $primaryColorLightest;
+    // background-color: $secondaryColorLighter;
     padding: 2em;
     @extend .centered;
     h1 {

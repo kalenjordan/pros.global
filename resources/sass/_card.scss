@@ -23,7 +23,7 @@
 
     .card--background {
         position: absolute;
-        background-color: $primaryColorLighter;
+        background-color: $primaryColor;
         width: 100%;
         height: 50px;
         z-index: 0;
@@ -37,6 +37,7 @@
         .card--avatar {
             z-index: 1;
             img {
+                border: solid 3px $primaryColor;
                 z-index: 1;
                 transition: all 0.25s ease;
                 margin-right: 1em;

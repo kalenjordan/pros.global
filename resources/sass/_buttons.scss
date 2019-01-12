@@ -4,7 +4,7 @@ a.naked-link {
     color: inherit;
     &:hover {
         text-decoration: underline;
-        color: $secondaryColor;
+        color: $highlightColor;
     }
 }
 
@@ -21,12 +21,12 @@ a.btn {
     border-radius: 5px;
     text-decoration: none;
 
-    color: $secondaryColorDark;
+    color: $highlightColor;
     display: inline-block;
     transition: all 0.25s ease;
 
     &:hover {
-        background-color: $secondaryColorDark;
+        background-color: $highlightColor;
         color: white;
     }
 }

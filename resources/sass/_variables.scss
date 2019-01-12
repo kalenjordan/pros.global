@@ -7,41 +7,32 @@ $font-family-sans-serif: "Nunito", sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
-// Colors
-$blue: #3490dc;
-$indigo: #6574cd;
-$purple: #9561e2;
-$pink: #f66D9b;
-$red: #e3342f;
-$orange: #f6993f;
-$yellow: #ffed4a;
-$green: #38c172;
-$teal: #4dc0b5;
-$cyan: #6cb2eb;
-$blueColorLightest: #F8FAFC;
-
 /** Reference: https://coolors.co/ffcb08-45b4c5-f8af70-ffffff-000000 */
 $black: #22292F;
 $grayDarker: #2E2E2E;
 $grayDark: #454545;
 $gray: #5C5C5C;
 $grayLight: #8B8B8B;
+
 $grayLighter: #E7E7E7;
 $grayLightest: #F5F5F5;
 
-$primaryColor: #FFCB08;
-$primaryColorLight: #FFD434;
-$primaryColorLighter: #FFE278;
-$primaryColorLightest: #FFF0BB;
+$primaryColor: #7cdbd5;
+$primaryColorLight: #9FE4E0;
+$primaryColorLighter: #C3EEEB;
+$primaryColorLightest: #F3FBFB;
 
-$secondaryColorDark: #3994A2;
-$secondaryColor: #0099B0;
-$secondaryColorLight: #45B4C5;
-$secondaryColorLighter: #88CFDA;
-$secondaryColorLightest: #DDF1F4;
+$secondaryColorDark: #E3AD02;
+$secondaryColor: #f9be02;
+$secondaryColorLight: #FACF47;
+$secondaryColorLighter: #FCE18C;
+$secondaryColorLightest: #FEF9E8;
 
-$highlightColor: #F5821F;
-$highlightColorLight: #F8AF70;
+$thirdColor: #02c8a7;
+
+$highlightColorDark: #C92935;
+$highlightColor: #F53240;
+$highlightColorLight: #F98F96;
 
 .bg-secondary-color-lightest {
     background-color: $secondaryColorLightest;
