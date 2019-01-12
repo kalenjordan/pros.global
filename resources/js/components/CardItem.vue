@@ -8,7 +8,7 @@
                 </router-link>
             </div>
             <div class="card--cta">
-                <a class="btn" href="javascript://" @click="giveProps"><i class="far fa-thumbs-up"></i> Give Props</a>
+                <router-link class="btn" to="/user/1">View Profile</router-link>
             </div>
             <div class="card--identity mb-1">
                 <div class="card--identity--name bold">
@@ -22,8 +22,12 @@
                 {{ user.description }}
             </div>
             <div class="card--tags font-70">
-                <a class="tag" href="#"><i class="fa fa-location-arrow"></i> {{ user.city }}</a>
-                <a class="tag" href="#" v-for="tag in user.tags" :key="tag" >{{ tag}}</a>
+                <span class="tag"><i class="fa fa-location-arrow"></i> {{ user.city }}</span>
+                <span class="tag" v-for="tag in user.tags" @click="tagClick">
+                    <i class="far fa-thumbs-up"></i>
+                    <span class="tag-name">{{ tag.tag }}</span>
+                    <span class="tag-count">{{ tag.count }}</span>
+                </span>
             </div>
         </div>
     </div>
@@ -36,8 +40,8 @@
             // nada
         },
         methods: {
-            giveProps() {
-                alert("Look ma'! I'm bonified! I'm not using jquery any more!");
+            tagClick() {
+                alert('clicked');
             }
         }
     }

@@ -1,22 +1,37 @@
 .tag {
+    overflow: hidden;
+    cursor: pointer;
     display: inline-block;
     border-radius: 5px;
-    background-color: $grayLightest;
-
     margin: 0.25em;
-    color: $grayLight;
     padding: 0.25em 0.8em;
+
+    background-color: $grayLightest;
+    color: $grayLight;
+    &:hover {
+        background-color: $grayLighter;
+        color: $gray;
+    }
+
+    .fa-thumbs-up {
+        transition: all 0.25s ease;
+        margin-left: -20px;
+        padding-right: 8px;
+    }
+    &:hover {
+        .fa-thumbs-up {
+            margin-left: 0;
+            padding-right: 2px;
+        }
+    }
 
     i {
         font-size: 76%;
         opacity: 0.6;
     }
-}
 
-a.tag {
-    text-decoration: none;
-    &:hover {
-        background-color: $grayLighter;
-        color: $gray;
+    .tag-count {
+        padding-left: 3px;
+        opacity: 0.6;
     }
 }
