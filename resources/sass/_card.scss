@@ -37,7 +37,7 @@
         .card--avatar {
             z-index: 1;
             img {
-                border: solid 3px $primaryColor;
+                border: solid 3px $primaryColorLight;
                 z-index: 1;
                 transition: all 0.25s ease;
                 margin-right: 1em;
@@ -54,7 +54,10 @@
         }
 
         .card--tags {
-            margin: -0.25em;
+            margin: -1px -3px;
+            .tag {
+                margin: 1px 3px;
+            }
         }
     }
 }

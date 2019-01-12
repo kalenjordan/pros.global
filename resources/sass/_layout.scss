@@ -5,22 +5,32 @@ body, html {
     //align-items: center;
     //justify-content: center;
     background-color: $primaryColorLightest;
+    background-image: url("https://www.transparenttextures.com/patterns/black-thread-light.png");
     font-family: Nunito, sans-serif;
 }
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 
 .header {
-    // background-color: $secondaryColorLighter;
+    max-width: 700px;
     padding: 2em;
-    @extend .centered;
+    @extend .margin-auto;
     h1 {
-        max-width: 700px;
         @extend .margin-auto;
     }
+}
+
+.section {
+    @extend .margin-auto;
+    max-width: 700px;
 }
 
 .margin-auto {
     margin-left: auto;
     margin-right: auto;
+}
+
+.text-left {
+    text-align: left;
 }
 
 .centered {
@@ -29,6 +39,10 @@ body, html {
 
 .mb-1 {
     margin-bottom: 14px;
+}
+
+.mb-2 {
+    margin-bottom: 30px;
 }
 
 .mt-1 {
@@ -53,4 +67,8 @@ body, html {
 
 .pb-2 {
     padding-bottom: 30px;
+}
+
+.pr-05 {
+    padding-right: 2px;
 }

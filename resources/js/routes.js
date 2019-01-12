@@ -1,16 +1,18 @@
 import VueRouter from 'vue-router';
 
 import Home from './pages/Home';
-import User from './pages/User';
+import UserProfile from './pages/UserProfile';
 
 let routes = [
     {
+        name: 'home',
         path: '/',
         component: Home
     },
     {
-        path: '/user/:id',
-        component: User
+        name: 'profile',
+        path: '/:username',
+        component: UserProfile
     }
 ];
 

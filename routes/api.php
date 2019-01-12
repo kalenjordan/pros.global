@@ -50,8 +50,18 @@ $users = [
                 'count'      => 0,
                 'is_upvoted' => 0,
             ],
+            [
+                'tag'        => 'PHP',
+                'count'      => 1,
+                'is_upvoted' => 0,
+            ],
+            [
+                'tag'        => 'eCommerce',
+                'count'      => 1,
+                'is_upvoted' => 0,
+            ],
         ],
-        'description' => 'Magento fanboy. Small-time entrepreneur. Wannabe Youtuber. Not a recruiter. Founder @commercehero. Co-host @magetalk',
+        'headline' => 'Magento fanboy. Small-time entrepreneur. Wannabe Youtuber. Not a recruiter. Founder @commercehero. Co-host @magetalk',
     ],
     [
         'id'          => 2,
@@ -71,7 +81,7 @@ $users = [
                 'is_upvoted' => 0,
             ],
         ],
-        'description' => 'Founder and Lead Developer at bullettrain.co . Founded and sold churnbuster.io . Bootstrapper. Remote. Canadian. Love️ Japan.',
+        'headline' => 'Founder and Lead Developer at bullettrain.co . Founded and sold churnbuster.io . Bootstrapper. Remote. Canadian. Love️ Japan.',
     ]
 ];
 
