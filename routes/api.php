@@ -26,24 +26,29 @@ $users = [
         'city'        => 'Austin',
         'tags'        => [
             [
-                'tag' => 'Bootstrapper',
-                'count' => 3,
+                'tag'        => 'Bootstrapper',
+                'count'      => 3,
+                'is_upvoted' => 1,
             ],
             [
-                'tag' => 'Founder',
-                'count' => 1,
+                'tag'        => 'Founder',
+                'count'      => 1,
+                'is_upvoted' => 0,
             ],
             [
-                'tag' => 'Magento',
-                'count' => 5,
+                'tag'        => 'Magento',
+                'count'      => 5,
+                'is_upvoted' => 0,
             ],
             [
-                'tag' => 'Laravel',
-                'count' => 1,
+                'tag'        => 'Laravel',
+                'count'      => 1,
+                'is_upvoted' => 0,
             ],
             [
-                'tag' => 'Homeschool Dad',
-                'count' => 0,
+                'tag'        => 'Homeschool Dad',
+                'count'      => 0,
+                'is_upvoted' => 0,
             ],
         ],
         'description' => 'Magento fanboy. Small-time entrepreneur. Wannabe Youtuber. Not a recruiter. Founder @commercehero. Co-host @magetalk',
@@ -56,16 +61,14 @@ $users = [
         'city'        => 'Los Angeles',
         'tags'        => [
             [
-                'tag' => 'Bootstrapper',
-                'count' => 3,
+                'tag'        => 'Bootstrapper',
+                'count'      => 3,
+                'is_upvoted' => 0,
             ],
             [
-                'tag' => 'Founder',
-                'count' => 1,
-            ],
-            [
-                'tag' => 'Japan',
-                'count' => 5,
+                'tag'        => 'Founder',
+                'count'      => 1,
+                'is_upvoted' => 0,
             ],
         ],
         'description' => 'Founder and Lead Developer at bullettrain.co . Founded and sold churnbuster.io . Bootstrapper. Remote. Canadian. Love️ Japan.',

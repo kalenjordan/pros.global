@@ -12,10 +12,10 @@
             </div>
             <div class="card--identity mb-1">
                 <div class="card--identity--name bold">
-                    <a href="#" class="naked-link">{{ user.name }}</a>
+                    <router-link to="/user/1" class="naked-link">{{ user.name }}</router-link>
                 </div>
                 <div class="card--identity--handle font-small">
-                    <a href="#" class="naked-link">{{ user.handle }}</a>
+                    <router-link to="/user/1" class="naked-link">{{ user.handle }}</router-link>
                 </div>
             </div>
             <div class="card--about font-small mb-1">
@@ -23,8 +23,11 @@
             </div>
             <div class="card--tags font-70">
                 <span class="tag"><i class="fa fa-location-arrow"></i> {{ user.city }}</span>
-                <span class="tag" v-for="tag in user.tags" @click="tagClick">
-                    <i class="far fa-thumbs-up"></i>
+                <span class="tag fast"
+                      v-for="tag in user.tags"
+                      @click="tagClick(tag)"
+                      v-bind:class="{tada : tag.is_upvoted, animated : hasBeenClicked}">
+                    <i class="far fa-thumbs-up" v-bind:class="{upvoted : tag.is_upvoted}"></i>
                     <span class="tag-name">{{ tag.tag }}</span>
                     <span class="tag-count">{{ tag.count }}</span>
                 </span>
@@ -33,15 +36,29 @@
     </div>
 </template>
 
+<style type="text/css">
+    @import './../../../node_modules/animate.css/animate.min.css';
+</style>
 <script>
     export default {
         props: ['user'],
         mounted() {
             // nada
         },
+        data() {
+            return {
+                hasBeenClicked: false
+            }
+        },
         methods: {
-            tagClick() {
-                alert('clicked');
+            tagClick(tag) {
+                this.hasBeenClicked = true;
+                if (tag.is_upvoted) {
+                    tag.count -= 1;
+                } else {
+                    tag.count += 1;
+                }
+                tag.is_upvoted = ! tag.is_upvoted;
             }
         }
     }

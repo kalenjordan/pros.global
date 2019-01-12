@@ -17,6 +17,9 @@
         transition: all 0.25s ease;
         margin-left: -20px;
         padding-right: 8px;
+        &.upvoted {
+            font-weight: bold;
+        }
     }
     &:hover {
         .fa-thumbs-up {
