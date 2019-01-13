@@ -64,7 +64,7 @@ $users = [
         'headline' => 'Magento fanboy. Small-time entrepreneur. Wannabe Youtuber. Not a recruiter. Founder @commercehero. Co-host @magetalk',
         'about' => "Hey there! I'm Kalen! I'm a 
         [developer](https://github.com/kalenjordan), 
-        bootstrapped founder,
+        [bootstrapped founder](https://founderland.io/kalenjordan),
         [connector](https://commercehero.io), 
         [podcaster](https://magetalk.com), 
         and [writer](https://kalenjordan.com). 
@@ -103,4 +103,43 @@ Route::get('/v1/users', function (Request $request) use ($users) {
 
 Route::get('/v1/users/{id}', function (Request $request) use ($users) {
     return $users[0];
+});
+
+$tags = [
+    [
+        'tag' => 'Bootstrapper',
+        'count' => 15,
+        'users' => [
+            [
+                'name' => 'Kalen',
+                'avatar_url' => 'http://i.pravatar.cc/300'
+            ],
+            [
+                'name' => 'Bob',
+                'avatar_url' => 'http://i.pravatar.cc/300'
+            ],
+        ]
+    ],
+    [
+        'tag' => 'Founder',
+        'count' => 13,
+        'users' => [
+            [
+                'name' => 'Kalen',
+                'avatar_url' => 'http://i.pravatar.cc/300'
+            ],
+            [
+                'name' => 'Kalen',
+                'avatar_url' => 'http://i.pravatar.cc/300'
+            ],
+            [
+                'name' => 'Bob',
+                'avatar_url' => 'http://i.pravatar.cc/300'
+            ],
+        ]
+    ]
+];
+
+Route::get('/v1/tags', function (Request $request) use ($tags) {
+    return $tags;
 });

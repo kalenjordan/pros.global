@@ -1,0 +1,26 @@
+.footer {
+    color: $grayLighter;
+    padding: 1em 2em;
+
+    border-top: solid 1px $grayEvenLighter;
+    margin-top: 2em;
+    padding-top: 2em;
+    padding-bottom: 5em;
+
+    .footer--inner {
+        display: flex;
+        .footer--column {
+            flex: 1;
+            &.first {
+                flex: 2;
+            }
+            @extend .m-1;
+
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+            }
+        }
+    }
+}

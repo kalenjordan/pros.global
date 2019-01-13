@@ -1,6 +1,10 @@
-h1, h2 {
+h1, h2, h3 {
     margin: 0;
     line-height: 1.1;
+}
+
+h3 {
+    @extend .mb-1;
 }
 
 .bold {

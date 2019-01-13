@@ -8,6 +8,7 @@ body, html {
     background-image: url("https://www.transparenttextures.com/patterns/black-thread-light.png");
     font-family: Nunito, sans-serif;
 }
+
 /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 
 .header {
@@ -21,7 +22,7 @@ body, html {
 
 .section {
     @extend .margin-auto;
-    max-width: 700px;
+    max-width: 750px;
 }
 
 .max-width-medium {
@@ -41,12 +42,20 @@ body, html {
     text-align: center;
 }
 
+.m-1 {
+    margin: 14px;
+}
+
 .mb-1 {
     margin-bottom: 14px;
 }
 
 .mb-2 {
     margin-bottom: 30px;
+}
+
+.mt-0 {
+    margin-top: 0;
 }
 
 .mt-1 {
@@ -63,6 +72,14 @@ body, html {
 
 .pt-2 {
     padding-top: 30px;
+}
+
+.pr-1 {
+    padding-right: 14px;
+}
+
+.pr-2 {
+    padding-right: 30px;
 }
 
 .pb-1 {

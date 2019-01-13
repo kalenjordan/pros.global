@@ -19,6 +19,31 @@
 <body>
     <div id="app" class="wrapper">
         <router-view></router-view>
+        <div class="footer">
+            <div class="section footer--inner margin-auto">
+                <div class="footer--column first">
+                    <h3>Founder Land</h3>
+                    <ul>
+                        <li>Copyright 2019. All rights reserved.</li>
+                        <li>Made with &hearts; in Austin</li>
+                    </ul>
+                </div>
+
+                <div class="footer--column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a class="naked-link" href="https://kalenjordan.com">Blog</a></li>
+                        <li><a class="naked-link" href="https://github.com/kalenjordan/founderland">We are open source!</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer--column">
+                    <h3>Follow us</h3>
+                    <a class="naked-link" href="https://twitter.com/kalenjordan"><i class="fab fa-twitter pr-05"></i></a>
+                    <a class="naked-link" href="https://github.com/kalenjordan/founderland"><i class="fab fa-github pr-05"></i></a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="/js/app.js"></script>
