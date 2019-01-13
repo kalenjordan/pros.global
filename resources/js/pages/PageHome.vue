@@ -12,7 +12,11 @@
         <div class="section centered pb-2">
             <!-- <h2 class="mb-1">Founders that are interested in advising:</h2> -->
             <card-group></card-group>
+            <div class="centered mt-2">
+                <p class="mb-0"><a href="#">See more founders</a></p>
+            </div>
         </div>
+        <hr/>
         <div class="section centered pb-2">
             <h2 class="mb-1">
                 Discover by tag
@@ -32,6 +36,9 @@
                         </div>
                     </div>
                 </router-link>
+            </div>
+            <div class="centered mt-2">
+                <p class="mb-0"><a href="#">See more tags</a></p>
             </div>
         </div>
     </div>

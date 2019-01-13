@@ -19,6 +19,7 @@
 <body>
     <div id="app" class="wrapper">
         <router-view></router-view>
+        <hr/>
         <div class="footer">
             <div class="section footer--inner margin-auto">
                 <div class="footer--column first">

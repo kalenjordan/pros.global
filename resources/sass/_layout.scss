@@ -46,6 +46,10 @@ body, html {
     margin: 14px;
 }
 
+.mb-0 {
+    margin-bottom: 0;
+}
+
 .mb-1 {
     margin-bottom: 14px;
 }
@@ -107,4 +111,14 @@ body, html {
         max-width: 500px;
         @extend .font-120;
     }
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(130, 128, 128, 0.48), rgba(0, 0, 0, 0));
+    margin-top: 2em;
+    margin-bottom: 3em;
+    margin-left: 20%;
+    margin-right: 20%;
 }
