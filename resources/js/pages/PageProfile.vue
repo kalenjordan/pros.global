@@ -20,6 +20,25 @@
                 </div>
             </div>
         </div>
+        <hr/>
+        <div class="section endorsements margin-auto max-width-medium">
+            <div class="card endorsement-card" v-for="endorsement in user.endorsements">
+                <div class="card--inner">
+                    <div class="avatar centered mr-1">
+                        <img v-bind:src="endorsement.user.avatar_url">
+                        {{ endorsement.user.first_name }}
+                    </div>
+                    <div class="endorsement-message">
+                        <div>
+                            <p class="mb-05">
+                                {{ endorsement.message }}
+                            </p>
+                            <div class="inline-tag">{{ endorsement.tag }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 

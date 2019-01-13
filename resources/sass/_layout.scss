@@ -25,8 +25,12 @@ body, html {
     max-width: 750px;
 }
 
+.max-width-small {
+    max-width: 300px !important;
+}
+
 .max-width-medium {
-    max-width: 500px;
+    max-width: 500px  !important;
 }
 
 .margin-auto {
@@ -36,6 +40,10 @@ body, html {
 
 .text-left {
     text-align: left;
+}
+
+.text-right {
+    text-align: right;
 }
 
 .centered {
@@ -72,6 +80,10 @@ body, html {
 
 .mt-2 {
     margin-top: 30px;
+}
+
+.mr-1 {
+    margin-right: 14px;
 }
 
 .pt-1 {
@@ -121,7 +133,7 @@ hr {
     border: 0;
     height: 1px;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(130, 128, 128, 0.48), rgba(0, 0, 0, 0));
-    margin-top: 2em;
+    margin-top: 3em;
     margin-bottom: 3em;
     margin-left: 20%;
     margin-right: 20%;

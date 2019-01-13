@@ -41,12 +41,22 @@
     }
 }
 
+.inline-tag {
+    display: inline-block;
+    background-color: $grayEvenLighter;
+    border-radius: 5px;
+    color: $grayLight;
+    padding: 4px 6px 3px;
+    font-size: 70%;
+    line-height: 1.2;
+}
+
 .tag-cards {
     display: flex;
 }
 
 .tag-card {
-    width: 250px;
+    width: 220px;
 
     img {
         transition: all 0.25s ease;
@@ -63,4 +73,7 @@
         }
     }
 
+}
+
+.tag-endorsement-card {
 }

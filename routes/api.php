@@ -19,12 +19,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 $users = [
     [
-        'id'        => 1,
-        'name'      => 'Kalen Jordan',
-        'handle'    => 'kalenjordan',
-        'image_url' => 'https://pbs.twimg.com/profile_images/959539398210547712/U5lQBX2N_400x400.jpg',
-        'city'      => 'Austin',
-        'tags'      => [
+        'id'           => 1,
+        'name'         => 'Kalen Jordan',
+        'handle'       => 'kalenjordan',
+        'image_url'    => 'https://pbs.twimg.com/profile_images/959539398210547712/U5lQBX2N_400x400.jpg',
+        'city'         => 'Austin',
+        'tags'         => [
             [
                 'tag'        => 'Bootstrapper',
                 'count'      => 3,
@@ -61,8 +61,8 @@ $users = [
                 'is_upvoted' => 0,
             ],
         ],
-        'headline'  => 'Magento fanboy. Small-time entrepreneur. Wannabe Youtuber. Not a recruiter. Founder @commercehero. Co-host @magetalk',
-        'about'     => "Hey there! I'm Kalen! I'm a 
+        'headline'     => 'Magento fanboy. Small-time entrepreneur. Wannabe Youtuber. Not a recruiter. Founder @commercehero. Co-host @magetalk',
+        'about'        => "Hey there! I'm Kalen! I'm a 
         [developer](https://github.com/kalenjordan), 
         [bootstrapped founder](https://founderland.io/kalenjordan),
         [connector](https://commercehero.io), 
@@ -72,7 +72,27 @@ $users = [
 Glad you're here checking out my page on Founder Land. I'm building Founder Land because I love to connect people and I love the bootstrapped founder community.
         
 Little about me…I've been in the Magento community for about 7 years, and I built an email software that was acquired, started a [podcast](https://magetalk.com) that I cohost with my buddy, and then built a [matchmaking platform](https://commercehero.io) to find Magento developers, which is doing great and I continue to run.
-        "
+        ",
+        'endorsements' => [
+            [
+                'id'      => 1,
+                'user'    => [
+                    'first_name'    => 'Joe',
+                    'avatar_url' => 'http://i.pravatar.cc/300?img=1',
+                ],
+                'tag'     => 'Founder',
+                'message' => "Kalen is the best, he's so awesome",
+            ],
+            [
+                'id'      => 2,
+                'user'    => [
+                    'first_name'    => 'Joe',
+                    'avatar_url' => 'http://i.pravatar.cc/300?img=1',
+                ],
+                'tag'     => 'PHP',
+                'message' => "Kalen is really great when it comes to PHP - really knows his stuff"
+            ]
+        ]
     ],
     [
         'id'        => 2,

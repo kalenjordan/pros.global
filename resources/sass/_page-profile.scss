@@ -7,6 +7,24 @@
         }
     }
 
+    .endorsements {
+        @extend .font-90;
+        .endorsement-card {
+            .card--inner {
+                display: flex;
+                .avatar {
+                    @extend .mr-1;
+                    img {
+                        max-width: 50px;
+                    }
+                }
+                .endorsement-message {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
     img {
         border-radius: 50%;
         width: 100px;

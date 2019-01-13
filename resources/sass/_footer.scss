@@ -22,8 +22,6 @@
         .email-signup {
             input.text {
                 width: 156px;
-                padding: 7px 10px;
-                border: none;
 
                 &::placeholder {
                     color: $grayEvenLighter;
@@ -32,6 +30,9 @@
 
             .btn {
                 color: inherit;
+                &:hover {
+                    color: white;
+                }
             }
         }
     }
