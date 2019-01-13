@@ -18,3 +18,15 @@ Route::get('{any?}', function () {
 Route::get('tag/{thing}', function () {
     return view('app');
 });
+
+Route::get('tags', function () {
+    return view('app');
+});
+
+Route::get('city/{thing}', function () {
+    return view('app');
+});
+
+Route::get('cities', function () {
+    return view('app');
+});

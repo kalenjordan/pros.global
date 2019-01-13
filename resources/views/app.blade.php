@@ -22,26 +22,42 @@
         <hr/>
         <div class="footer">
             <div class="section footer--inner margin-auto">
-                <div class="footer--column first">
-                    <h3>Founder Land</h3>
-                    <ul>
-                        <li>Copyright 2019. All rights reserved.</li>
-                        <li>Made with &hearts; in Austin</li>
-                    </ul>
+                <div class="footer--column flex-3">
+                    <h3>About</h3>
+                    <p class="mb-1">
+                        Founder Land is a matchmaking platform for founders
+                        being built by
+                        <router-link :to="{ name: 'profile', params: {username: 'kalenjordan'}}">Kalen</router-link>
+                        with &hearts; in
+                        <router-link :to="{ name: 'city', params: {slug: 'austin'}}">Austin</router-link>.
+                    </p>
+                    <p>
+                        Copyright 2019. All rights reserved.
+                    </p>
                 </div>
 
-                <div class="footer--column">
+                <div class="footer--column flex-1">
                     <h3>Resources</h3>
                     <ul>
-                        <li><a class="naked-link" href="https://kalenjordan.com">Blog</a></li>
-                        <li><a class="naked-link" href="https://github.com/kalenjordan/founderland">We are open source!</a></li>
+                        <li><a class="naked-link" href="https://github.com/kalenjordan/founderland">Open source</a></li>
+                        <li><a class="naked-link" href="/tags">Tags</a></li>
+                        <li><a class="naked-link" href="/cities">Cities</a></li>
                     </ul>
                 </div>
 
-                <div class="footer--column">
+                <div class="footer--column flex-2">
                     <h3>Follow us</h3>
-                    <a class="naked-link" href="https://twitter.com/kalenjordan"><i class="fab fa-twitter pr-05"></i></a>
-                    <a class="naked-link" href="https://github.com/kalenjordan/founderland"><i class="fab fa-github pr-05"></i></a>
+                    <p class="mb-05">
+                        Sign up to get email updates:
+                    </p>
+                    <div class="email-signup mb-1">
+                        <input class="text" type="text" placeholder="you@example.com">
+                        <a class="btn"><i class="fa fa-envelope"></i></a>
+                    </div>
+                    <div>
+                        <a class="naked-link" href="https://twitter.com/kalenjordan"><i class="fab fa-twitter pr-05"></i></a>
+                        <a class="naked-link" href="https://github.com/kalenjordan/founderland"><i class="fab fa-github pr-05"></i></a>
+                    </div>
                 </div>
             </div>
         </div>

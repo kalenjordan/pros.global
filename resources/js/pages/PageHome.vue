@@ -38,7 +38,9 @@
                 </router-link>
             </div>
             <div class="centered mt-2">
-                <p class="mb-0"><a href="#">See more tags</a></p>
+                <p class="mb-0">
+                    <router-link :to="{name: 'tags'}">See more tags</router-link>
+                </p>
             </div>
         </div>
     </div>

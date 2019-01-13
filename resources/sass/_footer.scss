@@ -1,4 +1,5 @@
 .footer {
+    @extend .font-90;
     color: $grayLighter;
     padding: 1em 2em;
 
@@ -9,16 +10,28 @@
     .footer--inner {
         display: flex;
         .footer--column {
-            flex: 1;
-            &.first {
-                flex: 2;
-            }
             @extend .m-1;
 
             ul {
                 list-style-type: none;
                 margin: 0;
                 padding: 0;
+            }
+        }
+
+        .email-signup {
+            input.text {
+                width: 156px;
+                padding: 7px 10px;
+                border: none;
+
+                &::placeholder {
+                    color: $grayEvenLighter;
+                }
+            }
+
+            .btn {
+                color: inherit;
             }
         }
     }
