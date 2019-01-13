@@ -1,5 +1,5 @@
 <template>
-    <div class="card">
+    <div class="card user-card">
         <div class="card--background"></div>
         <div class="card--inner">
             <div class="card--avatar">

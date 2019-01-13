@@ -1,5 +1,5 @@
 <template>
-    <div class="container page-profile">
+    <div class="container page page-profile">
         <div class="header centered pb-1">
             <router-link class="naked-link" to="/"><i class="fas fa-bolt font-200"></i></router-link>
             <div class="avatar mb-1">

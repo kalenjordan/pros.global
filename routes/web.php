@@ -14,3 +14,7 @@
 Route::get('{any?}', function () {
     return view('app');
 });
+
+Route::get('tag/{thing}', function () {
+    return view('app');
+});

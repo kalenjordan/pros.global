@@ -24,6 +24,11 @@ a.naked-link {
     }
 }
 
+a.no-link {
+    text-decoration: none;
+    color: inherit;
+}
+
 a.btn {
     @extend .font-small;
     background-color: white;

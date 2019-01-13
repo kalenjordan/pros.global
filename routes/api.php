@@ -19,12 +19,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 $users = [
     [
-        'id'          => 1,
-        'name'        => 'Kalen Jordan',
-        'handle'      => 'kalenjordan',
-        'image_url'   => 'https://pbs.twimg.com/profile_images/959539398210547712/U5lQBX2N_400x400.jpg',
-        'city'        => 'Austin',
-        'tags'        => [
+        'id'        => 1,
+        'name'      => 'Kalen Jordan',
+        'handle'    => 'kalenjordan',
+        'image_url' => 'https://pbs.twimg.com/profile_images/959539398210547712/U5lQBX2N_400x400.jpg',
+        'city'      => 'Austin',
+        'tags'      => [
             [
                 'tag'        => 'Bootstrapper',
                 'count'      => 3,
@@ -61,8 +61,8 @@ $users = [
                 'is_upvoted' => 0,
             ],
         ],
-        'headline' => 'Magento fanboy. Small-time entrepreneur. Wannabe Youtuber. Not a recruiter. Founder @commercehero. Co-host @magetalk',
-        'about' => "Hey there! I'm Kalen! I'm a 
+        'headline'  => 'Magento fanboy. Small-time entrepreneur. Wannabe Youtuber. Not a recruiter. Founder @commercehero. Co-host @magetalk',
+        'about'     => "Hey there! I'm Kalen! I'm a 
         [developer](https://github.com/kalenjordan), 
         [bootstrapped founder](https://founderland.io/kalenjordan),
         [connector](https://commercehero.io), 
@@ -75,12 +75,12 @@ Little about me…I've been in the Magento community for about 7 years, and I bu
         "
     ],
     [
-        'id'          => 2,
-        'name'        => 'Andrew Culver',
-        'handle'      => 'andrewculver',
-        'image_url'   => 'https://pbs.twimg.com/profile_images/976527971140845568/iniQmnYi_400x400.jpg',
-        'city'        => 'Los Angeles',
-        'tags'        => [
+        'id'        => 2,
+        'name'      => 'Andrew Culver',
+        'handle'    => 'andrewculver',
+        'image_url' => 'https://pbs.twimg.com/profile_images/976527971140845568/iniQmnYi_400x400.jpg',
+        'city'      => 'Los Angeles',
+        'tags'      => [
             [
                 'tag'        => 'Bootstrapper',
                 'count'      => 3,
@@ -92,8 +92,8 @@ Little about me…I've been in the Magento community for about 7 years, and I bu
                 'is_upvoted' => 0,
             ],
         ],
-        'headline' => 'Founder and Lead Developer at bullettrain.co . Founded and sold churnbuster.io . Bootstrapper. Remote. Canadian. Love️ Japan.',
-        'about' => 'test',
+        'headline'  => 'Founder and Lead Developer at bullettrain.co . Founded and sold churnbuster.io . Bootstrapper. Remote. Canadian. Love️ Japan.',
+        'about'     => 'test',
     ]
 ];
 
@@ -107,34 +107,54 @@ Route::get('/v1/users/{id}', function (Request $request) use ($users) {
 
 $tags = [
     [
-        'tag' => 'Bootstrapper',
-        'count' => 15,
-        'users' => [
+        'tag'         => 'Bootstrapper',
+        'slug'        => 'Bootstrapper',
+        'description' => 'Lorem ipsum dolor set amen',
+        'count'       => 15,
+        'users'       => [
             [
-                'name' => 'Kalen',
-                'avatar_url' => 'http://i.pravatar.cc/300'
+                'name'       => 'Kalen',
+                'avatar_url' => 'http://i.pravatar.cc/300?img=3'
             ],
             [
-                'name' => 'Bob',
-                'avatar_url' => 'http://i.pravatar.cc/300'
+                'name'       => 'Bob',
+                'avatar_url' => 'http://i.pravatar.cc/300?img=4'
             ],
         ]
     ],
     [
-        'tag' => 'Founder',
-        'count' => 13,
-        'users' => [
+        'tag'         => 'Homeschool Dad',
+        'slug'        => 'homeschool-dad',
+        'description' => 'Lorem ipsum dolor set amen',
+        'count'       => 3,
+        'users'       => [
             [
-                'name' => 'Kalen',
-                'avatar_url' => 'http://i.pravatar.cc/300'
+                'name'       => 'Kalen',
+                'avatar_url' => 'http://i.pravatar.cc/300?img=1'
             ],
             [
-                'name' => 'Kalen',
-                'avatar_url' => 'http://i.pravatar.cc/300'
+                'name'       => 'Bob',
+                'avatar_url' => 'http://i.pravatar.cc/300?img=2'
+            ],
+        ]
+    ],
+    [
+        'tag'         => 'Founder',
+        'slug'        => 'founder',
+        'description' => 'Lorem ipsum dolor set amen',
+        'count'       => 13,
+        'users'       => [
+            [
+                'name'       => 'Kalen',
+                'avatar_url' => 'http://i.pravatar.cc/300?img=42'
             ],
             [
-                'name' => 'Bob',
-                'avatar_url' => 'http://i.pravatar.cc/300'
+                'name'       => 'Kalen',
+                'avatar_url' => 'http://i.pravatar.cc/300?img=43'
+            ],
+            [
+                'name'       => 'Bob',
+                'avatar_url' => 'http://i.pravatar.cc/300?img=44'
             ],
         ]
     ]
@@ -142,4 +162,8 @@ $tags = [
 
 Route::get('/v1/tags', function (Request $request) use ($tags) {
     return $tags;
+});
+
+Route::get('/v1/tags/1', function (Request $request) use ($tags) {
+    return $tags[0];
 });

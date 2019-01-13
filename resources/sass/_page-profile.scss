@@ -1,17 +1,4 @@
 .page-profile {
-    .header {
-        i {
-            position: absolute;
-            left: 1em;
-            top: 1em;
-        }
-    }
-
-    .card {
-        max-width: 500px;
-        @extend .font-120;
-    }
-
     .tag {
         margin: 2px 6px;
         background-color: $secondaryColorLighter;

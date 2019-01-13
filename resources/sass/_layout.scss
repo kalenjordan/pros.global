@@ -93,3 +93,18 @@ body, html {
 .pr-05 {
     padding-right: 2px;
 }
+
+.page {
+    .header {
+        i {
+            position: absolute;
+            left: 1em;
+            top: 1em;
+        }
+    }
+
+    .card {
+        max-width: 500px;
+        @extend .font-120;
+    }
+}

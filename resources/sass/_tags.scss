@@ -40,3 +40,27 @@
         opacity: 0.6;
     }
 }
+
+.tag-cards {
+    display: flex;
+}
+
+.tag-card {
+    width: 250px;
+
+    img {
+        transition: all 0.25s ease;
+        display: inline-block;
+        width: 40px;
+        border-radius: 50%;
+        margin-right: -15px;
+        border: solid 2px $primaryColor;
+    }
+
+    &:hover {
+        img {
+            margin-right: -4px;
+        }
+    }
+
+}

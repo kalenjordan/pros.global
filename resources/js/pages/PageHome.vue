@@ -17,8 +17,21 @@
             <h2 class="mb-1">
                 Discover by tag
             </h2>
-            <div v-for="tag in tags" class="card">
-                {{ tag.tag }}
+            <div class="tag-cards">
+                <router-link class="no-link" v-for="tag in tags" :to="{ name: 'tag', params: { slug: tag.slug }}">
+                    <div class="card hoverable tag-card">
+                        <div class="card--inner">
+                            <div class="bold">{{ tag.tag }}</div>
+                            <div class="font-70">{{ tag.count }} people</div>
+                            <div class="mt-1">
+                                {{ tag.description }}
+                            </div>
+                            <div class="mt-1">
+                                <img v-for="user in tag.users" v-bind:src="user.avatar_url">
+                            </div>
+                        </div>
+                    </div>
+                </router-link>
             </div>
         </div>
     </div>
