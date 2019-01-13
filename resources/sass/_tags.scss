@@ -6,6 +6,8 @@
     margin: 0.25em;
     padding: 0.25em 0.8em;
 
+    transition: all 0.25s ease;
+
     background-color: $grayLightest;
     color: $grayLight;
     &:hover {

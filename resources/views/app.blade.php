@@ -12,11 +12,11 @@
 
     <link href="/css/app.css" rel="stylesheet" type="text/css">
 
-    <script src="https://unpkg.com/marked@0.3.6"></script>
+    <script src="https://rawgit.com/showdownjs/showdown/develop/dist/showdown.min.js"></script>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
-<body class="bg-secondary-color-lightest">
+<body>
     <div id="app" class="wrapper">
         <router-view></router-view>
     </div>

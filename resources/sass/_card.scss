@@ -33,10 +33,23 @@
         padding: 18px 30px 30px 30px;
         position: relative;
 
+        p {
+            &:first-child {
+                margin-top: 0;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
         .card--avatar {
             z-index: 1;
             img {
                 border: solid 3px $primaryColorLight;
+                &:hover {
+                    border-color: $highlightColor;
+                }
                 z-index: 1;
                 transition: all 0.25s ease;
                 margin-right: 1em;

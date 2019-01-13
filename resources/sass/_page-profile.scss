@@ -9,11 +9,15 @@
 
     .card {
         max-width: 500px;
+        @extend .font-120;
     }
 
     .tag {
         margin: 2px 6px;
         background-color: $secondaryColorLighter;
+        &:hover {
+            background-color: $secondaryColorLight;
+        }
     }
 
     img {

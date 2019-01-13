@@ -24,8 +24,6 @@
 </template>
 
 <script>
-    import Marked from 'marked';
-
     export default {
         data() {
             return {
@@ -40,7 +38,8 @@
         },
         computed: {
             compiledMarkdown: function () {
-                return marked(this.user.about, { sanitize: true })
+                let converter = new showdown.Converter();
+                return converter.makeHtml(this.user.about);
             }
         }
     }
