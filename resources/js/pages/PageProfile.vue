@@ -13,12 +13,10 @@
             <div class="tag"><i class="fa fa-location-arrow pr-05"></i> {{ user.city }}</div>
             <tag-clickable v-for="tag in user.tags" v-bind:tag="tag"></tag-clickable>
         </div>
-        <div class="section margin-auto">
+        <div class="section margin-auto max-width-medium">
             <div class="card">
                 <div class="card--inner text-left">
-                    <p>
-                        Hi there.
-                    </p>
+                    <div v-html="compiledMarkdown">{{ user.about }}</div>
                 </div>
             </div>
         </div>
@@ -26,6 +24,8 @@
 </template>
 
 <script>
+    import Marked from 'marked';
+
     export default {
         data() {
             return {
@@ -37,6 +37,11 @@
             axios.get('/api/v1/users/1').then(function(response) {
                 self.user = response.data;
             });
+        },
+        computed: {
+            compiledMarkdown: function () {
+                return marked(this.user.about, { sanitize: true })
+            }
         }
     }
 </script>

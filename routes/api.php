@@ -62,6 +62,11 @@ $users = [
             ],
         ],
         'headline' => 'Magento fanboy. Small-time entrepreneur. Wannabe Youtuber. Not a recruiter. Founder @commercehero. Co-host @magetalk',
+        'about' => "
+            Hey there! I'm Kalen! Glad you're here checking out my page on Founder Land. I'm building Founder Land because I love to connect people and I love the bootstrapped founder community.
+
+            Little about me…I've been in the Magento community for about 7 years, and I built an email software that was acquired, started a podcast that I cohost with my buddy, and then built a matchmaking platform to find Magento developers, which is doing great and I continue to run.
+        "
     ],
     [
         'id'          => 2,
@@ -82,6 +87,7 @@ $users = [
             ],
         ],
         'headline' => 'Founder and Lead Developer at bullettrain.co . Founded and sold churnbuster.io . Bootstrapper. Remote. Canadian. Love️ Japan.',
+        'about' => 'test',
     ]
 ];
 

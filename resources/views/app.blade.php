@@ -12,6 +12,8 @@
 
     <link href="/css/app.css" rel="stylesheet" type="text/css">
 
+    <script src="https://unpkg.com/marked@0.3.6"></script>
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body class="bg-secondary-color-lightest">
