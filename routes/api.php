@@ -21,7 +21,7 @@ $users = [
     [
         'id'          => 1,
         'name'        => 'Kalen Jordan',
-        'handle'      => '@kalenjordan',
+        'handle'      => 'kalenjordan',
         'image_url'   => 'https://pbs.twimg.com/profile_images/959539398210547712/U5lQBX2N_400x400.jpg',
         'city'        => 'Austin',
         'tags'        => [
@@ -77,7 +77,7 @@ Little about me…I've been in the Magento community for about 7 years, and I bu
     [
         'id'          => 2,
         'name'        => 'Andrew Culver',
-        'handle'      => '@andrewculver',
+        'handle'      => 'andrewculver',
         'image_url'   => 'https://pbs.twimg.com/profile_images/976527971140845568/iniQmnYi_400x400.jpg',
         'city'        => 'Los Angeles',
         'tags'        => [

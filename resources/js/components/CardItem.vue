@@ -20,7 +20,7 @@
                 </div>
                 <div class="card--identity--handle font-small">
                     <router-link :to="{ name: 'profile', params: { username: user.handle }}" class="naked-link">
-                        {{ user.handle }}
+                        @{{ user.handle }}
                     </router-link>
                 </div>
             </div>
