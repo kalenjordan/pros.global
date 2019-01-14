@@ -26,36 +26,43 @@ $users = [
         'city'         => 'Austin',
         'tags'         => [
             [
+                'id'    => 1,
                 'tag'        => 'Bootstrapper',
                 'count'      => 3,
                 'is_upvoted' => 1,
             ],
             [
+                'id'    => 2,
                 'tag'        => 'Founder',
                 'count'      => 1,
                 'is_upvoted' => 0,
             ],
             [
+                'id'    => 3,
                 'tag'        => 'Magento',
                 'count'      => 5,
                 'is_upvoted' => 0,
             ],
             [
+                'id'    => 4,
                 'tag'        => 'Laravel',
                 'count'      => 1,
                 'is_upvoted' => 0,
             ],
             [
+                'id'    => 5,
                 'tag'        => 'Homeschool Dad',
                 'count'      => 0,
                 'is_upvoted' => 0,
             ],
             [
+                'id'    => 6,
                 'tag'        => 'PHP',
                 'count'      => 1,
                 'is_upvoted' => 0,
             ],
             [
+                'id'    => 7,
                 'tag'        => 'eCommerce',
                 'count'      => 1,
                 'is_upvoted' => 0,
@@ -102,11 +109,13 @@ Little about me…I've been in the Magento community for about 7 years, and I bu
         'city'      => 'Los Angeles',
         'tags'      => [
             [
+                'id'    => 9,
                 'tag'        => 'Bootstrapper',
                 'count'      => 3,
                 'is_upvoted' => 0,
             ],
             [
+                'id'    => 10,
                 'tag'        => 'Founder',
                 'count'      => 1,
                 'is_upvoted' => 0,

@@ -9,10 +9,14 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 import VueRouter from 'vue-router'
-window.Vue.use(VueRouter);
-
 import Toasted from 'vue-toasted';
+import Vuetify from 'vuetify'
+
+window.Vue.use(VueRouter);
 window.Vue.use(Toasted);
+window.Vue.use(Vuetify, {
+    iconfont: 'fa'
+});
 
 window.Event = new window.Vue();
 

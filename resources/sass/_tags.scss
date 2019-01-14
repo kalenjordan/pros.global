@@ -82,3 +82,20 @@
     transition: all 0.4s ease;
     z-index: 9;
 }
+
+.tag-editable {
+    cursor: default;
+    .close {
+        cursor: pointer;
+        &:hover {
+            color: $highlightColor;
+        }
+    }
+}
+
+.tag-autocomplete {
+    .v-menu__content {
+        top: 34px !important;
+        left: 1px !important;
+    }
+}

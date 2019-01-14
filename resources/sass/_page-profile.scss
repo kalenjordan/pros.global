@@ -1,4 +1,10 @@
 .page-profile {
+    .header {
+        img {
+            width: 100px;
+            border: solid 4px $secondaryColor;
+        }
+    }
     .tag {
         margin: 2px 6px;
         background-color: $secondaryColorLighter;
@@ -43,6 +49,5 @@
 
     img {
         border-radius: 50%;
-        width: 100px;
     }
 }
