@@ -13,7 +13,9 @@
             <!-- <h2 class="mb-1">Founders that are interested in advising:</h2> -->
             <card-group></card-group>
             <div class="centered mt-2">
-                <p class="mb-0"><a href="#">See more founders</a></p>
+                <p class="mb-0">
+                    <router-link :to="{name: 'search'}">See more founders</router-link>
+                </p>
             </div>
         </div>
         <hr/>

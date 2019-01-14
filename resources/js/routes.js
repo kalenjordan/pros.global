@@ -1,6 +1,7 @@
 import VueRouter from 'vue-router';
 
 import PageHome from './pages/PageHome';
+import PageSearch from './pages/PageSearch';
 import PageProfile from './pages/PageProfile';
 import PageTag from './pages/PageTag';
 import PageTagList from './pages/PageTagList';
@@ -12,6 +13,11 @@ let routes = [
         name: 'home',
         path: '/',
         component: PageHome
+    },
+    {
+        name: 'search',
+        path: '/search',
+        component: PageSearch
     },
     {
         name: 'tags',
