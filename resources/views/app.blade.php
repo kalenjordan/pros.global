@@ -54,9 +54,10 @@
                         <input class="text" type="text" placeholder="you@example.com">
                         <a class="btn"><i class="fa fa-envelope"></i></a>
                     </div>
-                    <div>
+                    <div class="font-150 gray-lighter">
                         <a class="naked-link" href="https://twitter.com/kalenjordan"><i class="fab fa-twitter pr-05"></i></a>
                         <a class="naked-link" href="https://github.com/kalenjordan/founderland"><i class="fab fa-github pr-05"></i></a>
+                        <a class="naked-link" href="https://github.com/kalenjordan/founderland"><i class="fab fa-linkedin pr-05"></i></a>
                     </div>
                 </div>
             </div>

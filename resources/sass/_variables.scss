@@ -13,7 +13,7 @@ $grayDarker: #2E2E2E;
 $grayDark: #454545;
 $gray: #5C5C5C;
 $grayLight: #8B8B8B;
-$grayLighter: #b3b3b3;
+$grayLighter: #d0d0d0;
 $grayEvenLighter: #E7E7E7;
 $grayLightest: #F5F5F5;
 
@@ -39,4 +39,8 @@ $highlightColorLight: #F98F96;
 
 .bg-secondary-color-lightest {
     background-color: $secondaryColorLightest;
+}
+
+.gray-lighter {
+    color: $grayLighter;
 }
