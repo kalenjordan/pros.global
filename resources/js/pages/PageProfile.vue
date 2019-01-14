@@ -12,6 +12,7 @@
         <div class="section centered margin-auto">
             <div class="tag"><i class="fa fa-location-arrow pr-05"></i> {{ user.city }}</div>
             <tag-clickable v-for="tag in user.tags" v-bind:tag="tag"></tag-clickable>
+            <tag-endorsement></tag-endorsement>
         </div>
         <div class="section margin-auto max-width-medium">
             <div class="card">

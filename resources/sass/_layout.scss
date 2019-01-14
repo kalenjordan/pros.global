@@ -125,7 +125,6 @@ body, html {
 
     .card {
         max-width: 500px;
-        @extend .font-120;
     }
 }
 
@@ -149,4 +148,8 @@ hr {
 
 .flex-3 {
     flex: 3;
+}
+
+.width-100 {
+    width: 100%;
 }

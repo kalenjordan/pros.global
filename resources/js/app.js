@@ -11,6 +11,11 @@ window.Vue = require('vue');
 import VueRouter from 'vue-router'
 window.Vue.use(VueRouter);
 
+import Toasted from 'vue-toasted';
+window.Vue.use(Toasted);
+
+window.Event = new window.Vue();
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
