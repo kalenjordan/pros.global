@@ -30,7 +30,6 @@
             <div class="card--tags font-70">
                 <div class="tag"><i class="fa fa-location-arrow"></i> {{ user.city }}</div>
                 <tag-clickable v-for="tag in user.tags" v-bind:tag="tag"></tag-clickable>
-                <tag-endorsement></tag-endorsement>
             </div>
         </div>
     </div>

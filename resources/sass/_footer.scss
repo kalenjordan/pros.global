@@ -1,7 +1,13 @@
 .footer {
     @extend .font-90;
-    color: $grayLighter;
+    color: $grayLight;
     padding: 1em 2em;
+
+    transition: all 0.25s ease;
+    opacity: 0.3;
+    &:hover {
+        opacity: 1;
+    }
 
     margin-top: 2em;
     padding-top: 2em;

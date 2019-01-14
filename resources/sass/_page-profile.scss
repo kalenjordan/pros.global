@@ -7,6 +7,22 @@
         }
     }
 
+    .edit-profile-wrapper {
+        position: absolute;
+        top: 1em;
+        right: 1em;
+    }
+
+    .editable-about textarea {
+        height: 21em;
+        border: none;
+    }
+
+    .editable-headline textarea {
+        height: 4em;
+        background: none;
+    }
+
     .endorsements {
         @extend .font-90;
         .endorsement-card {

@@ -5,8 +5,20 @@
             <div class="avatar mb-1">
                 <img v-bind:src="user.image_url">
             </div>
+            <div class="edit-profile-wrapper m-1">
+                <div v-if="editing">
+                    <a class="paragraph-link mr-1" @click="cancelEditing()">Cancel</a>
+                    <a class="btn" @click="saveProfile()">Save</a>
+                </div>
+                <div v-else>
+                    <a class="btn" @click="editProfile()">Edit Profile</a>
+                </div>
+            </div>
             <h1>
-                {{ user.headline }}
+                <span v-if="editing" class="editable-headline">
+                    <textarea ref="headline" class="font-90 no-border width-100" >{{ user.headline }}</textarea>
+                </span>
+                <span v-else>{{ user.headline }}</span>
             </h1>
         </div>
         <div class="section centered margin-auto">
@@ -17,13 +29,16 @@
         <div class="section margin-auto max-width-medium">
             <div class="card">
                 <div class="card--inner text-left">
-                    <div v-html="compiledMarkdown">{{ user.about }}</div>
+                    <div class="editable-about" v-if="editing">
+                        <textarea ref="about" class="font-90 width-100">{{ user.about }}</textarea>
+                    </div>
+                    <div v-else v-html="compiledMarkdown">{{ user.about }}</div>
                 </div>
             </div>
         </div>
         <hr/>
         <div class="section endorsements margin-auto max-width-medium">
-            <div class="card endorsement-card" v-for="endorsement in user.endorsements">
+            <div class="card hoverable endorsement-card" v-for="endorsement in user.endorsements">
                 <div class="card--inner">
                     <div class="avatar centered mr-1">
                         <img v-bind:src="endorsement.user.avatar_url">
@@ -47,7 +62,8 @@
     export default {
         data() {
             return {
-                user: {}
+                user: {},
+                editing: false
             }
         },
         mounted() {
@@ -55,6 +71,20 @@
             axios.get('/api/v1/users/1').then(function(response) {
                 self.user = response.data;
             });
+        },
+        methods: {
+            editProfile() {
+                this.editing = true;
+            },
+            cancelEditing() {
+                this.editing = false;
+            },
+            saveProfile() {
+                this.editing = false;
+                this.user.about = this.$refs.about.value;
+                this.user.headline = this.$refs.headline.value;
+                this.$toasted.show('Saved profile!', {duration: 5000, position: "bottom-right"});
+            }
         },
         computed: {
             compiledMarkdown: function () {

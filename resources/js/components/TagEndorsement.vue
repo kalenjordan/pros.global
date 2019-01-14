@@ -19,10 +19,10 @@
         mounted() {
             let self = this;
             window.Event.$on('tag-added', function(tag) {
-                self.$refs.endorsement.placeholder = "e.g. Kalen is great with " + tag.tag;
                 self.$refs.wrapper.style.right = '0';
                 self.tag = tag;
                 self.$nextTick(function() {
+                    self.$refs.endorsement.placeholder = "e.g. Kalen is great with " + tag.tag;
                     self.$refs.endorsement.focus();
                 });
             });
@@ -36,7 +36,6 @@
         methods: {
             saveEndorsement() {
                 this.$refs.wrapper.style.right = '-500px';
-
                 this.$toasted.show('Saved endorsement!', {duration: 5000, position: "bottom-right"});
             }
         }

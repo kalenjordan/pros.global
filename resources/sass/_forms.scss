@@ -3,3 +3,7 @@ input.text, textarea.text {
     border: 1px solid $grayEvenLighter;
     border-radius: 5px;
 }
+
+.toasted.toasted-primary {
+    background-color: $thirdColor !important;
+}

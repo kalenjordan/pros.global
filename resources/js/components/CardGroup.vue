@@ -1,6 +1,7 @@
 <template>
     <div class="card-group">
         <card-item class="hoverable" v-for="user in users" v-bind:user="user"></card-item>
+        <tag-endorsement></tag-endorsement>
     </div>
 </template>
 

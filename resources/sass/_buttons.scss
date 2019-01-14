@@ -2,7 +2,8 @@ a {
     transition: all 0.25s ease;
 }
 
-p a {
+.paragraph-link {
+    cursor: pointer;
     color: inherit;
     text-decoration: none;
     border-bottom: solid 2px $secondaryColorLighter;
@@ -13,6 +14,10 @@ p a {
         background-color: $secondaryColorEvenLighter;
         border-color: $secondaryColorLight;
     }
+}
+
+p a {
+    @extend .paragraph-link;
 }
 
 a.naked-link {
@@ -30,6 +35,7 @@ a.no-link {
 }
 
 a.btn {
+    cursor: pointer;
     background-color: white;
     box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
 
