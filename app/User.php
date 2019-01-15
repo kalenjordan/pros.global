@@ -38,22 +38,29 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'email',
     ];
 
     public static function findByUsername($username)
     {
-        return self::where('username', $username)->first();
+        return self::with('tagged')->where('username', $username)->first();
     }
 
     public function toArray()
     {
         $data = parent::toArray();
 
-        unset($data['tagged']); // don't need the tagged stuff that the rtconner package adds
-        $data['tags'] = $this->tagsArray();
-        $data['endorsements'] = $this->_buildEndorsements();
+        // The default tagged array isn't quite right
+        unset($data['tagged']);
+
+        $data['tags'] = $this->getTagged()->toArray();
+        $data['upvotes'] = $this->_toArrayUpvotes();
 
         return $data;
+    }
+
+    public function getTagged() {
+        return Tagged::where('taggable_id', $this->id)->get();
     }
 
     public function tagsArray()
@@ -66,8 +73,17 @@ class User extends Authenticatable
         return $tags->toArray();
     }
 
-    protected function _buildEndorsements()
+    protected function _toArrayUpvotes()
     {
+        $upvotes = TaggedUpvote::from('tagging_tagged_upvotes as upvotes')
+            ->leftJoin('tagging_tagged as tagged', function ($join) {
+                /** @var $join \Illuminate\Database\Query\JoinClause */
+                $join->on('tagged.id', '=', 'upvotes.tagged_id');
+            })->where('tagged.taggable_id', $this->id)
+            ->get();
+
+        return $upvotes->toArray();
+
         return [
             [
                 'id'      => 1,

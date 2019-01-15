@@ -3,7 +3,7 @@
         <!--<div class="tag"><i class="fa fa-location-arrow pr-05"></i> {{ user.city }}</div>-->
 
         <template v-if="editing">
-            <tag-editable v-for="tag in user.tags" v-bind:tag="tag" :key="tag.id"></tag-editable>
+            <tag-editable v-for="tag in user.tag" v-bind:tag="tag" :key="tag.id"></tag-editable>
             <a class="tag add-tag" @click="addTag()">
                 <i class="fas fa-plus mr-02"></i> Add tag
             </a>

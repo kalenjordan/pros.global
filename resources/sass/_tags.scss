@@ -39,6 +39,10 @@
         padding-left: 3px;
         opacity: 0.6;
     }
+
+    &.isUpvotedByMe {
+        border: solid 1px $secondaryColorDark;
+    }
 }
 
 .inline-tag {

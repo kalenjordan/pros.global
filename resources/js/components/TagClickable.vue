@@ -2,10 +2,10 @@
     <div style="display: inline-block">
         <div class="tag fast"
              @click="tagClick(tag)"
-             v-bind:class="{tada : tag.is_upvoted, animated : hasBeenClicked}">
-            <i class="far fa-thumbs-up" v-bind:class="{upvoted : tag.is_upvoted}"></i>
+             v-bind:class="{isUpvotedByMe : tag.is_upvoted_by_me, animated : hasBeenClicked, tada: tag.is_upvoted_by_me}">
+            <i class="far fa-thumbs-up" v-bind:class="{upvoted : tag.is_upvoted_by_me}"></i>
             <span class="tag-name">{{ tag.name }}</span>
-            <span v-if="tag.count" class="tag-count">{{ tag.count }}</span>
+            <span v-if="tag.upvote_count" class="tag-count">{{ tag.upvote_count }}</span>
         </div>
     </div>
 </template>
@@ -28,13 +28,16 @@
         methods: {
             tagClick(tag) {
                 this.hasBeenClicked = true;
-                if (tag.is_upvoted) {
-                    tag.count -= 1;
+                if (tag.is_upvoted_by_me) {
+                    tag.upvote_count -= 1;
                 } else {
-                    tag.count += 1;
-                    Event.$emit('tag-added', tag);
+                    tag.upvote_count += 1;
+                    window.Events.$emit('tag-added', tag);
                 }
-                tag.is_upvoted = ! tag.is_upvoted;
+                tag.is_upvoted_by_me = ! tag.is_upvoted_by_me;
+                let username = this.$parent.user.username;
+
+                axios.get('/api/v1/users/' + username + '/upvote-tag/' + tag.id);
             }
         }
     }

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Conner\Tagging\Model\Tag;
-use Conner\Tagging\Model\Tagged;
+use App\Tag;
+use App\Tagged;
 use Illuminate\Http\Request;
 use App\User;
 
@@ -22,19 +22,23 @@ class UserController extends Controller
         return $user->tagsArray();
     }
 
-    public function deleteTag(Request $request, $username, $tagSlug) {
-        /** @var \App\User $user */
-        $user = User::where('username', $username)->first();
-
-        /** @var Tagged $tagged */
-        $tagged = Tagged::where('taggable_id', $user->id)
-            ->where('tag_slug', $tagSlug)
-            ->first();
+    public function deleteTag(Request $request, $username, $taggedId) {
+        $user = User::findByUsername($username);
+        $tagged = Tagged::find($taggedId);
 
         if ($tagged) {
             $tagged->delete();
         }
 
         return $user->tagsArray();
+    }
+
+    public function upvoteTag(Request $request, $username, $taggedId) {
+        // todo check against auth'd user
+        $user = User::findByUsername($username);
+        $tagged = Tagged::find($taggedId);
+        $tagged->toggleUpvote();
+
+        return $tagged;
     }
 }
