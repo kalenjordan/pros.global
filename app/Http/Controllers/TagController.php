@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Conner\Tagging\Model\Tag;
-use Conner\Tagging\Model\Tagged;
 use Illuminate\Http\Request;
 use App\User;
+use App\Tag;
+use App\Tagged;
 
 class TagController extends Controller
 {
@@ -16,29 +16,17 @@ class TagController extends Controller
         }
 
         $tags = $query->get();
-        foreach ($tags as & $tag) {
-            $tag->users = User::withAllTags([$tag->slug])->get();
-        }
-
         return $tags->toArray();
     }
 
     public function view(Request $request, $slug) {
-        /** @var Tag $tags */
-        $tag = Tag::where('slug', $slug)->first();
-        $tag->users = User::withAllTags([$tag->slug])->get();
-
+        $tag = Tag::findBySlug($slug);
         return $tag->toArray();
     }
 
     public function deleteTag(Request $request, $username, $tagSlug) {
-        /** @var \App\User $user */
-        $user = User::where('username', $username)->first();
-
-        /** @var Tagged $tagged */
-        $tagged = Tagged::where('taggable_id', $user->id)
-            ->where('tag_slug', $tagSlug)
-            ->first();
+        $user = User::findByUsername($username);
+        $tagged = Tagged::findByUserIdAndSlug($user->id, $tagSlug);
 
         if ($tagged) {
             $tagged->delete();

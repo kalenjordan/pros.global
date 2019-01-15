@@ -12,6 +12,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  *
  * @package App
  * @method static \Illuminate\Database\Query\Builder where($column, $operator = null, $value = null, $boolean = 'and')
+ * @method static \Illuminate\Database\Query\Builder withAllTags($array)
  */
 class User extends Authenticatable
 {
@@ -38,6 +39,11 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public static function findByUsername($username)
+    {
+        return self::where('username', $username)->first();
+    }
 
     public function toArray()
     {
