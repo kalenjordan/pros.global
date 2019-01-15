@@ -28,6 +28,7 @@
         .email-signup {
             input.text {
                 width: 150px;
+                background-color: white;
 
                 &::placeholder {
                     color: $grayEvenLighter;

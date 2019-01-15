@@ -3,7 +3,7 @@
         <div class="header centered pb-1">
             <router-link class="naked-link" to="/"><i class="fas fa-bolt font-200"></i></router-link>
             <div class="avatar mb-1">
-                <img v-bind:src="user.image_url">
+                <img v-bind:src="user.avatar_path">
             </div>
             <div class="edit-profile-wrapper m-1">
                 <div v-if="editing">
@@ -14,7 +14,7 @@
                     <a class="btn" @click="editProfile()">Edit Profile</a>
                 </div>
             </div>
-            <h1 class="mb-1">
+            <h1 class="mb-2">
                 <span v-if="editing" class="editable-headline">
                     <textarea ref="headline" class="font-90 no-border width-100" >{{ user.headline }}</textarea>
                 </span>
@@ -68,7 +68,7 @@
         },
         mounted() {
             let self = this;
-            axios.get('/api/v1/users/1').then(function(response) {
+            axios.get('/api/v1/users/' + this.$route.params.username).then(function(response) {
                 self.user = response.data;
             });
         },

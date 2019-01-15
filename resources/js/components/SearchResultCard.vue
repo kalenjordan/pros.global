@@ -3,19 +3,19 @@
         <div class="card--inner flex">
             <div class="flex-1 centered">
                 <div class="card--avatar">
-                    <router-link :to="{ name: 'profile', params: { username: user.handle }}">
-                        <img v-bind:src="user.image_url" class="width-40p">
+                    <router-link :to="{ name: 'profile', params: { username: user.username }}">
+                        <img v-bind:src="user.avatar_path" class="width-40p">
                     </router-link>
                 </div>
                 <div class="card--identity">
                     <div class="card--identity--name bold font-90">
-                        <router-link :to="{ name: 'profile', params: { username: user.handle }}" class="naked-link">
+                        <router-link :to="{ name: 'profile', params: { username: user.username }}" class="naked-link">
                             {{ user.name }}
                         </router-link>
                     </div>
                     <div class="card--identity--handle font-small">
-                        <router-link :to="{ name: 'profile', params: { username: user.handle }}" class="naked-link">
-                            @{{ user.handle }}
+                        <router-link :to="{ name: 'profile', params: { username: user.username }}" class="naked-link">
+                            @{{ user.username }}
                         </router-link>
                     </div>
                 </div>

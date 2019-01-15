@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="tag"><i class="fa fa-location-arrow pr-05"></i> {{ user.city }}</div>
+        <!--<div class="tag"><i class="fa fa-location-arrow pr-05"></i> {{ user.city }}</div>-->
 
         <template v-if="editing">
             <tag-editable v-for="tag in user.tags" v-bind:tag="tag" :key="tag.id"></tag-editable>
