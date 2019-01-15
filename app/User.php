@@ -18,6 +18,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property $name
  * @property $about
  * @property $headline
+ * @property $avatar_path
  */
 class User extends Authenticatable
 {
@@ -64,60 +65,16 @@ class User extends Authenticatable
     public function toArray()
     {
         $data = parent::toArray();
-
-        // The default tagged array isn't quite right
-        unset($data['tagged']);
-
-        $data['tags'] = $this->getTagged()->toArray();
-        $data['upvotes'] = $this->_toArrayUpvotes();
-
         return $data;
     }
 
-    public function getTagged() {
-        return Tagged::where('taggable_id', $this->id)->get();
+    public function tags()
+    {
+        return $this->hasMany('App\Tagged', 'taggable_id');
     }
 
-    public function tagsArray()
+    public function upvotes()
     {
-        $tags = $this->tags;
-        foreach ($this->tags as $tag) {
-            $tag->is_upvoted = 1;
-        }
-
-        return $tags->toArray();
-    }
-
-    protected function _toArrayUpvotes()
-    {
-        $upvotes = TaggedUpvote::from('tagging_tagged_upvotes as upvotes')
-            ->leftJoin('tagging_tagged as tagged', function ($join) {
-                /** @var $join \Illuminate\Database\Query\JoinClause */
-                $join->on('tagged.id', '=', 'upvotes.tagged_id');
-            })->where('tagged.taggable_id', $this->id)
-            ->get();
-
-        return $upvotes->toArray();
-
-        return [
-            [
-                'id'      => 1,
-                'user'    => [
-                    'first_name' => 'Joe',
-                    'avatar_url' => 'http://i.pravatar.cc/300?img=1',
-                ],
-                'tag'     => 'Founder',
-                'message' => "Kalen is the best, he's so awesome",
-            ],
-            [
-                'id'      => 2,
-                'user'    => [
-                    'first_name' => 'Joe',
-                    'avatar_url' => 'http://i.pravatar.cc/300?img=1',
-                ],
-                'tag'     => 'PHP',
-                'message' => "Kalen is really great when it comes to PHP - really knows his stuff"
-            ]
-        ];
+        return $this->hasMany('App\TaggedUpvote', 'tagged_user_id');
     }
 }

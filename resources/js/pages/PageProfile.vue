@@ -38,18 +38,18 @@
         </div>
         <hr/>
         <div class="section endorsements margin-auto max-width-medium">
-            <div class="card hoverable endorsement-card" v-for="endorsement in user.endorsements">
+            <div class="card hoverable endorsement-card" v-for="upvote in user.upvotes">
                 <div class="card--inner">
                     <div class="avatar centered mr-1">
-                        <img v-bind:src="endorsement.user.avatar_url">
-                        {{ endorsement.user.first_name }}
+                        <img v-bind:src="upvote.author_avatar">
+                        {{ upvote.author_firstname }}
                     </div>
                     <div class="endorsement-message">
                         <div>
                             <p class="mb-05">
-                                {{ endorsement.message }}
+                                {{ upvote.message }}
                             </p>
-                            <div class="inline-tag">{{ endorsement.tag }}</div>
+                            <div class="inline-tag">{{ upvote.tag_name }}</div>
                         </div>
                     </div>
                 </div>

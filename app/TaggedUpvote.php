@@ -8,7 +8,11 @@ use \Illuminate\Database\Query\Builder;
 /**
  * @package App
  * @method static Builder where($column, $operator = null, $value = null, $boolean = 'and')
+ * @method static Builder from()
  * @method static Builder find($id)
+ *
+ * @property Tagged $tagged
+ * @property User $user
  */
 class TaggedUpvote extends Model
 {
@@ -17,14 +21,22 @@ class TaggedUpvote extends Model
 
     public function user()
     {
-        $user = $this->belongsTo('App\User');
-        return $user;
+        return $this->belongsTo('App\User');
+    }
+
+    public function tagged()
+    {
+        return $this->belongsTo('App\Tagged');
     }
 
     public function toArray()
     {
         // Nothing for now
         $data = parent::toArray();
+        $data['author_firstname'] = $this->user->getFirstName();
+        $data['author_avatar'] = $this->user->avatar_path;
+        $data['tag_name'] = $this->tagged->tag_name;
+
         return $data;
     }
 

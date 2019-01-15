@@ -9,7 +9,20 @@ use App\User;
 
 class UserController extends Controller
 {
-    public function post(Request $request, $username) {
+
+    public function list(Request $request)
+    {
+        return User::all();
+    }
+
+    public function view(Request $request, $username)
+    {
+        $user = User::with(['tags', 'upvotes'])->where('username', $username)->first();
+        return $user->toArray();
+    }
+
+    public function post(Request $request, $username)
+    {
         $user = User::findByUsername($username);
         $content = json_decode($request->getContent(), true);
         $data = $content['data'];
@@ -20,11 +33,12 @@ class UserController extends Controller
         return $user->toArray();
     }
 
-    public function addTag(Request $request, $username) {
+    public function addTag(Request $request, $username)
+    {
         /** @var \App\User $user */
         $user = User::where('username', $username)->first();
         $tag = $request->input('tag');
-        if (! $tag) {
+        if (!$tag) {
             throw new \Exception("Empty tag");
         }
 
@@ -33,7 +47,8 @@ class UserController extends Controller
         return $user->tagsArray();
     }
 
-    public function deleteTag(Request $request, $username, $taggedId) {
+    public function deleteTag(Request $request, $username, $taggedId)
+    {
         $user = User::findByUsername($username);
         $tagged = Tagged::find($taggedId);
 
@@ -44,7 +59,8 @@ class UserController extends Controller
         return $user->tagsArray();
     }
 
-    public function upvoteTag(Request $request, $username, $taggedId) {
+    public function upvoteTag(Request $request, $username, $taggedId)
+    {
         // todo check against auth'd user
         $user = User::findByUsername($username);
         $tagged = Tagged::find($taggedId);

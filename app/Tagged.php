@@ -12,6 +12,8 @@ use \Illuminate\Database\Query\Builder;
  * @method static Tagged find($id)
  *
  * @property $taggable_id
+ * @property $tag_name
+ * @property $tag_slug
  */
 class Tagged extends \Conner\Tagging\Model\Tagged
 {
