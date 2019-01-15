@@ -30,8 +30,8 @@
                     Sign up to get email updates:
                 </p>
                 <div class="email-signup mb-4">
-                    <input class="text" type="text" style="width: 173px;" placeholder="you@example.com">
-                    <a class="btn"><i class="fa fa-envelope"></i></a>
+                    <input class="text p-1" type="text" style="width: 173px;" placeholder="you@example.com">
+                    <a class="btn px-3 py-1"><i class="fa fa-envelope"></i></a>
                 </div>
                 <div class="text-2xl gray-lighter">
                     <a class="naked-link mr-2" href="https://twitter.com/kalenjordan"><i class="fab fa-twitter"></i></a>

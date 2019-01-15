@@ -10,10 +10,10 @@
                     <a class="paragraph-link mr-1" @click="cancelEditing()" v-shortkey="['esc']" @shortkey="cancelEditing()">
                         Cancel
                     </a>
-                    <a class="btn" @click="saveProfile()" v-shortkey="['meta', 'enter']" @shortkey="saveProfile()">Save</a>
+                    <a class="btn px-5 py-2" @click="saveProfile()" v-shortkey="['meta', 'enter']" @shortkey="saveProfile()">Save</a>
                 </div>
                 <div v-else>
-                    <a class="btn" @click="editProfile()" v-shortkey="['e']" @shortkey="editProfile()">Edit Profile</a>
+                    <a class="btn px-5 py-2" @click="editProfile()" v-shortkey="['e']" @shortkey="editProfile()">Edit Profile</a>
                 </div>
             </div>
             <h1 class="mb-4">

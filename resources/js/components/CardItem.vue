@@ -8,7 +8,7 @@
                 </router-link>
             </div>
             <div class="card--cta">
-                <router-link class="btn" :to="{ name: 'profile', params: { username: user.username }}">
+                <router-link class="btn px-5 py-2" :to="{ name: 'profile', params: { username: user.username }}">
                     View Profile
                 </router-link>
             </div>

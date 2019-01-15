@@ -7,7 +7,7 @@
                     <textarea ref="endorsement" rows="2" placeholder="Share some love" class="text width-100"></textarea>
                 </div>
                 <div>
-                    <a class="btn" @click="saveEndorsement" href="javascript://">Save endorsement</a>
+                    <a class="btn px-5 py-2" @click="saveEndorsement" href="javascript://">Save endorsement</a>
                 </div>
             </div>
         </div>
