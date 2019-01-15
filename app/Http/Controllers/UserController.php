@@ -9,6 +9,17 @@ use App\User;
 
 class UserController extends Controller
 {
+    public function post(Request $request, $username) {
+        $user = User::findByUsername($username);
+        $content = json_decode($request->getContent(), true);
+        $data = $content['data'];
+        $user->about = $data['about'];
+        $user->headline = $data['headline'];
+        $user->save();
+
+        return $user->toArray();
+    }
+
     public function addTag(Request $request, $username) {
         /** @var \App\User $user */
         $user = User::where('username', $username)->first();

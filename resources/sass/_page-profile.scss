@@ -29,6 +29,13 @@
         border: none;
     }
 
+    p {
+        margin-bottom: 1em;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
     .editable-headline textarea {
         height: 4em;
         background: none;

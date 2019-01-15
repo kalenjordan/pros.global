@@ -17,6 +17,7 @@ Route::get('/v1/users/{username}', function (Request $request, $username) {
     return $user->toArray();
 });
 
+Route::post('/v1/users/{username}', 'UserController@post');
 Route::post('/v1/users/{username}/add-tag', 'UserController@addTag');
 Route::get('/v1/users/{username}/delete-tag/{tag}', 'UserController@deleteTag');
 Route::get('/v1/users/{username}/upvote-tag/{tag}', 'UserController@upvoteTag');

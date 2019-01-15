@@ -1,6 +1,6 @@
 <template>
-    <div class="container page page-profile">
-        <div class="header centered pb-1">
+    <div class="container page page-profile mt-6">
+        <div class="header centered max-w-lg mx-auto">
             <router-link class="naked-link" to="/"><i class="fas fa-bolt font-200"></i></router-link>
             <div class="avatar mb-1">
                 <img v-bind:src="user.avatar_path">
@@ -10,15 +10,15 @@
                     <a class="paragraph-link mr-1" @click="cancelEditing()" v-shortkey="['esc']" @shortkey="cancelEditing()">
                         Cancel
                     </a>
-                    <a class="btn" @click="saveProfile()">Save</a>
+                    <a class="btn" @click="saveProfile()" v-shortkey="['meta', 'enter']" @shortkey="saveProfile()">Save</a>
                 </div>
                 <div v-else>
                     <a class="btn" @click="editProfile()" v-shortkey="['e']" @shortkey="editProfile()">Edit Profile</a>
                 </div>
             </div>
-            <h1 class="mb-2">
+            <h1 class="mb-4">
                 <span v-if="editing" class="editable-headline">
-                    <textarea ref="headline" class="font-90 no-border width-100" >{{ user.headline }}</textarea>
+                    <textarea ref="headline" class="text-3xl text-center no-border w-full" >{{ user.headline }}</textarea>
                 </span>
                 <span v-else>{{ user.headline }}</span>
             </h1>
@@ -26,7 +26,7 @@
         <div class="section centered margin-auto max-width-medium">
             <profile-tags v-bind:user="user" v-bind:editing="editing"></profile-tags>
         </div>
-        <div class="section margin-auto max-width-medium">
+        <div class="section mx-auto max-w-md">
             <div class="card">
                 <div class="card--inner text-left">
                     <div class="editable-about" v-if="editing">
@@ -75,6 +75,10 @@
         methods: {
             editProfile() {
                 this.editing = true;
+                let self = this;
+                this.$nextTick(function() {
+                    self.$refs.headline.focus();
+                });
             },
             cancelEditing() {
                 this.editing = false;
@@ -84,6 +88,12 @@
                 this.user.about = this.$refs.about.value;
                 this.user.headline = this.$refs.headline.value;
                 this.$toasted.show('Saved profile!', {duration: 5000, position: "bottom-right"});
+
+                axios.post("/api/v1/users/" + this.user.username, {
+                    'data': this.user
+                }).then(function(response) {
+                    self.user = response.data;
+                });
             },
         },
         computed: {

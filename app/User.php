@@ -13,6 +13,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @package App
  * @method static \Illuminate\Database\Query\Builder where($column, $operator = null, $value = null, $boolean = 'and')
  * @method static \Illuminate\Database\Query\Builder withAllTags($array)
+ *
+ * @property $about
+ * @property $headline
  */
 class User extends Authenticatable
 {
