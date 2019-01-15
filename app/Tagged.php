@@ -10,6 +10,8 @@ use \Illuminate\Database\Query\Builder;
  * @package App
  * @method static \Illuminate\Database\Query\Builder where($column, $operator = null, $value = null, $boolean = 'and')
  * @method static Tagged find($id)
+ *
+ * @property $taggable_id
  */
 class Tagged extends \Conner\Tagging\Model\Tagged
 {
@@ -27,6 +29,11 @@ class Tagged extends \Conner\Tagging\Model\Tagged
         return $tagged;
     }
 
+    public function taggedUser()
+    {
+        return User::find($this->taggable_id);
+    }
+
     public function toArray()
     {
         $data = parent::toArray();
@@ -38,6 +45,7 @@ class Tagged extends \Conner\Tagging\Model\Tagged
         unset($data['tag_slug']);
 
         $data['upvote_count'] = TaggedUpvote::where('tagged_id', $this->id)->count();
+        $data['tagged_user_firstname'] = $this->taggedUser()->getFirstName();
 
         $userId = 1; // TODO pull from auth
         $data['is_upvoted_by_me'] = TaggedUpvote::where('user_id', $userId)

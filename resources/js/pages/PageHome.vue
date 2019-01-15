@@ -6,7 +6,7 @@
             </div>
             <div class="right-nav flex-1 text-right">
                 <input ref="search"
-                       class="text w-32 p-2"
+                       class="text w-32 p-2 mr-2"
                        v-bind:class="{'w-64' : isSearching}"
                        placeholder="Search"
                        v-shortkey="['/']"
@@ -17,7 +17,7 @@
                 <a class="btn px-5 py-2">Sign up</a>
             </div>
         </div>
-        <div class="header text-center max-w-lg mx-auto mb-4">
+        <div class="header text-center max-w-lg mx-auto mb-4 mt-2">
             <h1>
                 Meet a co-founder, advisor, or team member&mdash;or connect with other
                 like-minded founders
@@ -67,6 +67,7 @@
                 <li><strong>h</strong> - Show keyboard shortcuts</li>
                 <li><strong>Escape</strong> - Cancel editing</li>
                 <li><strong>/</strong> - Search</li>
+                <li><strong>Command + Enter</strong> - Submit a form you're typing in</li>
             </ul>
             <h4 class="mb-1">Profile page</h4>
             <ul class="ml-0 pl-4 leading-normal">

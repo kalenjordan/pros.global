@@ -13,7 +13,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @package App
  * @method static \Illuminate\Database\Query\Builder where($column, $operator = null, $value = null, $boolean = 'and')
  * @method static \Illuminate\Database\Query\Builder withAllTags($array)
+ * @method static User find($id)
  *
+ * @property $name
  * @property $about
  * @property $headline
  */
@@ -43,6 +45,16 @@ class User extends Authenticatable
         'remember_token',
         'email',
     ];
+
+    public function getFirstName()
+    {
+        $parts = explode(' ', $this->name);
+        if (!isset($parts[0])) {
+            return null;
+        }
+
+        return $parts[0];
+    }
 
     public static function findByUsername($username)
     {
