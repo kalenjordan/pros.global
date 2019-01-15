@@ -17,7 +17,13 @@
         methods: {
             tagDelete(tag) {
                 let index = this.$parent.user.tags.indexOf(tag);
-                this.$delete(this.$parent.user.tags, index);
+                // this.$delete(this.$parent.user.tags, index);
+                let username = this.$parent.user.username;
+                let self = this;
+
+                axios.get('/api/v1/users/' + username + '/delete-tag/' + tag.slug).then(function(response) {
+                    self.$parent.user.tags = response.data;
+                });
             }
         }
     }

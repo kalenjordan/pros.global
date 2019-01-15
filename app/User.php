@@ -44,13 +44,13 @@ class User extends Authenticatable
         $data = parent::toArray();
 
         unset($data['tagged']); // don't need the tagged stuff that the rtconner package adds
-        $data['tags'] = $this->_buildTags();
+        $data['tags'] = $this->tagsArray();
         $data['endorsements'] = $this->_buildEndorsements();
 
         return $data;
     }
 
-    protected function _buildTags()
+    public function tagsArray()
     {
         $tags = $this->tags;
         foreach ($this->tags as $tag) {

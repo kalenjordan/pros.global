@@ -33,7 +33,7 @@
                                 {{ tag.description }}
                             </div>
                             <div class="mt-1">
-                                <img v-for="user in tag.users" v-bind:src="user.avatar_url">
+                                <img v-for="user in tag.users" v-bind:src="user.avatar_path">
                             </div>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
         },
         mounted() {
             let self = this;
-            axios.get('/api/v1/tags').then(function(response) {
+            axios.get('/api/v1/tags?limit=3').then(function(response) {
                 self.tags = response.data;
             });
         }

@@ -20,6 +20,7 @@
                     :search-input.sync="tagSearch"
                     hide-selected
                     autofocus
+                    solo
                     hint="Maximum of 5 tags"
                     label="Add some tags"
                     persistent-hint
@@ -69,15 +70,9 @@
                 axios.post("/api/v1/users/" + this.$parent.user.username + "/add-tag", {
                     'tag': self.model
                 }).then(function(response) {
-                    self.tags = response.data;
+                    self.user.tags = response.data;
                 });
                 this.addingTag = false;
-                this.user.tags.push({
-                    id: 99,
-                    tag: self.model,
-                    count: 0,
-                    is_upvoted: 0
-                });
             },
         },
         computed: {
