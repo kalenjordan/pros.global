@@ -2,14 +2,21 @@
 
 namespace App;
 
+use Conner\Tagging\Taggable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+/**
+ * Class User
+ *
+ * @package App
+ * @method static \Illuminate\Database\Query\Builder where($column, $operator = null, $value = null, $boolean = 'and')
+ */
 class User extends Authenticatable
 {
-
     use Notifiable;
+    use Taggable;
 
     /**
      * The attributes that are mass assignable.
@@ -36,6 +43,7 @@ class User extends Authenticatable
     {
         $data = parent::toArray();
 
+        unset($data['tagged']); // don't need the tagged stuff that the rtconner package adds
         $data['tags'] = $this->_buildTags();
         $data['endorsements'] = $this->_buildEndorsements();
 
@@ -44,32 +52,12 @@ class User extends Authenticatable
 
     protected function _buildTags()
     {
-        return [
-            [
-                'id'         => 1,
-                'tag'        => 'Austin',
-                'count'      => 3,
-                'is_upvoted' => 1,
-            ],
-            [
-                'id'         => 2,
-                'tag'        => 'Bootstrapper',
-                'count'      => 3,
-                'is_upvoted' => 1,
-            ],
-            [
-                'id'         => 3,
-                'tag'        => 'Founder',
-                'count'      => 1,
-                'is_upvoted' => 0,
-            ],
-            [
-                'id'         => 4,
-                'tag'        => 'Magento',
-                'count'      => 5,
-                'is_upvoted' => 0,
-            ],
-        ];
+        $tags = $this->tags;
+        foreach ($this->tags as $tag) {
+            $tag->is_upvoted = 1;
+        }
+
+        return $tags->toArray();
     }
 
     protected function _buildEndorsements()

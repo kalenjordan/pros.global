@@ -27,7 +27,7 @@
                 <router-link class="no-link" v-for="tag in tags" :to="{ name: 'tag', params: { slug: tag.slug }}">
                     <div class="card hoverable tag-card">
                         <div class="card--inner">
-                            <div class="bold">{{ tag.tag }}</div>
+                            <div class="bold">{{ tag.name }}</div>
                             <div class="font-70">{{ tag.count }} people</div>
                             <div class="mt-1">
                                 {{ tag.description }}

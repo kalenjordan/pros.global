@@ -13,9 +13,11 @@ Route::get('/v1/users', function (Request $request) {
 
 Route::get('/v1/users/{username}', function (Request $request, $username) {
     /** @var \App\User $user */
-    $user = \App\User::where('username', $username)->first();
+    $user = \App\User::with('tagged')->where('username', $username)->first();
     return $user->toArray();
 });
+
+Route::post('/v1/users/{username}/add-tag', 'UserController@addTag');
 
 $tags = [
     [

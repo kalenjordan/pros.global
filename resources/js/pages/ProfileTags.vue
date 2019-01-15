@@ -66,6 +66,11 @@
             },
             tagInput: function(data) {
                 let self = this;
+                axios.post("/api/v1/users/" + this.$parent.user.username + "/add-tag", {
+                    'tag': self.model
+                }).then(function(response) {
+                    self.tags = response.data;
+                });
                 this.addingTag = false;
                 this.user.tags.push({
                     id: 99,
@@ -77,7 +82,7 @@
         },
         computed: {
             tagNames: function() {
-                return this.tags.map( tag => tag.tag);
+                return this.tags.map( tag => tag.name);
             }
         }
     }

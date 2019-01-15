@@ -22,7 +22,7 @@
                 self.$refs.wrapper.style.right = '0';
                 self.tag = tag;
                 self.$nextTick(function() {
-                    self.$refs.endorsement.placeholder = "e.g. Kalen is great with " + tag.tag;
+                    self.$refs.endorsement.placeholder = "e.g. Kalen is great with " + tag.name;
                     self.$refs.endorsement.focus();
                 });
             });
