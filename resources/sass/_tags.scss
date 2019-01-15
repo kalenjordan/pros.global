@@ -5,10 +5,12 @@
     border-radius: 5px;
     margin: 0.25em;
     padding: 0.25em 0.8em;
+    border: solid 1px;
 
     transition: all 0.25s ease;
 
     background-color: $grayLightest;
+    border-color: $grayLightest;
     color: $grayLight;
     &:hover {
         background-color: $grayLighter;
@@ -41,7 +43,7 @@
     }
 
     &.isUpvotedByMe {
-        border: solid 1px $secondaryColorDark;
+        @extend .border-gray-lighter;
     }
 }
 
@@ -60,8 +62,6 @@
 }
 
 .tag-card {
-    width: 220px;
-
     img {
         transition: all 0.25s ease;
         display: inline-block;

@@ -41,6 +41,13 @@ $highlightColorLight: #F98F96;
     background-color: $secondaryColorLightest;
 }
 
+.border-secondary-color-dark {
+    border-color: $secondaryColorDark;
+}
+
+.border-gray-lighter {
+    border-color: $grayLighter;
+}
 .gray-lighter {
     color: $grayLighter;
 }

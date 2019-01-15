@@ -1,5 +1,5 @@
 <template>
-    <div class="card user-card">
+    <div class="card user-card max-w-xs">
         <div class="card--background"></div>
         <div class="card--inner">
             <div class="card--avatar">
@@ -12,7 +12,7 @@
                     View Profile
                 </router-link>
             </div>
-            <div class="card--identity mb-1">
+            <div class="card--identity mb-2">
                 <div class="card--identity--name bold">
                     <router-link :to="{ name: 'profile', params: { username: user.username }}" class="naked-link">
                         {{ user.name }}
@@ -24,10 +24,10 @@
                     </router-link>
                 </div>
             </div>
-            <div class="card--about font-small mb-1">
+            <div class="card--about text-xs mb-2 leading-tight">
                 {{ user.headline }}
             </div>
-            <div class="card--tags font-70">
+            <div class="card--tags text-xs">
                 <!--
                 <div class="tag"><i class="fa fa-location-arrow"></i> {{ user.city }}</div>
                 -->

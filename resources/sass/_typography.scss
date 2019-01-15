@@ -4,7 +4,7 @@ h1, h2, h3 {
 }
 
 h3 {
-    @extend .mb-1;
+    @apply .mb-2 ;
 }
 
 .bold {

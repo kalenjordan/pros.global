@@ -14,7 +14,7 @@ input.text, textarea.text {
 
 .v--modal-overlay {
     .v--modal {
-        @extend .p-2;
+        padding: 2em; // todo figure out how to @apply here
 
         ul {
             list-style-type: none;

@@ -12,6 +12,10 @@
         &:hover {
             background-color: $secondaryColorLight;
         }
+        border-color: $secondaryColorLighter;
+        &.isUpvotedByMe {
+            @extend .border-secondary-color-dark;
+        }
     }
 
     .edit-profile-wrapper {
@@ -36,7 +40,6 @@
             .card--inner {
                 display: flex;
                 .avatar {
-                    @extend .mr-1;
                     img {
                         max-width: 50px;
                     }

@@ -43,7 +43,7 @@
 </template>
 
 <script>
-    import 'vuetify/dist/vuetify.min.css';
+    // import 'vuetify/dist/vuetify.min.css'; todo this is killing my css ugh
 
     export default {
         props: ['user', 'editing'],
