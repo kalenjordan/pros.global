@@ -11,14 +11,19 @@ window.Vue = require('vue');
 import VueRouter from 'vue-router'
 import Toasted from 'vue-toasted';
 import Vuetify from 'vuetify'
+import VModal from 'vue-js-modal'
 
+Vue.use(VModal)
 window.Vue.use(VueRouter);
 window.Vue.use(Toasted);
 window.Vue.use(Vuetify, {
     iconfont: 'fa'
 });
+Vue.use(require('vue-shortkey'));
+Vue.use(VModal);
 
-window.Event = new window.Vue();
+// Event (singular) conflicts with vue-shortkey
+window.Events = new window.Vue();
 
 /**
  * The following block of code may be used to automatically register your

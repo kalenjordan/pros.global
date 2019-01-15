@@ -7,11 +7,13 @@
             </div>
             <div class="edit-profile-wrapper m-1">
                 <div v-if="editing">
-                    <a class="paragraph-link mr-1" @click="cancelEditing()">Cancel</a>
+                    <a class="paragraph-link mr-1" @click="cancelEditing()" v-shortkey="['esc']" @shortkey="cancelEditing()">
+                        Cancel
+                    </a>
                     <a class="btn" @click="saveProfile()">Save</a>
                 </div>
                 <div v-else>
-                    <a class="btn" @click="editProfile()">Edit Profile</a>
+                    <a class="btn" @click="editProfile()" v-shortkey="['e']" @shortkey="editProfile()">Edit Profile</a>
                 </div>
             </div>
             <h1 class="mb-2">

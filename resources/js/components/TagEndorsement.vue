@@ -18,7 +18,7 @@
     export default {
         mounted() {
             let self = this;
-            window.Event.$on('tag-added', function(tag) {
+            window.Events.$on('tag-added', function(tag) {
                 self.$refs.wrapper.style.right = '0';
                 self.tag = tag;
                 self.$nextTick(function() {

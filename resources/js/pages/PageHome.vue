@@ -45,6 +45,24 @@
                 </p>
             </div>
         </div>
+        <div style="display: none;" v-shortkey="['h']" @shortkey="showKeyboardShortcuts()"></div>
+        <modal name="help" >
+            <h2 class="mb-2">Keyboard shortcuts</h2>
+            <h3 class="mb-1">General</h3>
+            <ul class="mb-2">
+                <li><strong>h</strong> Show keyboard shortcuts</li>
+                <li><strong>Escape</strong> Cancel editing</li>
+            </ul>
+            <h3 class="mb-1">Profile page</h3>
+            <ul class="mb-2">
+                <li><strong>e</strong> Edit profile on profile page</li>
+                <li><strong>Escape</strong> Cancel editing</li>
+            </ul>
+            <h3 class="mb-1">Search</h3>
+            <ul>
+                <li>TBD</li>
+            </ul>
+        </modal>
     </div>
 </template>
 
@@ -60,6 +78,11 @@
             axios.get('/api/v1/tags?limit=3').then(function(response) {
                 self.tags = response.data;
             });
+        },
+        methods: {
+            showKeyboardShortcuts() {
+                this.$modal.show('help');
+            }
         }
     }
 </script>

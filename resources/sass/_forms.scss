@@ -12,3 +12,14 @@ input.text, textarea.text {
     background-color: $thirdColor !important;
 }
 
+.v--modal-overlay {
+    .v--modal {
+        @extend .p-2;
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+    }
+}
