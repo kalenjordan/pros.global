@@ -16,7 +16,6 @@
                 <div v-else>
                     <a class="btn px-5 py-2" @click="editProfile()" v-shortkey="['e']" @shortkey="editProfile()">Edit Profile</a>
                 </div>
-                <loggedin-avatar></loggedin-avatar>
             </div>
             <h1 class="mb-4">
                 <span v-if="editing" class="editable-headline">

@@ -15,8 +15,11 @@
                    @focus="isSearching=1"
                    @blur="isSearching=0"
             >
-            <a class="btn px-5 py-2 mr-3" href="/auth/linkedin" target="_blank">Login</a>
-            <loggedin-avatar></loggedin-avatar>
+            <img class="w-8 rounded-full ml-2"
+                 v-if="loggedInUser.id"
+                 :src="loggedInUser.avatar_path"
+                 style="margin-bottom: -11px;">
+            <a v-else class="btn px-5 py-2" href="/auth/linkedin" target="_blank">Login</a>
         </div>
     </div>
 </template>
@@ -26,15 +29,16 @@
         props: ['linklogo'],
         data() {
             return {
-                isSearching: false
+                isSearching: false,
+                loggedInUser: {},
             }
         },
         mounted() {
-            // nada
-        },
-        computed: {
-            loggedInUser() {
-                return window.user;
+            window.Events.$on('user-authenticated', (data) => {
+                this.loggedInUser = data;
+            });
+            if (window.user) {
+                this.loggedInUser = window.user;
             }
         },
         methods: {
