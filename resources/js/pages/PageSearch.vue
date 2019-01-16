@@ -1,18 +1,20 @@
 <template>
-    <div class="container page page-search">
-        <div class="header centered pb-1">
+    <div class="page page-search">
+        <section class="header centered mb-16">
             <router-link class="naked-link" to="/"><i class="fas fa-bolt font-200"></i></router-link>
-            <div class="flex">
-                <input placeholder="e.g. tag:founder" class="text font-100 flex-5 no-border mr-1 p-1">
-                <a class="btn flex-1 p-1" style="padding: 12px;" @click="search">
+        </section>
+        <section class="mb-6 max-w-lg mx-auto">
+            <div class="flex m-4">
+                <input ref="search" placeholder="e.g. tag:founder" class="text font-100 flex-5 no-border mr-3 p-2">
+                <a class="btn flex-1 px-5 py-2 text-center" style="flex-basis: 50px; flex-grow: inherit;" @click="search">
                     <span v-if="search_processing">Searching...</span>
                     <span v-else>Search</span>
                 </a>
             </div>
-        </div>
-        <div class="section" v-bind:class="{opacity50 : search_processing}">
+        </section>
+        <section class="max-w-lg mx-auto" v-bind:class="{opacity50 : search_processing}">
             <search-result-card class="hoverable" v-for="user in users" v-bind:user="user" :key="user.id"></search-result-card>
-        </div>
+        </section>
     </div>
 </template>
 
@@ -32,13 +34,12 @@
         },
         methods: {
             search() {
-                let self = this;
                 this.search_processing = true;
 
-                setTimeout(function() {
-                    self.search_processing = false;
-                    self.users.pop();
-                }, 1000);
+                axios.get('/api/v1/users?query=' + this.$refs.search.value).then((response) => {
+                    this.search_processing = false;
+                    this.users = response.data;
+                });
             }
         }
     }

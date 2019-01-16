@@ -1,14 +1,14 @@
 <template>
     <div class="page-home">
         <top-nav linklogo></top-nav>
-        <div class="header text-center max-w-lg mx-auto mb-4 mt-2">
+        <section class="header text-center max-w-lg mx-auto mb-4 mt-2">
             <h1>
                 Meet a co-founder, advisor, or team member&mdash;or connect with other
                 like-minded founders
             </h1>
-        </div>
-        <div class="section max-w-3xl mx-auto">
-            <div class="user-cards mb-8 flex mx-auto">
+        </section>
+        <section class="max-w-2xl mb-8 mx-auto">
+            <div class="user-cards mb-8 flex">
                 <user-card class="hoverable" v-for="user in users" v-bind:user="user" :key="user.id"></user-card>
                 <tag-endorsement></tag-endorsement>
             </div>
@@ -17,7 +17,7 @@
                     <router-link :to="{name: 'search'}">See more founders</router-link>
                 </p>
             </div>
-        </div>
+        </section>
         <!--<hr/>-->
         <!--<div class="section centered pb-2">-->
             <!--<h2 class="mb-4">-->

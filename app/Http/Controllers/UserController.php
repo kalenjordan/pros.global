@@ -12,7 +12,12 @@ class UserController extends Controller
 
     public function list(Request $request)
     {
-        return User::with('tags')->get();
+        $users = User::with('tags');
+        if ($query = $request->input('query')) {
+            $users->where('name', 'like', "%$query%");
+        }
+
+        return $users->get();
     }
 
     public function view(Request $request, $username)
