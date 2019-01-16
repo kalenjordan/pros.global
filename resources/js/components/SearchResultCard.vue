@@ -28,7 +28,7 @@
             <div class="flex-3 ml-1">
                 <div class="card--tags font-70">
                     <div class="tag"><i class="fa fa-location-arrow"></i> {{ user.city }}</div>
-                    <tag-clickable v-for="tag in user.tags" v-bind:tag="tag"></tag-clickable>
+                    <tag-clickable v-for="tag in user.tags" v-bind:tag="tag" :key="tag.id"></tag-clickable>
                 </div>
             </div>
         </div>

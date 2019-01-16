@@ -16,7 +16,7 @@
 
 <script>
     export default {
-        props: ['tag'],
+        props: ['user', 'tag'],
         mounted() {
             // nada
         },
@@ -34,7 +34,7 @@
                     tag.upvote_count += 1;
                 }
                 tag.is_upvoted_by_me = ! tag.is_upvoted_by_me;
-                let username = this.$parent.user.username;
+                let username = this.user.username;
 
                 axios.get('/api/v1/users/' + username + '/upvote-tag/' + tag.id).then(function(response) {
                     let upvote = response.data;

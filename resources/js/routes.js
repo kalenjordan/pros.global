@@ -2,11 +2,9 @@ import VueRouter from 'vue-router';
 
 import PageHome from './pages/PageHome';
 import PageSearch from './pages/PageSearch';
-import PageProfile from './pages/PageProfile';
+import PageUserProfile from './pages/PageUserProfile';
 import PageTag from './pages/PageTag';
 import PageTagList from './pages/PageTagList';
-import PageCity from './pages/PageCity';
-import PageCityList from './pages/PageCityList';
 
 let routes = [
     {
@@ -30,19 +28,9 @@ let routes = [
         component: PageTag
     },
     {
-        name: 'cities',
-        path: '/cities',
-        component: PageCityList
-    },
-    {
-        name: 'city',
-        path: '/city/:slug',
-        component: PageCity
-    },
-    {
         name: 'profile',
         path: '/:username',
-        component: PageProfile
+        component: PageUserProfile
     }
 ];
 

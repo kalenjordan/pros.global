@@ -28,10 +28,7 @@
                 {{ user.headline }}
             </div>
             <div class="card--tags text-xs">
-                <!--
-                <div class="tag"><i class="fa fa-location-arrow"></i> {{ user.city }}</div>
-                -->
-                <tag-clickable v-for="tag in user.tags" v-bind:tag="tag"></tag-clickable>
+                <tag-clickable v-for="tag in user.tags" :user="user" :tag="tag" :key="tag.id"></tag-clickable>
             </div>
         </div>
     </div>

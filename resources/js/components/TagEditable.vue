@@ -10,19 +10,17 @@
 
 <script>
     export default {
-        props: ['tag'],
+        props: ['user', 'tag'],
         mounted() {
             // nada
         },
         methods: {
             tagDelete(tag) {
-                let index = this.$parent.user.tags.indexOf(tag);
-                // this.$delete(this.$parent.user.tags, index);
-                let username = this.$parent.user.username;
-                let self = this;
+                let index = this.user.tags.indexOf(tag);
+                this.$delete(this.user.tags, index);
 
-                axios.get('/api/v1/users/' + username + '/delete-tag/' + tag.slug).then(function(response) {
-                    self.$parent.user.tags = response.data;
+                axios.get('/api/v1/users/' + this.user.username + '/delete-tag/' + tag.id).then((response) => {
+                    this.user.tags = response.data;
                 });
             }
         }

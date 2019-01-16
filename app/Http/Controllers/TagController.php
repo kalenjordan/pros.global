@@ -32,6 +32,6 @@ class TagController extends Controller
             $tagged->delete();
         }
 
-        return $user->tagsArray();
+        return $user->tags;
     }
 }

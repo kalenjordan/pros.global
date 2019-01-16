@@ -8,7 +8,7 @@
                     being built by
                     <router-link :to="{ name: 'profile', params: {username: 'kalenjordan'}}">Kalen</router-link>
                     with &hearts; in
-                    <router-link :to="{ name: 'city', params: {slug: 'austin'}}">Austin</router-link>.
+                    <router-link :to="{ name: 'tag', params: {slug: 'austin'}}">Austin</router-link>.
                 </p>
                 <p>
                     Copyright 2019. All rights reserved.

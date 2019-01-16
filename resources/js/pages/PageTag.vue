@@ -1,15 +1,17 @@
 <template>
-    <div class="container page page-tag">
-        <div class="header centered pb-1">
-            <router-link class="naked-link" to="/"><i class="fas fa-bolt font-200"></i></router-link>
-            <h1 class="mt-2">
-                {{ tag.name }}
-            </h1>
-        </div>
-        <div class="section margin-auto max-width-medium">
-            <div class="card">
-                <div class="card--inner text-left">
-                    {{ tag.description }}
+    <div>
+        <top-nav></top-nav>
+        <div class="page page-tag">
+            <div class="text-center max-w-lg mx-auto mb-4 mt-2">
+                <h1>
+                    {{ tag.headline ? tag.headline : tag.name }}
+                </h1>
+            </div>
+            <div class="section mx-auto max-w-md">
+                <div class="card">
+                    <div class="card--inner text-left">
+                        Need to insert users here
+                    </div>
                 </div>
             </div>
         </div>
@@ -25,7 +27,7 @@
         },
         mounted() {
             let self = this;
-            axios.get('/api/v1/tags/1').then(function(response) {
+            axios.get('/api/v1/tags/' + this.$route.params.slug).then(function(response) {
                 self.tag = response.data;
             });
         }

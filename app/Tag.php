@@ -9,6 +9,10 @@ use Illuminate\Notifications\Notifiable;
  *
  * @package App
  * @method static \Illuminate\Database\Query\Builder where($column, $operator = null, $value = null, $boolean = 'and')
+ *
+ * @property $name
+ * @property $slug
+ * @property $headline
  */
 class Tag extends \Conner\Tagging\Model\Tag
 {

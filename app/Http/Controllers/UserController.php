@@ -43,8 +43,9 @@ class UserController extends Controller
         }
 
         $user->tag($tag);
+        $user->relations = [];
 
-        return $user->tagsArray();
+        return $user->tags();
     }
 
     public function deleteTag(Request $request, $username, $taggedId)
@@ -54,9 +55,10 @@ class UserController extends Controller
 
         if ($tagged) {
             $tagged->delete();
+            // $user->load('tags');
         }
 
-        return $user->tagsArray();
+        return $user->tags();
     }
 
     public function upvoteTag(Request $request, $username, $taggedId)

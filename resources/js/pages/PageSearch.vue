@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="section" v-bind:class="{opacity50 : search_processing}">
-            <search-result-card class="hoverable" v-for="user in users" v-bind:user="user"></search-result-card>
+            <search-result-card class="hoverable" v-for="user in users" v-bind:user="user" :key="user.id"></search-result-card>
         </div>
     </div>
 </template>

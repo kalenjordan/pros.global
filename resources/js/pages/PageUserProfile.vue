@@ -7,7 +7,7 @@
             </div>
             <div class="edit-profile-wrapper m-1">
                 <div v-if="editing">
-                    <a class="paragraph-link mr-1" @click="cancelEditing()" v-shortkey="['esc']" @shortkey="cancelEditing()">
+                    <a class="paragraph-link mr-3" @click="cancelEditing()" v-shortkey="['esc']" @shortkey="cancelEditing()">
                         Cancel
                     </a>
                     <a class="btn px-5 py-2" @click="saveProfile()" v-shortkey="['meta', 'enter']" @shortkey="saveProfile()">Save</a>
@@ -23,8 +23,8 @@
                 <span v-else>{{ user.headline }}</span>
             </h1>
         </div>
-        <div class="section centered margin-auto max-width-medium">
-            <profile-tags v-bind:user="user" v-bind:editing="editing"></profile-tags>
+        <div class="mx-auto max-w-md text-center">
+            <user-profile-tags :user="user" :editing="editing"></user-profile-tags>
         </div>
         <div class="section mx-auto max-w-md">
             <div class="card">
@@ -38,7 +38,7 @@
         </div>
         <hr v-if="hasUpvotes" />
         <div v-if="hasUpvotes" class="section endorsements mx-auto max-w-sm">
-            <div class="card hoverable endorsement-card" v-for="upvote in user.upvotes">
+            <div class="card hoverable endorsement-card" v-for="upvote in user.upvotes" :key="upvote.id">
                 <div class="card--inner">
                     <div class="avatar centered mr-1">
                         <img v-bind:src="upvote.author_avatar">
@@ -55,11 +55,15 @@
                 </div>
             </div>
         </div>
+        <keyboard-shortcuts></keyboard-shortcuts>
     </div>
 </template>
 
 <script>
+    import KeyboardShortcuts from "../components/KeyboardShortcuts";
+
     export default {
+        components: {KeyboardShortcuts},
         data() {
             return {
                 user: {},
