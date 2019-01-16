@@ -24,6 +24,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property $avatar_path
  * @property $upvotes
  * @property $tags
+ * @property $password
  * @property $api_token
  */
 class User extends Authenticatable

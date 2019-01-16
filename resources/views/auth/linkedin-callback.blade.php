@@ -5,7 +5,7 @@
 <html>
 <body>
     <script type="text/javascript">
-        window.opener.linkedinAuthComplete('{{ $user->getOrCreateApiToken() }}');
+        opener.user={!! Auth::user() ? Auth::user()->toJson() : null  !!};
         window.close();
     </script>
 </body>

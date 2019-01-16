@@ -38,7 +38,8 @@ class LinkedInController extends \App\Http\Controllers\Controller
         if (! $user) {
             $user = new User;
             $user->email = $email;
-            $user->name = data_get($linkedinUser, 'user.formattedName');;
+            $user->name = $linkedinUser->name;
+            $user->password = md5(env('APP_KEY') . time());
             $user->save();
         }
 
@@ -48,7 +49,7 @@ class LinkedInController extends \App\Http\Controllers\Controller
         //}
 
         if (! $user->avatar_path) {
-            $user->avatar_path = data_get($linkedinUser, 'user.pictureUrl');
+            $user->avatar_path = $linkedinUser->avatar;
         }
 
         $user->linkedin_token = $linkedinUser->token;
