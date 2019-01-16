@@ -51,7 +51,8 @@
                 let message = this.$refs.endorsement.value;
                 let self = this;
 
-                axios.post('api/v1/upvotes/' + this.upvote.id, {
+                let auth = '?api_token=' + window.api_token;
+                axios.post('api/v1/upvotes/' + this.upvote.id + auth, {
                     message: message
                 }).then(function(response) {
                     if (self.$parent.user) { // Won't be set on homepage / card view

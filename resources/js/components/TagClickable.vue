@@ -36,7 +36,8 @@
                 tag.is_upvoted_by_me = ! tag.is_upvoted_by_me;
                 let username = this.user.username;
 
-                axios.get('/api/v1/users/' + username + '/upvote-tag/' + tag.id).then(function(response) {
+                let auth = '?api_token=' + window.api_token;
+                axios.get('/api/v1/users/' + username + '/upvote-tag/' + tag.id + auth).then(function(response) {
                     let upvote = response.data;
 
                     if (upvote.is_deleted) {

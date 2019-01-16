@@ -60,7 +60,7 @@
         },
         mounted() {
             let self = this;
-            axios.get('/api/v1/users?api_token=' + window.api_token).then(function(response) {
+            axios.get('/api/v1/users').then(function(response) {
                 self.users = response.data;
             });
             axios.get('/api/v1/tags?limit=3').then(function(response) {

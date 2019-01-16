@@ -94,7 +94,8 @@
                 this.user.headline = this.$refs.headline.value;
                 this.$toasted.show('Saved profile!', {duration: 5000, position: "bottom-right"});
 
-                axios.post("/api/v1/users/" + this.user.username, {
+                let auth = '?api_token=' + window.api_token;
+                axios.post("/api/v1/users/" + this.user.username + auth, {
                     'data': this.user
                 }).then(function(response) {
                     self.user = response.data;

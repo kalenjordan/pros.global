@@ -19,7 +19,8 @@
                 let index = this.user.tags.indexOf(tag);
                 this.$delete(this.user.tags, index);
 
-                axios.get('/api/v1/users/' + this.user.username + '/delete-tag/' + tag.id).then((response) => {
+                let auth = '?api_token=' + window.api_token;
+                axios.get('/api/v1/users/' + this.user.username + '/delete-tag/' + tag.id + auth).then((response) => {
                     this.user.tags = response.data;
                 });
             }

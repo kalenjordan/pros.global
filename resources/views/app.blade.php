@@ -17,6 +17,7 @@
     <script src="https://rawgit.com/showdownjs/showdown/develop/dist/showdown.min.js"></script>
     <script>
         window.user={!! Auth::user() ? Auth::user()->toJson() : "null" !!};
+        window.api_token = "{{Auth::user() ? Auth::user()->api_token : "" }}";
     </script>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">

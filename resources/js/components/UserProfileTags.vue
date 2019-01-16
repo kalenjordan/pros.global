@@ -66,11 +66,11 @@
                 this.addingTag = true;
             },
             tagInput: function(data) {
-                let self = this;
-                axios.post("/api/v1/users/" + this.user.username + "/add-tag", {
+                let auth = '?api_token=' + window.api_token;
+                axios.post("/api/v1/users/" + this.user.username + "/add-tag" + auth, {
                     'tag': self.model
-                }).then(function(response) {
-                    self.user.tags = response.data;
+                }).then((response) => {
+                    this.user.tags = response.data;
                 });
                 this.addingTag = false;
             },
