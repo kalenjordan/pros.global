@@ -10,7 +10,7 @@
         </template>
         <template v-else >
             <tag-clickable v-for="tag in user.tags" v-bind:tag="tag"></tag-clickable>
-            <tag-endorsement></tag-endorsement>
+            <tag-endorsement user="user"></tag-endorsement>
         </template>
 
         <div class="tag-autocomplete relative" v-if="addingTag">

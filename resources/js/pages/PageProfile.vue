@@ -36,8 +36,8 @@
                 </div>
             </div>
         </div>
-        <hr/>
-        <div class="section endorsements margin-auto max-width-medium">
+        <hr v-if="hasUpvotes" />
+        <div v-if="hasUpvotes" class="section endorsements mx-auto max-w-sm">
             <div class="card hoverable endorsement-card" v-for="upvote in user.upvotes">
                 <div class="card--inner">
                     <div class="avatar centered mr-1">
@@ -101,6 +101,9 @@
                 let converter = new showdown.Converter();
                 return converter.makeHtml(this.user.about);
             },
+            hasUpvotes: function() {
+                return this.user.upvotes && this.user.upvotes.length;
+            }
         }
     }
 </script>

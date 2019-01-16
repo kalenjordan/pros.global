@@ -19,6 +19,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property $about
  * @property $headline
  * @property $avatar_path
+ * @property $upvotes
  */
 class User extends Authenticatable
 {

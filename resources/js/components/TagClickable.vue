@@ -32,12 +32,19 @@
                     tag.upvote_count -= 1;
                 } else {
                     tag.upvote_count += 1;
-                    window.Events.$emit('tag-added', tag);
                 }
                 tag.is_upvoted_by_me = ! tag.is_upvoted_by_me;
                 let username = this.$parent.user.username;
 
-                axios.get('/api/v1/users/' + username + '/upvote-tag/' + tag.id);
+                axios.get('/api/v1/users/' + username + '/upvote-tag/' + tag.id).then(function(response) {
+                    let upvote = response.data;
+
+                    if (upvote.is_deleted) {
+                        window.Events.$emit('upvote-removed', upvote);
+                    } else {
+                        window.Events.$emit('tag-upvoted', upvote);
+                    }
+                });
             }
         }
     }

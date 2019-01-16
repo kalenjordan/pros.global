@@ -12,7 +12,7 @@ class UserController extends Controller
 
     public function list(Request $request)
     {
-        return User::all();
+        return User::with('tags')->get();
     }
 
     public function view(Request $request, $username)
@@ -64,8 +64,8 @@ class UserController extends Controller
         // todo check against auth'd user
         $user = User::findByUsername($username);
         $tagged = Tagged::find($taggedId);
-        $tagged->toggleUpvote();
+        $upvote = $tagged->toggleUpvote();
 
-        return $tagged;
+        return $upvote;
     }
 }

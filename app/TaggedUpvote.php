@@ -13,6 +13,8 @@ use \Illuminate\Database\Query\Builder;
  *
  * @property Tagged $tagged
  * @property User $user
+ * @property User $tagged_user
+ * @property $message
  */
 class TaggedUpvote extends Model
 {
@@ -22,6 +24,11 @@ class TaggedUpvote extends Model
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function tagged_user()
+    {
+        return $this->belongsTo('App\User', 'tagged_user_id');
     }
 
     public function tagged()
@@ -36,6 +43,7 @@ class TaggedUpvote extends Model
         $data['author_firstname'] = $this->user->getFirstName();
         $data['author_avatar'] = $this->user->avatar_path;
         $data['tag_name'] = $this->tagged->tag_name;
+        $data['tagged_user_firstname'] = $this->tagged_user->getFirstName();
 
         return $data;
     }

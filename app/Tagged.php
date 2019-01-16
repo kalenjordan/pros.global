@@ -63,11 +63,15 @@ class Tagged extends \Conner\Tagging\Model\Tagged
         $upvote = TaggedUpvote::findByTaggedIdAndUserId($this->id, $userId);
         if ($upvote) {
             $upvote->delete();
+            $upvote->is_deleted = true;
         } else {
             $upvote = TaggedUpvote::create([
-                'tagged_id' => $this->id,
-                'user_id'   => $userId,
+                'tagged_id'      => $this->id,
+                'user_id'        => $userId,
+                'tagged_user_id' => $this->taggable_id,
             ]);
         }
+
+        return $upvote;
     }
 }

@@ -2,7 +2,7 @@
     <div ref="wrapper" class="tag-endorsement-wrapper animated fast slideInRight">
         <div class="card tag-endorsement-card max-width-small font-90">
             <div class="card--inner">
-                <p class="mb-2">Share some love on {{ tag.tagged_user_firstname }}'s profile!</p>
+                <p class="mb-2">Share some love on {{ upvote.tagged_user_firstname }}'s profile!</p>
                 <div class="mb-2">
                     <textarea
                             ref="endorsement" rows="2"
@@ -10,7 +10,6 @@
                             v-shortkey="['meta', 'enter']"
                             @shortkey="saveEndorsement"
                     >
-
                     </textarea>
                 </div>
                 <div>
@@ -24,20 +23,24 @@
 
 <script>
     export default {
+        props: ['user'],
         mounted() {
             let self = this;
-            window.Events.$on('tag-added', function (tag) {
+            window.Events.$on('tag-upvoted', function (upvote) {
                 self.$refs.wrapper.style.right = '0';
-                self.tag = tag;
+                self.upvote = upvote;
                 self.$nextTick(function () {
-                    self.$refs.endorsement.placeholder = "e.g. " + tag.tagged_user_firstname + " is great with " + tag.name;
+                    self.$refs.endorsement.placeholder = "e.g. " + upvote.tagged_user_firstname + " is great with " + upvote.tag_name;
                     self.$refs.endorsement.focus();
                 });
+            });
+            window.Events.$on('upvote-removed', function (upvote) {
+                self.$refs.wrapper.style.right = '-500px';
             });
         },
         data() {
             return {
-                tag: {},
+                upvote: {},
                 shouldShow: false
             }
         },
@@ -45,6 +48,16 @@
             saveEndorsement() {
                 this.$refs.wrapper.style.right = '-500px';
                 this.$toasted.show('Saved endorsement!', {duration: 5000, position: "bottom-right"});
+                let message = this.$refs.endorsement.value;
+                let self = this;
+
+                axios.post('api/v1/upvotes/' + this.upvote.id, {
+                    message: message
+                }).then(function(response) {
+                    if (self.$parent.user) { // Won't be set on homepage / card view
+                        self.$parent.user.upvotes = response.data;
+                    }
+                });
             },
             closeEndorsement() {
                 this.$refs.wrapper.style.right = '-500px';

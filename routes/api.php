@@ -17,9 +17,5 @@ Route::get('/v1/users/{username}/upvote-tag/{tag}', 'UserController@upvoteTag');
 Route::get('/v1/tags', 'TagController@index');
 Route::get('/v1/tags/{slug}', 'TagController@view');
 
-Route::get('/v1/upvotes/{id}', function (Request $request, $id) {
-    /** @var \App\TaggedUpvote $upvote */
-    $upvote = \App\TaggedUpvote::with('user')->find($id);
-
-    return $upvote->toArray();
-});
+Route::get('v1/upvotes/{id}', 'UpvoteController@view');
+Route::post('v1/upvotes/{id}', 'UpvoteController@addMessage');
