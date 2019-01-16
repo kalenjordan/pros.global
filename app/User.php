@@ -16,11 +16,15 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @method static User find($id)
  *
  * @property $name
+ * @property $email
  * @property $about
  * @property $headline
+ * @property $linkedin_url
+ * @property $linkedin_token
  * @property $avatar_path
  * @property $upvotes
  * @property $tags
+ * @property $api_token
  */
 class User extends Authenticatable
 {
@@ -47,6 +51,8 @@ class User extends Authenticatable
         'password',
         'remember_token',
         'email',
+        'linkedin_token',
+        'api_token',
     ];
 
     public function getFirstName()
@@ -59,9 +65,26 @@ class User extends Authenticatable
         return $parts[0];
     }
 
+    public function getOrCreateApiToken()
+    {
+        if ($this->api_token) {
+            return $this->api_token;
+        }
+
+        $this->api_token = md5(env('APP_KEY') . time());
+        $this->save();
+
+        return $this->api_token;
+    }
+
     public static function findByUsername($username)
     {
         return self::with('tagged')->where('username', $username)->first();
+    }
+
+    public static function findByEmail($username)
+    {
+        return self::where('email', $username)->first();
     }
 
     public function toArray()

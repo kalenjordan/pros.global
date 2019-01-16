@@ -26,3 +26,6 @@ Route::get('tags', function () {
 Route::get('search/{thing}', function () {
     return view('app');
 });
+
+Route::get('/auth/linkedin',            'Auth\LinkedInController@login');
+Route::get('/auth/linkedin/callback',   'Auth\LinkedInController@callback');

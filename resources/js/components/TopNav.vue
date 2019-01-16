@@ -1,5 +1,5 @@
 <template>
-    <div class="nav flex pt-8 pl-8 pr-8">
+    <div class="nav flex pt-8 pl-8 pr-8 a items-center">
         <div class="logo-wrapper flex-1 text-left">
             <a href="/" v-shortkey="['shift', 'h']" @shortkey="goHome()">
                 <i class="fas fa-bolt font-200 mb-4"></i>
@@ -15,7 +15,8 @@
                    @focus="isSearching=1"
                    @blur="isSearching=0"
             >
-            <a class="btn px-5 py-2">Sign up</a>
+            <a class="btn px-5 py-2 mr-3" href="/auth/linkedin" target="_blank">Login</a>
+            <loggedin-avatar></loggedin-avatar>
         </div>
     </div>
 </template>
@@ -31,6 +32,11 @@
         mounted() {
             // nada
         },
+        computed: {
+            loggedInUser() {
+                return window.user;
+            }
+        },
         methods: {
             focusSearch() {
                 this.isSearching = true;
@@ -38,7 +44,7 @@
             },
             goHome() {
                 alert('home');
-            }
+            },
         }
     }
 </script>

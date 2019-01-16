@@ -104,6 +104,10 @@ class UserSearch extends ModelSearch
      */
     protected function _queryTag($collection, $word)
     {
-        $collection->withAnyTag([$word]);
+        $tags = Tagged::where('tagging_tagged.id', '>', 0)
+            ->where('tag_slug', $word)
+            ->get()->pluck('taggable_id');
+
+        $collection->whereIn('users.id', $tags);
     }
 }

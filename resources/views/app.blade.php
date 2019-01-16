@@ -14,8 +14,10 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/utilities.min.css" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet" type="text/css">
 
-
     <script src="https://rawgit.com/showdownjs/showdown/develop/dist/showdown.min.js"></script>
+    <script>
+        window.user={!! Auth::user() ? Auth::user()->toJson() : null  !!};
+    </script>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>

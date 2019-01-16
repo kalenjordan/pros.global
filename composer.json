@@ -13,6 +13,7 @@
         "fideloper/proxy": "^4.0",
         "jdorn/sql-formatter": "^1.2",
         "laravel/framework": "5.7.*",
+        "laravel/socialite": "^4.0",
         "laravel/tinker": "^1.0",
         "oe/lukas": "dev-master",
         "rtconner/laravel-tagging": "~2.2"

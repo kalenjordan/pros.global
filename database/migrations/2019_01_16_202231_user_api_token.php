@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class MoreUserInfo extends Migration
+class UserApiToken extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +14,7 @@ class MoreUserInfo extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('username')->after('password')->nullable();
-            $table->string('headline')->after('username')->nullable();
-            $table->text('about')->after('headline')->nullable();
-            $table->string('avatar_path')->after('about')->nullable();
-            $table->string('linkedin_token', 255)->after('avatar_path')->nullable();
+            $table->string('api_token')->after('remember_token')->nullable();
         });
     }
 
