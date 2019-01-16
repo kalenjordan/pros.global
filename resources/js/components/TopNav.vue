@@ -5,16 +5,20 @@
                 <i class="fas fa-bolt font-200 mb-4"></i>
             </a>
         </div>
-        <div class="right-nav flex-1 text-right">
+        <div class="right-nav flex-1 text-right"
+             v-shortkey="['/']"
+             @shortkey="focusSearch()"
+        >
             <input ref="search"
                    class="text w-32 p-2 mr-2"
                    v-bind:class="{'w-64' : isSearching}"
                    placeholder="Search"
-                   v-shortkey="['/']"
-                   @shortkey="focusSearch()"
                    @focus="isSearching=1"
                    @blur="isSearching=0"
+                   v-shortkey="['enter']"
+                   @shortkey="search()"
             >
+            <slot></slot>
             <router-link
                     class="ml-3"
                     v-if="loggedInUser.id"
@@ -48,6 +52,12 @@
             focusSearch() {
                 this.isSearching = true;
                 this.$refs.search.focus();
+            },
+            search() {
+                this.$router.push({
+                    name: 'search-query',
+                    params: { query: this.$refs.search.value },
+                });
             },
             goHome() {
                 alert('home');

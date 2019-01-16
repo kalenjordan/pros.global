@@ -1,21 +1,21 @@
 <template>
-    <div class="container page page-profile mt-6">
-        <div class="header centered max-w-lg mx-auto">
-            <router-link class="naked-link" to="/"><i class="fas fa-bolt font-200"></i></router-link>
-
-            <div class="avatar mb-1">
-                <img v-bind:src="user.avatar_path">
-            </div>
-            <div class="edit-profile-wrapper m-1">
-                <div v-if="editing">
+    <div class="page page-profile">
+        <top-nav>
+            <div class="edit-profile-wrapper m-1 inline-block">
+                <div v-if="editing" class="inline-block">
                     <a class="paragraph-link mr-3" @click="cancelEditing()" v-shortkey="['esc']" @shortkey="cancelEditing()">
                         Cancel
                     </a>
                     <a class="btn px-5 py-2" @click="saveProfile()" v-shortkey="['meta', 'enter']" @shortkey="saveProfile()">Save</a>
                 </div>
-                <div v-else>
+                <div v-else class="inline-block">
                     <a class="btn px-5 py-2" @click="editProfile()" v-shortkey="['e']" @shortkey="editProfile()">Edit Profile</a>
                 </div>
+            </div>
+        </top-nav>
+        <section class="header max-w-lg mx-auto text-center">
+            <div class="avatar mb-1">
+                <img v-bind:src="user.avatar_path">
             </div>
             <h1 class="mb-4">
                 <span v-if="editing" class="editable-headline">
@@ -23,7 +23,7 @@
                 </span>
                 <span v-else>{{ user.headline }}</span>
             </h1>
-        </div>
+        </section>
         <div class="mx-auto max-w-md text-center">
             <user-profile-tags :user="user" :editing="editing"></user-profile-tags>
         </div>

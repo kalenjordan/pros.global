@@ -1,6 +1,6 @@
 <template>
     <div class="page-home">
-        <top-nav linklogo></top-nav>
+        <top-nav></top-nav>
         <section class="header text-center max-w-lg mx-auto mb-4 mt-2">
             <h1>
                 Meet a co-founder, advisor, or team member&mdash;or connect with other

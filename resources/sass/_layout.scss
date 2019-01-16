@@ -78,3 +78,13 @@ hr {
 .relative {
     position: relative;
 }
+
+.nav {
+    img {
+        transition: all 0.25s ease;
+        border: solid 2px $primaryColorLighter;
+        &:hover {
+            border-color: $primaryColor;
+        }
+    }
+}
