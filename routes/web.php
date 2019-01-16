@@ -23,10 +23,6 @@ Route::get('tags', function () {
     return view('app');
 });
 
-Route::get('city/{thing}', function () {
-    return view('app');
-});
-
-Route::get('cities', function () {
+Route::get('search/{thing}', function () {
     return view('app');
 });

@@ -19,7 +19,7 @@ window.Vue.use(Toasted);
 window.Vue.use(Vuetify, {
     iconfont: 'fa'
 });
-Vue.use(require('vue-shortkey'),  { prevent: ['input', 'textarea'] });
+Vue.use(require('vue-shortkey'));
 Vue.use(VModal);
 
 // Event (singular) conflicts with vue-shortkey

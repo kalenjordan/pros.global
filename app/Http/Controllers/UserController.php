@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Tag;
 use App\Tagged;
+use App\UserSearch;
 use Illuminate\Http\Request;
 use App\User;
 
@@ -13,8 +14,15 @@ class UserController extends Controller
     public function list(Request $request)
     {
         $users = User::with('tags');
-        if ($query = $request->input('query')) {
-            $users->where('name', 'like', "%$query%");
+        $page = 0;
+        $limit = 0;
+
+        if ($query = $request->input('q')) {
+            $search = new UserSearch($users);
+            $search->query($query);
+            //$count = $users->count();
+            //$filters = $search->parseSearchFilters($query);
+            //$users->skip($page * $limit); // todo pagination
         }
 
         return $users->get();

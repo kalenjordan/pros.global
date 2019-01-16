@@ -14,7 +14,7 @@
             </div>
             <div class="centered">
                 <p class="mb-0">
-                    <router-link :to="{name: 'search'}">See more founders</router-link>
+                    <router-link :to="{name: 'search-query', params: { query: 'tag:founder' }}">See more founders</router-link>
                 </p>
             </div>
         </section>

@@ -18,6 +18,11 @@ let routes = [
         component: PageSearch
     },
     {
+        name: 'search-query',
+        path: '/search/:query',
+        component: PageSearch
+    },
+    {
         name: 'tags',
         path: '/tags',
         component: PageTagList
