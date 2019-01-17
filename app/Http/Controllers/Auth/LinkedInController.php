@@ -41,6 +41,8 @@ class LinkedInController extends \App\Http\Controllers\Controller
             $user->name = $linkedinUser->name;
             $user->password = md5(env('APP_KEY') . time());
             $user->username = preg_replace("/[^a-z0-9.]+/i", "", strtolower($user->name));
+            $user->headline = $user->name . " is an interesting character... (click here to edit if you own this page)";
+            $user->about = "Click here to edit";
             $user->save();
         }
 
