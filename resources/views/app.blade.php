@@ -25,7 +25,7 @@
 <body>
     <div id="app" class="wrapper">
         <router-view :key="$route.fullPath"></router-view>
-        <hr/>
+        <hr class="mt-24"/>
         <footer-component></footer-component>
     </div>
 
