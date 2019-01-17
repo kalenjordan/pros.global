@@ -18,7 +18,7 @@ class MoreUserInfo extends Migration
             $table->string('headline')->after('username')->nullable();
             $table->text('about')->after('headline')->nullable();
             $table->string('avatar_path')->after('about')->nullable();
-            $table->string('linkedin_token', 255)->after('avatar_path')->nullable();
+            $table->string('linkedin_token', 500)->after('avatar_path')->nullable();
         });
     }
 
