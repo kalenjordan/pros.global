@@ -1,6 +1,7 @@
 # founderland
 
-![screengrab](https://user-images.githubusercontent.com/1542197/51067875-f1303400-15db-11e9-916e-8f825860ec31.gif)
+![home 2](https://user-images.githubusercontent.com/1542197/51312653-669f6880-1a11-11e9-8c6a-166bcf36609f.gif)
+<img width="1169" alt="search" src="https://user-images.githubusercontent.com/1542197/51312663-6d2de000-1a11-11e9-85ae-2745500891ad.png">
 
 This, at the moment, is just a fun little side project I'm working on. The idea is to build a matchmaking
 app in the founder space--I've always liked connecting with other founders and people in that general ecosystem
