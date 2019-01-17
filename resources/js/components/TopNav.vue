@@ -1,22 +1,21 @@
 <template>
-    <div class="nav flex m-4 a items-center">
+    <div class="nav flex a items-center">
         <div class="logo-wrapper flex-1 text-left">
             <router-link :to="{name: 'home'}" class="naked-link" href="/">
                 <i class="fas fa-bolt font-200"></i>
             </router-link>
         </div>
-        <div class="right-nav flex-3 text-right">
+        <div class="right-nav flex-5 text-right">
             <input ref="search"
                    id="top-nav-search"
                    class="text w-32 p-2 mr-2"
-                   v-bind:class="{'w-64' : isSearching, hidden : hideSearch}"
+                   v-bind:class="{'w-48' : isSearching, hidden : hideSearch}"
                    placeholder="Search"
                    @focus="isSearching=1"
                    @blur="isSearching=0"
             >
             <slot></slot>
             <router-link
-                    class="ml-3"
                     v-if="loggedInUser.id"
                     :to="{name: 'profile', params: {username: loggedInUser.username}}"
             >

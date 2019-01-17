@@ -1,8 +1,8 @@
 <template>
-    <div class="page page-profile">
-        <top-nav>
-            <div class="edit-profile-wrapper m-1 inline-block">
-                <div v-if="editing" class="inline-block">
+    <div class="page page-profile m-4">
+        <top-nav class="mb-4">
+            <div v-if="editing" class="edit-profile-wrapper m-1 inline-block">
+                <div class="inline-block">
                     <a class="paragraph-link mr-3" @click="cancelEditing()" v-shortkey="['esc']" @shortkey="cancelEditing()">
                         Cancel
                     </a>
@@ -10,23 +10,23 @@
                 </div>
             </div>
         </top-nav>
-        <section class="header max-w-lg mx-auto text-center">
+        <section class="header max-w-lg mb-4 mx-auto text-center">
             <div class="avatar mb-1">
-                <img v-bind:src="user.avatar_path">
+                <img v-bind:src="user.avatar_path" class="w-16 sm:w-32">
             </div>
-            <h1 class="mb-4" @click="editIfOwner()">
+            <h1 class="text-xl sm:text-4xl" @click="editIfOwner()">
                 <span v-if="editing" class="editable-headline">
                     <textarea ref="headline" class="text-3xl text-center no-border w-full" >{{ user.headline }}</textarea>
                 </span>
                 <span v-else>{{ user.headline }}</span>
             </h1>
         </section>
-        <div class="mx-auto max-w-md text-center">
+        <div class="mx-auto max-w-md text-center mb-4">
             <user-profile-tags :user="user" :editing="editing"></user-profile-tags>
         </div>
         <div class="section mx-auto max-w-md" v-if="user.about || editing">
             <div class="card">
-                <div class="card--inner text-left">
+                <div class="card--inner text-left p-4">
                     <div class="editable-about" v-if="editing">
                         <textarea ref="about" class="font-90 width-100">{{ user.about }}</textarea>
                     </div>
@@ -34,10 +34,10 @@
                 </div>
             </div>
         </div>
-        <hr v-if="hasUpvotes" />
+        <hr v-if="hasUpvotes" class="m-6" />
         <div v-if="hasUpvotes" class="section endorsements mx-auto max-w-sm">
-            <div class="card hoverable endorsement-card" v-for="upvote in user.upvotes" :key="upvote.id">
-                <div class="card--inner">
+            <div class="card hoverable endorsement-card mb-4" v-for="upvote in user.upvotes" :key="upvote.id">
+                <div class="card--inner p-4">
                     <div class="avatar centered mr-4 -ml-2">
                         <router-link :to="{name: 'profile', params: {username: upvote.author_username }}">
                             <img v-bind:src="upvote.author_avatar">

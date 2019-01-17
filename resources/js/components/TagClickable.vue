@@ -1,6 +1,6 @@
 <template>
     <div style="display: inline-block">
-        <div class="tag fast"
+        <div class="tag fast text-sm sm:text-base"
              @click="tagClick(tag)"
              v-bind:class="{isUpvotedByMe : tag.is_upvoted_by_me, animated : hasBeenClicked, tada: tag.is_upvoted_by_me}">
             <i class="far fa-thumbs-up" v-bind:class="{upvoted : tag.is_upvoted_by_me}"></i>
