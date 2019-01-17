@@ -5,13 +5,11 @@
                 <i class="fas fa-bolt font-200 mb-4"></i>
             </router-link>
         </div>
-        <div class="right-nav flex-1 text-right"
-             v-shortkey="['/']"
-             @shortkey="focusSearch()"
-        >
+        <div class="right-nav flex-1 text-right">
             <input ref="search"
+                   id="top-nav-search"
                    class="text w-32 p-2 mr-2"
-                   v-bind:class="{'w-64' : isSearching}"
+                   v-bind:class="{'w-64' : isSearching, hidden : hideSearch}"
                    placeholder="Search"
                    @focus="isSearching=1"
                    @blur="isSearching=0"
@@ -31,7 +29,7 @@
 
 <script>
     export default {
-        props: ['linklogo'],
+        props: ['hideSearch'],
         data() {
             return {
                 isSearching: false,
@@ -39,6 +37,7 @@
             }
         },
         mounted() {
+            window.addEventListener('keyup', this.hotkeyHandler);
             window.Events.$on('user-authenticated', (data) => {
                 this.loggedInUser = data;
             });
@@ -48,19 +47,31 @@
         },
         methods: {
             focusSearch() {
+                if (! this.$refs.search) {
+                    return;
+                }
                 this.isSearching = true;
                 this.$refs.search.focus();
             },
+            hotkeyHandler(e) {
+                if (document.activeElement.id === 'top-nav-search') {
+                    if (e.key === 'Enter') {
+                        this.search();
+                    } else if (e.key === 'Escape') {
+                        this.isSearching = false;
+                        this.$refs.search.blur();
+                    }
+                } else if (document.activeElement.tagName === 'BODY') {
+                    if (e.key === '/') {
+                        this.focusSearch();
+                    }
+                }
+            },
             search() {
-                /*
                 this.$router.push({
                     name: 'search-query',
                     params: { query: this.$refs.search.value },
                 });
-                */
-            },
-            goHome() {
-                alert('home');
             },
         }
     }

@@ -1,8 +1,6 @@
 <template>
     <div class="page page-search">
-        <section class="header centered mb-16">
-            <router-link class="naked-link" to="/"><i class="fas fa-bolt font-200"></i></router-link>
-        </section>
+        <top-nav :hide-search="1"></top-nav>
         <section class="mb-6 max-w-lg mx-auto">
             <div class="flex m-4">
                 <input ref="search"
@@ -33,16 +31,17 @@
             }
         },
         mounted() {
-            let self = this;
+            window.addEventListener('keyup', this.hotkeyHandler);
             if (this.$route.params.query) {
                 this.query = this.$route.params.query;
                 this.search();
             } else {
-                axios.get('/api/v1/users').then(function(response) {
-                    self.users = response.data;
+                axios.get('/api/v1/users').then((response) => {
+                    this.users = response.data;
                 });
             }
-            // this.$refs.search.focus();
+
+            this.$refs.search.focus();
         },
         methods: {
             search() {
@@ -52,7 +51,20 @@
                     this.search_processing = false;
                     this.users = response.data;
                 });
-            }
+            },
+            hotkeyHandler(e) {
+                if (document.activeElement.tagName === 'INPUT') {
+                    if (e.key === 'Enter') {
+                        this.search();
+                    } else if (e.key === 'Escape') {
+                        this.$refs.search.blur();
+                    }
+                } else if (document.activeElement.tagName === 'BODY') {
+                    if (e.key === '/') {
+                        this.$refs.search.focus();
+                    }
+                }
+            },
         }
     }
 </script>

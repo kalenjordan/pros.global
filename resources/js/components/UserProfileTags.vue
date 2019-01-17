@@ -1,7 +1,5 @@
 <template>
     <div class="relative">
-        <!--<div class="tag"><i class="fa fa-location-arrow pr-05"></i> {{ user.city }}</div>-->
-
         <template v-if="loggedInUserViewingOwnPage()">
             <tag-editable v-for="tag in user.tags" :user="user" :tag="tag" :key="tag.id"></tag-editable>
             <a class="tag add-tag" @click="addTag()">
@@ -60,10 +58,23 @@
             axios.get('/api/v1/tags').then(function(response) {
                 self.tags = response.data;
             });
+
+            window.addEventListener('keyup', this.hotkeyHandler);
         },
         methods: {
             addTag() {
                 this.addingTag = true;
+            },
+            hotkeyHandler(e) {
+                if (document.activeElement.tagName === 'INPUT') {
+                    if (e.key === 'Escape') {
+                        this.addingTag = false;
+                    }
+                } else if (document.activeElement.tagName === 'BODY') {
+                    if (e.key === 't') {
+                        this.addTag();
+                    }
+                }
             },
             tagInput: function(data) {
                 let auth = '?api_token=' + window.api_token;
@@ -76,7 +87,11 @@
             },
             loggedInUserViewingOwnPage() {
                 return this.loggedInUser.id && this.loggedInUser.id === this.user.id;
+            },
+            keyup(data) {
+                console.log(data);
             }
+
         },
         computed: {
             tagNames: function() {
