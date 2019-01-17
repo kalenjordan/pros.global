@@ -90,6 +90,11 @@ class User extends Authenticatable
         return self::where('email', $username)->first();
     }
 
+    public static function findByApiToken($username)
+    {
+        return self::where('api_token', $username)->first();
+    }
+
     public function toArray()
     {
         $data = parent::toArray();

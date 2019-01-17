@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Tag;
+use Auth;
+
+use Illuminate\Http\Request;
+
 use App\Tagged;
 use App\UserSearch;
-use Illuminate\Http\Request;
 use App\User;
 
 class UserController extends Controller
@@ -30,6 +32,12 @@ class UserController extends Controller
 
     public function view(Request $request, $username)
     {
+        if ($request->input('api_token')) {
+            if ($user = User::findByApiToken($request->input('api_token'))) {
+                Auth::login(User::findByApiToken($request->input('api_token')));
+            }
+        }
+
         $user = User::with(['tags', 'upvotes'])->where('username', $username)->first();
         return $user->toArray();
     }

@@ -74,9 +74,9 @@
             }
         },
         mounted() {
-            let self = this;
-            axios.get('/api/v1/users/' + this.$route.params.username).then(function(response) {
-                self.user = response.data;
+            let auth = '?api_token=' + window.api_token;
+            axios.get('/api/v1/users/' + this.$route.params.username + auth).then((response) => {
+                this.user = response.data;
             });
         },
         methods: {
@@ -111,7 +111,10 @@
             },
             hasUpvotes: function() {
                 return this.user.upvotes && this.user.upvotes.length;
-            }
+            },
+            loggedInUser: function() {
+                return window.user ? window.user : {};
+            },
         }
     }
 </script>
