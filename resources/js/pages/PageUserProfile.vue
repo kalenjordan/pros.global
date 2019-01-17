@@ -24,7 +24,7 @@
         <div class="mx-auto max-w-md text-center">
             <user-profile-tags :user="user" :editing="editing"></user-profile-tags>
         </div>
-        <div class="section mx-auto max-w-md">
+        <div class="section mx-auto max-w-md" v-if="user.about || editing">
             <div class="card">
                 <div class="card--inner text-left">
                     <div class="editable-about" v-if="editing">
