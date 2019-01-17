@@ -8,16 +8,13 @@
                     </a>
                     <a class="btn px-5 py-2" @click="saveProfile()" v-shortkey="['meta', 'enter']" @shortkey="saveProfile()">Save</a>
                 </div>
-                <!--<div v-else class="inline-block">-->
-                    <!--<a class="btn px-5 py-2" @click="editProfile()">Edit Profile</a>-->
-                <!--</div>-->
             </div>
         </top-nav>
         <section class="header max-w-lg mx-auto text-center">
             <div class="avatar mb-1">
                 <img v-bind:src="user.avatar_path">
             </div>
-            <h1 class="mb-4">
+            <h1 class="mb-4" @click="editIfOwner()">
                 <span v-if="editing" class="editable-headline">
                     <textarea ref="headline" class="text-3xl text-center no-border w-full" >{{ user.headline }}</textarea>
                 </span>
@@ -33,7 +30,7 @@
                     <div class="editable-about" v-if="editing">
                         <textarea ref="about" class="font-90 width-100">{{ user.about }}</textarea>
                     </div>
-                    <div v-else v-html="compiledMarkdown">{{ user.about }}</div>
+                    <div v-else v-html="compiledMarkdown" @click="editIfOwner()">{{ user.about }}</div>
                 </div>
             </div>
         </div>
@@ -80,12 +77,16 @@
             });
         },
         methods: {
-            editProfile() {
-                this.editing = true;
-                let self = this;
-                this.$nextTick(function() {
-                    self.$refs.headline.focus();
-                });
+            editIfOwner() {
+                if (this.loggedInUserViewingOwnPage()) {
+                    this.editing = true;
+                    this.$nextTick(() => {
+                        this.$refs.headline.focus();
+                    });
+                }
+            },
+            loggedInUserViewingOwnPage() {
+                return this.loggedInUser.id && this.loggedInUser.id === this.user.id;
             },
             cancelEditing() {
                 this.editing = false;
