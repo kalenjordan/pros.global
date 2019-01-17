@@ -1,6 +1,5 @@
 .card {
     top: 0;
-    margin: 1em;
     text-align: left;
     box-shadow: 0 13px 27px -5px rgba(50,50,93,.25), 0 8px 16px -8px rgba(0,0,0,.3);
     border-radius: 8px;
@@ -25,7 +24,6 @@
 
     .card--inner {
         z-index: 1;
-        padding: 18px 30px 20px 30px;
         position: relative;
 
         p {

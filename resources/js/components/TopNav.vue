@@ -1,11 +1,11 @@
 <template>
-    <div class="nav flex pt-8 pl-8 pr-8 a items-center">
+    <div class="nav flex m-4 a items-center">
         <div class="logo-wrapper flex-1 text-left">
             <router-link :to="{name: 'home'}" class="naked-link" href="/">
-                <i class="fas fa-bolt font-200 mb-4"></i>
+                <i class="fas fa-bolt font-200"></i>
             </router-link>
         </div>
-        <div class="right-nav flex-1 text-right">
+        <div class="right-nav flex-3 text-right">
             <input ref="search"
                    id="top-nav-search"
                    class="text w-32 p-2 mr-2"

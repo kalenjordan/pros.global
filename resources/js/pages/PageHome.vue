@@ -2,13 +2,13 @@
     <div class="page-home">
         <top-nav></top-nav>
         <section class="header text-center max-w-lg mx-auto mb-4 mt-2">
-            <h1>
+            <h1 class="text-2xl sm:text-4xl">
                 Tag, endorse, and discover cool founders
             </h1>
         </section>
         <section class="max-w-2xl mb-8 mx-auto">
-            <div class="user-cards mb-8 flex">
-                <user-card class="hoverable" v-for="user in users" v-bind:user="user" :key="user.id"></user-card>
+            <div class="user-cards m-2 mb-4 flex flex-wrap justify-center">
+                <user-card class="hoverable w-full sm:max-w-xs m-2" v-for="user in users" v-bind:user="user" :key="user.id"></user-card>
                 <tag-endorsement></tag-endorsement>
             </div>
             <div class="centered">
