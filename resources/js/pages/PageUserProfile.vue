@@ -30,7 +30,7 @@
                     <div class="editable-about" v-if="editing">
                         <textarea ref="about" class="font-90 width-100">{{ user.about }}</textarea>
                     </div>
-                    <div v-else v-html="compiledMarkdown" @click="editIfOwner()">{{ user.about }}</div>
+                    <div v-else v-html="markdown(this.user.about)" @click="editIfOwner()">{{ user.about }}</div>
                 </div>
             </div>
         </div>
@@ -44,11 +44,10 @@
                         </router-link>
                         {{ upvote.author_firstname }}
                     </div>
-                    <div class="endorsement-message">
+                    <div class="endorsement-message leading-tight">
                         <div>
-                            <p class="mb-05">
-                                {{ upvote.message }}
-                            </p>
+                            <div v-if="upvote.message" class="mb-2" v-html="markdown(upvote.message)"></div>
+                            <div v-else class="mb-2">{{ upvote.author_firstname }} upvoted</div>
                             <div class="inline-tag">{{ upvote.tag_name }}</div>
                         </div>
                     </div>
@@ -104,12 +103,12 @@
                     self.user = response.data;
                 });
             },
+            markdown: function (content) {
+                let converter = new showdown.Converter();
+                return converter.makeHtml(content);
+            },
         },
         computed: {
-            compiledMarkdown: function () {
-                let converter = new showdown.Converter();
-                return converter.makeHtml(this.user.about);
-            },
             hasUpvotes: function() {
                 return this.user.upvotes && this.user.upvotes.length;
             },
