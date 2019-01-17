@@ -1,4 +1,6 @@
 
+@tailwind preflight;
+
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
@@ -15,3 +17,5 @@
 @import 'page-profile';
 @import 'footer';
 @import 'forms';
+
+@tailwind utilities;

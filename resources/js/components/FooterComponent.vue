@@ -1,5 +1,5 @@
 <template>
-    <div class="footer mx-auto max-w-lg text-xs leading-tight">
+    <div class="footer mx-auto max-w-lg text-xs leading-tight mt-16">
         <div class="section footer--inner">
             <div class="footer--column flex-3 p-3">
                 <h3 class="mb-2">About</h3>
