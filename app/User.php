@@ -17,6 +17,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  *
  * @property $name
  * @property $email
+ * @property $username
  * @property $about
  * @property $headline
  * @property $linkedin_url
@@ -24,6 +25,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property $avatar_path
  * @property $upvotes
  * @property $tags
+ * @property $tagged
  * @property $password
  * @property $api_token
  */
@@ -95,6 +97,15 @@ class User extends Authenticatable
     }
 
     public function tags()
+    {
+        return $this->hasMany('App\Tagged', 'taggable_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @todo replace tags relation with tagged
+     */
+    public function tagged()
     {
         return $this->hasMany('App\Tagged', 'taggable_id');
     }

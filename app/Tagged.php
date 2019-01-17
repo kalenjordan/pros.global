@@ -2,7 +2,7 @@
 
 namespace App;
 
-use \Illuminate\Database\Query\Builder;
+use Auth;
 
 /**
  * Class Tag
@@ -49,18 +49,21 @@ class Tagged extends \Conner\Tagging\Model\Tagged
         $data['upvote_count'] = TaggedUpvote::where('tagged_id', $this->id)->count();
         $data['tagged_user_firstname'] = $this->taggedUser()->getFirstName();
 
-        $userId = 1; // TODO pull from auth
-        $data['is_upvoted_by_me'] = TaggedUpvote::where('user_id', $userId)
-            ->where('tagged_id', $this->id)
-            ->count();
+        if (Auth::user()) {
+            $userId = Auth::user()->id;
+            $data['is_upvoted_by_me'] = TaggedUpvote::where('user_id', $userId)
+                ->where('tagged_id', $this->id)
+                ->count();
+        }
 
         return $data;
     }
 
     public function toggleUpvote()
     {
-        $userId = 1; // TODO pull from auth
+        $userId = Auth::user()->id;
         $upvote = TaggedUpvote::findByTaggedIdAndUserId($this->id, $userId);
+
         if ($upvote) {
             $upvote->delete();
             $upvote->is_deleted = true;

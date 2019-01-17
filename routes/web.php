@@ -29,3 +29,8 @@ Route::get('search/{thing}', function () {
 
 Route::get('/auth/linkedin',            'Auth\LinkedInController@login');
 Route::get('/auth/linkedin/callback',   'Auth\LinkedInController@callback');
+
+//Route::get('/admin/login-as/{id}', function($id) {
+//    Auth::loginUsingId($id);
+//    return redirect('/');
+//});

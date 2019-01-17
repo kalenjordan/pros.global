@@ -17,14 +17,14 @@
     <script src="https://rawgit.com/showdownjs/showdown/develop/dist/showdown.min.js"></script>
     <script>
         window.user={!! Auth::user() ? Auth::user()->toJson() : "null" !!};
-        window.api_token = "{{Auth::user() ? Auth::user()->api_token : "" }}";
+        window.api_token = "{{Auth::user() ? Auth::user()->getOrCreateApiToken() : "" }}";
     </script>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
     <div id="app" class="wrapper">
-        <router-view></router-view>
+        <router-view :key="$route.fullPath"></router-view>
         <hr/>
         <footer-component></footer-component>
     </div>

@@ -48,17 +48,15 @@ class UserController extends Controller
 
     public function addTag(Request $request, $username)
     {
-        /** @var \App\User $user */
-        $user = User::where('username', $username)->first();
+        $user = User::findByUsername($username);
         $tag = $request->input('tag');
         if (!$tag) {
             throw new \Exception("Empty tag");
         }
 
         $user->tag($tag);
-        $user->relations = [];
 
-        return $user->tags();
+        return $user->tagged;
     }
 
     public function deleteTag(Request $request, $username, $taggedId)
@@ -68,10 +66,10 @@ class UserController extends Controller
 
         if ($tagged) {
             $tagged->delete();
-            // $user->load('tags');
+            $user->load('tagged');
         }
 
-        return $user->tags();
+        return $user->tagged;
     }
 
     public function upvoteTag(Request $request, $username, $taggedId)

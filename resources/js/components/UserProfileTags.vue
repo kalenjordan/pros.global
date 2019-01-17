@@ -2,7 +2,7 @@
     <div>
         <!--<div class="tag"><i class="fa fa-location-arrow pr-05"></i> {{ user.city }}</div>-->
 
-        <template v-if="editing">
+        <template v-if="loggedInUserViewingOwnPage()">
             <tag-editable v-for="tag in user.tags" :user="user" :tag="tag" :key="tag.id"></tag-editable>
             <a class="tag add-tag" @click="addTag()">
                 <i class="fas fa-plus mr-02"></i> Add tag
@@ -68,16 +68,22 @@
             tagInput: function(data) {
                 let auth = '?api_token=' + window.api_token;
                 axios.post("/api/v1/users/" + this.user.username + "/add-tag" + auth, {
-                    'tag': self.model
+                    'tag': this.model
                 }).then((response) => {
                     this.user.tags = response.data;
                 });
                 this.addingTag = false;
             },
+            loggedInUserViewingOwnPage() {
+                return this.loggedInUser.id && this.loggedInUser.id === this.user.id;
+            }
         },
         computed: {
             tagNames: function() {
                 return this.tags.map( tag => tag.name);
+            },
+            loggedInUser: function() {
+                return window.user ? window.user : {};
             }
         }
     }

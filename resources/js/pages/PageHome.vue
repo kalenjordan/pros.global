@@ -59,12 +59,12 @@
             }
         },
         mounted() {
-            let self = this;
-            axios.get('/api/v1/users').then(function(response) {
-                self.users = response.data;
+            let auth = '?api_token=' + window.api_token;
+            axios.get('/api/v1/users' + auth).then((response) => {
+                this.users = response.data;
             });
-            axios.get('/api/v1/tags?limit=3').then(function(response) {
-                self.tags = response.data;
+            axios.get('/api/v1/tags?limit=3').then((response) => {
+                this.tags = response.data;
             });
         },
     }

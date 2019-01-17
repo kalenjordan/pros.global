@@ -9,7 +9,7 @@
                     <a class="btn px-5 py-2" @click="saveProfile()" v-shortkey="['meta', 'enter']" @shortkey="saveProfile()">Save</a>
                 </div>
                 <div v-else class="inline-block">
-                    <a class="btn px-5 py-2" @click="editProfile()" v-shortkey="['e']" @shortkey="editProfile()">Edit Profile</a>
+                    <a class="btn px-5 py-2" @click="editProfile()">Edit Profile</a>
                 </div>
             </div>
         </top-nav>
@@ -41,8 +41,10 @@
         <div v-if="hasUpvotes" class="section endorsements mx-auto max-w-sm">
             <div class="card hoverable endorsement-card" v-for="upvote in user.upvotes" :key="upvote.id">
                 <div class="card--inner">
-                    <div class="avatar centered mr-1">
-                        <img v-bind:src="upvote.author_avatar">
+                    <div class="avatar centered mr-4 -ml-2">
+                        <router-link :to="{name: 'profile', params: {username: upvote.author_username }}">
+                            <img v-bind:src="upvote.author_avatar">
+                        </router-link>
                         {{ upvote.author_firstname }}
                     </div>
                     <div class="endorsement-message">

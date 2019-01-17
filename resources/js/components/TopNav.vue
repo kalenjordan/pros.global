@@ -1,9 +1,9 @@
 <template>
     <div class="nav flex pt-8 pl-8 pr-8 a items-center">
         <div class="logo-wrapper flex-1 text-left">
-            <a class="naked-link" href="/" v-shortkey="['shift', 'h']" @shortkey="goHome()">
+            <router-link :to="{name: 'home'}" class="naked-link" href="/" v-shortkey="['shift', 'h']" @shortkey="goHome()">
                 <i class="fas fa-bolt font-200 mb-4"></i>
-            </a>
+            </router-link>
         </div>
         <div class="right-nav flex-1 text-right"
              v-shortkey="['/']"
@@ -15,8 +15,6 @@
                    placeholder="Search"
                    @focus="isSearching=1"
                    @blur="isSearching=0"
-                   v-shortkey="['enter']"
-                   @shortkey="search()"
             >
             <slot></slot>
             <router-link
@@ -54,10 +52,12 @@
                 this.$refs.search.focus();
             },
             search() {
+                /*
                 this.$router.push({
                     name: 'search-query',
                     params: { query: this.$refs.search.value },
                 });
+                */
             },
             goHome() {
                 alert('home');

@@ -41,6 +41,7 @@ class TaggedUpvote extends Model
         // Nothing for now
         $data = parent::toArray();
         $data['author_firstname'] = $this->user->getFirstName();
+        $data['author_username'] = $this->user->username;
         $data['author_avatar'] = $this->user->avatar_path;
         $data['tag_name'] = $this->tagged->tag_name;
         $data['tagged_user_firstname'] = $this->tagged_user->getFirstName();
