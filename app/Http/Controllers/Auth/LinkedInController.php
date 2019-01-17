@@ -40,13 +40,9 @@ class LinkedInController extends \App\Http\Controllers\Controller
             $user->email = $email;
             $user->name = $linkedinUser->name;
             $user->password = md5(env('APP_KEY') . time());
+            $user->username = preg_replace("/[^a-z0-9.]+/i", "", strtolower($user->name));
             $user->save();
         }
-
-        // todo add linkedin url
-        //if (! $user->linkedin_url) {
-        //    $user->linkedin_url = data_get($linkedinUser, 'user.publicProfileUrl');
-        //}
 
         if (! $user->avatar_path) {
             $user->avatar_path = $linkedinUser->avatar;
