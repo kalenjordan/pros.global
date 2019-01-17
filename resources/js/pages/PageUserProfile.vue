@@ -34,7 +34,7 @@
                 </div>
             </div>
         </div>
-        <hr v-if="hasUpvotes" class="m-6" />
+        <hr v-if="hasUpvotes" class="m-6 sm:my-16 sm:w-md sm:mx-auto" />
         <div v-if="hasUpvotes" class="section endorsements mx-auto max-w-sm">
             <div class="card hoverable endorsement-card mb-4" v-for="upvote in user.upvotes" :key="upvote.id">
                 <div class="card--inner p-4">
