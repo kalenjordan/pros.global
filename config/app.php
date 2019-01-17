@@ -167,6 +167,7 @@ return [
          */
 
         \Conner\Tagging\Providers\TaggingServiceProvider::class,
+        Lab404\Impersonate\ImpersonateServiceProvider::class,
 
         /*
          * Application Service Providers...

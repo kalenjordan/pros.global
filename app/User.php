@@ -33,6 +33,7 @@ class User extends Authenticatable
 {
     use Notifiable;
     use Taggable;
+    use \Lab404\Impersonate\Models\Impersonate;
 
     /**
      * The attributes that are mass assignable.
