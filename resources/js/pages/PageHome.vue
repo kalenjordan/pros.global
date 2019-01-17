@@ -3,8 +3,7 @@
         <top-nav></top-nav>
         <section class="header text-center max-w-lg mx-auto mb-4 mt-2">
             <h1>
-                Meet a co-founder, advisor, or team member&mdash;or connect with other
-                like-minded founders
+                Tag and endorse founders you know, and discover others that you don't
             </h1>
         </section>
         <section class="max-w-2xl mb-8 mx-auto">
