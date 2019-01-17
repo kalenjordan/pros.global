@@ -1,7 +1,7 @@
 <template>
     <div ref="wrapper" class="tag-endorsement-wrapper animated fast slideInRight">
-        <div class="card tag-endorsement-card max-width-small font-90">
-            <div class="card--inner">
+        <div class="card tag-endorsement-card max-width-small font-90 m-4">
+            <div class="card--inner p-4">
                 <p class="mb-2">Share some love on {{ upvote.tagged_user_firstname }}'s profile!</p>
                 <div class="mb-2">
                     <textarea
