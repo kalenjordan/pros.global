@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="relative">
         <!--<div class="tag"><i class="fa fa-location-arrow pr-05"></i> {{ user.city }}</div>-->
 
         <template v-if="loggedInUserViewingOwnPage()">
@@ -13,31 +13,31 @@
             <tag-endorsement user="user"></tag-endorsement>
         </template>
 
-        <div class="tag-autocomplete relative" v-if="addingTag">
-            <v-combobox
-                    v-model="model"
-                    :items="tagNames"
-                    :search-input.sync="tagSearch"
-                    hide-selected
-                    autofocus
-                    solo
-                    hint="Maximum of 5 tags"
-                    label="Add some tags"
-                    persistent-hint
-                    small-chips
-                    return-object
-                    @input="tagInput()"
-            >
-                <template slot="no-data">
-                    <v-list-tile>
-                        <v-list-tile-content>
-                            <v-list-tile-title>
-                                No results matching "<strong>{{ tagSearch }}</strong>". Press <kbd>enter</kbd> to create a new one
-                            </v-list-tile-title>
-                        </v-list-tile-content>
-                    </v-list-tile>
-                </template>
-            </v-combobox>
+        <div class="tag-autocomplete card absolute" v-if="addingTag">
+            <div class="card--inner pt-3">
+                <v-combobox
+                        v-model="model"
+                        :items="tagNames"
+                        :search-input.sync="tagSearch"
+                        hide-selected
+                        autofocus
+                        solo
+                        persistent-hint
+                        small-chips
+                        return-object
+                        @input="tagInput()"
+                >
+                    <template slot="no-data">
+                        <v-list-tile>
+                            <v-list-tile-content>
+                                <v-list-tile-title>
+                                    No results matching "<strong>{{ tagSearch }}</strong>". Press <kbd>enter</kbd> to create a new one
+                                </v-list-tile-title>
+                            </v-list-tile-content>
+                        </v-list-tile>
+                    </template>
+                </v-combobox>
+            </div>
         </div>
     </div>
 </template>

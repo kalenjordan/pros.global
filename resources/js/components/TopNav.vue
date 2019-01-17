@@ -1,7 +1,7 @@
 <template>
     <div class="nav flex pt-8 pl-8 pr-8 a items-center">
         <div class="logo-wrapper flex-1 text-left">
-            <router-link :to="{name: 'home'}" class="naked-link" href="/" v-shortkey="['shift', 'h']" @shortkey="goHome()">
+            <router-link :to="{name: 'home'}" class="naked-link" href="/">
                 <i class="fas fa-bolt font-200 mb-4"></i>
             </router-link>
         </div>
@@ -22,7 +22,7 @@
                     v-if="loggedInUser.id"
                     :to="{name: 'profile', params: {username: loggedInUser.username}}"
             >
-                <img class="w-8 rounded-full" :src="loggedInUser.avatar_path" style="margin-bottom: -11px;">
+                <img class="w-10 rounded-full" :src="loggedInUser.avatar_path" style="margin-bottom: -14px;">
             </router-link>
             <a v-else class="btn px-5 py-2" href="/auth/linkedin" target="_blank">Login</a>
         </div>

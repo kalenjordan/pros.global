@@ -1,10 +1,9 @@
 <template>
     <div>
-        <div style="display: none;"
-             v-shortkey="['h']"
-             @shortkey="showKeyboardShortcuts()">
-
-        </div>
+        <!--<div style="display: none;">-->
+             <!--&lt;!&ndash;v-shortkey="['h']"&ndash;&gt;-->
+             <!--&lt;!&ndash;@shortkey="showKeyboardShortcuts()">&ndash;&gt;-->
+        <!--</div>-->
         <modal name="help" >
             <h3 class="mb-2">Keyboard shortcuts</h3>
             <h4 class="mb-1">General</h4>

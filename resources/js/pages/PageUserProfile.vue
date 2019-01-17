@@ -8,9 +8,9 @@
                     </a>
                     <a class="btn px-5 py-2" @click="saveProfile()" v-shortkey="['meta', 'enter']" @shortkey="saveProfile()">Save</a>
                 </div>
-                <div v-else class="inline-block">
-                    <a class="btn px-5 py-2" @click="editProfile()">Edit Profile</a>
-                </div>
+                <!--<div v-else class="inline-block">-->
+                    <!--<a class="btn px-5 py-2" @click="editProfile()">Edit Profile</a>-->
+                <!--</div>-->
             </div>
         </top-nav>
         <section class="header max-w-lg mx-auto text-center">

@@ -21,3 +21,38 @@ input.text, textarea.text {
         }
     }
 }
+
+.tag-autocomplete {
+    display: inline-block;
+    position: absolute;
+    z-index: 2;
+    background-color: white;
+
+    .v-select__selections {
+        margin-bottom: 0.5em;
+        .v-chip {
+            display: none;
+        }
+
+        input {
+            padding: 0.5em;
+            border: solid 1px $grayEvenLighter;
+            border-radius: 5px;
+        }
+    }
+
+    .v-select-list {
+        .v-list__tile__content {
+            padding: 0.25em;
+        }
+
+        .v-list__tile--highlighted .v-list__tile__content {
+            background-color: $grayLightest;
+        }
+    }
+
+    .v-input__append-inner {
+        display: none;
+    }
+
+}
