@@ -27,8 +27,10 @@ Route::get('search/{thing}', function () {
     return view('app');
 });
 
-Route::get('/auth/linkedin',            'Auth\LinkedInController@login');
-Route::get('/auth/linkedin/callback',   'Auth\LinkedInController@callback');
+Route::get('auth/linkedin',            'Auth\LinkedInController@login');
+Route::get('auth/linkedin/callback',   'Auth\LinkedInController@callback');
+
+Route::get('auth/logout', 'Auth\LoginController@logout'); // by default it just does post
 
 //Route::get('/admin/login-as/{id}', function($id) {
 //    Auth::loginUsingId($id);
