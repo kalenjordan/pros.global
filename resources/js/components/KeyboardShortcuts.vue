@@ -23,9 +23,19 @@
 </template>
 <script>
     export default {
+        mounted() {
+            window.addEventListener('keyup', this.hotkeys);
+        },
         methods: {
             showKeyboardShortcuts() {
                 this.$modal.show('help');
+            },
+            hotkeys(e) {
+                if (document.activeElement.tagName === 'BODY') {
+                    if (e.key === 'h') {
+                        this.$router.push({name: 'home'});
+                    }
+                }
             },
         }
     }
