@@ -4,6 +4,10 @@
             font-family: serif;
             font-weight: normal;
             font-style: italic;
+            font-size: 1.5rem;
+            @media screen and (min-width: 576px) {
+                font-size: 2rem;
+            }
         }
         p {
             display: none;
