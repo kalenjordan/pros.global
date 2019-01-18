@@ -101,7 +101,7 @@ class User extends Authenticatable
         $data = parent::toArray();
 
         $manager = app('impersonate');
-        $manager->findUserById(1);
+        $manager->findUserById(env('ADMIN_USER_ID'));
         $data['being_impersonated'] = $manager->isImpersonating();
 
         return $data;
