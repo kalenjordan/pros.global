@@ -58,8 +58,8 @@
             }
         },
         mounted() {
-            let auth = '?api_token=' + window.api_token;
-            axios.get('/api/v1/users' + auth).then((response) => {
+            let auth = '&api_token=' + window.api_token;
+            axios.get('/api/v1/users?q=tag:founder' + auth).then((response) => {
                 this.users = response.data;
             });
             axios.get('/api/v1/tags?limit=3').then((response) => {
