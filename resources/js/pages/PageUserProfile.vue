@@ -54,6 +54,7 @@
             </div>
         </div>
         <keyboard-shortcuts></keyboard-shortcuts>
+        <footer-component :user="user"></footer-component>
     </div>
 </template>
 

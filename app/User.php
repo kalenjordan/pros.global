@@ -99,6 +99,11 @@ class User extends Authenticatable
     public function toArray()
     {
         $data = parent::toArray();
+
+        $manager = app('impersonate');
+        $manager->findUserById(1);
+        $data['being_impersonated'] = $manager->isImpersonating();
+
         return $data;
     }
 

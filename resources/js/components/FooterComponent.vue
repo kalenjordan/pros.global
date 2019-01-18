@@ -21,6 +21,16 @@
                     <li><a class="naked-link" href="https://github.com/kalenjordan/founderland">Open source</a></li>
                     <li><a class="naked-link" href="/tags">Tags</a></li>
                     <li><a class="naked-link" href="/cities">Cities</a></li>
+                    <li v-if="adminViewingProfilePage()">
+                        <a class="naked-link" v-bind:href="'/admin/impersonate/' + user.username">
+                            Impersonate {{ user.username }}
+                        </a>
+                    </li>
+                    <li v-if="adminIsImpersonating()">
+                        <a class="naked-link" href="/admin/leave-impersonation">
+                            Leave Impersonation
+                        </a>
+                    </li>
                     <!--<li>-->
                         <!--<a href="#">Keyboard shortcuts</a>-->
                     <!--</li>-->
@@ -45,3 +55,20 @@
         </div>
     </div>
 </template>
+
+<script>
+    export default {
+        props: ['user'],
+        mounted() {
+            //
+        },
+        methods: {
+            adminViewingProfilePage() {
+                return window.user.is_admin && user.id;
+            },
+            adminIsImpersonating() {
+                return window.user.being_impersonated;
+            }
+        }
+    }
+</script>

@@ -23,7 +23,6 @@
 <body>
     <div id="app" class="wrapper">
         <router-view :key="$route.fullPath"></router-view>
-        <footer-component></footer-component>
     </div>
 
     <script src="{{ mix('js/app.js') }}"></script>
