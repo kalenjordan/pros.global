@@ -12,7 +12,7 @@
         </template>
 
         <div class="tag-autocomplete card absolute" v-if="addingTag">
-            <div class="card--inner pt-3">
+            <div class="card--inner p-4">
                 <v-combobox
                         v-model="model"
                         :items="tagNames"

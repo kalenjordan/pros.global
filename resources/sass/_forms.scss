@@ -29,7 +29,6 @@ input.text, textarea.text {
     background-color: white;
 
     .v-select__selections {
-        margin-bottom: 0.5em;
         .v-chip {
             display: none;
         }
@@ -42,6 +41,7 @@ input.text, textarea.text {
     }
 
     .v-select-list {
+        margin-top: 0.5em;
         .v-list__tile__content {
             padding: 0.25em;
         }
