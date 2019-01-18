@@ -14,7 +14,7 @@
 
     <script src="https://rawgit.com/showdownjs/showdown/develop/dist/showdown.min.js"></script>
     <script>
-        window.user={!! Auth::user() ? Auth::user()->toJson() : "null" !!};
+        window.user={!! Auth::user() ? Auth::user()->toJson() : "{}" !!};
         window.api_token = "{{Auth::user() ? Auth::user()->getOrCreateApiToken() : "" }}";
     </script>
 
