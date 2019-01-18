@@ -1,6 +1,6 @@
 <template>
     <div class="page page-search m-4 sm:m-8">
-        <top-nav :hide-search="1"></top-nav>
+        <top-nav></top-nav>
         <section class="mb-6 max-w-lg mx-auto">
             <div class="flex m-4">
                 <input ref="search"

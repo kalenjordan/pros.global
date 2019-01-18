@@ -8,8 +8,8 @@
         <div class="right-nav flex-5 text-right">
             <input ref="search"
                    id="top-nav-search"
-                   class="text w-32 p-2 mr-2"
-                   v-bind:class="{'w-48' : isSearching, hidden : hideSearch}"
+                   class="nav--search text w-32 p-2 mr-2"
+                   v-bind:class="{'w-48' : isSearching}"
                    placeholder="Search"
                    @focus="isSearching=1"
                    @blur="isSearching=0"
