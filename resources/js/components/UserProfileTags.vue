@@ -11,7 +11,7 @@
             <tag-endorsement user="user"></tag-endorsement>
         </template>
 
-        <div class="tag-autocomplete card absolute" v-if="addingTag">
+        <div class="tag-autocomplete card absolute" v-if="isAddingTag">
             <div class="card--inner p-4">
                 <v-combobox
                         v-model="model"
@@ -24,6 +24,7 @@
                         small-chips
                         return-object
                         @input="tagInput()"
+                        @blur="isAddingTag=0"
                 >
                     <template slot="no-data">
                         <v-list-tile>
@@ -47,7 +48,7 @@
         props: ['user', 'editing'],
         data() {
             return {
-                addingTag: false,
+                isAddingTag: false,
                 tags: [],
                 tagSearch: null,
                 model: null,
@@ -63,12 +64,12 @@
         },
         methods: {
             addTag() {
-                this.addingTag = true;
+                this.isAddingTag = true;
             },
             hotkeyHandler(e) {
                 if (document.activeElement.tagName === 'INPUT') {
                     if (e.key === 'Escape') {
-                        this.addingTag = false;
+                        this.isAddingTag = false;
                     }
                 } else if (document.activeElement.tagName === 'BODY') {
                     if (e.key === 't') {
@@ -83,15 +84,11 @@
                 }).then((response) => {
                     this.user.tags = response.data;
                 });
-                this.addingTag = false;
+                this.isAddingTag= false;
             },
             loggedInUserViewingOwnPage() {
                 return this.loggedInUser.id && this.loggedInUser.id === this.user.id;
             },
-            keyup(data) {
-                console.log(data);
-            }
-
         },
         computed: {
             tagNames: function() {

@@ -25,17 +25,17 @@
     export default {
         props: ['user'],
         mounted() {
-            let self = this;
-            window.Events.$on('tag-upvoted', function (upvote) {
-                self.$refs.wrapper.style.right = '0';
-                self.upvote = upvote;
-                self.$nextTick(function () {
-                    self.$refs.endorsement.placeholder = "e.g. " + upvote.tagged_user_firstname + " is great with " + upvote.tag_name;
-                    self.$refs.endorsement.focus();
+            window.addEventListener('keyup', this.hotkeyHandler);
+            window.Events.$on('tag-upvoted', (upvote) => {
+                this.$refs.wrapper.style.right = '0';
+                this.upvote = upvote;
+                this.$nextTick(() => {
+                    this.$refs.endorsement.placeholder = "e.g. " + upvote.tagged_user_firstname + " is great with " + upvote.tag_name;
+                    this.$refs.endorsement.focus();
                 });
             });
             window.Events.$on('upvote-removed', function (upvote) {
-                self.$refs.wrapper.style.right = '-500px';
+                this.$refs.wrapper.style.right = '-500px';
             });
         },
         data() {
@@ -62,7 +62,14 @@
             },
             closeEndorsement() {
                 this.$refs.wrapper.style.right = '-500px';
-            }
+            },
+            hotkeyHandler(e) {
+                if (document.activeElement.tagName === 'INPUT') {
+                    if (e.key === 'Escape') {
+                        // Not using escape for this b/c it doesn't fire an event. Using blur instead.
+                    }
+                }
+            },
         }
     }
 </script>
