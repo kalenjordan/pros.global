@@ -12,7 +12,7 @@
         </top-nav>
         <section class="header max-w-lg mb-4 mx-auto text-center">
             <div class="avatar mb-1">
-                <img v-bind:src="user.avatar_path" class="w-16 sm:w-32">
+                <img v-bind:src="user.avatar_path" class="w-16 sm:w-32 h-16 sm:h-32">
             </div>
             <h1 class="text-xl sm:text-4xl" @click="editIfOwner()">
                 <span v-if="editing" class="editable-headline">
@@ -24,7 +24,7 @@
         <div class="mx-auto max-w-md text-center mb-4">
             <user-profile-tags :user="user" :editing="editing"></user-profile-tags>
         </div>
-        <div class="section mx-auto max-w-md" v-if="user.about || editing">
+        <div class="section mx-auto max-w-md text-md" v-if="user.about || editing">
             <div class="card">
                 <div class="card--inner text-left p-4">
                     <div class="editable-about" v-if="editing">
