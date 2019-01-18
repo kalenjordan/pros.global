@@ -1,8 +1,8 @@
 <template>
     <div class="page page-search m-4 sm:m-8">
         <top-nav></top-nav>
-        <section class="mb-6 max-w-lg mx-auto">
-            <div class="flex m-4">
+        <section class="mb-6 max-w-md mx-auto">
+            <div class="flex mb-4 mt-6">
                 <input ref="search"
                        v-model="query"
                        placeholder="e.g. tag:founder"
@@ -15,7 +15,7 @@
                 </a>
             </div>
         </section>
-        <section class="max-w-lg mx-auto" v-bind:class="{opacity50 : search_processing}">
+        <section class="max-w-md mx-auto" v-bind:class="{opacity50 : search_processing}">
             <search-result-card class="hoverable mb-4" v-for="user in users" v-bind:user="user" :key="user.id"></search-result-card>
         </section>
     </div>

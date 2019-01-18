@@ -1,7 +1,7 @@
 <template>
     <div class="card user-card">
-        <div class="card--inner flex items-center p-4">
-            <div class="flex-2 text-center -ml-8 -mr-2">
+        <div class="card--inner flex items-center p-4 flex-wrap">
+            <div class="flex-2 text-center -ml-4 -mr-2">
                 <div class="card--avatar">
                     <router-link :to="{ name: 'profile', params: { username: user.username }}">
                         <img v-bind:src="user.avatar_path" class="width-40p">
@@ -20,13 +20,13 @@
                     </div>
                 </div>
             </div>
-            <div class="flex-3 mr-5">
+            <div class="flex-3">
                 <div class="card--about text-sm leading-tight">
                     {{ user.headline }}
                 </div>
             </div>
-            <div class="flex-4">
-                <div class="card--tags font-70">
+            <div class="flex-4 card--tags">
+                <div class="font-70">
                     <tag-clickable v-for="tag in user.tags" v-bind:tag="tag" :key="tag.id"></tag-clickable>
                 </div>
             </div>

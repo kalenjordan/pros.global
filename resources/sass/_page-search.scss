@@ -2,7 +2,19 @@
     .tag {
         font-size: 0.75rem;
     }
-    .top-nav .search {
+
+    .nav .nav--search {
         display: none;
+    }
+
+    .card--inner {
+        .card--tags {
+            flex-basis: auto;
+            @apply .ml-0 .mt-4;
+            @media screen and (min-width: 576px) {
+                @apply .ml-4 .mt-0;
+                flex-basis: 0;
+            }
+        }
     }
 }
