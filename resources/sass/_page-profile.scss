@@ -4,13 +4,16 @@
             border: solid 4px $secondaryColor;
         }
     }
+
     .tag {
         margin: 1px 3px;
         background-color: $secondaryColorLighter;
+        border-color: $secondaryColorLighter;
+
         &:hover {
             background-color: $secondaryColorLight;
         }
-        border-color: $secondaryColorLighter;
+
         &.isUpvotedByMe {
             @extend .border-secondary-color-dark;
         }
@@ -27,7 +30,10 @@
     }
 
     p {
-        margin-bottom: 1em;
+        @apply .text-base .mb-3;
+        a {
+            @apply .text-base;
+        }
         &:last-child {
             margin-bottom: 0;
         }
