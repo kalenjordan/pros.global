@@ -21,6 +21,9 @@
                     <li><a class="naked-link" href="https://github.com/kalenjordan/founderland">Open source</a></li>
                     <li><a class="naked-link" href="/tags">Tags</a></li>
                     <li><a class="naked-link" href="/cities">Cities</a></li>
+                    <!--<li>-->
+                        <!--<a href="#">Keyboard shortcuts</a>-->
+                    <!--</li>-->
                 </ul>
             </div>
 

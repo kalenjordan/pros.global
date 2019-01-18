@@ -1,6 +1,6 @@
 <template>
     <div class="page page-profile m-4">
-        <top-nav class="mb-4">
+        <top-nav class="mb-4" hideSearch="1">
             <div v-if="editing" class="edit-profile-wrapper m-1 inline-block">
                 <div class="inline-block">
                     <a class="paragraph-link mr-3" @click="cancelEditing()" v-shortkey="['esc']" @shortkey="cancelEditing()">
@@ -12,7 +12,7 @@
         </top-nav>
         <section class="header max-w-lg mb-4 mx-auto text-center">
             <div class="avatar mb-1">
-                <img v-bind:src="user.avatar_path" class="w-16 sm:w-32 h-16 sm:h-32">
+                <img v-bind:src="user.avatar_path" class="w-16 sm:w-32 h-16 sm:h-32 rounded-full">
             </div>
             <h1 class="text-xl sm:text-4xl" @click="editIfOwner()">
                 <span v-if="editing" class="editable-headline">
@@ -35,16 +35,15 @@
             </div>
         </div>
         <hr v-if="hasUpvotes" class="m-6 sm:my-16 sm:w-md sm:mx-auto" />
-        <div v-if="hasUpvotes" class="section endorsements mx-auto max-w-sm">
+        <div v-if="hasUpvotes" class="section endorsements mx-auto max-w-sm text-sm leading-tight">
             <div class="card hoverable endorsement-card mb-4" v-for="upvote in user.upvotes" :key="upvote.id">
-                <div class="card--inner p-4">
-                    <div class="avatar centered mr-4 -ml-2">
+                <div class="card--inner p-4 flex">
+                    <div class="avatar centered -ml-3 flex-1">
                         <router-link :to="{name: 'profile', params: {username: upvote.author_username }}">
-                            <img v-bind:src="upvote.author_avatar">
+                            <img v-bind:src="upvote.author_avatar" class="w-8 h-8 rounded-full">
                         </router-link>
-                        {{ upvote.author_firstname }}
                     </div>
-                    <div class="endorsement-message leading-tight">
+                    <div class="endorsement-message flex-6">
                         <div>
                             <div v-if="upvote.message" class="mb-2" v-html="markdown(upvote.message)"></div>
                             <div v-else class="mb-2">{{ upvote.author_firstname }} upvoted</div>
