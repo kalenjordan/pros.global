@@ -38,7 +38,7 @@
         <div v-if="hasUpvotes" class="section endorsements mx-auto max-w-sm text-sm leading-tight">
             <div class="card hoverable endorsement-card mb-4" v-for="upvote in user.upvotes" :key="upvote.id">
                 <div class="card--inner p-4 flex">
-                    <div class="avatar centered flex-1 text-left">
+                    <div class="avatar centered text-center -ml-3">
                         <router-link :to="{name: 'profile', params: {username: upvote.author_username }}">
                             <img v-bind:src="upvote.author_avatar" class="w-8 h-8 rounded-full">
                         </router-link>
