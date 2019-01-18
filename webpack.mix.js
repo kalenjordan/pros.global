@@ -22,4 +22,5 @@ mix.js('resources/js/app.js', 'public/js')
         postCss: [ tailwindcss('./tailwind.js') ],
     })
     .disableNotifications()
-    .sourceMaps();
+    .sourceMaps()
+    .version();
