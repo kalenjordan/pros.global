@@ -30,10 +30,7 @@
     }
 
     p {
-        @apply .text-base .mb-3;
-        a {
-            @apply .text-base;
-        }
+        @apply .mb-3;
         &:last-child {
             margin-bottom: 0;
         }

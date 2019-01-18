@@ -38,12 +38,12 @@
         <div v-if="hasUpvotes" class="section endorsements mx-auto max-w-sm text-sm leading-tight">
             <div class="card hoverable endorsement-card mb-4" v-for="upvote in user.upvotes" :key="upvote.id">
                 <div class="card--inner p-4 flex">
-                    <div class="avatar centered -ml-3 flex-1">
+                    <div class="avatar centered flex-1 text-left">
                         <router-link :to="{name: 'profile', params: {username: upvote.author_username }}">
                             <img v-bind:src="upvote.author_avatar" class="w-8 h-8 rounded-full">
                         </router-link>
                     </div>
-                    <div class="endorsement-message flex-6">
+                    <div class="endorsement-message flex-4 sm:flex-6">
                         <div>
                             <div v-if="upvote.message" class="mb-2" v-html="markdown(upvote.message)"></div>
                             <div v-else class="mb-2">{{ upvote.author_firstname }} upvoted</div>
