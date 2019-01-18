@@ -5,6 +5,7 @@ _ide_helper.php
 /public/css/app.css.map
 /public/js/app.js
 /public/js/app.js.map
+/public/mix-manifest.json
 
 /public/.htaccess
 /public/robots.txt
