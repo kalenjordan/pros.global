@@ -10,6 +10,12 @@ body, html {
     font-family: Nunito, sans-serif;
 }
 
+// Apparently this fixes some weird chrome mobile issues:
+// https://stackoverflow.com/questions/11289166/chrome-on-android-resizes-font
+html * {
+    max-height: 999999px;
+}
+
 .centered {
     text-align: center;
 }
