@@ -49,9 +49,8 @@
         }
 
         h1 {
+            @apply .font-normal .italic .mb-2;
             font-size: inherit;
-            font-style: italic;
-            margin-bottom: 0.5rem;
         }
     }
 }
