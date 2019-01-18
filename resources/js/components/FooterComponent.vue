@@ -21,7 +21,7 @@
                     <li><a class="naked-link" href="https://github.com/kalenjordan/founderland">Open source</a></li>
                     <li><a class="naked-link" href="/tags">Tags</a></li>
                     <li><a class="naked-link" href="/cities">Cities</a></li>
-                    <li v-if="adminViewingProfilePage()">
+                    <li v-if="adminViewingProfilePage() && user">
                         <a class="naked-link" v-bind:href="'/admin/impersonate/' + user.username">
                             Impersonate {{ user.username }}
                         </a>

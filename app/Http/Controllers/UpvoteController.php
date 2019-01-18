@@ -10,7 +10,7 @@ use App\Tagged;
 
 class UpvoteController extends Controller
 {
-    public function addMessage(Request $request, $id) {
+    public function post(Request $request, $id) {
         $upvote = TaggedUpvote::with('user')->find($id);
         $upvote->message = $request->input('message');
         $upvote->save();

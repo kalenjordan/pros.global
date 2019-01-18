@@ -30,7 +30,7 @@
                     <div class="editable-about" v-if="editing">
                         <textarea ref="about" class="font-90 width-100">{{ user.about }}</textarea>
                     </div>
-                    <div v-else v-html="markdown(this.user.about)" @click="editIfOwner()">{{ user.about }}</div>
+                    <div v-else v-html="markdown(this.user.about)" @click="editIfOwner()"></div>
                 </div>
             </div>
         </div>

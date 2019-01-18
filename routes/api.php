@@ -18,5 +18,5 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/v1/users/{username}/add-tag', 'UserController@addTag');
     Route::get('/v1/users/{username}/delete-tag/{tag}', 'UserController@deleteTag');
     Route::get('/v1/users/{username}/upvote-tag/{tag}', 'UserController@upvoteTag');
-    Route::post('v1/upvotes/{id}', 'UpvoteController@addMessage');
+    Route::post('v1/upvotes/{id}', 'UpvoteController@post');
 });
