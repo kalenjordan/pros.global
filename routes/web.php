@@ -11,26 +11,18 @@
 |
 */
 
-Route::get('{any?}', function () {
-    return view('app');
-});
-
-Route::get('tag/{thing}', function () {
-    return view('app');
-});
-
-Route::get('tags', function () {
-    return view('app');
-});
-
-Route::get('search/{thing}', function () {
-    return view('app');
-});
-
-Route::get('auth/linkedin',            'Auth\LinkedInController@login');
-Route::get('auth/linkedin/callback',   'Auth\LinkedInController@callback');
+Route::get('auth/linkedin', 'Auth\LinkedInController@login');
+Route::get('auth/linkedin/callback', 'Auth\LinkedInController@callback');
 
 Route::get('auth/logout', 'Auth\LoginController@logout'); // by default it just does post
 
 Route::get('/admin/impersonate/{id}', 'AdminController@impersonate');
 Route::get('/admin/leave-impersonation', 'AdminController@impersonateLeave');
+
+Route::get('{any?}', function () {
+    return view('app');
+});
+Route::get('{thing1}/{thing2}', function () {
+    return view('app');
+});
+

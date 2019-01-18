@@ -47,5 +47,11 @@
         .avatar {
             flex: 0 0 69px;
         }
+
+        h1 {
+            font-size: inherit;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
     }
 }

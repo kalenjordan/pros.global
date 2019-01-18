@@ -1,0 +1,25 @@
+.page-upvote {
+    .hero {
+        h1 {
+            font-family: serif;
+            font-weight: normal;
+            font-style: italic;
+        }
+        p {
+            display: none;
+        }
+    }
+
+    p {
+        @apply .mb-3;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .card {
+        h1 {
+            display: none;
+        }
+    }
+}

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use \Illuminate\Database\Query\Builder;
 
@@ -45,7 +46,9 @@ class TaggedUpvote extends Model
         $data['author_avatar'] = $this->user->avatar_path;
         $data['tag_name'] = $this->tagged->tag_name;
         $data['tagged_user_firstname'] = $this->tagged_user->getFirstName();
-
+        $data['tagged_user_avatar'] = $this->tagged_user->avatar_path;
+        $data['tagged_username'] = $this->tagged_user->username;
+        
         return $data;
     }
 

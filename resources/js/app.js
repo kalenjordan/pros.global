@@ -13,14 +13,15 @@ import Toasted from 'vue-toasted';
 import Vuetify from 'vuetify'
 import VModal from 'vue-js-modal'
 
-Vue.use(VModal)
+Vue.use(VModal);
+
 window.Vue.use(VueRouter);
 window.Vue.use(Toasted);
-window.Vue.use(Vuetify, {
-    iconfont: 'fa'
-});
+window.Vue.use(Vuetify, { iconfont: 'fa' });
+
 Vue.use(require('vue-shortkey'));
 Vue.use(VModal);
+Vue.use(require('vue-moment'));
 
 // Event (singular) conflicts with vue-shortkey
 window.Events = new window.Vue();

@@ -1,6 +1,6 @@
 <template>
     <div class="page page-profile m-4 sm:m-8">
-        <top-nav class="mb-4" hideSearch="1">
+        <top-nav class="mb-4">
             <div v-if="editing" class="edit-profile-wrapper m-1 inline-block">
                 <div class="inline-block">
                     <a class="paragraph-link mr-3" @click="cancelEditing()" v-shortkey="['esc']" @shortkey="cancelEditing()">
@@ -48,6 +48,12 @@
                             <div v-if="upvote.message" class="mb-2" v-html="markdown(upvote.message)"></div>
                             <div v-else class="mb-2">{{ upvote.author_firstname }} upvoted</div>
                             <div class="inline-tag">{{ upvote.tag_name }}</div>
+                            <div class="inline text-gray-light">
+                                <router-link class="naked-link text-xs ml-1"
+                                             :to="{name: 'upvote', params: {id: upvote.id}}">
+                                    {{ upvote.created_at | moment("from") }}
+                                </router-link>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -107,6 +113,9 @@
                 let converter = new showdown.Converter();
                 return converter.makeHtml(content);
             },
+            timeAgo(upvote) {
+                return moment(upvote.created_at).fromNow();
+            }
         },
         computed: {
             hasUpvotes: function() {

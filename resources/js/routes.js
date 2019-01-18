@@ -5,6 +5,7 @@ import PageSearch from './pages/PageSearch';
 import PageUserProfile from './pages/PageUserProfile';
 import PageTag from './pages/PageTag';
 import PageTagList from './pages/PageTagList';
+import PageUpvote from './pages/PageUpvote';
 
 let routes = [
     {
@@ -31,6 +32,11 @@ let routes = [
         name: 'tag',
         path: '/tag/:slug',
         component: PageTag
+    },
+    {
+        name: 'upvote',
+        path: '/upvotes/:id',
+        component: PageUpvote
     },
     {
         name: 'profile',
