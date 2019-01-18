@@ -91,6 +91,13 @@ class User extends Authenticatable
         return self::where('email', $username)->first();
     }
 
+    public static function findStubbedUserByName($name)
+    {
+        return self::where('email', 'like', '%@example.com')
+            ->where('name', $name)
+            ->first();
+    }
+
     public static function findByApiToken($username)
     {
         return self::where('api_token', $username)->first();

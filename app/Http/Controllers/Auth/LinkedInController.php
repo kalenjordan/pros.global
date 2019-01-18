@@ -33,6 +33,12 @@ class LinkedInController extends \App\Http\Controllers\Controller
         $user = Auth::user();
         if (! $user) {
             $user = User::findByEmail($email);
+            if (! $user) {
+                $user = User::findStubbedUserByName($linkedinUser->name);
+                if ($user) {
+                    $user->email = $linkedinUser->email;
+                }
+            }
         }
 
         if (! $user) {
