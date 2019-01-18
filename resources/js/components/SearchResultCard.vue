@@ -1,6 +1,6 @@
 <template>
     <div class="card user-card">
-        <div class="card--inner flex items-center">
+        <div class="card--inner flex items-center p-4">
             <div class="flex-2 text-center -ml-8 -mr-2">
                 <div class="card--avatar">
                     <router-link :to="{ name: 'profile', params: { username: user.username }}">

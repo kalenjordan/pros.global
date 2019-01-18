@@ -1,6 +1,6 @@
 <template>
     <div class="page-home">
-        <top-nav class="m-4"></top-nav>
+        <top-nav class="m-4 sm:m-8"></top-nav>
         <section class="header text-center max-w-lg mx-auto mb-4 mx-4">
             <h1 class="text-2xl sm:text-4xl">
                 Tag, endorse, and discover cool founders

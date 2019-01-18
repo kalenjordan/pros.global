@@ -1,5 +1,5 @@
 <template>
-    <div class="page page-profile m-4">
+    <div class="page page-profile m-4 sm:m-8">
         <top-nav class="mb-4" hideSearch="1">
             <div v-if="editing" class="edit-profile-wrapper m-1 inline-block">
                 <div class="inline-block">
