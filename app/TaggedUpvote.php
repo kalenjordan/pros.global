@@ -49,7 +49,7 @@ class TaggedUpvote extends Model
         $data['tagged_user_firstname'] = $this->tagged_user->getFirstName();
         $data['tagged_user_avatar'] = $this->tagged_user->avatar_path;
         $data['tagged_username'] = $this->tagged_user->username;
-        $data['message'] = $data['message'] ? $data['message'] :
+        $data['message'] = $this->message ? $this->message :
             ($data['author_firstname'] . ' upvoted ' . $data['tagged_user_firstname'] . ' for ' . $this->tagged->tag_name);
 
         return $data;

@@ -18,7 +18,7 @@
                     >
                 </router-link>
             </div>
-            <div class="inline-block" v-html="markdown(this.upvote.message)"></div>
+            <div class="inline-block" @click="editIfOwner()" v-html="markdown(this.upvote.message)"></div>
         </section>
         <section class="mx-auto max-w-sm text-md">
             <div class="card mb-8">
