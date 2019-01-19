@@ -12,42 +12,43 @@
                 <tag-endorsement></tag-endorsement>
             </div>
             <div class="centered">
-                <p class="mb-0">
-                    <router-link :to="{name: 'search-query', params: { query: 'tag:founder' }}">See more founders</router-link>
-                </p>
+                <router-link class="btn px-5 py-2" :to="{name: 'search-query', params: { query: 'tag:founder' }}">See more founders</router-link>
             </div>
         </section>
+        <hr class="mt-16 mb-16"/>
         <section class="max-w-3xl mb-8 mx-auto">
-            <h2 class="text-center mx-auto">Navigate by tag</h2>
+            <h2 class="text-center mx-auto mb-8">Browse by category</h2>
             <div class="saved-searches m-2 mb-4 sm:mb-8 flex flex-wrap justify-center">
-                <div class="card m-4" v-for="saved_search in [1,2]">
-                    <div class="card--background bg-secondary"></div>
+                <div class="card mb-8 hoverable m-4" v-for="saved_search in [1,2]">
+                    <div class="card--background bg-secondary">
+                        <h3 class="text-center">Bootstrapped Founders with Exits</h3>
+                    </div>
                     <div class="card--avatar">
                         <div class="card--avatar--inner">
                             <div class="icon-wrapper">
-                                <i class="fas fa-bolt"></i>
+                                <i class="fas fa-rocket"></i>
                             </div>
                         </div>
                     </div>
-                    <div class="card--inner p-4">
-                        <h3 class="text-center">Bootstrapped Founders with Exits</h3>
-                        <div v-for="user in users" v-bind:user="user" :key="user.id">
-                            <div>
-                                <router-link :to="{ name: 'profile', params: { username: user.username }}">
-                                    <img class="w-8 h-8 rounded-full" v-bind:src="user.avatar_path">
+                    <div class="card--inner p-2">
+                        <div class="saved-search--users flex flex-wrap">
+                            <div class="saved-search--user flex-1" v-for="user in users" v-bind:user="user" :key="user.id">
+                                <router-link class="no-link" to="{ name: 'profile', params: { username: user.username }}">
+                                    <div class="mini-card m-2 p-3 border border-gray-lighter hover:border-gray-light text-center">
+                                        <div>
+                                            <img class="w-12 h-12 rounded-full border-2 border-secondary-light"
+                                                 v-bind:src="user.avatar_path">
+                                        </div>
+                                        <div>
+                                            <div class="text-sm mb-1">
+                                                {{ user.name }}
+                                            </div>
+                                            <div class="headline text-xs" style="-webkit-box-orient: vertical">
+                                                {{ user.headline }}
+                                            </div>
+                                        </div>
+                                    </div>
                                 </router-link>
-                            </div>
-                            <div class="mb-2">
-                                <div class="bold">
-                                    <router-link :to="{ name: 'profile', params: { username: user.username }}" class="naked-link">
-                                        {{ user.name }}
-                                    </router-link>
-                                </div>
-                                <div class="font-small">
-                                    <router-link :to="{ name: 'profile', params: { username: user.username }}" class="naked-link">
-                                        @{{ user.username }}
-                                    </router-link>
-                                </div>
                             </div>
                         </div>
                     </div>

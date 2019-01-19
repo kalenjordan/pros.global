@@ -3,13 +3,22 @@
 
     .saved-searches {
         .card {
-            width: 31rem;
+            width: 33rem;
             overflow: visible;
+
+            h3 {
+                margin-top: 43px;
+                color: white;
+            }
 
             .card--background {
                 height: 81px;
                 border-top-left-radius: 5px;
                 border-top-right-radius: 5px;
+            }
+
+            .card--inner {
+                margin-top: 5rem;
             }
 
             .card--avatar {
@@ -34,9 +43,29 @@
                 }
             }
 
-            h3 {
-                margin-top: 28px;
-                color: white;
+            .saved-search--users {
+                .saved-search--user {
+                    flex-basis: 9rem;
+
+                    .mini-card {
+                        border-radius: 5px;
+                        transition: all 0.25s ease;
+                        @apply .bg-gray-lightest;
+                        &:hover {
+                            @apply .bg-gray-lighter;
+                        }
+
+                        .headline {
+                            overflow: hidden;
+                            display: -webkit-box;
+                            -webkit-line-clamp: 3;
+                            line-height: 1rem;
+
+                            // Had to inline style tag this because npm run watch is dropping it - rannnnndom
+                            // -webkit-box-orient: vertical;
+                        }
+                    }
+                }
             }
         }
     }

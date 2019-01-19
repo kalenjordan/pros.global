@@ -8,21 +8,20 @@
 
     .header {
         img {
-            border: solid 4px $secondaryColor;
+            @apply .border-4 .border-secondary;
         }
     }
 
     .tag {
         margin: 1px 3px;
-        background-color: $secondaryColorLighter;
-        border-color: $secondaryColorLighter;
+        @apply .bg-secondary .border-secondary;
 
         &:hover {
-            background-color: $secondaryColorLight;
+            @apply .bg-secondary-light;
         }
 
         &.isUpvotedByMe {
-            @extend .border-secondary-color-dark;
+            @apply .border-secondary-dark;
         }
     }
 

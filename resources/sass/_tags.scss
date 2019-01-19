@@ -41,10 +41,6 @@
         padding-left: 3px;
         opacity: 0.6;
     }
-
-    &.isUpvotedByMe {
-        @extend .border-gray-lighter;
-    }
 }
 
 .inline-tag {

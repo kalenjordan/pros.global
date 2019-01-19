@@ -7,7 +7,7 @@ a {
     color: inherit;
     @apply .no-underline;
     display: inline-block;
-    border-bottom: solid 2px $secondaryColorLighter;
+    @apply .border-b-2 .border-secondary-lighter;
 
     &:hover {
         @apply .border-secondary-light .bg-secondary-even-lighter;

@@ -12,7 +12,7 @@
         </top-nav>
         <section class="header max-w-lg mb-4 mx-auto text-center">
             <div class="avatar mb-1">
-                <img v-bind:src="user.avatar_path" class="w-16 sm:w-32 h-16 sm:h-32 rounded-full border-4">
+                <img v-bind:src="user.avatar_path" class="w-16 sm:w-32 h-16 sm:h-32 rounded-full">
             </div>
             <h1 class="text-xl sm:text-4xl" @click="editIfOwner()">
                 <span v-if="editing" class="editable-headline">
