@@ -23,4 +23,5 @@ mix.js('resources/js/app.js', 'public/js')
     })
     .disableNotifications()
     .sourceMaps()
+    .browserSync('foundertag.test')
     .version();
