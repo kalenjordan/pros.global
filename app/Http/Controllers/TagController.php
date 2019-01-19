@@ -10,7 +10,7 @@ use App\Tagged;
 class TagController extends Controller
 {
     public function index(Request $request) {
-        $query = Tag::where('id', '>', 1);
+        $query = Tag::where('id', '>', 0);
         if ($request->input('limit')) {
             $query->limit($request->input('limit'));
         }

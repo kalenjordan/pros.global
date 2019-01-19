@@ -17,6 +17,43 @@
                 </p>
             </div>
         </section>
+        <section class="max-w-3xl mb-8 mx-auto">
+            <h2 class="text-center mx-auto">Navigate by tag</h2>
+            <div class="saved-searches m-2 mb-4 sm:mb-8 flex flex-wrap justify-center">
+                <div class="card m-4" v-for="saved_search in [1,2]">
+                    <div class="card--background bg-secondary"></div>
+                    <div class="card--avatar">
+                        <div class="card--avatar--inner">
+                            <div class="icon-wrapper">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card--inner p-4">
+                        <h3 class="text-center">Bootstrapped Founders with Exits</h3>
+                        <div v-for="user in users" v-bind:user="user" :key="user.id">
+                            <div>
+                                <router-link :to="{ name: 'profile', params: { username: user.username }}">
+                                    <img class="w-8 h-8 rounded-full" v-bind:src="user.avatar_path">
+                                </router-link>
+                            </div>
+                            <div class="mb-2">
+                                <div class="bold">
+                                    <router-link :to="{ name: 'profile', params: { username: user.username }}" class="naked-link">
+                                        {{ user.name }}
+                                    </router-link>
+                                </div>
+                                <div class="font-small">
+                                    <router-link :to="{ name: 'profile', params: { username: user.username }}" class="naked-link">
+                                        @{{ user.username }}
+                                    </router-link>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <!--<hr/>-->
         <!--<div class="section centered pb-2">-->
             <!--<h2 class="mb-4">-->

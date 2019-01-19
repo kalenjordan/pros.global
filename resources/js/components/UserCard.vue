@@ -1,6 +1,6 @@
 <template>
     <div class="card user-card">
-        <div class="card--background"></div>
+        <div class="card--background bg-primary"></div>
         <div class="card--inner p-4">
             <div class="card--avatar">
                 <router-link :to="{ name: 'profile', params: { username: user.username }}">

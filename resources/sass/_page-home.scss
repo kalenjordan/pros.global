@@ -1,3 +1,43 @@
 .page-home {
     // nothing yet
+
+    .saved-searches {
+        .card {
+            width: 31rem;
+            overflow: visible;
+
+            .card--background {
+                height: 81px;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+            }
+
+            .card--avatar {
+                position: absolute;
+                top: -33px;
+                text-align: center;
+                width: 100%;
+
+                .card--avatar--inner {
+                    display: inline-block;
+
+                    .icon-wrapper {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 4rem;
+                        height: 4rem;
+                        font-size: 2rem;
+                        color: white;
+                        @apply .rounded-full .bg-secondary .border-2 .border-secondary-light;
+                    }
+                }
+            }
+
+            h3 {
+                margin-top: 28px;
+                color: white;
+            }
+        }
+    }
 }
