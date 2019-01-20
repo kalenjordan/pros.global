@@ -40,6 +40,7 @@
                 </div>
         </section>
         <footer-component></footer-component>
+        <keyboard-shortcuts></keyboard-shortcuts>
     </div>
 </template>
 

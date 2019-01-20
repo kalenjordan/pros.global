@@ -29,6 +29,7 @@ class UserController extends Controller
 
         $limit = $request->input('limit') ? $request->input('limit') : 10;
         $users->limit($limit);
+        $users->orderBy('users.id', 'desc');
 
         return $users->get();
     }
