@@ -27,7 +27,7 @@ class TwitterController extends Controller
             'username'    => $twitter->screen_name,
             'email'       => $twitter->screen_name . '@example.com',
             'avatar_path' => $imageUrl,
-            'headline'    => $twitter->description,
+            'headline'    => $twitter->description ? $twitter->description : '(No description)',
             'password'    => md5(time() . env('APP_KEY')),
         ]);
 
