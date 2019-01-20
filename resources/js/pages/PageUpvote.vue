@@ -11,7 +11,7 @@
             </div>
         </top-nav>
         <section class="hero text-center max-w-lg mb-4 mx-auto">
-            <div class="avatar mb-1">
+            <div class="avatar mb-3">
                 <router-link :to="{name: 'profile', params: {username: upvote.tagged_username}}">
                     <img v-bind:src="upvote.tagged_user_avatar"
                          class="w-16 sm:w-32 h-16 sm:h-32 rounded-full border-4 border-secondary-light hover:border-secondary"

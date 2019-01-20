@@ -8,7 +8,7 @@
                     being built by
                     <router-link :to="{ name: 'profile', params: {username: 'kalenjordan'}}">Kalen</router-link>
                     with &hearts; in
-                    <router-link :to="{ name: 'tag', params: {slug: 'austin'}}">Austin</router-link>.
+                    <router-link :to="{ name: 'search-query', params: {query: 'tag:austin'}}">Austin</router-link>.
                 </p>
                 <p>
                     Copyright 2019. All rights reserved.
@@ -19,8 +19,6 @@
                 <h3 class="mb-2">Resources</h3>
                 <ul>
                     <li><a class="naked-link" href="https://github.com/kalenjordan/founderland">Open source</a></li>
-                    <li><a class="naked-link" href="/tags">Tags</a></li>
-                    <li><a class="naked-link" href="/cities">Cities</a></li>
                 </ul>
                 <div v-if="isAdmin">
                     <h3 class="mt-4">Admin</h3>
