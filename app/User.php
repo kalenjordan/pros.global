@@ -14,6 +14,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @method static \Illuminate\Database\Query\Builder where($column, $operator = null, $value = null, $boolean = 'and')
  * @method static \Illuminate\Database\Query\Builder withAllTags($array)
  * @method static User find($id)
+ * @method static User create($params)
  *
  * @property $name
  * @property $email
@@ -42,7 +43,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
+        'avatar_path',
+        'headline',
         'password',
     ];
 
@@ -95,6 +99,12 @@ class User extends Authenticatable
     {
         return self::where('email', 'like', '%@example.com')
             ->where('name', $name)
+            ->first();
+    }
+
+    public static function findByName($name)
+    {
+        return self::where('name', $name)
             ->first();
     }
 

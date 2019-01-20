@@ -166,8 +166,9 @@ return [
          * Package Service Providers...
          */
 
-        \Conner\Tagging\Providers\TaggingServiceProvider::class,
+        Conner\Tagging\Providers\TaggingServiceProvider::class,
         Lab404\Impersonate\ImpersonateServiceProvider::class,
+        Thujohn\Twitter\TwitterServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -226,6 +227,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        'Twitter' => Thujohn\Twitter\Facades\Twitter::class,
     ],
 
 ];
