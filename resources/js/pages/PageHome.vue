@@ -34,7 +34,7 @@
                     <div class="card--inner p-2">
                         <div class="saved-search--users flex flex-wrap">
                             <div class="saved-search--user flex-1" v-for="user in savedSearch.users" v-bind:user="user" :key="user.id">
-                                <router-link class="no-link" to="{ name: 'profile', params: { username: user.username }}">
+                                <router-link class="no-link" :to="{ name: 'profile', params: { username: user.username }}">
                                     <div class="mini-card m-2 p-3 border border-gray-lighter hover:border-gray-light text-center">
                                         <div>
                                             <img class="w-12 h-12 rounded-full border-2 border-secondary-light"
@@ -56,33 +56,6 @@
                 </div>
             </div>
         </section>
-        <!--<hr/>-->
-        <!--<div class="section centered pb-2">-->
-            <!--<h2 class="mb-4">-->
-                <!--Discover by tag-->
-            <!--</h2>-->
-            <!--<div class="tag-cards mx-auto max-w-lg mb-8 flex">-->
-                <!--<router-link class="no-link flex-1" v-for="tag in tags" :to="{ name: 'tag', params: { slug: tag.slug }}">-->
-                    <!--<div class="card hoverable tag-card">-->
-                        <!--<div class="card&#45;&#45;inner">-->
-                            <!--<div class="bold">{{ tag.name }}</div>-->
-                            <!--<div class="font-70">{{ tag.count }} people</div>-->
-                            <!--<div class="mt-1">-->
-                                <!--{{ tag.description }}-->
-                            <!--</div>-->
-                            <!--<div class="mt-1">-->
-                                <!--<img v-for="user in tag.users" v-bind:src="user.avatar_path">-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</router-link>-->
-            <!--</div>-->
-            <!--<div class="text-center">-->
-                <!--<p class="mb-0">-->
-                    <!--<router-link :to="{name: 'tags'}">See more tags</router-link>-->
-                <!--</p>-->
-            <!--</div>-->
-        <!--</div>-->
         <keyboard-shortcuts></keyboard-shortcuts>
         <footer-component></footer-component>
     </div>
@@ -102,7 +75,7 @@
             axios.get('/api/v1/users?q=tag:founder&limit=6' + auth).then((response) => {
                 this.users = response.data;
             });
-            axios.get('/api/v1/saved-searches?limit=4').then((response) => {
+            axios.get('/api/v1/saved-searches?limit=4&featured=1').then((response) => {
                 this.savedSearches = response.data;
             });
         },
