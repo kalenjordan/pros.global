@@ -59,8 +59,6 @@
         },
         methods: {
             editIfOwner() {
-                console.log(this.loggedInUser.id);
-                console.log(this.upvote.author_id);
                 if (! this.loggedInUser.id) {
                     return;
                 }
