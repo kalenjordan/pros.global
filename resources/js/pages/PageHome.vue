@@ -3,7 +3,7 @@
         <top-nav class="m-4 sm:m-8"></top-nav>
         <section class="header text-center max-w-lg mx-auto mb-4 mx-4">
             <h1 class="text-2xl sm:text-4xl">
-                Tag, endorse, and discover cool founders
+                Where pros come to connect with, tag, and upvote other pros
             </h1>
         </section>
         <section class="max-w-2xl mb-8 mx-auto">
