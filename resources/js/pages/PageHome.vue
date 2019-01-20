@@ -26,7 +26,7 @@
                     <div class="card--avatar">
                         <div class="card--avatar--inner">
                             <div class="icon-wrapper">
-                                <i v-if="savedSearch.icon" class="fas" :class="savedSearch.icon"></i>
+                                <i v-if="savedSearch.icon" :class="savedSearch.icon"></i>
                                 <i v-else class="fas fa-search"></i>
                             </div>
                         </div>
