@@ -99,7 +99,7 @@
         },
         mounted() {
             let auth = '&api_token=' + window.api_token;
-            axios.get('/api/v1/users?q=tag:founder?limit=6' + auth).then((response) => {
+            axios.get('/api/v1/users?q=tag:founder&limit=6' + auth).then((response) => {
                 this.users = response.data;
             });
             axios.get('/api/v1/saved-searches?limit=4').then((response) => {

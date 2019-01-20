@@ -27,6 +27,9 @@ class UserController extends Controller
             //$users->skip($page * $limit); // todo pagination
         }
 
+        $limit = $request->input('limit') ? $request->input('limit') : 10;
+        $users->limit($limit);
+
         return $users->get();
     }
 
