@@ -19,20 +19,21 @@
         <section class="max-w-3xl mb-8 mx-auto">
             <h2 class="text-center mx-auto mb-8">Browse by category</h2>
             <div class="saved-searches m-2 mb-4 sm:mb-8 flex flex-wrap justify-center">
-                <div class="card mb-8 hoverable m-4" v-for="saved_search in [1,2]">
+                <div class="card mb-8 hoverable m-4" v-for="savedSearch in savedSearches">
                     <div class="card--background bg-secondary">
-                        <h3 class="text-center">Bootstrapped Founders with Exits</h3>
+                        <h3 class="text-center">{{ savedSearch.name }}</h3>
                     </div>
                     <div class="card--avatar">
                         <div class="card--avatar--inner">
                             <div class="icon-wrapper">
-                                <i class="fas fa-rocket"></i>
+                                <i v-if="savedSearch.icon" class="fas" :class="savedSearch.icon"></i>
+                                <i v-else class="fas fa-search"></i>
                             </div>
                         </div>
                     </div>
                     <div class="card--inner p-2">
                         <div class="saved-search--users flex flex-wrap">
-                            <div class="saved-search--user flex-1" v-for="user in users" v-bind:user="user" :key="user.id">
+                            <div class="saved-search--user flex-1" v-for="user in savedSearch.users" v-bind:user="user" :key="user.id">
                                 <router-link class="no-link" to="{ name: 'profile', params: { username: user.username }}">
                                     <div class="mini-card m-2 p-3 border border-gray-lighter hover:border-gray-light text-center">
                                         <div>
@@ -92,17 +93,17 @@
         data() {
             return {
                 users: [],
-                tags: [],
+                savedSearches: [],
                 isSearching: false
             }
         },
         mounted() {
             let auth = '&api_token=' + window.api_token;
-            axios.get('/api/v1/users?q=tag:founder' + auth).then((response) => {
+            axios.get('/api/v1/users?q=tag:founder?limit=6' + auth).then((response) => {
                 this.users = response.data;
             });
-            axios.get('/api/v1/tags?limit=3').then((response) => {
-                this.tags = response.data;
+            axios.get('/api/v1/saved-searches?limit=4').then((response) => {
+                this.savedSearches = response.data;
             });
         },
     }

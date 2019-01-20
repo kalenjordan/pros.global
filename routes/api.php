@@ -2,10 +2,11 @@
 
 use Illuminate\Http\Request;
 
-Route::get('/v1/users', 'UserController@list');
-Route::get('/v1/users/{username}', 'UserController@view');
+Route::get('/v1/saved-searches', 'SavedSearchController@list');
 Route::get('/v1/tags', 'TagController@index');
 Route::get('/v1/tags/{slug}', 'TagController@view');
+Route::get('/v1/users', 'UserController@list');
+Route::get('/v1/users/{username}', 'UserController@view');
 Route::get('v1/upvotes/{id}', 'UpvoteController@view');
 
 Route::group(['middleware' => ['auth:api']], function () {
