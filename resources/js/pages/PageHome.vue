@@ -19,7 +19,7 @@
         <section class="max-w-3xl mb-8 mx-auto">
             <h2 class="text-center mx-auto mb-8">Browse by category</h2>
             <div class="saved-searches m-2 mb-4 sm:mb-8 flex flex-wrap justify-center">
-                <div class="card mb-8 hoverable m-4" v-for="savedSearch in savedSearches">
+                <div class="card mb-12 hoverable m-4" v-for="savedSearch in savedSearches">
                     <div class="card--background bg-secondary">
                         <h3 class="text-center">{{ savedSearch.name }}</h3>
                     </div>
