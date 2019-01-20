@@ -19,9 +19,12 @@ mix.js('resources/js/app.js', 'public/js')
     })
     .options({
         processCssUrls: false,
-        postCss: [ tailwindcss('./tailwind.js') ],
+        postCss: [tailwindcss('./tailwind.js')],
     })
-    .disableNotifications()
     .sourceMaps()
-    .browserSync('foundertag.test')
     .version();
+
+if (! mix.inProduction()) {
+    //mix.browserSync('foundertag.test')
+    mix.disableNotifications();
+}
