@@ -14,7 +14,7 @@
 
     .tag {
         margin: 1px 3px;
-        @apply .bg-secondary .border-secondary;
+        @apply .bg-secondary-lighter .border-secondary-light;
 
         &:hover {
             @apply .bg-secondary-light;
