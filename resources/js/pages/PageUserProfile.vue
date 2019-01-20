@@ -76,6 +76,8 @@
             }
         },
         mounted() {
+            window.addEventListener('keyup', this.hotkeys);
+
             let auth = '?api_token=' + window.api_token;
             axios.get('/api/v1/users/' + this.$route.params.username + auth).then((response) => {
                 this.user = response.data;
@@ -115,7 +117,17 @@
             },
             timeAgo(upvote) {
                 return moment(upvote.created_at).fromNow();
-            }
+            },
+            hotkeys(e) {
+                if (document.activeElement.tagName === 'BODY') {
+                    if (e.key === 'i') {
+                        window.location = '/admin/impersonate/' + this.user.username;
+                    }
+                    if (e.key === 'e') {
+                        this.editIfOwner();
+                    }
+                }
+            },
         },
         computed: {
             hasUpvotes: function() {
