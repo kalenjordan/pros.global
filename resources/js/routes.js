@@ -51,7 +51,21 @@ let routes = [
     }
 ];
 
-export default new VueRouter({
+let router = new VueRouter({
     mode: 'history',
     routes
 });
+
+router.afterEach(( to, from ) => {
+    console.log('New page: ' + to.path);
+    if ("ga" in window) {
+        if (typeof(ga.getAll) == 'function') {
+            let tracker = ga.getAll()[0];
+            if (tracker) {
+                tracker.send("pageview", to.path);
+            }
+        }
+    }
+});
+
+export default router;
