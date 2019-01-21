@@ -16,7 +16,22 @@
             </div>
         </section>
         <section class="max-w-md mx-auto" v-bind:class="{opacity50 : search_processing}">
-            <search-result-card class="hoverable mb-4" v-for="user in users" v-bind:user="user" :key="user.id"></search-result-card>
+            <div v-if="users.length">
+                <search-result-card class="hoverable mb-4" v-for="user in users" v-bind:user="user" :key="user.id"></search-result-card>
+            </div>
+            <div v-else>
+                <div class="p-4 text-center">
+                    <div class="italic mb-4 text-gray-dark">No pros were found. Want to add someone you know from Twitter?</div>
+                    <div>
+                        <input class="p-4 mr-4"
+                               placeholder="e.g. @username"
+                               v-shortkey="['enter']" @shortkey="addTwitterUser"
+                               ref="twitterUsername"
+                        >
+                        <a class="btn px-5 py-3" @click="addTwitterUser">Add user from Twitter</a>
+                    </div>
+                </div>
+            </div>
         </section>
     </div>
 </template>
@@ -27,10 +42,12 @@
             return {
                 users: [],
                 search_processing: false,
-                query: null
+                query: null,
+                loggedInUser: {},
             }
         },
         mounted() {
+            this.loggedInUser = this.$cookies.get('user') ? this.$cookies.get('user') : {};
             window.addEventListener('keyup', this.hotkeyHandler);
             if (this.$route.params.query) {
                 this.query = this.$route.params.query;
@@ -64,6 +81,19 @@
                         this.$refs.search.focus();
                     }
                 }
+            },
+            addTwitterUser() {
+                let auth = '?api_token=' + this.loggedInUser.api_token;
+                axios.get('/api/v1/twitter/add-user/' + this.$refs.twitterUsername.value + auth).then((response) => {
+                    if (response.data.username) {
+                        this.$router.push({
+                            name: 'profile',
+                            params: { username: response.data.username },
+                        });
+                    } else if (response.data.message) {
+                        alert(response.data.message);
+                    }
+                });
             },
         }
     }

@@ -33,17 +33,10 @@
                                 Leave Impersonation
                             </a>
                         </li>
-                        <li>
-                            <a class="naked-link" href="javascript://" @click="$modal.show('add-twitter-user')">Add user from twitter</a>
-                        </li>
                         <li v-if="this.loggedInUser.id">
                             <router-link class="naked-link" :to="{name: 'logout'}">Log out</router-link>
                         </li>
                     </ul>
-                    <modal name="add-twitter-user" @opened="$refs.twitterUsername.focus()">
-                        <input name="username" ref="twitterUsername" v-shortkey="['enter']" @shortkey="addTwitterUser">
-                        <a class="btn px-3 py-5" @click="addTwitterUser">Add</a>
-                    </modal>
                 </div>
             </div>
 
@@ -109,23 +102,10 @@
                     }
                 });
             },
-            addTwitterUser() {
-                let auth = '?api_token=' + this.loggedInUser.api_token;
-                axios.get('api/v1/twitter/add-user/' + this.$refs.twitterUsername.value + auth).then((response) => {
-                    if (response.data.username) {
-                        this.$router.push({
-                            name: 'profile',
-                            params: { username: response.data.username },
-                        });
-                    } else if (response.data.message) {
-                        alert(response.data.message);
-                    }
-                });
-            },
             hotkeys(e) {
                 if (document.activeElement.tagName === 'BODY') {
                     if (e.key === 'a') {
-                        this.$modal.show('add-twitter-user');
+                        //  none
                     }
                 }
             },
