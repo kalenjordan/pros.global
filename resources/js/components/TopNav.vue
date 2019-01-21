@@ -42,13 +42,6 @@
                 console.log(data);
                 this.$cookies.set('user', data);
                 this.loggedInUser = JSON.parse(data);
-                // console.log('cookie');
-                // console.log(this.$cookies.get('user'));
-
-//                 var user = { id:1, name:'Journal',session:'25j_7Sl6xDq2Kc3ym0fmrSSk2xV2XkUkX' };
-//                 this.$cookies.set('test',user);
-// // print user name
-                 // console.log(this.$cookies.get('test'));
             });
             window.Events.$on('user-logged-out', (data) => {
                 // this.$cookies.set('user', null) called from PageLogout.vue

@@ -25,12 +25,12 @@ class AdminController extends Controller
 
         Auth::user()->impersonate($user);
 
-        return redirect()->back();
+        return $user->toArrayForCookie();
     }
 
     public function impersonateLeave(Request $request) {
         Auth::user()->leaveImpersonation();
-        return redirect()->back();
+        return Auth::user()->toArrayForCookie();
     }
 
     public function view(Request $request, $username)

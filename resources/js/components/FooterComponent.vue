@@ -24,12 +24,12 @@
                     <h3 class="mt-4">Admin</h3>
                     <ul>
                         <li v-if="adminViewingProfilePage()">
-                            <a class="naked-link" v-bind:href="'/admin/impersonate/' + user.username">
+                            <a class="naked-link" href="javascript://" @click="impersonate(user)">
                                 Impersonate {{ user.username }}
                             </a>
                         </li>
                         <li v-if="adminIsImpersonating()">
-                            <a class="naked-link" href="/admin/leave-impersonation">
+                            <a class="naked-link" href="javascript://" @click="leaveImpersonation">
                                 Leave Impersonation
                             </a>
                         </li>
@@ -69,8 +69,15 @@
 <script>
     export default {
         props: ['user'],
+        data() {
+            return {
+                'loggedInUser' : {}
+            }
+        },
         mounted() {
             window.addEventListener('keyup', this.hotkeys);
+            this.loggedInUser = this.$cookies.get('user') ? this.$cookies.get('user') : {};
+
             this.initCookies();
             this.initServiceWorker();
         },
@@ -83,6 +90,24 @@
             },
             adminIsImpersonating() {
                 return this.loggedInUser.being_impersonated;
+            },
+            impersonate(user) {
+                axios.get('admin/impersonate/' + user.username).then((response) => {
+                    if (response.data.username) {
+                        this.loggedInUser = response.data;
+                        Events.$emit('user-authenticated', JSON.stringify(response.data));
+                        this.$toasted.show("Impersonating " + response.data.name);
+                    }
+                });
+            },
+            leaveImpersonation() {
+                axios.get('admin/leave-impersonation').then((response) => {
+                    if (response.data.username) {
+                        this.loggedInUser = response.data;
+                        Events.$emit('user-authenticated', JSON.stringify(response.data));
+                        this.$toasted.show("Left impersonation");
+                    }
+                });
             },
             addTwitterUser() {
                 let auth = '?api_token=' + this.loggedInUser.api_token;
@@ -128,11 +153,5 @@
                 }
             }
         },
-        computed: {
-            loggedInUser() {
-                let user = this.$cookies.get('user');
-                return user ? user : {};
-            }
-        }
     }
 </script>

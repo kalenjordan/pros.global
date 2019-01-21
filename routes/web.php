@@ -17,7 +17,7 @@ Route::get('auth/linkedin/callback', 'Auth\LinkedInController@callback');
 Route::get('auth/logout', 'Auth\LinkedInController@logout'); // by default it just does post
 Route::get('auth/me', 'Auth\LinkedInController@me'); // by default it just does post
 
-Route::get('/admin/impersonate/{id}', 'AdminController@impersonate');
+Route::get('/admin/impersonate/{username}', 'AdminController@impersonate');
 Route::get('/admin/leave-impersonation', 'AdminController@impersonateLeave');
 
 Route::get('{any?}', function () {
