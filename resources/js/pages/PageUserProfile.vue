@@ -93,7 +93,7 @@
                 }
             },
             loggedInUserViewingOwnPage() {
-                return this.loggedInUser.id && this.loggedInUser.id === this.user.id;
+                return this.loggedInUser && this.loggedInUser.id && this.loggedInUser.id === this.user.id;
             },
             cancelEditing() {
                 this.editing = false;
