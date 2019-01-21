@@ -5,8 +5,8 @@ _ide_helper.php
 /public/css/app.css.map
 /public/js/app.js
 /public/js/app.js.map
-/public/js/service-worker.js
-/public/js/service-worker.js.map
+/public/service-worker.js
+/public/service-worker.js.map
 /public/mix-manifest.json
 
 /public/.htaccess

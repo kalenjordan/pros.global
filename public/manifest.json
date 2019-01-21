@@ -9,6 +9,11 @@
       "src": "/img/logo-diagonal-192.png",
       "sizes": "192x192",
       "type": "image/png"
+    },
+    {
+      "src": "/img/splashscreens/iphonex_splash.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ],
   "start_url": "/"

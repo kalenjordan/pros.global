@@ -1,6 +1,7 @@
-var cacheName = 'pros.global-v0.1';
-var filesToCache = [
-    '/js/bootstrap.js'
+let cacheName = 'pros.global-v0.1';
+let filesToCache = [
+    '/js/bootstrap.js',
+    '/',
 ];
 
 self.addEventListener('install', function(e) {

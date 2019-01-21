@@ -72,6 +72,7 @@
         mounted() {
             window.addEventListener('keyup', this.hotkeys);
             this.initCookies();
+            this.initServiceWorker();
         },
         methods: {
             isAdmin() {
@@ -117,7 +118,7 @@
             },
             initServiceWorker() {
                 if ('serviceWorker' in navigator) {
-                    navigator.serviceWorker.register('/js/service-worker.js').then(function (registration) {
+                    navigator.serviceWorker.register('/service-worker.js').then(function (registration) {
                         // Registration was successful
                         console.log('ServiceWorker registration successful with scope: ', registration.scope);
                     }, function (err) {
