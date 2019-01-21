@@ -16,8 +16,8 @@ class UserController extends Controller
     public function list(Request $request)
     {
         $users = User::with('tags');
-        $page = 0;
-        $limit = 0;
+        $limit = $request->input('limit') ? $request->input('limit') : 10;
+        $users->limit($limit);
 
         if ($query = $request->input('q')) {
             $search = new UserSearch($users);
@@ -27,9 +27,7 @@ class UserController extends Controller
             //$users->skip($page * $limit); // todo pagination
         }
 
-        $limit = $request->input('limit') ? $request->input('limit') : 10;
-        $users->limit($limit);
-        $users->orderBy('users.created_at', 'desc');
+        // echo \SqlFormatter::format($users->toSql()); exit;
 
         return $users->get();
     }

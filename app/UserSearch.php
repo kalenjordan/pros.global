@@ -23,8 +23,10 @@ class UserSearch extends ModelSearch
     protected $alias = 'users';
 
     protected $searchFilters = [
-        'created-after',
-        'deleted-before',
+        // 'created-after', // todo implement
+        'order-by',
+        'order-direction',
+        'limit',
         'tag',
     ];
 
@@ -109,5 +111,30 @@ class UserSearch extends ModelSearch
             ->get()->pluck('taggable_id');
 
         $collection->whereIn('users.id', $tags);
+    }
+
+    /**
+     * @param $collection \Illuminate\Database\Query\Builder
+     * @param $word
+     */
+    protected function _queryLimit($collection, $word)
+    {
+        if ($word > 0) {
+            $collection->limit($word);
+        }
+    }
+
+    /**
+     * @param $collection \Illuminate\Database\Query\Builder
+     * @param $word
+     */
+    protected function _queryOrderBy($collection, $word)
+    {
+        if (strpos($word, '.')) {
+            $parts = explode('.', $word);
+            $collection->orderBy($parts[0], $parts[1]);
+        } else {
+            $collection->orderBy($word);
+        }
     }
 }
