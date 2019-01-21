@@ -6,6 +6,7 @@
                 See ya soon, pardner 🤠
             </h1>
         </section>
+        <footer-component></footer-component>
     </div>
 </template>
 <script>
