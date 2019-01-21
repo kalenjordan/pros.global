@@ -159,7 +159,11 @@ class UserSearch extends ModelSearch
     {
         if (strpos($word, '.')) {
             $parts = explode('.', $word);
-            $collection->orderBy($parts[0], $parts[1]);
+            if ($parts[0] == 'created_at') {
+                $collection->orderBy('users.created_at', $parts[1]);
+            } else {
+                $collection->orderBy($parts[0], $parts[1]);
+            }
         } else {
             $collection->orderBy($word);
         }

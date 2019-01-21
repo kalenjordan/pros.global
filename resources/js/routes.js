@@ -57,7 +57,6 @@ let router = new VueRouter({
 });
 
 router.afterEach(( to, from ) => {
-    console.log('New page: ' + to.path);
     if ("ga" in window) {
         if (typeof(ga.getAll) == 'function') {
             let tracker = ga.getAll()[0];
