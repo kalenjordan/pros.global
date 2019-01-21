@@ -21,12 +21,17 @@ class TwitterController extends Controller
         // The regular image it gives you is tiny
         $imageUrl = $twitter->profile_image_url;
         $imageUrl = str_replace('_normal', '_400x400', $imageUrl);
+        $parts = explode('/', $imageUrl);
+        $fileName = $parts[sizeof($parts) - 1];
+
+        $img = public_path("avatars/$fileName");
+        file_put_contents($img, file_get_contents($imageUrl));
 
         $user = User::create([
             'name'        => $twitter->name,
             'username'    => $twitter->screen_name,
             'email'       => $twitter->screen_name . '@example.com',
-            'avatar_path' => $imageUrl,
+            'avatar_path' => "/avatars/$fileName",
             'headline'    => $twitter->description ? $twitter->description : '(No description)',
             'password'    => md5(time() . env('APP_KEY')),
         ]);

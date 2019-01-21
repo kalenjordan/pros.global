@@ -8,6 +8,7 @@ _ide_helper.php
 /public/service-worker.js
 /public/service-worker.js.map
 /public/mix-manifest.json
+/public/avatars
 
 /public/.htaccess
 /public/robots.txt
