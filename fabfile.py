@@ -8,18 +8,18 @@ import datetime, sys
 
 env.use_ssh_config = True
 env.forward_agent = True
-env.hosts = ['foundertag']
+env.hosts = ['pros.global']
 
 def printUsageAndExit():
 	print 'Usage: fab command'
 	print 'Example: fab deploy'
 	sys.exit(0)
 
-remoteDocumentRoot = '/home/forge/foundertag.club'
+remoteDocumentRoot = '/home/forge/pros.global'
 remoteSkinPath = remoteDocumentRoot + '/public'
 remoteSkinPathAssets = remoteDocumentRoot + '/public/assets'
 
-print(green("1. Starting deploy to foundertag.club"))
+print(green("1. Starting deploy"))
 
 def deploy():
 	with cd(remoteDocumentRoot):
