@@ -6,6 +6,7 @@ import PageUserProfile from './pages/PageUserProfile';
 import PageTag from './pages/PageTag';
 import PageTagList from './pages/PageTagList';
 import PageUpvote from './pages/PageUpvote';
+import PageLogout from './pages/PageLogout';
 
 let routes = [
     {
@@ -37,6 +38,11 @@ let routes = [
         name: 'upvote',
         path: '/upvotes/:id',
         component: PageUpvote
+    },
+    {
+        name: 'logout',
+        path: '/logout',
+        component: PageLogout
     },
     {
         name: 'profile',

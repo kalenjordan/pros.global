@@ -23,12 +23,9 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
 
     <script src="https://rawgit.com/showdownjs/showdown/develop/dist/showdown.min.js"></script>
-    <script>
-        window.user={!! Auth::user() ? Auth::user()->toJson() : "{}" !!};
-        window.api_token = "{{Auth::user() ? Auth::user()->getOrCreateApiToken() : "" }}";
-    </script>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="manifest" href="/manifest.json">
 </head>
 <body>
     <div id="app" class="wrapper">

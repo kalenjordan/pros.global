@@ -38,10 +38,24 @@
         mounted() {
             window.addEventListener('keyup', this.hotkeyHandler);
             window.Events.$on('user-authenticated', (data) => {
-                this.loggedInUser = data;
+                console.log('TopNav.vue $on user-authenticated');
+                console.log(data);
+                this.$cookies.set('user', data);
+                this.loggedInUser = JSON.parse(data);
+                // console.log('cookie');
+                // console.log(this.$cookies.get('user'));
+
+//                 var user = { id:1, name:'Journal',session:'25j_7Sl6xDq2Kc3ym0fmrSSk2xV2XkUkX' };
+//                 this.$cookies.set('test',user);
+// // print user name
+                 // console.log(this.$cookies.get('test'));
             });
-            if (window.user) {
-                this.loggedInUser = window.user;
+            window.Events.$on('user-logged-out', (data) => {
+                // this.$cookies.set('user', null) called from PageLogout.vue
+                this.loggedInUser = {};
+            });
+            if (this.$cookies.get('user')) {
+                this.loggedInUser = this.$cookies.get('user');
             }
         },
         methods: {

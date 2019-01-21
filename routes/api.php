@@ -12,7 +12,7 @@ Route::get('v1/twitter/add-user/{username}', 'TwitterController@addUser');
 
 Route::group(['middleware' => ['auth:api']], function () {
 
-    Route::get('me', function (Request $request) {
+    Route::get('v1/me', function (Request $request) {
         return $request->user();
     });
 

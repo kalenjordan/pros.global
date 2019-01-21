@@ -78,7 +78,7 @@
         mounted() {
             window.addEventListener('keyup', this.hotkeys);
 
-            let auth = '?api_token=' + window.api_token;
+            let auth = '?api_token=' + this.loggedInUser.api_token;
             axios.get('/api/v1/users/' + this.$route.params.username + auth).then((response) => {
                 this.user = response.data;
             });
@@ -104,7 +104,7 @@
                 this.user.headline = this.$refs.headline.value;
                 this.$toasted.show('Saved profile!', {duration: 5000, position: "bottom-right"});
 
-                let auth = '?api_token=' + window.api_token;
+                let auth = '?api_token=' + this.loggedInUser.api_token;
                 axios.post("/api/v1/users/" + this.user.username + auth, {
                     'data': this.user
                 }).then(function(response) {
@@ -134,7 +134,8 @@
                 return this.user.upvotes && this.user.upvotes.length;
             },
             loggedInUser: function() {
-                return window.user ? window.user : {};
+                let user = this.$cookies.get('user');
+                return user ? user : {};
             },
         }
     }

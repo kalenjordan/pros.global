@@ -1,0 +1,15 @@
+{
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "short_name": "pros.global",
+  "name": "Where pros come to connect with, tag, and upvote other pros",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/img/logo-diagonal-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/"
+}

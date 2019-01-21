@@ -22,6 +22,7 @@ window.Vue.use(Vuetify, { iconfont: 'fa' });
 Vue.use(require('vue-shortkey'));
 Vue.use(VModal);
 Vue.use(require('vue-moment'));
+Vue.use(require('vue-cookies'));
 
 // Event (singular) conflicts with vue-shortkey
 window.Events = new window.Vue();

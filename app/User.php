@@ -32,6 +32,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  */
 class User extends Authenticatable
 {
+
     use Notifiable;
     use Taggable;
     use \Lab404\Impersonate\Models\Impersonate;
@@ -116,6 +117,23 @@ class User extends Authenticatable
     public function toArray()
     {
         $data = parent::toArray();
+
+        $manager = app('impersonate');
+        $manager->findUserById(env('ADMIN_USER_ID'));
+        $data['being_impersonated'] = $manager->isImpersonating();
+
+        return $data;
+    }
+
+    public function toArrayForCookie()
+    {
+        $data = [
+            'id'          => $this->id,
+            'name'        => $this->name,
+            'api_token'   => $this->api_token,
+            'avatar_path' => $this->avatar_path,
+            'username'    => $this->username,
+        ];
 
         $manager = app('impersonate');
         $manager->findUserById(env('ADMIN_USER_ID'));

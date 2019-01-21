@@ -97,7 +97,7 @@
         },
         computed: {
             loggedInUser() {
-                return window.user;
+                return this.$cookies.get('user');
             }
         }
     }

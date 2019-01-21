@@ -5,9 +5,7 @@
 <html>
 <body>
     <script type="text/javascript">
-        opener.Events.$emit('user-authenticated', {!! Auth::user() ? Auth::user()->toJson() : null  !!});
-        opener.user={!! Auth::user() ? Auth::user()->toJson() : null  !!};
-        opener.api_token = "{{Auth::user() ? Auth::user()->api_token : "" }}";
+        opener.Events.$emit('user-authenticated', JSON.stringify({!! Auth::user() ? json_encode(Auth::user()->toArrayForCookie()) : null  !!}));
         window.close();
     </script>
 </body>

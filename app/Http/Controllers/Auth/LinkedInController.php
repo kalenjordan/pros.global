@@ -66,4 +66,19 @@ class LinkedInController extends \App\Http\Controllers\Controller
             'user' => $user,
         ]);
     }
+
+    public function me(Request $request) {
+        $user = Auth::user();
+        if (! $user) {
+            return ['message' => 'Not logged in'];
+        }
+
+        return $user->toArrayForCookie();
+    }
+
+    public function logout(Request $request) {
+        Auth::logout();
+
+        return response(['success' => 1]);
+    }
 }

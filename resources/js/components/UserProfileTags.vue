@@ -95,7 +95,7 @@
                 return this.tags.map( tag => tag.name);
             },
             loggedInUser: function() {
-                return window.user ? window.user : {};
+                return this.$cookies.get('user');
             }
         }
     }

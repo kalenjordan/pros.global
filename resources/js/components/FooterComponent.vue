@@ -4,7 +4,7 @@
             <div class="footer--column flex-3 p-3">
                 <h3 class="mb-2">About</h3>
                 <p class="mb-2">
-                    Founder Land is a matchmaking platform for founders
+                    pros.global is a matchmaking platform for pros
                     being built by
                     <router-link :to="{ name: 'profile', params: {username: 'kalenjordan'}}">Kalen</router-link>
                     with &hearts; in
@@ -23,7 +23,7 @@
                 <div v-if="isAdmin">
                     <h3 class="mt-4">Admin</h3>
                     <ul>
-                        <li v-if="adminViewingProfilePage() && user">
+                        <li v-if="adminViewingProfilePage()">
                             <a class="naked-link" v-bind:href="'/admin/impersonate/' + user.username">
                                 Impersonate {{ user.username }}
                             </a>
@@ -35,6 +35,9 @@
                         </li>
                         <li>
                             <a class="naked-link" href="javascript://" @click="$modal.show('add-twitter-user')">Add user from twitter</a>
+                        </li>
+                        <li v-if="this.loggedInUser.id">
+                            <router-link class="naked-link" :to="{name: 'logout'}">Log out</router-link>
                         </li>
                     </ul>
                     <modal name="add-twitter-user" @opened="$refs.twitterUsername.focus()">
@@ -68,19 +71,20 @@
         props: ['user'],
         mounted() {
             window.addEventListener('keyup', this.hotkeys);
+            this.initCookies();
         },
         methods: {
             isAdmin() {
-                return (window.user.is_admin || window.user.being_impersonated);
+                return (this.loggedInUser.is_admin || this.loggedInUser.being_impersonated);
             },
             adminViewingProfilePage() {
-                return window.user.is_admin && user.id;
+                return this.loggedInUser.is_admin && this.user;
             },
             adminIsImpersonating() {
-                return window.user.being_impersonated;
+                return this.loggedInUser.being_impersonated;
             },
             addTwitterUser() {
-                let auth = '?api_token=' + window.api_token;
+                let auth = '?api_token=' + this.loggedInUser.api_token;
                 axios.get('api/v1/twitter/add-user/' + this.$refs.twitterUsername.value + auth).then((response) => {
                     if (response.data.username) {
                         this.$router.push({
@@ -99,6 +103,35 @@
                     }
                 }
             },
+            initCookies() {
+                this.$cookies.config('30d');
+                let user = this.$cookies.get('user');
+
+                if (! user) {
+                    axios.get('auth/me').then((response) => {
+                        if (response.data.id) {
+                            this.$cookies.set('user', response.data);
+                        }
+                    });
+                }
+            },
+            initServiceWorker() {
+                if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.register('/js/service-worker.js').then(function (registration) {
+                        // Registration was successful
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    }, function (err) {
+                        // registration failed :(
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+                }
+            }
+        },
+        computed: {
+            loggedInUser() {
+                let user = this.$cookies.get('user');
+                return user ? user : {};
+            }
         }
     }
 </script>
