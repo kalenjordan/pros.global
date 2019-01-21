@@ -36,7 +36,7 @@
                 tag.is_upvoted_by_me = ! tag.is_upvoted_by_me;
                 let username = this.user.username;
 
-                let auth = '?api_token=' + window.api_token;
+                let auth = '?api_token=' + this.loggedInUser.api_token;
                 axios.get('/api/v1/users/' + username + '/upvote-tag/' + tag.id + auth).then(function(response) {
                     let upvote = response.data;
 
@@ -46,6 +46,11 @@
                         window.Events.$emit('tag-upvoted', upvote);
                     }
                 });
+            }
+        },
+        computed: {
+            loggedInUser() {
+                return this.$cookies.get('user');
             }
         }
     }

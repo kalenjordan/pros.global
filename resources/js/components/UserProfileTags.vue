@@ -78,7 +78,7 @@
                 }
             },
             tagInput: function(data) {
-                let auth = '?api_token=' + window.api_token;
+                let auth = '?api_token=' + this.loggedInUser.api_token;
                 axios.post("/api/v1/users/" + this.user.username + "/add-tag" + auth, {
                     'tag': this.model
                 }).then((response) => {

@@ -80,7 +80,7 @@
                 this.upvote.message = this.$refs.message.value;
                 this.$toasted.show('Saved', {duration: 5000, position: "bottom-right"});
 
-                let auth = '?api_token=' + window.api_token;
+                let auth = '?api_token=' + this.loggedInUser.api_token;
                 axios.post("/api/v1/upvotes/" + this.upvote.id + auth, {
                     'message': this.upvote.message
                 }).then((response) => {

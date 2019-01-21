@@ -19,10 +19,15 @@
                 let index = this.user.tags.indexOf(tag);
                 this.$delete(this.user.tags, index);
 
-                let auth = '?api_token=' + window.api_token;
+                let auth = '?api_token=' + this.loggedInUser.api_token;
                 axios.get('/api/v1/users/' + this.user.username + '/delete-tag/' + tag.id + auth).then((response) => {
                     this.user.tags = response.data;
                 });
+            }
+        },
+        computed: {
+            loggedInUser() {
+                return this.$cookies.get('user');
             }
         }
     }

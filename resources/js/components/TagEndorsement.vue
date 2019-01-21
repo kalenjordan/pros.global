@@ -51,7 +51,7 @@
                 let message = this.$refs.endorsement.value;
                 let self = this;
 
-                let auth = '?api_token=' + window.api_token;
+                let auth = '?api_token=' + this.loggedInUser.api_token;
                 axios.post('api/v1/upvotes/' + this.upvote.id + auth, {
                     message: message
                 }).then(function(response) {
@@ -70,6 +70,11 @@
                     }
                 }
             },
+        },
+        computed: {
+            loggedInUser() {
+                return this.$cookies.get('user');
+            }
         }
     }
 </script>

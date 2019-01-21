@@ -71,7 +71,7 @@
             }
         },
         mounted() {
-            let auth = '&api_token=' + window.api_token;
+            let auth = '&api_token=' + this.loggedInUser.api_token;
             axios.get('/api/v1/users?q=tag:founder&limit=6' + auth).then((response) => {
                 this.users = response.data;
             });
@@ -79,5 +79,10 @@
                 this.savedSearches = response.data;
             });
         },
+        computed: {
+            loggedInUser: function() {
+                return this.$cookies.get('user');
+            }
+        }
     }
 </script>

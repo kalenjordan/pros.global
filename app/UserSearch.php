@@ -24,9 +24,11 @@ class UserSearch extends ModelSearch
 
     protected $searchFilters = [
         // 'created-after', // todo implement
+        'limit',
         'order-by',
         'order-direction',
-        'limit',
+        'props-from',
+        'upvoted-by',
         'tag',
     ];
 
@@ -111,6 +113,31 @@ class UserSearch extends ModelSearch
             ->get()->pluck('taggable_id');
 
         $collection->whereIn('users.id', $tags);
+    }
+
+    /**
+     * @param $collection \Illuminate\Database\Query\Builder
+     * @param $word
+     */
+    protected function _queryUpvotedBy($collection, $word)
+    {
+        $user = User::findByUsername($word);
+        if ($user) {
+            $collection->where('upvotes.user_id', $user->id);
+        }
+    }
+
+    /**
+     * @param $collection \Illuminate\Database\Query\Builder
+     * @param $word
+     */
+    protected function _queryPropsFrom($collection, $word)
+    {
+        $user = User::findByUsername($word);
+        if ($user) {
+            $collection->where('upvotes.user_id', $user->id)
+                ->whereNotNull('upvotes.message');
+        }
     }
 
     /**

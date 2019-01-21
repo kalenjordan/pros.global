@@ -18,6 +18,12 @@ class UserController extends Controller
         $users = User::with('tags');
         $limit = $request->input('limit') ? $request->input('limit') : 10;
         $users->limit($limit);
+        $users->leftJoin("tagging_tagged_upvotes as upvotes", function($join) {
+            /** @var $join \Illuminate\Database\Query\JoinClause */
+            $join->on("upvotes.tagged_user_id", '=', 'users.id');
+        })->select([
+            'users.*',
+        ])->groupBy('users.id');
 
         if ($query = $request->input('q')) {
             $search = new UserSearch($users);
