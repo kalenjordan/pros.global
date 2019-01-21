@@ -29,6 +29,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property $tagged
  * @property $password
  * @property $api_token
+ * @property $is_admin
  */
 class User extends Authenticatable
 {
@@ -133,6 +134,7 @@ class User extends Authenticatable
             'api_token'   => $this->api_token,
             'avatar_path' => $this->avatar_path,
             'username'    => $this->username,
+            'is_admin'    => $this->is_admin,
         ];
 
         $manager = app('impersonate');
