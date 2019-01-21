@@ -84,7 +84,7 @@
                 }).then((response) => {
                     this.user.tags = response.data;
                 });
-                this.isAddingTag= false;
+                this.isAddingTag = false;
             },
             loggedInUserViewingOwnPage() {
                 return this.loggedInUser.id && this.loggedInUser.id === this.user.id;

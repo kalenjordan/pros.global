@@ -18,15 +18,24 @@
     export default {
         props: ['user', 'tag'],
         mounted() {
-            // nada
+            this.loggedInUser = this.$cookies.get('user');
+
+            window.Events.$on('user-authenticated', (data) => {
+                this.loggedInUser = JSON.parse(data);
+            });
         },
         data() {
             return {
-                hasBeenClicked: false
+                hasBeenClicked: false,
+                loggedInUser: {},
             }
         },
         methods: {
             tagClick(tag) {
+                if (! this.loggedInUser.id) {
+                    return alert('Please login before you can upvote someone');
+                }
+
                 this.hasBeenClicked = true;
                 if (tag.is_upvoted_by_me) {
                     tag.upvote_count -= 1;
@@ -48,10 +57,5 @@
                 });
             }
         },
-        computed: {
-            loggedInUser() {
-                return this.$cookies.get('user');
-            }
-        }
     }
 </script>
