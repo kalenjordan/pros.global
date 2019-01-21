@@ -131,7 +131,7 @@ class User extends Authenticatable
         $data = [
             'id'          => $this->id,
             'name'        => $this->name,
-            'api_token'   => $this->api_token,
+            'api_token'   => $this->getOrCreateApiToken(),
             'avatar_path' => $this->avatar_path,
             'username'    => $this->username,
             'is_admin'    => $this->is_admin,
