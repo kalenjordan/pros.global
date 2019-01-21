@@ -6,8 +6,8 @@
   "display": "standalone",
   "icons": [
     {
-      "src": "/img/logo-diagonal-192.png",
-      "sizes": "192x192",
+      "src": "/img/logo-200.png",
+      "sizes": "200x200",
       "type": "image/png"
     },
     {
