@@ -27,6 +27,7 @@
                         <textarea ref="message" class="width-100" rows="30">{{ upvote.message }}</textarea>
                     </div>
                     <div v-else v-html="markdown(this.upvote.message)" @click="editIfOwner()"></div>
+                    <div class="inline-tag mt-2">{{ upvote.tag_name }}</div>
                 </div>
             </div>
                 <div class="text-center">
