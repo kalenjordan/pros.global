@@ -34,7 +34,6 @@
                             </a>
                         </li>
                         <li v-if="this.loggedInUser.id">
-                            <router-link class="naked-link" :to="{name: 'logout'}">Log out</router-link>
                         </li>
                     </ul>
                 </div>

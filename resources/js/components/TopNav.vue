@@ -15,12 +15,28 @@
                    @blur="isSearching=0"
             >
             <slot></slot>
-            <router-link
-                    v-if="loggedInUser.id"
-                    :to="{name: 'profile', params: {username: loggedInUser.username}}"
-            >
-                <img class="w-10 rounded-full" :src="loggedInUser.avatar_path" style="margin-bottom: -14px;">
-            </router-link>
+            <div class="inline-block relative" v-if="this.loggedInUser.id">
+                <img class="w-10 rounded-full cursor-pointer" @click="showingMenu = !showingMenu" :src="loggedInUser.avatar_path" style="margin-bottom: -14px;">
+                <div v-if="showingMenu" class="card logged-in-menu absolute">
+                    <div class="card-inner p-3">
+                        <div>
+                            <router-link
+                                    class="naked-link"
+                                    v-if="loggedInUser.id"
+                                    :to="{name: 'profile', params: {username: loggedInUser.username}}"
+                            >
+                                View Profile
+                            </router-link>
+                        </div>
+                        <div>
+                            <router-link class="naked-link" :to="{name: 'saved-searches'}">Saved Searches</router-link>
+                        </div>
+                        <div>
+                            <router-link class="naked-link" :to="{name: 'logout'}">Log out</router-link>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <a v-else class="btn px-5 py-2" href="/auth/linkedin" target="_blank">Login</a>
         </div>
     </div>
@@ -33,6 +49,7 @@
             return {
                 isSearching: false,
                 loggedInUser: {},
+                showingMenu: false,
             }
         },
         mounted() {
