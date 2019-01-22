@@ -1,31 +1,22 @@
 <template>
     <div class="card user-card">
         <div class="card--inner flex items-center p-4 flex-wrap">
-            <div class="flex-2 text-center -ml-4 -mr-2">
-                <div class="card--avatar">
-                    <router-link :to="{ name: 'profile', params: { username: user.username }}">
-                        <img v-bind:src="user.avatar_path" class="width-40p">
+            <div class="card--avatar flex-2 text-center -ml-2">
+                <router-link :to="{ name: 'profile', params: { username: user.username }}">
+                    <img v-bind:src="user.avatar_path" class="width-40p">
+                </router-link>
+            </div>
+            <div class="flex-3 card--about text-sm leading-tight" style="-webkit-box-orient: vertical;" >
+                <div class="card--identity--name bold">
+                    <router-link :to="{ name: 'profile', params: { username: user.username }}" class="naked-link">
+                        {{ user.name }}
                     </router-link>
                 </div>
-                <div class="card--identity">
-                    <div class="card--identity--name bold font-90">
-                        <router-link :to="{ name: 'profile', params: { username: user.username }}" class="naked-link">
-                            {{ user.name }}
-                        </router-link>
-                    </div>
-                    <div class="card--identity--handle font-small">
-                        <router-link :to="{ name: 'profile', params: { username: user.username }}" class="naked-link">
-                            @{{ user.username }}
-                        </router-link>
-                    </div>
-                </div>
-            </div>
-            <div class="flex-3">
-                <div class="card--about text-sm leading-tight">
+                <div>
                     {{ user.headline }}
                 </div>
             </div>
-            <div class="flex-4 card--tags">
+            <div class="flex-4 card--tags" v-if="user.tags.length">
                 <div class="font-70">
                     <tag-clickable v-for="tag in user.tags" v-bind:tag="tag" :key="tag.id"></tag-clickable>
                 </div>
