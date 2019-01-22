@@ -21,4 +21,5 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('v1/users/{username}/delete-tag/{tag}', 'UserController@deleteTag');
     Route::get('v1/users/{username}/upvote-tag/{tag}', 'UserController@upvoteTag');
     Route::post('v1/upvotes/{id}', 'UpvoteController@post');
+    Route::post('v1/saved-searches', 'SavedSearchController@create');
 });

@@ -6,13 +6,14 @@
                 <input ref="search"
                        v-model="query"
                        placeholder="e.g. tag:founder"
-                       class="text font-100 flex-5 no-border mr-3 p-2"
+                       class="text font-100 flex-5 no-border mr-2 p-2"
                        v-shortkey="['enter']" @shortkey="search"
                 >
                 <a class="btn flex-1 px-5 py-2 text-center" style="flex-basis: 50px; flex-grow: inherit;" @click="search">
                     <span v-if="search_processing">Searching...</span>
                     <span v-else>Search</span>
                 </a>
+                <a class="btn px-5 py-2 ml-2" @click="saveSearch"><i class="fas fa-save"></i></a>
             </div>
         </section>
         <section class="max-w-md mx-auto" v-bind:class="{opacity50 : search_processing}">
@@ -25,7 +26,6 @@
                     <div>
                         <input class="p-4 mr-4"
                                placeholder="e.g. @username"
-                               v-shortkey="['enter']" @shortkey="addTwitterUser"
                                ref="twitterUsername"
                         >
                         <a class="btn px-5 py-3" @click="addTwitterUser">Add user from Twitter</a>
@@ -63,10 +63,25 @@
         methods: {
             search() {
                 this.search_processing = true;
+                window.history.replaceState({} , null, '/search/' + this.query)
 
                 axios.get('/api/v1/users?q=' + this.query).then((response) => {
                     this.search_processing = false;
                     this.users = response.data;
+                });
+            },
+            saveSearch() {
+                let name = prompt("Name for saved search");
+                if (! name) {
+                    return;
+                }
+
+                let auth = '?api_token=' + this.loggedInUser.api_token;
+                axios.post('/api/v1/saved-searches' + auth, {
+                    'name': name,
+                    'query': this.$refs.search.value,
+                }).then((response) => {
+                    this.$toasted.show("Saved search: " + name);
                 });
             },
             hotkeyHandler(e) {

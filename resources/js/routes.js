@@ -7,12 +7,18 @@ import PageTag from './pages/PageTag';
 import PageTagList from './pages/PageTagList';
 import PageUpvote from './pages/PageUpvote';
 import PageLogout from './pages/PageLogout';
+import PageSavedSearches from './pages/PageSavedSearches';
 
 let routes = [
     {
         name: 'home',
         path: '/',
         component: PageHome
+    },
+    {
+        name: 'saved-searches',
+        path: '/saved-searches',
+        component: PageSavedSearches
     },
     {
         name: 'search',

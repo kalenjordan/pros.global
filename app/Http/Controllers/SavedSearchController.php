@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\SavedSearch;
-use App\TaggedUpvote;
 use Illuminate\Http\Request;
-use App\User;
-use App\Tag;
-use App\Tagged;
 
 class SavedSearchController extends Controller
 {
-    public function post(Request $request, $id) {
-        // todo implement
+    public function create(Request $request) {
+        $search = SavedSearch::create([
+            'user_id' => Auth::user()->id,
+            'name' => $request->input('name'),
+            'query' => $request->input('query'),
+        ]);
+
+        return $search;
     }
 
     public function list(Request $request) {
@@ -20,6 +23,8 @@ class SavedSearchController extends Controller
         if ($request->input('featured')) {
             $searches->where('featured_order', '>', 0);
             $searches->orderBy('featured_order', 'desc');
+        } else {
+            $searches->orderBy('created_at', 'desc');
         }
 
         return $searches->get();
