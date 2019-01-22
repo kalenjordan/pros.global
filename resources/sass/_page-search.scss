@@ -24,6 +24,11 @@
 
         .card--tags {
             flex-basis: auto;
+
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+
             @apply .ml-0 .mt-4;
             @media screen and (min-width: 576px) {
                 @apply .ml-4 .mt-0;

@@ -16,7 +16,7 @@
                     {{ user.headline }}
                 </div>
             </div>
-            <div class="flex-4 card--tags" v-if="user.tags.length">
+            <div class="flex-4 card--tags" v-if="user.tags.length" style="-webkit-box-orient: vertical;">
                 <div class="font-70">
                     <tag-clickable v-for="tag in user.tags" v-bind:tag="tag" :key="tag.id"></tag-clickable>
                 </div>
