@@ -23,7 +23,7 @@ class UserSearch extends ModelSearch
     protected $alias = 'users';
 
     protected $searchFilters = [
-        // 'created-after', // todo implement
+        'created-after', // todo implement
         'limit',
         'order-by',
         'order-direction',
@@ -100,6 +100,20 @@ class UserSearch extends ModelSearch
                 ->orWhere('users.email', 'like', "%$word%")
                 ->orWhere('users.id', $word);
         });
+    }
+
+    /**
+     * @param $collection \Illuminate\Database\Query\Builder
+     * @param $word
+     */
+    protected function _queryCreatedAfter($collection, $word)
+    {
+        try {
+            $date = Date::parse($word);
+            $collection->where('users.created_at', '>', $date);
+        } catch (\Exception $e) {
+            // Ignore parse exceptions with date
+        }
     }
 
     /**
