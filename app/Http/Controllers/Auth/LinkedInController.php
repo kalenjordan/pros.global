@@ -58,9 +58,8 @@ class LinkedInController extends \App\Http\Controllers\Controller
             $user->save();
         }
 
-        if (! $user->avatar_path) {
-            // The regular image it gives you is tiny
-            $imageUrl = $linkedinUser->avatar;
+        $imageUrl = $linkedinUser->avatar;
+        if (! $user->avatar_path && $imageUrl) {
             $fileName = $user->id . "_linkedin.jpg";
             $user->avatar_path = "/avatars/$fileName";
 
