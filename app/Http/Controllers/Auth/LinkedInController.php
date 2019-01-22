@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use Auth;
+use Laravel\Socialite\Two\InvalidStateException;
 use Socialite;
 
 use Illuminate\Http\Request;
@@ -27,7 +28,12 @@ class LinkedInController extends \App\Http\Controllers\Controller
 
     public function callback(Request $request)
     {
-        $linkedinUser = Socialite::driver('linkedin')->user();
+        try {
+            $linkedinUser = Socialite::driver('linkedin')->user();
+        } catch (InvalidStateException $e) {
+            return "Invalid state exception";
+        }
+
         $email = $linkedinUser->email;
 
         $user = Auth::user();

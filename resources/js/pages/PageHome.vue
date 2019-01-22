@@ -67,10 +67,12 @@
             return {
                 users: [],
                 savedSearches: [],
-                isSearching: false
+                isSearching: false,
+                loggedInUser: {},
             }
         },
         mounted() {
+            this.loggedInUser = this.$cookies.get('user') ? this.$cookies.get('user') : {};
             let auth = '&api_token=' + this.loggedInUser.api_token;
             axios.get('/api/v1/users?q=tag:founder order-by:created_at.desc&limit=6' + auth).then((response) => {
                 this.users = response.data;
@@ -79,10 +81,5 @@
                 this.savedSearches = response.data;
             });
         },
-        computed: {
-            loggedInUser: function() {
-                return this.$cookies.get('user');
-            }
-        }
     }
 </script>
