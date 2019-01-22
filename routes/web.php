@@ -20,9 +20,14 @@ Route::get('auth/me', 'Auth\LinkedInController@me'); // by default it just does 
 Route::get('/admin/impersonate/{username}', 'AdminController@impersonate');
 Route::get('/admin/leave-impersonation', 'AdminController@impersonateLeave');
 
+Route::get('/upvotes/{id}', 'UpvoteController@viewHtml');
+Route::get('/upvotes/{id}/twitter-card-html', 'UpvoteController@twitterCardHtml');
+Route::get('/upvotes/{id}/twitter-card-image', 'UpvoteController@twitterCardImage');
+
 Route::get('{any?}', function () {
     return view('app');
 });
+
 Route::get('{thing1}/{thing2}', function () {
     return view('app');
 });
