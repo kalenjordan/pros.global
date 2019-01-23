@@ -53,3 +53,16 @@
         }
     }
 }
+
+.chat {
+    .sc-launcher {
+        .sc-header {
+            img {
+                width: 60px;
+            }
+        }
+    }
+    .sc-header--img {
+        width: 60px !important;;
+    }
+}
