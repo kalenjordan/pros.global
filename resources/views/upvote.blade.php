@@ -15,7 +15,7 @@
                   from {{ $upvote['author_firstname'] }} | pros.global"
     >
     <meta name="twitter:description" content="Shout out">
-    <meta name="twitter:image" content="https://image.thum.io/get/viewportWidth/600/viewportHeight/337/width/600/{{ env('APP_URL') }}/upvotes/{{ $upvote['id'] }}/twitter-card-html">
+    <meta name="twitter:image" content="https://image.thum.io/get/viewportWidth/600/viewportHeight/330/width/600/noanimate/{{ env('APP_URL') }}/upvotes/{{ $upvote['id'] }}/twitter-card-html">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132790317-1"></script>
