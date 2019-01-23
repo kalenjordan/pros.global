@@ -6,9 +6,9 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body class="flex items-center">
-    <div class="upvote-twitter-card relative bg-white p-4 mx-auto text-center" style="width: 600px; height: 337px;" >
+    <div class="upvote-twitter-card relative bg-white p-4 mx-auto text-center" style="width: 600px; height: 300px;" >
         <i class="fas fa-bolt absolute gray-lighter"></i>
-        <div class="avatar-wrapper mb-4">
+        <div class="avatar-wrapper mb-2">
             <img class="rounded-full border-4 border-secondary" src="{{ $upvote['tagged_user_avatar'] }}">
         </div>
         <div class="message" style="-webkit-box-orient: vertical;">
