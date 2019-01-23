@@ -21,7 +21,7 @@
                     <div class="card-inner p-3">
                         <div>
                             <router-link
-                                    class="naked-link"
+                                    class="naked-link p-1"
                                     v-if="loggedInUser.id"
                                     :to="{name: 'profile', params: {username: loggedInUser.username}}"
                             >
@@ -29,10 +29,10 @@
                             </router-link>
                         </div>
                         <div>
-                            <router-link class="naked-link" :to="{name: 'saved-searches'}">Saved Searches</router-link>
+                            <router-link class="naked-link p-1" :to="{name: 'saved-searches'}">Saved Searches</router-link>
                         </div>
                         <div>
-                            <router-link class="naked-link" :to="{name: 'logout'}">Log out</router-link>
+                            <router-link class="naked-link p-1" :to="{name: 'logout'}">Log out</router-link>
                         </div>
                     </div>
                 </div>
