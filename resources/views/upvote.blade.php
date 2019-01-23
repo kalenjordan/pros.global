@@ -15,12 +15,16 @@
                   from {{ $upvote['author_firstname'] }} | pros.global"
     >
     <meta name="twitter:description" content="Shout out">
-    <meta name="twitter:image" content="https://image.thum.io/get/viewportWidth/600/viewportHeight/300/width/600/noanimate/{{ env('APP_URL') }}/upvotes/{{ $upvote['id'] }}/twitter-card-html">
+    <meta name="twitter:image"
+          content="https://image.thum.io/get/viewportWidth/600/viewportHeight/300/width/600/noanimate/?url={{ urlencode(env('APP_URL') . "/upvotes/" . $upvote['id'] . "/twitter-card-html") }}"
+          />
 
     <meta property='og:title' content='Shout-out to
         {{ $upvote['tagged_user_firstname'] }}
             from {{ $upvote['author_firstname'] }} | pros.global'/>
-    <meta property='og:image' content='https://image.thum.io/get/viewportWidth/600/viewportHeight/300/width/600/noanimate/{{ env('APP_URL') }}/upvotes/{{ $upvote['id'] }}/twitter-card-html'/>
+    <meta property='og:image'
+          content="https://image.thum.io/get/viewportWidth/600/viewportHeight/300/width/600/noanimate/?url={{ urlencode(env('APP_URL') . "/upvotes/" . $upvote['id'] . "/twitter-card-html") }}"
+    />
     <meta property='og:description' content='Shout-out'/>
     <meta property='og:url' content='{{ env('APP_URL') }}/upvotes/{{ $upvote['id'] }}'/>
 
