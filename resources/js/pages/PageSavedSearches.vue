@@ -10,7 +10,11 @@
             <div class="saved-searches m-2 mb-4 sm:mb-8 flex flex-wrap justify-center">
                 <div class="card mb-12 hoverable m-4" v-for="savedSearch in savedSearches">
                     <div class="card--background bg-secondary">
-                        <h3 class="text-center">{{ savedSearch.name }}</h3>
+                        <h3 class="text-center">
+                            <router-link class="naked-link" :to="{name: 'search', params: {query: savedSearch.query}}">
+                                {{ savedSearch.name }}
+                            </router-link>
+                        </h3>
                     </div>
                     <div class="card--avatar">
                         <div class="card--avatar--inner">
