@@ -42,7 +42,18 @@ class SavedSearch extends Authenticatable
 
     public function fetchUsers()
     {
-        $users = User::where('id', '>', 0);
+        $users = User::where('users.id', '>', 0);
+
+        $users->leftJoin("tagging_tagged_upvotes as upvotes", function($join) {
+            /** @var $join \Illuminate\Database\Query\JoinClause */
+            $join->on("upvotes.tagged_user_id", '=', 'users.id');
+        })->leftJoin("tagging_tagged as tagged", function($join) {
+            /** @var $join \Illuminate\Database\Query\JoinClause */
+            $join->on("tagged.taggable_id", '=', 'users.id');
+        })->select([
+            'users.*',
+        ])->groupBy('users.id');
+
         if ($this->query) {
             $search = new UserSearch($users);
             $search->query($this->query);
