@@ -26,7 +26,7 @@
                     </div>
                     <div class="card--inner p-2">
                         <div class="saved-search--users flex flex-wrap">
-                            <div class="saved-search--user flex-1" v-for="user in savedSearch.users" v-bind:user="user" :key="user.id">
+                            <div class="saved-search--user flex-1" v-for="user in savedSearch.users.slice(0, 6)" v-bind:user="user" :key="user.id">
                                 <router-link class="no-link" :to="{ name: 'profile', params: { username: user.username }}">
                                     <div class="mini-card m-2 p-3 border border-gray-lighter hover:border-gray-light text-center">
                                         <div>
