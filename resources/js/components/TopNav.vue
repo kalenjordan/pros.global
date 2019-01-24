@@ -34,12 +34,12 @@
                         <div class="block p-1">
                             <router-link class="naked-link" :to="{name: 'logout'}">Log out</router-link>
                         </div>
-                        <div class="block p-1" v-if="isAdminViewingProfilePage">
+                        <div class="block p-1" v-if="isAdminViewingProfilePage() && ! isAdminImpersonating()">
                             <a class="naked-link" href="javascript://" @click="impersonate(user)">
                                 Impersonate {{ user.first_name }}
                             </a>
                         </div>
-                        <div class="block p-1" v-if="isAdminImpersonating">
+                        <div class="block p-1" v-if="isAdminImpersonating()">
                             <a class="naked-link" href="javascript://" @click="leaveImpersonation">
                                 Leave impersonation
                             </a>
@@ -104,7 +104,7 @@
                 });
             },
             isAdminViewingProfilePage() {
-                return this.loggedInUser.is_admin && this.user;
+                return this.loggedInUser.is_admin && this.user && this.user.id;
             },
             isAdmin() {
                 return (this.loggedInUser.is_admin || this.loggedInUser.being_impersonated);
