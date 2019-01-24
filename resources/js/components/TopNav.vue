@@ -117,7 +117,7 @@
                     if (response.data.username) {
                         this.$cookies.set('user', JSON.stringify(response.data));
                         this.$store.commit('updateUser', response.data);
-                        this.$toasted.show("Impersonating " + response.data.name);
+                        this.$toasted.show("Impersonating " + response.data.name, {duration: 2000});
                     }
                 });
             },
@@ -126,7 +126,7 @@
                     if (response.data.username) {
                         this.$cookies.set('user', JSON.stringify(response.data));
                         this.$store.commit('updateUser', response.data);
-                        this.$toasted.show("Left impersonation");
+                        this.$toasted.show("Left impersonation", {duration: 2000});
                     }
                 });
             },
@@ -134,7 +134,7 @@
                 axios.get('/auth/logout').then((response) => {
                     this.$cookies.set('user', null);
                     this.$store.commit('updateUser', {});
-                    this.$toasted.show("You're logged out! Don't be a stranger now, ya hear? 🤠");
+                    this.$toasted.show("You're logged out! Don't be a stranger now, ya hear? 🤠", {duration: 2000});
                 });
             }
         },

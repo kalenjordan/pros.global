@@ -53,12 +53,10 @@
             }
         },
         mounted() {
-            let self = this;
-            axios.get('/api/v1/tags').then(function(response) {
-                self.tags = response.data;
+            window.addEventListener('keyup', this.hotkeys);
+            axios.get('/api/v1/tags').then((response) => {
+                this.tags = response.data;
             });
-
-            window.addEventListener('keyup', this.hotkeyHandler);
         },
         methods: {
             addTag() {
@@ -67,7 +65,7 @@
                 }
                 this.isAddingTag = true;
             },
-            hotkeyHandler(e) {
+            hotkeys(e) {
                 if (document.activeElement.tagName === 'INPUT') {
                     if (e.key === 'Escape') {
                         this.isAddingTag = false;

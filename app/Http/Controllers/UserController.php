@@ -95,6 +95,6 @@ class UserController extends Controller
         $tagged = Tagged::find($taggedId);
         $upvote = $tagged->toggleUpvote();
 
-        return $upvote;
+        return ['upvote' => $upvote, 'all_upvotes' => $tagged->taggedUser()->upvotes];
     }
 }

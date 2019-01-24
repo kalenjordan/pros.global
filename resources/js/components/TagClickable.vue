@@ -17,13 +17,9 @@
 <script>
     export default {
         props: ['user', 'tag'],
-        mounted() {
-            this.loggedInUser = this.$cookies.get('user');
-        },
         data() {
             return {
                 hasBeenClicked: false,
-                loggedInUser: {},
             }
         },
         methods: {
@@ -43,15 +39,21 @@
 
                 let auth = '?api_token=' + this.loggedInUser.api_token;
                 axios.get('/api/v1/users/' + username + '/upvote-tag/' + tag.id + auth).then(function(response) {
-                    let upvote = response.data;
+                    let upvote = response.data.upvote;
+                    let allUpvotes = response.data.all_upvotes;
 
                     if (upvote.is_deleted) {
-                        window.Events.$emit('upvote-removed', upvote);
+                        window.Events.$emit('upvote-removed', upvote, allUpvotes);
                     } else {
-                        window.Events.$emit('tag-upvoted', upvote);
+                        window.Events.$emit('upvote-added', upvote, allUpvotes);
                     }
                 });
             }
         },
+        computed: {
+            loggedInUser() {
+                return this.$store.state.user;
+            }
+        }
     }
 </script>

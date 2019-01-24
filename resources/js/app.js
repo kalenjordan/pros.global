@@ -20,7 +20,7 @@ Vue.use(Vuex);
 Vue.use(VModal);
 
 window.Vue.use(VueRouter);
-window.Vue.use(Toasted);
+window.Vue.use(Toasted, {duration: 5000, position: 'bottom-right'});
 
 Vue.use(require('vue-shortkey'));
 Vue.use(require('vue-moment'));

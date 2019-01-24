@@ -82,6 +82,13 @@
             axios.get('/api/v1/users/' + this.$route.params.username + auth).then((response) => {
                 this.user = response.data;
             });
+
+            window.Events.$on('upvote-added', (upvote, allUpvotes) => {
+                this.user.upvotes = allUpvotes;
+            });
+            window.Events.$on('upvote-removed', (upvote, allUpvotes) => {
+                this.user.upvotes = allUpvotes;
+            });
         },
         methods: {
             editIfOwner() {
@@ -134,8 +141,7 @@
                 return this.user.upvotes && this.user.upvotes.length;
             },
             loggedInUser: function() {
-                let user = this.$cookies.get('user');
-                return user ? user : {};
+                return this.$store.state.user;
             },
         }
     }

@@ -26,7 +26,7 @@
         props: ['user'],
         mounted() {
             window.addEventListener('keyup', this.hotkeyHandler);
-            window.Events.$on('tag-upvoted', (upvote) => {
+            window.Events.$on('upvote-added', (upvote) => {
                 this.$refs.wrapper.style.right = '0';
                 this.upvote = upvote;
                 this.$nextTick(() => {
@@ -34,7 +34,7 @@
                     this.$refs.endorsement.focus();
                 });
             });
-            window.Events.$on('upvote-removed', function (upvote) {
+            window.Events.$on('upvote-removed', (upvote, allUpvotes) => {
                 this.$refs.wrapper.style.right = '-500px';
             });
         },
