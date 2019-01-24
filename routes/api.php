@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 
 Route::get('v1/saved-searches', 'SavedSearchController@list');
 Route::get('v1/saved-searches/homepage', 'SavedSearchController@homepage');
+Route::get('v1/saved-searches/{slug}', 'SavedSearchController@view');
 
 Route::get('v1/tags', 'TagController@index');
 Route::get('v1/tags/{slug}', 'TagController@view');

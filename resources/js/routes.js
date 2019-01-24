@@ -5,6 +5,7 @@ import PageSearch from './pages/PageSearch';
 import PageUserProfile from './pages/PageUserProfile';
 import PageUpvote from './pages/PageUpvote';
 import PageSavedSearches from './pages/PageSavedSearches';
+import PageSavedSearch from './pages/PageSavedSearch';
 
 let routes = [
     {
@@ -16,6 +17,11 @@ let routes = [
         name: 'saved-searches',
         path: '/saved-searches',
         component: PageSavedSearches
+    },
+    {
+        name: 'saved-search',
+        path: '/s/:slug',
+        component: PageSavedSearch
     },
     {
         name: 'search',

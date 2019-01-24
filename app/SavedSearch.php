@@ -27,6 +27,11 @@ class SavedSearch extends Authenticatable
         'query',
     ];
 
+    public static function findBySlug($slug)
+    {
+        return self::where('slug', $slug)->first();
+    }
+
     public function user()
     {
         return $this->hasOne('App\User');
