@@ -12,15 +12,17 @@ import VueRouter from 'vue-router'
 import Toasted from 'vue-toasted';
 import Vuetify from 'vuetify'
 import VModal from 'vue-js-modal'
+import Vuex from 'vuex'
 
+window.Vue.use(Vuetify, {iconfont: 'fa'});
+Vue.use(VModal);
+Vue.use(Vuex);
 Vue.use(VModal);
 
 window.Vue.use(VueRouter);
 window.Vue.use(Toasted);
-window.Vue.use(Vuetify, { iconfont: 'fa' });
 
 Vue.use(require('vue-shortkey'));
-Vue.use(VModal);
 Vue.use(require('vue-moment'));
 Vue.use(require('vue-cookies'));
 
@@ -49,7 +51,27 @@ Vue.config.productionTip = false;
 
 import router from './routes';
 
+let store = new Vuex.Store({
+    state: {
+        user: {
+            name: "Kalen"
+        }
+    },
+    getters: {
+        // Compute derived state based on the current state. More like computed property.
+    },
+    mutations: {
+        updateUser(state, user) {
+            state.user = user
+        }
+    },
+    actions: {
+        // Get data from server and send that to mutations to mutate the current state
+    }
+});
+
 const app = new Vue({
     el: '#app',
-    router
+    router,
+    store
 });

@@ -19,10 +19,6 @@
         props: ['user', 'tag'],
         mounted() {
             this.loggedInUser = this.$cookies.get('user');
-
-            window.Events.$on('user-authenticated', (data) => {
-                this.loggedInUser = JSON.parse(data);
-            });
         },
         data() {
             return {

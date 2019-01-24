@@ -20,23 +20,6 @@
                 <ul>
                     <li><a class="naked-link" href="https://github.com/kalenjordan/founderland">Open source</a></li>
                 </ul>
-                <div v-if="isAdmin">
-                    <h3 class="mt-4">Admin</h3>
-                    <ul>
-                        <li v-if="adminViewingProfilePage()">
-                            <a class="naked-link" href="javascript://" @click="impersonate(user)">
-                                Impersonate {{ user.username }}
-                            </a>
-                        </li>
-                        <li v-if="adminIsImpersonating()">
-                            <a class="naked-link" href="javascript://" @click="leaveImpersonation">
-                                Leave Impersonation
-                            </a>
-                        </li>
-                        <li v-if="this.loggedInUser.id">
-                        </li>
-                    </ul>
-                </div>
             </div>
 
             <div class="footer--column flex-2 p-3">
@@ -74,33 +57,6 @@
             this.initServiceWorker();
         },
         methods: {
-            isAdmin() {
-                return (this.loggedInUser.is_admin || this.loggedInUser.being_impersonated);
-            },
-            adminViewingProfilePage() {
-                return this.loggedInUser.is_admin && this.user;
-            },
-            adminIsImpersonating() {
-                return this.loggedInUser.being_impersonated;
-            },
-            impersonate(user) {
-                axios.get('admin/impersonate/' + user.username).then((response) => {
-                    if (response.data.username) {
-                        this.loggedInUser = response.data;
-                        Events.$emit('user-authenticated', JSON.stringify(response.data));
-                        this.$toasted.show("Impersonating " + response.data.name);
-                    }
-                });
-            },
-            leaveImpersonation() {
-                axios.get('admin/leave-impersonation').then((response) => {
-                    if (response.data.username) {
-                        this.loggedInUser = response.data;
-                        Events.$emit('user-authenticated', JSON.stringify(response.data));
-                        this.$toasted.show("Left impersonation");
-                    }
-                });
-            },
             hotkeys(e) {
                 if (document.activeElement.tagName === 'BODY') {
                     if (e.key === 'a') {

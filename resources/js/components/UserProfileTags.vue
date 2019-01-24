@@ -42,8 +42,6 @@
 </template>
 
 <script>
-    // import 'vuetify/dist/vuetify.min.css'; todo this is killing my css ugh
-
     export default {
         props: ['user', 'editing'],
         data() {
@@ -96,7 +94,7 @@
                 return this.tags.map( tag => tag.name);
             },
             loggedInUser: function() {
-                return this.$cookies.get('user');
+                return this.$store.state.user;
             }
         }
     }

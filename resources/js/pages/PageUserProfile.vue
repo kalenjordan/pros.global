@@ -1,6 +1,6 @@
 <template>
     <div class="page page-profile m-4 sm:m-8">
-        <top-nav class="mb-4">
+        <top-nav class="mb-4" :user="user">
             <div v-if="editing" class="edit-profile-wrapper m-1 inline-block">
                 <div class="inline-block">
                     <a class="paragraph-link mr-3" @click="cancelEditing()" v-shortkey="['esc']" @shortkey="cancelEditing()">

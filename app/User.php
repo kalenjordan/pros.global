@@ -119,6 +119,9 @@ class User extends Authenticatable
     {
         $data = parent::toArray();
 
+        $parts = explode(' ', $this->name);
+        $data['first_name'] = isset($parts[0]) ? $parts[0] : null;
+
         $manager = app('impersonate');
         $manager->findUserById(env('ADMIN_USER_ID'));
         $data['being_impersonated'] = $manager->isImpersonating();
