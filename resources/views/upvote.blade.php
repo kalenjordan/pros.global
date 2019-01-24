@@ -24,7 +24,6 @@
     <meta property='og:image'
           content="https://image.thum.io/get/viewportWidth/600/viewportHeight/300/width/600/noanimate/?url={{ urlencode(env('APP_URL') . "/upvotes/" . $upvote['id'] . "/twitter-card-html") }}"
     />
-    <meta property='og:description' content='Shout-out'/>
     <meta property='og:url' content='{{ env('APP_URL') }}/upvotes/{{ $upvote['id'] }}'/>
 
     @if (env('GOOGLE_ANALYTICS_ENABLED'))
