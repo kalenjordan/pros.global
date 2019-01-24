@@ -12,9 +12,8 @@
     <meta name="twitter:creator" content="{{ "@" . $upvote['author_username'] }}">
     <meta name="twitter:title"
           content="Shout-out to {{ $upvote['tagged_user_firstname'] }}
-                  from {{ $upvote['author_firstname'] }} | pros.global"
+                  from {{ $upvote['author_firstname'] }}"
     >
-    <meta name="twitter:description" content="Shout out">
     <meta name="twitter:image"
           content="https://image.thum.io/get/viewportWidth/600/viewportHeight/300/width/600/noanimate/?url={{ urlencode(env('APP_URL') . "/upvotes/" . $upvote['id'] . "/twitter-card-html") }}"
           />
