@@ -19,7 +19,9 @@ class SavedSearchController extends Controller
     }
 
     public function list(Request $request) {
-        $searches = SavedSearch::where('id', '>', 0);
+        $searches = SavedSearch::where('id', '>', 0)
+            ->where('featured_order', '!=', 100);
+
         if ($request->input('featured')) {
             $searches->where('featured_order', '>', 0);
             $searches->orderBy('featured_order', 'desc');
@@ -28,5 +30,13 @@ class SavedSearchController extends Controller
         }
 
         return $searches->get();
+    }
+
+    public function homepage(Request $request) {
+        $search = SavedSearch::where('user_id', env('ADMIN_USER_ID'))
+            ->where('featured_order', 100)
+            ->first();
+
+        return $search;
     }
 }

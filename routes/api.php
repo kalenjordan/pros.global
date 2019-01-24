@@ -3,12 +3,15 @@
 use Illuminate\Http\Request;
 
 Route::get('v1/saved-searches', 'SavedSearchController@list');
+Route::get('v1/saved-searches/homepage', 'SavedSearchController@homepage');
+
 Route::get('v1/tags', 'TagController@index');
 Route::get('v1/tags/{slug}', 'TagController@view');
+Route::get('v1/twitter/add-user/{username}', 'TwitterController@addUser');
+
 Route::get('v1/users', 'UserController@list');
 Route::get('v1/users/{username}', 'UserController@view');
 Route::get('v1/upvotes/{id}', 'UpvoteController@view');
-Route::get('v1/twitter/add-user/{username}', 'TwitterController@addUser');
 
 Route::group(['middleware' => ['auth:api']], function () {
 

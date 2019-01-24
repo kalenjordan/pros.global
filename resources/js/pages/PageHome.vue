@@ -3,16 +3,22 @@
         <top-nav class="m-4 sm:m-8"></top-nav>
         <section class="header text-center max-w-lg mx-auto mb-4 mx-4">
             <h1 class="text-2xl sm:text-4xl">
-                Where pros come to connect with, tag, and upvote other pros
+                {{ homeSavedSearch.name }}
             </h1>
         </section>
         <section class="max-w-2xl mb-8 mx-auto">
             <div class="user-cards m-2 mb-4 sm:mb-8 flex flex-wrap justify-center">
-                <user-card class="hoverable w-full sm:max-w-xs m-2" v-for="user in users" v-bind:user="user" :key="user.id"></user-card>
-                <tag-endorsement></tag-endorsement>
+                <user-card class="hoverable w-full sm:max-w-xs m-2"
+                           v-for="user in homeSavedSearch.users.slice(0, 6)"
+                           :user="user" :key="user.id"
+                />
+                <tag-endorsement/>
             </div>
             <div class="centered">
-                <router-link class="btn px-5 py-2" :to="{name: 'search-query', params: { query: 'tag:founder' }}">See more founders</router-link>
+                <router-link class="btn px-5 py-2" :to="{name: 'search-query', params: { query: homeSavedSearch.query }}">
+                    See more
+                    <i class="fas fa-caret-right ml-2"></i>
+                </router-link>
             </div>
         </section>
         <hr class="mt-16 mb-16"/>
@@ -72,18 +78,21 @@
                 users: [],
                 savedSearches: [],
                 isSearching: false,
-                loggedInUser: {},
+                homeSavedSearch: {},
             }
         },
         mounted() {
-            this.loggedInUser = this.$cookies.get('user') ? this.$cookies.get('user') : {};
-            let auth = '&api_token=' + this.loggedInUser.api_token;
-            axios.get('/api/v1/users?q=tag:founder order-by:created_at.desc&limit=6' + auth).then((response) => {
-                this.users = response.data;
-            });
             axios.get('/api/v1/saved-searches?limit=4&featured=1').then((response) => {
                 this.savedSearches = response.data;
             });
+            axios.get('/api/v1/saved-searches/homepage').then((response) => {
+                this.homeSavedSearch = response.data;
+            });
         },
+        computed: {
+            loggedInUser: function() {
+                return this.$store.state.user;
+            }
+        }
     }
 </script>
