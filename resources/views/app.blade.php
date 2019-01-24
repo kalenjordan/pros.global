@@ -6,15 +6,16 @@
 
     <title>{{ env('DEFAULT_TITLE') }}</title>
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132790317-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+    @if (env('GOOGLE_ANALYTICS_ENABLED'))
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132790317-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
 
-        gtag('config', 'UA-132790317-1');
-    </script>
+            gtag('config', 'UA-132790317-1');
+        </script>
+    @endif
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
