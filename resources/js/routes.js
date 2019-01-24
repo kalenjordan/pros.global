@@ -3,10 +3,7 @@ import VueRouter from 'vue-router';
 import PageHome from './pages/PageHome';
 import PageSearch from './pages/PageSearch';
 import PageUserProfile from './pages/PageUserProfile';
-import PageTag from './pages/PageTag';
-import PageTagList from './pages/PageTagList';
 import PageUpvote from './pages/PageUpvote';
-import PageLogout from './pages/PageLogout';
 import PageSavedSearches from './pages/PageSavedSearches';
 
 let routes = [
@@ -31,24 +28,9 @@ let routes = [
         component: PageSearch
     },
     {
-        name: 'tags',
-        path: '/tags',
-        component: PageTagList
-    },
-    {
-        name: 'tag',
-        path: '/tag/:slug',
-        component: PageTag
-    },
-    {
         name: 'upvote',
         path: '/upvotes/:id',
         component: PageUpvote
-    },
-    {
-        name: 'logout',
-        path: '/logout',
-        component: PageLogout
     },
     {
         name: 'profile',

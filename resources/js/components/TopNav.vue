@@ -32,7 +32,7 @@
                             <router-link class="naked-link" :to="{name: 'saved-searches'}">Saved Searches</router-link>
                         </div>
                         <div class="block p-1">
-                            <router-link class="naked-link" :to="{name: 'logout'}">Log out</router-link>
+                            <a href="javascript://" class="naked-link" @click="logout">Log out</a>
                         </div>
                         <div class="block p-1" v-if="isAdminViewingProfilePage() && ! isAdminImpersonating()">
                             <a class="naked-link" href="javascript://" @click="impersonate(user)">
@@ -130,6 +130,13 @@
                     }
                 });
             },
+            logout() {
+                axios.get('/auth/logout').then((response) => {
+                    this.$cookies.set('user', null);
+                    this.$store.commit('updateUser', {});
+                    this.$toasted.show("You're logged out! Don't be a stranger now, ya hear? 🤠");
+                });
+            }
         },
         computed: {
             loggedInUser() {
