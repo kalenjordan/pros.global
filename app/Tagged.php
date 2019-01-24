@@ -14,6 +14,7 @@ use Auth;
  * @property $taggable_id
  * @property $tag_name
  * @property $tag_slug
+ * @property $upvote_count
  */
 class Tagged extends \Conner\Tagging\Model\Tagged
 {
@@ -67,13 +68,17 @@ class Tagged extends \Conner\Tagging\Model\Tagged
         if ($upvote) {
             $upvote->delete();
             $upvote->is_deleted = true;
+            $this->upvote_count--;
         } else {
             $upvote = TaggedUpvote::create([
                 'tagged_id'      => $this->id,
                 'user_id'        => $userId,
                 'tagged_user_id' => $this->taggable_id,
             ]);
+            $this->upvote_count++;
         }
+
+        $this->save();
 
         return $upvote;
     }

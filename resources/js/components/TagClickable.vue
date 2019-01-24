@@ -4,7 +4,10 @@
              @click="tagClick(tag)"
              v-bind:class="{'border-gray-lighter' : tag.is_upvoted_by_me, animated : hasBeenClicked, tada: tag.is_upvoted_by_me}">
             <i class="far fa-thumbs-up" v-bind:class="{upvoted : tag.is_upvoted_by_me}"></i>
-            <span class="tag-name">{{ tag.name }}</span>
+            <span class="tag-name">
+                <template v-if="tag.icon"><i :class="tag.icon"></i></template>
+                {{ tag.name }}
+            </span>
             <span v-if="tag.upvote_count" class="tag-count">{{ tag.upvote_count }}</span>
         </div>
     </div>
