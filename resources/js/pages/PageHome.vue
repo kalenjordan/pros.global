@@ -78,7 +78,7 @@
                 users: [],
                 savedSearches: [],
                 isSearching: false,
-                homeSavedSearch: {},
+                homeSavedSearch: {users: []},
             }
         },
         mounted() {

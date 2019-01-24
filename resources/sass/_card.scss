@@ -56,7 +56,18 @@
             margin-top: -47px;
         }
 
+        .card--about {
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+        }
+
         .card--tags {
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            // -webkit-box-orient: vertical; // Had to inline style tag this because npm run watch is dropping it - rannnnndom
+
             margin: -1px -3px;
             .tag {
                 margin: 1px 3px;

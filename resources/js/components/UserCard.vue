@@ -24,10 +24,10 @@
                     </router-link>
                 </div>
             </div>
-            <div class="card--about text-xs mb-2 leading-tight">
+            <div class="card--about text-xs mb-2 leading-tight" style="-webkit-box-orient: vertical">
                 {{ user.headline }}
             </div>
-            <div class="card--tags text-xs">
+            <div class="card--tags text-xs" style="-webkit-box-orient: vertical">
                 <router-link :to="{ path: '/search/tag:' + tag.slug }" v-for="tag in user.tags" :key="tag.id">
                     <div class="tag fast"
                          v-bind:class="{isUpvotedByMe : tag.is_upvoted_by_me}">
