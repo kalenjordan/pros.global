@@ -23,8 +23,9 @@ class UserSearch extends ModelSearch
     protected $alias = 'users';
 
     protected $searchFilters = [
-        'created-after', // todo implement
+        'created-after',
         'limit',
+        'has-tag',
         'order-by',
         'order-direction',
         'props-from',
@@ -127,6 +128,17 @@ class UserSearch extends ModelSearch
             ->get()->pluck('taggable_id');
 
         $collection->whereIn('users.id', $tags);
+    }
+
+    /**
+     * @param $collection \Illuminate\Database\Query\Builder
+     * @param $word
+     */
+    protected function _queryHasTag($collection, $word)
+    {
+        if ($word) {
+            $collection->whereNotNull('tagged.taggable_id');
+        }
     }
 
     /**
