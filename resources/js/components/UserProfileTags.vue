@@ -2,14 +2,14 @@
     <div class="relative">
         <template v-if="loggedInUserViewingOwnPage()">
             <tag-editable v-for="tag in user.tags" :user="user" :tag="tag" :key="tag.id"></tag-editable>
-            <a class="tag add-tag" @click="addTag()">
-                <i class="fas fa-plus mr-02"></i> Add tag
-            </a>
         </template>
         <template v-else >
             <tag-clickable v-for="tag in user.tags" :user="user" :tag="tag" :key="tag.id"></tag-clickable>
             <tag-endorsement user="user"></tag-endorsement>
         </template>
+        <a class="tag add-tag" @click="addTag()">
+            <i class="fas fa-plus mr-02"></i> Add tag
+        </a>
 
         <div class="tag-autocomplete card absolute" v-if="isAddingTag">
             <div class="card--inner p-4">
@@ -62,6 +62,9 @@
         },
         methods: {
             addTag() {
+                if (! this.loggedIn) {
+                    return alert("Please login first before you can add tags");
+                }
                 this.isAddingTag = true;
             },
             hotkeyHandler(e) {
@@ -92,6 +95,9 @@
         computed: {
             tagNames: function() {
                 return this.tags.map( tag => tag.name);
+            },
+            loggedIn: function() {
+                return this.$store.state.user.id;
             },
             loggedInUser: function() {
                 return this.$store.state.user;
