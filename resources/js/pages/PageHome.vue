@@ -60,12 +60,9 @@
                 .typeString('technologists.')
                 .pauseFor(1000)
                 .deleteChars(14)
-                .typeString('eCommerce professionals.')
+                .typeString('eCommerce people.')
                 .pauseFor(1000)
                 .deleteChars(24)
-                .typeString('developers.')
-                .pauseFor(1000)
-                .deleteChars(11)
                 .typeString('pros.')
                 .start();
         },
