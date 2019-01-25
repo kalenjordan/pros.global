@@ -33,7 +33,7 @@ class Tag extends \Conner\Tagging\Model\Tag
 
     /**
      * This overrides the capitalization formatting that's standard
-     * 
+     *
      * @see Taggable::addTag()
      */
     public static function displayer($string)

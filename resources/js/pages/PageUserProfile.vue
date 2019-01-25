@@ -18,7 +18,7 @@
                 <span v-if="editing" class="editable-headline">
                     <textarea ref="headline" class="text-3xl text-center no-border w-full" >{{ user.headline }}</textarea>
                 </span>
-                <span v-else>{{ user.headline }}</span>
+                <span v-else>{{ user.name }}. {{ user.headline }}</span>
             </h1>
         </section>
         <div class="mx-auto max-w-md text-center mb-4">
