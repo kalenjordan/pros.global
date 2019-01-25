@@ -9,7 +9,7 @@ return [
 	'normalizer' => '\Conner\Tagging\Util::slug',
 	
 	// Display value of tags are passed through (for front end display)
-	'displayer' => '\Illuminate\Support\Str::title',
+	'displayer' => '\App\Tag::displayer',
 	
 	// Database connection for Conner\Taggable\Tag model to use
 // 	'connection' => 'mysql',
