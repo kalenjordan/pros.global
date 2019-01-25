@@ -18,6 +18,16 @@ class SavedSearchController extends Controller
         return $search;
     }
 
+    public function edit(Request $request, $id) {
+        $search = SavedSearch::find($id);
+        $search->name = $request->input('name');
+        $search->query = $request->input('query');
+        $search->featured_order = $request->input('featured_order');
+        $search->save();
+
+        return $search;
+    }
+
     public function list(Request $request) {
         $searches = SavedSearch::where('id', '>', 0)
             ->where('featured_order', '!=', 100);

@@ -1,0 +1,16 @@
+.page-saved-search {
+    &.can-edit {
+        h1 {
+            .edit-icon {
+                display: none;
+            }
+            &:hover {
+                cursor: pointer;
+                .edit-icon {
+                    display: inline;
+                    @apply .text-gray-light;
+                }
+            }
+        }
+    }
+}

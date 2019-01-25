@@ -16,6 +16,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  *
  * @property      $name
  * @property      $query
+ * @property $featured_order
  * @property User $user
  */
 class SavedSearch extends Authenticatable
