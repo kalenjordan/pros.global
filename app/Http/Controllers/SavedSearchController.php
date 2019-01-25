@@ -20,9 +20,12 @@ class SavedSearchController extends Controller
 
     public function edit(Request $request, $id) {
         $search = SavedSearch::find($id);
+
         $search->name = $request->input('name');
         $search->query = $request->input('query');
         $search->featured_order = $request->input('featured_order');
+        $search->slug = $request->input('slug');
+
         $search->save();
 
         return $search;

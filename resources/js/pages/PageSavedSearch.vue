@@ -26,6 +26,10 @@
                        v-model="savedSearch.query"
                        v-shortkey="['enter']" @shortkey="save()"
                 >
+                <input ref="slug" class="text-lg text-center no-border w-full" placeholder="slug"
+                       v-model="savedSearch.slug"
+                       v-shortkey="['enter']" @shortkey="save()"
+                >
                 <input ref="featured_order" class="text-lg text-center no-border w-full"
                        v-model="savedSearch.featured_order"
                        v-shortkey="['enter']" @shortkey="save()"
@@ -79,7 +83,8 @@
                 axios.post('/api/v1/saved-searches/' + this.savedSearch.id + auth, {
                     name: this.savedSearch.name,
                     query: this.savedSearch.query,
-                    featured_order: this.savedSearch.featured_order
+                    featured_order: this.savedSearch.featured_order,
+                    slug: this.savedSearch.slug
                 }).then((response) => {
                     this.savedSearch = response.data;
                     this.$toasted.show("Saved!");

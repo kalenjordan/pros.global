@@ -16,7 +16,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  *
  * @property      $name
  * @property      $query
- * @property $featured_order
+ * @property      $slug
+ * @property      $featured_order
  * @property User $user
  */
 class SavedSearch extends Authenticatable
@@ -50,10 +51,10 @@ class SavedSearch extends Authenticatable
     {
         $users = User::with('tags');
 
-        $users->leftJoin("tagging_tagged_upvotes as upvotes", function($join) {
+        $users->leftJoin("tagging_tagged_upvotes as upvotes", function ($join) {
             /** @var $join \Illuminate\Database\Query\JoinClause */
             $join->on("upvotes.tagged_user_id", '=', 'users.id');
-        })->leftJoin("tagging_tagged as tagged", function($join) {
+        })->leftJoin("tagging_tagged as tagged", function ($join) {
             /** @var $join \Illuminate\Database\Query\JoinClause */
             $join->on("tagged.taggable_id", '=', 'users.id');
         })->select([
