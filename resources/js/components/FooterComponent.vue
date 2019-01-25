@@ -44,14 +44,8 @@
 <script>
     export default {
         props: ['user'],
-        data() {
-            return {
-                'loggedInUser' : {}
-            }
-        },
         mounted() {
             window.addEventListener('keyup', this.hotkeys);
-            this.loggedInUser = this.$cookies.get('user') ? this.$cookies.get('user') : {};
 
             this.initCookies();
             this.initServiceWorker();

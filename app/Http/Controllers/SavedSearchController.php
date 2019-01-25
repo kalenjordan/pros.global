@@ -32,8 +32,11 @@ class SavedSearchController extends Controller
         return $searches->get();
     }
 
-    public function view(Request $request, $slug) {
-        $search = SavedSearch::findBySlug($slug);
+    public function view(Request $request, $slugOrId) {
+        $search = SavedSearch::findBySlug($slugOrId);
+        if (! $search) {
+            $search = SavedSearch::find($slugOrId);
+        }
 
         return $search;
     }

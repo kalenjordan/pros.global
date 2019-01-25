@@ -12,7 +12,6 @@
                            v-for="user in homeSavedSearch.users.slice(0, 6)"
                            :user="user" :key="user.id"
                 />
-                <tag-endorsement/>
             </div>
             <div class="centered">
                 <router-link class="btn px-5 py-2" :to="{name: 'search-query', params: { query: homeSavedSearch.query }}">
@@ -25,45 +24,7 @@
         <section class="max-w-3xl mb-8 mx-auto">
             <h2 class="text-center mx-auto mb-8">Browse by category</h2>
             <div class="saved-searches m-2 mb-4 sm:mb-8 flex flex-wrap justify-center">
-                <div class="card mb-12 hoverable m-4" v-for="savedSearch in savedSearches">
-                    <div class="card--background bg-secondary">
-                        <h3 class="text-center">
-                            <router-link class="naked-link" :to="{name: 'search', params: {query: savedSearch.query}}">
-                                {{ savedSearch.name }}
-                            </router-link>
-                        </h3>
-                    </div>
-                    <div class="card--avatar">
-                        <div class="card--avatar--inner">
-                            <div class="icon-wrapper">
-                                <i v-if="savedSearch.icon" :class="savedSearch.icon"></i>
-                                <i v-else class="fas fa-search"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card--inner p-2">
-                        <div class="saved-search--users flex flex-wrap">
-                            <div class="saved-search--user flex-1" v-for="user in savedSearch.users.slice(0, 6)" v-bind:user="user" :key="user.id">
-                                <router-link class="no-link" :to="{ name: 'profile', params: { username: user.username }}">
-                                    <div class="mini-card m-2 p-3 border border-gray-lighter hover:border-gray-light text-center">
-                                        <div>
-                                            <img class="w-12 h-12 rounded-full border-2 border-secondary-light"
-                                                 v-bind:src="user.avatar_path">
-                                        </div>
-                                        <div>
-                                            <div class="text-sm mb-1">
-                                                {{ user.name }}
-                                            </div>
-                                            <div class="headline text-xs" style="-webkit-box-orient: vertical">
-                                                {{ user.headline }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </router-link>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <saved-search-card class="mb-12 m-4" v-for="savedSearch in savedSearches" :key="savedSearches.id" :savedSearch="savedSearch" />
             </div>
         </section>
         <keyboard-shortcuts></keyboard-shortcuts>
@@ -77,7 +38,6 @@
             return {
                 users: [],
                 savedSearches: [],
-                isSearching: false,
                 homeSavedSearch: {users: []},
             }
         },

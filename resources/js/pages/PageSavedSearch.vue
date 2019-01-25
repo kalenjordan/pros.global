@@ -9,7 +9,7 @@
         <section class="max-w-2xl mb-8 mx-auto">
             <div class="user-cards m-2 mb-4 sm:mb-8 flex flex-wrap justify-center">
                 <user-card class="hoverable w-full sm:max-w-xs m-2"
-                           v-for="user in users.slice(0, 6)"
+                           v-for="user in users.slice(0, 12)"
                            :user="user" :key="user.id"
                 />
             </div>
