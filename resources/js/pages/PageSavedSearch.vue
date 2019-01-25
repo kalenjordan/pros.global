@@ -13,7 +13,7 @@
                            :user="user" :key="user.id"
                 />
             </div>
-            <div class="centered">
+            <div class="centered" v-if="users.length > 12">
                 <router-link class="btn px-5 py-2" :to="{name: 'search-query', params: { query: query }}">
                     See more
                     <i class="fas fa-caret-right ml-2"></i>
