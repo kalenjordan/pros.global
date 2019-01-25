@@ -2,7 +2,7 @@
     <div class="page-home">
         <top-nav class="m-4 sm:m-8"></top-nav>
         <section class="header text-center max-w-lg mx-auto mb-4 mx-4">
-            <h1 class="text-2xl sm:text-4xl">
+            <h1 id="typewriter" class="text-2xl sm:text-4xl">
                 {{ homeSavedSearch.name }}
             </h1>
         </section>
@@ -33,6 +33,8 @@
 </template>
 
 <script>
+    import Typewriter from 'typewriter-effect/dist/core';
+
     export default {
         data() {
             return {
@@ -48,6 +50,24 @@
             axios.get('/api/v1/saved-searches/homepage').then((response) => {
                 this.homeSavedSearch = response.data;
             });
+            let typewriter = new Typewriter('#typewriter', {
+                loop: false
+            });
+
+            typewriter.typeString('Connect with awesome founders.')
+                .pauseFor(1000)
+                .deleteChars(9)
+                .typeString('technologists.')
+                .pauseFor(1000)
+                .deleteChars(14)
+                .typeString('eCommerce professionals.')
+                .pauseFor(1000)
+                .deleteChars(24)
+                .typeString('developers.')
+                .pauseFor(1000)
+                .deleteChars(11)
+                .typeString('pros.')
+                .start();
         },
         computed: {
             loggedInUser: function() {
