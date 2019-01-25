@@ -28,7 +28,10 @@
                                placeholder="e.g. @username"
                                ref="twitterUsername"
                         >
-                        <a class="btn px-5 py-3" @click="addTwitterUser">Add user from Twitter</a>
+                        <a class="btn px-5 py-3" @click="addTwitterUser">
+                            <i class="fab fa-twitter mr-1"></i>
+                            Add
+                        </a>
                     </div>
                 </div>
             </div>
