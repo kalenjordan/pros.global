@@ -1,5 +1,5 @@
 <template>
-    <div class="page page-profile m-4 sm:m-8">
+    <div class="page page-profile m-4 sm:m-8" :class="{ 'can-edit' : canEdit }">
         <top-nav class="mb-4" :user="user">
             <div v-if="editing" class="edit-profile-wrapper m-1 inline-block">
                 <div class="inline-block">
@@ -14,11 +14,14 @@
             <div class="avatar mb-1">
                 <img v-bind:src="user.avatar_path" class="w-16 sm:w-32 h-16 sm:h-32 rounded-full">
             </div>
-            <h1 class="text-xl sm:text-4xl" @click="editIfOwner()">
-                <span v-if="editing" class="editable-headline">
+            <h1 class="text-xl sm:text-4xl editable" @click="editIfOwner()">
+                <span v-if="editing">
                     <textarea ref="headline" class="text-3xl text-center no-border w-full" >{{ user.headline }}</textarea>
                 </span>
-                <span v-else>{{ user.name }}. {{ user.headline }}</span>
+                <span v-else>
+                    {{ user.name }}. {{ user.headline }}
+                    <i class="edit-icon fas fa-pencil-alt" v-if="canEdit"></i>
+                </span>
             </h1>
         </section>
         <div class="mx-auto max-w-md text-center mb-4">
@@ -92,15 +95,12 @@
         },
         methods: {
             editIfOwner() {
-                if (this.loggedInUserViewingOwnPage()) {
+                if (this.canEdit) {
                     this.editing = true;
                     this.$nextTick(() => {
                         this.$refs.headline.focus();
                     });
                 }
-            },
-            loggedInUserViewingOwnPage() {
-                return this.loggedInUser && this.loggedInUser.id && this.loggedInUser.id === this.user.id;
             },
             cancelEditing() {
                 this.editing = false;
@@ -137,9 +137,19 @@
             hasUpvotes: function() {
                 return this.user.upvotes && this.user.upvotes.length;
             },
+            loggedIn() {
+                return this.$store.state.user && this.$store.state.user.id;
+            },
             loggedInUser: function() {
                 return this.$store.state.user;
             },
+            canEdit() {
+                if (! this.loggedIn) {
+                    return false;
+                }
+
+                return (this.loggedInUser.id === this.user.id);
+            }
         }
     }
 </script>

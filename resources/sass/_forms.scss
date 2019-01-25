@@ -56,3 +56,18 @@ input.text, textarea.text {
     }
 
 }
+
+.can-edit {
+    .editable {
+        .edit-icon {
+            display: none;
+        }
+        &:hover {
+            cursor: pointer;
+            .edit-icon {
+                display: inline;
+                @apply .text-gray-light;
+            }
+        }
+    }
+}

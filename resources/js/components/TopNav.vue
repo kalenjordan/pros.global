@@ -6,6 +6,7 @@
             </router-link>
         </div>
         <div class="right-nav flex-5 text-right">
+            <slot></slot>
             <input ref="search"
                    id="top-nav-search"
                    class="nav--search text w-32 p-2 mr-2"
@@ -14,7 +15,6 @@
                    @focus="isSearching=1"
                    @blur="isSearching=0"
             >
-            <slot></slot>
             <div class="inline-block relative" v-if="this.loggedInUser.id">
                 <img class="w-10 rounded-full cursor-pointer" @click="showingMenu = !showingMenu" :src="loggedInUser.avatar_path" style="margin-bottom: -14px;">
                 <div v-if="showingMenu" class="card logged-in-menu absolute">
