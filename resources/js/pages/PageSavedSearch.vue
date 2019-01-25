@@ -103,6 +103,10 @@
                     return false;
                 }
 
+                if (this.loggedInUser.is_admin) {
+                    return true;
+                }
+
                 return (this.loggedInUser.id === this.savedSearch.user_id);
             }
         }

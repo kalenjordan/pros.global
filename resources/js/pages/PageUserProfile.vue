@@ -6,7 +6,7 @@
                     <a class="paragraph-link mr-3" @click="cancelEditing()" v-shortkey="['esc']" @shortkey="cancelEditing()">
                         Cancel
                     </a>
-                    <a class="btn px-5 py-2" @click="saveProfile()" v-shortkey="['meta', 'enter']" @shortkey="saveProfile()">Save</a>
+                    <a class="btn px-5 py-2" @click="save" v-shortkey="['meta', 'enter']" @shortkey="save">Save</a>
                 </div>
             </div>
         </top-nav>
@@ -14,14 +14,9 @@
             <div class="avatar mb-1">
                 <img v-bind:src="user.avatar_path" class="w-16 sm:w-32 h-16 sm:h-32 rounded-full">
             </div>
-            <h1 class="text-xl sm:text-4xl editable" @click="editIfOwner()">
-                <span v-if="editing">
-                    <textarea ref="headline" class="text-3xl text-center no-border w-full" >{{ user.headline }}</textarea>
-                </span>
-                <span v-else>
-                    {{ user.name }}. {{ user.headline }}
-                    <i class="edit-icon fas fa-pencil-alt" v-if="canEdit"></i>
-                </span>
+            <h1 ref="headline" class="text-xl sm:text-4xl editable" v-bind:contenteditable="canEdit" @focus="editing=true">
+                {{ user.headline }}
+                <i class="edit-icon fas fa-pencil-alt" v-if="canEdit"></i>
             </h1>
         </section>
         <div class="mx-auto max-w-md text-center mb-4">
@@ -105,10 +100,10 @@
             cancelEditing() {
                 this.editing = false;
             },
-            saveProfile() {
+            save() {
                 this.editing = false;
                 this.user.about = this.$refs.about.value;
-                this.user.headline = this.$refs.headline.value;
+                this.user.headline = this.$refs.headline.innerText;
                 this.$toasted.show('Saved profile!', {duration: 5000, position: "bottom-right"});
 
                 let auth = '?api_token=' + this.loggedInUser.api_token;
@@ -148,6 +143,10 @@
                     return false;
                 }
 
+                if (this.loggedInUser.is_admin) {
+                    return true;
+                }
+                
                 return (this.loggedInUser.id === this.user.id);
             }
         }
