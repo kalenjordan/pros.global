@@ -62,7 +62,7 @@
                 .deleteChars(14)
                 .typeString('eCommerce people.')
                 .pauseFor(1000)
-                .deleteChars(24)
+                .deleteChars(17)
                 .typeString('pros.')
                 .start();
         },
