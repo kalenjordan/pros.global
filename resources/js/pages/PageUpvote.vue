@@ -28,17 +28,28 @@
                     </div>
                     <div v-else v-html="markdown(this.upvote.message)" @click="editIfOwner()"></div>
                     <div class="inline-tag mt-2">{{ upvote.tag_name }}</div>
+                    <div class="inline text-gray-light text-xs ml-1">
+                        {{ upvote.created_at | moment("from") }}
+                    </div>
                 </div>
             </div>
-                <div class="text-center">
-                    <router-link class="naked-link block" :to="{name: 'profile', params: {username: upvote.author_username}}">
-                        <img class="w-8 h-8 rounded-full border-2 border-primary-lighter hover:border-primary"
-                             v-bind:src="upvote.author_avatar">
-                    </router-link>
-                    <router-link class="naked-link block" :to="{name: 'profile', params: {username: upvote.author_username}}">
-                        {{ upvote.author_firstname }}
-                    </router-link>
-                </div>
+            <div class="text-center mb-8">
+                <router-link class="naked-link block" :to="{name: 'profile', params: {username: upvote.author_username}}">
+                    <img class="w-8 h-8 rounded-full border-2 border-primary-lighter hover:border-primary"
+                         v-bind:src="upvote.author_avatar">
+                </router-link>
+                <router-link class="naked-link block" :to="{name: 'profile', params: {username: upvote.author_username}}">
+                    {{ upvote.author_firstname }}
+                </router-link>
+            </div>
+            <div class="text-center text-4xl text-gray-light">
+                <a class="naked-link mr-3" target="_blank" :href="linkedinShareUrl">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a class="naked-link" target="_blank" :href="twitterShareUrl">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </div>
         </section>
         <footer-component></footer-component>
         <keyboard-shortcuts></keyboard-shortcuts>
@@ -60,7 +71,7 @@
         },
         methods: {
             editIfOwner() {
-                if (! this.loggedInUser.id) {
+                if (!this.loggedInUser.id) {
                     return;
                 }
 
@@ -92,13 +103,34 @@
                 let converter = new showdown.Converter();
                 return converter.makeHtml(content);
             },
-            timeAgo(upvote) {
-                return moment(upvote.created_at).fromNow();
-            }
         },
         computed: {
             loggedInUser() {
                 return this.$cookies.get('user');
+            },
+            linkedinShareUrl() {
+                return 'https://www.linkedin.com/shareArticle?mini=true&url=' + window.location.href;
+            },
+            twitterShareUrl() {
+                let text = "I just gave @" + this.upvote.tagged_username + " some props:\r\n\r\n" +
+                    '"' + this.shortenedMessage + '"' + "\r\n\r\n" +
+                    window.location.href + "\r\n\r\n" +
+                    '#' + this.upvote.tag_slug;
+
+                return 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text);
+            },
+            shortenedMessage() {
+                let n = 180;
+                if (!this.upvote.message) {
+                    return null;
+                }
+
+                if (this.upvote.message.length <= n) {
+                    return this.upvote.message;
+                }
+
+                let subString = this.upvote.message.substr(0, n - 1);
+                return subString.substr(0, subString.lastIndexOf(' ')) + "...";
             }
         }
     }

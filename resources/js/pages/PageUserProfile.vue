@@ -122,9 +122,6 @@
                 let converter = new showdown.Converter();
                 return converter.makeHtml(content);
             },
-            timeAgo(upvote) {
-                return moment(upvote.created_at).fromNow();
-            },
             hotkeys(e) {
                 if (document.activeElement.tagName === 'BODY') {
                     if (e.key === 'i') {
