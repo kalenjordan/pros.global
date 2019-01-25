@@ -8,8 +8,8 @@
                 <a class="btn px-5 py-2 mr-3" @click="save()">Save</a>
             </div>
         </top-nav>
-        <section class="header text-center max-w-lg mb-4 mx-4">
-            <h1 class="text-2xl sm:text-4xl editable" @click="editIfOwner()">
+        <section class="header text-center max-w-lg mx-auto mb-4">
+            <h1 class="mx-4 text-2xl sm:text-4xl editable" @click="editIfOwner()">
                 <template v-if="editing">
                     <input ref="name" class="text-3xl text-center no-border w-full"
                            v-model="savedSearch.name"
