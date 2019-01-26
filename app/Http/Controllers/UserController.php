@@ -36,7 +36,9 @@ class UserController extends Controller
             //$users->skip($page * $limit); // todo pagination
         }
 
-        // echo \SqlFormatter::format($users->toSql()); exit;
+        if ($request->input('show_sql')) {
+            echo \SqlFormatter::format($users->toSql()); exit;
+        }
 
         return $users->get();
     }

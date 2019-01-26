@@ -48,8 +48,6 @@ class UserSearch extends ModelSearch
         $parsedQuery = $parser->parse();
 
         $this->_query($this->users, $parsedQuery);
-
-        // echo \SqlFormatter::format($this->users->toSql()); exit;
     }
 
     /**
