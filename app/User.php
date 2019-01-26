@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Conner\Tagging\Taggable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -30,6 +31,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property $password
  * @property $api_token
  * @property $is_admin
+ * @property $last_online_at
  */
 class User extends Authenticatable
 {
@@ -173,5 +175,10 @@ class User extends Authenticatable
     public function upvotes()
     {
         return $this->hasMany('App\TaggedUpvote', 'tagged_user_id');
+    }
+
+    public function lastOnlineAt()
+    {
+        return $this->last_online_at ? Carbon::parse($this->last_online_at) : null;
     }
 }

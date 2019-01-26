@@ -26,6 +26,7 @@ class UserSearch extends ModelSearch
         'created-after',
         'limit',
         'has-tag',
+        'online-after',
         'order-by',
         'order-direction',
         'props-from',
@@ -110,6 +111,20 @@ class UserSearch extends ModelSearch
         try {
             $date = Date::parse($word);
             $collection->where('users.created_at', '>', $date);
+        } catch (\Exception $e) {
+            // Ignore parse exceptions with date
+        }
+    }
+
+    /**
+     * @param $collection \Illuminate\Database\Query\Builder
+     * @param $word
+     */
+    protected function _queryOnlineAfter($collection, $word)
+    {
+        try {
+            $date = Date::parse($word);
+            $collection->where('users.last_online_at', '>', $date);
         } catch (\Exception $e) {
             // Ignore parse exceptions with date
         }

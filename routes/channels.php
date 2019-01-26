@@ -24,5 +24,7 @@ Broadcast::channel('chat_between_{user1}_{user2}', function (\App\User $user, $u
 });
 
 Broadcast::channel('online_presence', function (\App\User $user) {
+    $user->last_online_at = \Carbon\Carbon::now();
+    $user->save();
     return $user->toArray();
 });
