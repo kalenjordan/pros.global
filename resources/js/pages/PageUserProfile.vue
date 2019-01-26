@@ -32,7 +32,7 @@
                 </div>
             </div>
         </div>
-        <hr v-if="hasUpvotes" class="m-6 sm:my-16 sm:w-md sm:mx-auto" />
+        <hr v-if="hasUpvotes" class="m-6 sm:my-16 sm:w-md sm:mx-auto"/>
         <div v-if="hasUpvotes" class="section endorsements mx-auto max-w-sm text-sm leading-tight">
             <div class="card hoverable endorsement-card mb-4" v-for="upvote in user.upvotes" :key="upvote.id">
                 <div class="card--inner p-4 flex">
@@ -56,7 +56,10 @@
                     </div>
                 </div>
             </div>
+
         </div>
+        <chat-wrapper :user="user"></chat-wrapper>
+
         <keyboard-shortcuts></keyboard-shortcuts>
         <footer-component :user="user"></footer-component>
     </div>
@@ -71,6 +74,7 @@
             return {
                 user: {},
                 editing: false,
+                messages: [],
             }
         },
         mounted() {
@@ -109,7 +113,7 @@
                 let auth = '?api_token=' + this.loggedInUser.api_token;
                 axios.post("/api/v1/users/" + this.user.username + auth, {
                     'data': this.user
-                }).then(function(response) {
+                }).then(function (response) {
                     self.user = response.data;
                 });
             },
@@ -127,9 +131,11 @@
                     }
                 }
             },
+            sendMessage() {
+            }
         },
         computed: {
-            hasUpvotes: function() {
+            hasUpvotes: function () {
                 return this.user.upvotes && this.user.upvotes.length;
             },
             loggedIn() {

@@ -26,6 +26,9 @@ Vue.use(require('vue-shortkey'));
 Vue.use(require('vue-moment'));
 Vue.use(require('vue-cookies'));
 
+import Chat from 'vue-beautiful-chat'
+Vue.use(Chat);
+
 // Event (singular) conflicts with vue-shortkey
 window.Events = new window.Vue();
 

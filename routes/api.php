@@ -27,4 +27,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('v1/upvotes/{id}', 'UpvoteController@post');
     Route::post('v1/saved-searches', 'SavedSearchController@create');
     Route::post('v1/saved-searches/{id}', 'SavedSearchController@edit');
+
+    Route::get('v1/messages', 'MessageController@list');
+    Route::post('v1/messages', 'MessageController@send');
 });
