@@ -32,11 +32,11 @@ class SavedSearchController extends Controller
     }
 
     public function list(Request $request) {
-        $searches = SavedSearch::where('id', '>', 0)
-            ->where('featured_order', '!=', 100);
+        $searches = SavedSearch::where('id', '>', 0);
 
         if ($request->input('featured')) {
-            $searches->where('featured_order', '>', 0);
+            $searches->where('featured_order', '>', 0)
+                ->where('featured_order', '!=', 100);
             $searches->orderBy('featured_order', 'desc');
         } else {
             $searches->orderBy('created_at', 'desc');
