@@ -14,9 +14,6 @@
                 :showTypingIndicator="showTypingIndicator"
                 :alwaysScrollToBottom="alwaysScrollToBottom"
                 :messageStyling="messageStyling"/>
-        <ul>
-            <li v-for="user in users">{{ user.name }}</li>
-        </ul>
     </div>
 </template>
 
@@ -39,7 +36,6 @@
                 showTypingIndicator: '', // when set to a value matching the participant.id it shows the typing indicator for the specific user
                 alwaysScrollToBottom: false,
                 messageStyling: false,
-                users: [],
             }
         },
         mounted() {

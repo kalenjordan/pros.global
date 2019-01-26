@@ -16,7 +16,6 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
 });
 
 Broadcast::channel('chat_between_{user1}_{user2}', function (\App\User $user, $username1, $username2) {
-    return true;
     if (! Auth::check()) {
         return false;
     }
