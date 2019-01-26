@@ -35,7 +35,7 @@
                 isChatOpen: false, // to determine whether the chat window should be open or closed
                 showTypingIndicator: '', // when set to a value matching the participant.id it shows the typing indicator for the specific user
                 alwaysScrollToBottom: false,
-                messageStyling: true,
+                messageStyling: false,
             }
         },
         mounted() {
