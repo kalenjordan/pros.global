@@ -49,10 +49,6 @@
             </div>
             <a v-else class="btn px-5 py-2" href="/auth/linkedin" target="_blank">Login</a>
         </div>
-        Present users:
-        <ul>
-            <li v-for="user in presentUsers">{{ user.name }}</li>
-        </ul>
     </div>
 </template>
 

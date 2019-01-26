@@ -49,6 +49,12 @@
                 max-width: 60px;
                 max-height: 60px;
             }
+            .is-present {
+                right: 5px;
+                bottom: 6px;
+                color: green;
+                font-size: 1rem;
+            }
         }
 
         .card--cta {
