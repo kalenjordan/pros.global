@@ -58,7 +58,10 @@ let store = new Vuex.Store({
     state: {
         user: {
             name: "Kalen"
-        }
+        },
+        presentUsers: [
+
+        ],
     },
     getters: {
         // Compute derived state based on the current state. More like computed property.
@@ -66,6 +69,9 @@ let store = new Vuex.Store({
     mutations: {
         updateUser(state, user) {
             state.user = user
+        },
+        updatePresentUsers(state, users) {
+            state.presentUsers = users
         }
     },
     actions: {

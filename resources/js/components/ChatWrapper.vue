@@ -14,6 +14,9 @@
                 :showTypingIndicator="showTypingIndicator"
                 :alwaysScrollToBottom="alwaysScrollToBottom"
                 :messageStyling="messageStyling"/>
+        <ul>
+            <li v-for="user in users">{{ user.name }}</li>
+        </ul>
     </div>
 </template>
 
@@ -36,6 +39,7 @@
                 showTypingIndicator: '', // when set to a value matching the participant.id it shows the typing indicator for the specific user
                 alwaysScrollToBottom: false,
                 messageStyling: false,
+                users: [],
             }
         },
         mounted() {
@@ -86,19 +90,6 @@
                             console.log('Web Notification is not supported');
                             return;
                         }
-
-                        // Notification.requestPermission( permission => {
-                        //     let notification = new Notification('New post alert!', {
-                        //         body: e.message.message, // content for the alert
-                        //         icon: "https://pusher.com/static_logos/320x320.png" // optional image url
-                        //     });
-                        //
-                        //     // link to page on clicking the notification
-                        //     notification.onclick = () => {
-                        //         window.focus();
-                        //         //window.Events.$emit('clicked-chat-notification');
-                        //     };
-                        // });
                         this.messageList.push(
                             { type: 'text', author: `user1`, data: { text: e.message.message } },
                         );

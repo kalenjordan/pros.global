@@ -49,6 +49,10 @@
             </div>
             <a v-else class="btn px-5 py-2" href="/auth/linkedin" target="_blank">Login</a>
         </div>
+        Present users:
+        <ul>
+            <li v-for="user in presentUsers">{{ user.name }}</li>
+        </ul>
     </div>
 </template>
 
@@ -74,6 +78,26 @@
             if (this.$cookies.get('user')) {
                 this.$store.commit('updateUser', this.$cookies.get('user'));
             }
+
+            window.Echo.join('online_presence')
+                .here((users) => {
+                    console.log("There are " + users.length + " pro(s) online");
+                    this.$store.commit('updatePresentUsers', users);
+                    console.log(this.presentUsers);
+                })
+                .joining((user) => {
+                    console.log("User joined: " + user.name);
+                    let presentUsers = this.presentUsers;
+                    presentUsers.push(user);
+                    console.log(presentUsers);
+                    this.$store.commit('updatePresentUsers', presentUsers);
+                })
+                .leaving((user) => {
+                    console.log('User left: ' + user.name + ' (' + user.id + ')');
+                    let presentUsers = this.presentUsers;
+                    presentUsers = presentUsers.filter(u => (u.id !== user.id));
+                    this.$store.commit('updatePresentUsers', presentUsers);
+                });
         },
         methods: {
             focusSearch() {
@@ -141,6 +165,9 @@
         computed: {
             loggedInUser() {
                 return this.$store.state.user;
+            },
+            presentUsers() {
+                return this.$store.state.presentUsers;
             }
         }
     }
