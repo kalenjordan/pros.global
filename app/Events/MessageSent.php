@@ -17,6 +17,7 @@ class MessageSent implements ShouldBroadcast
 
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    /** @var Message  */
     public $message;
     public $user;
 
@@ -38,6 +39,11 @@ class MessageSent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('chat');
+        $user1 = $this->user->username;
+        $user2 = $this->message->toUser->username;
+        $usernames = [$user1, $user2];
+        sort($usernames);
+
+        return new PrivateChannel("chat_between_" . $usernames[0] . "_" . $usernames[1]);
     }
 }

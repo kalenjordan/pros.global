@@ -39,30 +39,6 @@
             }
         },
         mounted() {
-            window.Echo.private('chat')
-                .listen('MessageSent', (e) => {
-                    if (! ('Notification' in window)) {
-                        console.log('Web Notification is not supported');
-                        return;
-                    }
-
-                    // Notification.requestPermission( permission => {
-                    //     let notification = new Notification('New post alert!', {
-                    //         body: e.message.message, // content for the alert
-                    //         icon: "https://pusher.com/static_logos/320x320.png" // optional image url
-                    //     });
-                    //
-                    //     // link to page on clicking the notification
-                    //     notification.onclick = () => {
-                    //         window.focus();
-                    //         //window.Events.$emit('clicked-chat-notification');
-                    //     };
-                    // });
-                    this.messageList.push(
-                        { type: 'text', author: `user1`, data: { text: e.message.message } },
-                    );
-                });
-
             window.Events.$on('clicked-chat-notification', () => {
                 this.openChat();
             });
@@ -76,7 +52,6 @@
                 }
             },
             onMessageWasSent (message) {
-                console.log(message);
                 let auth = '?api_token=' + this.loggedInUser.api_token;
                 axios.post('/api/v1/messages' + auth, {
                     message: message.data.text,
@@ -98,6 +73,36 @@
                     },
                 ];
                 this.titleImageUrl = this.user.avatar_path;
+                this.listenForMessages();
+            },
+            listenForMessages() {
+                let usernames = [this.user.username, this.loggedInUser.username];
+                usernames.sort();
+                let chatKey = 'chat_between_' + usernames[0] + '_' + usernames[1];
+                console.log(chatKey);
+                window.Echo.private(chatKey)
+                    .listen('MessageSent', (e) => {
+                        if (! ('Notification' in window)) {
+                            console.log('Web Notification is not supported');
+                            return;
+                        }
+
+                        // Notification.requestPermission( permission => {
+                        //     let notification = new Notification('New post alert!', {
+                        //         body: e.message.message, // content for the alert
+                        //         icon: "https://pusher.com/static_logos/320x320.png" // optional image url
+                        //     });
+                        //
+                        //     // link to page on clicking the notification
+                        //     notification.onclick = () => {
+                        //         window.focus();
+                        //         //window.Events.$emit('clicked-chat-notification');
+                        //     };
+                        // });
+                        this.messageList.push(
+                            { type: 'text', author: `user1`, data: { text: e.message.message } },
+                        );
+                    });
             },
             closeChat () {
                 // called when the user clicks on the botton to close the chat

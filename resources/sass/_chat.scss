@@ -37,5 +37,13 @@
                 }
             }
         }
+
+        .sc-user-input--buttons {
+            .sc-user-input--button {
+                .sc-user-input--picker-wrapper, label {
+                    display: none;
+                }
+            }
+        }
     }
 }

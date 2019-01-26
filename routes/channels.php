@@ -15,6 +15,10 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
 
-Broadcast::channel('chat', function ($user) {
-    return Auth::check();
+Broadcast::channel('chat_between_{user1}_{user2}', function (\App\User $user, $username1, $username2) {
+    if (! Auth::check()) {
+        return false;
+    }
+
+    return ($user->username == $username1 | $user->username == $username2);
 });
