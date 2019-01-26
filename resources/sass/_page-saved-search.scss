@@ -1,3 +1,14 @@
 .page-saved-search {
     // nada
 }
+
+.saved-search-card {
+    .user-avatar {
+        .is-present {
+            right: 4%;
+            bottom: 8%;
+            color: green;
+            font-size: 14px;
+        }
+    }
+}
