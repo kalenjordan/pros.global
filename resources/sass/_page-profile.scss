@@ -53,22 +53,3 @@
         }
     }
 }
-
-.chat {
-    .sc-launcher {
-        z-index: 9;
-        .sc-header {
-            img {
-                width: 60px;
-            }
-        }
-    }
-    .sc-header--img {
-        width: 60px !important;;
-        height: 60px !important;;
-    }
-
-    .sc-chat-window {
-        z-index: 9;
-    }
-}

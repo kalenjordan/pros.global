@@ -9,8 +9,11 @@
 @import 'typography';
 @import 'general';
 @import 'buttons';
-@import 'layout';
 @import 'card';
+@import 'chat';
+@import 'layout';
+@import 'footer';
+@import 'forms';
 @import 'tags';
 @import 'top-nav';
 
@@ -19,7 +22,5 @@
 @import 'page-saved-search';
 @import 'page-search';
 @import 'page-upvote';
-@import 'footer';
-@import 'forms';
 
 @tailwind utilities;

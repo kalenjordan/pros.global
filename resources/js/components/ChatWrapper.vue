@@ -12,7 +12,6 @@
                 :showEmoji="true"
                 :showFile="true"
                 :showTypingIndicator="showTypingIndicator"
-                :colors="colors"
                 :alwaysScrollToBottom="alwaysScrollToBottom"
                 :messageStyling="messageStyling"/>
     </div>
@@ -29,36 +28,12 @@
                         name: 'Placeholder',
                         imageUrl: 'https://avatars3.githubusercontent.com/u/1915989?s=230&v=4'
                     },
-                ], // the list of all the participant of the conversation. `name` is the user name, `id` is used to establish the author of a message, `imageUrl` is supposed to be the user avatar.
+                ],
                 titleImageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
                 messageList: [],
                 newMessagesCount: 0,
                 isChatOpen: false, // to determine whether the chat window should be open or closed
                 showTypingIndicator: '', // when set to a value matching the participant.id it shows the typing indicator for the specific user
-                colors: {
-                    header: {
-                        bg: '#4e8cff',
-                        text: '#ffffff'
-                    },
-                    launcher: {
-                        bg: '#4e8cff'
-                    },
-                    messageList: {
-                        bg: '#ffffff'
-                    },
-                    sentMessage: {
-                        bg: '#4e8cff',
-                        text: '#ffffff'
-                    },
-                    receivedMessage: {
-                        bg: '#eaeaea',
-                        text: '#222222'
-                    },
-                    userInput: {
-                        bg: '#f4f7f9',
-                        text: '#565867'
-                    }
-                }, // specifies the color scheme for the component
                 alwaysScrollToBottom: false,
                 messageStyling: true,
             }
@@ -66,11 +41,33 @@
         mounted() {
             window.Echo.private('chat')
                 .listen('MessageSent', (e) => {
+                    if (! ('Notification' in window)) {
+                        console.log('Web Notification is not supported');
+                        return;
+                    }
+
+                    // Notification.requestPermission( permission => {
+                    //     let notification = new Notification('New post alert!', {
+                    //         body: e.message.message, // content for the alert
+                    //         icon: "https://pusher.com/static_logos/320x320.png" // optional image url
+                    //     });
+                    //
+                    //     // link to page on clicking the notification
+                    //     notification.onclick = () => {
+                    //         window.focus();
+                    //         //window.Events.$emit('clicked-chat-notification');
+                    //     };
+                    // });
                     this.messageList.push(
                         { type: 'text', author: `user1`, data: { text: e.message.message } },
                     );
                 });
+
+            window.Events.$on('clicked-chat-notification', () => {
+                this.openChat();
+            });
         },
+
         methods: {
             sendMessage (text) {
                 if (text.length > 0) {

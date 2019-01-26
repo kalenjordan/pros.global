@@ -1,0 +1,41 @@
+.chat {
+    .sc-launcher {
+        z-index: 9;
+        background-color: $secondaryColor !important;
+    }
+
+    .sc-chat-window {
+        z-index: 9;
+
+        .sc-header {
+            background-color: $secondaryColor !important;
+            .sc-header--img {
+                width: 60px !important;;
+                height: 60px !important;;
+            }
+        }
+
+        .sc-message {
+            // Not sure what this avatar spot is for but it's blank and there's already an image of user in header
+            .sc-message--avatar {
+                display: none;
+            }
+
+            .sc-message--content.received .sc-message--text {
+                background-color: $grayLightest !important;
+                color: $grayDarker !important;
+            }
+
+            .sc-message--content.sent .sc-message--text {
+                background-color: $primaryColor !important;
+                color: white !important;
+            }
+
+            .sc-message--text {
+                p {
+                    margin-bottom: -14px;
+                }
+            }
+        }
+    }
+}
