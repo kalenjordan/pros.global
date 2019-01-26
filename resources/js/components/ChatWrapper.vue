@@ -31,10 +31,7 @@
                     },
                 ], // the list of all the participant of the conversation. `name` is the user name, `id` is used to establish the author of a message, `imageUrl` is supposed to be the user avatar.
                 titleImageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
-                messageList: [
-                    { type: 'text', author: `me`, data: { text: `Say yes!` } },
-                    { type: 'text', author: `user1`, data: { text: `No.` } }
-                ], // the list of the messages to show, can be paginated and adjusted dynamically
+                messageList: [],
                 newMessagesCount: 0,
                 isChatOpen: false, // to determine whether the chat window should be open or closed
                 showTypingIndicator: '', // when set to a value matching the participant.id it shows the typing indicator for the specific user
@@ -67,7 +64,12 @@
             }
         },
         mounted() {
-            console.log(this.user);
+            window.Echo.private('chat')
+                .listen('MessageSent', (e) => {
+                    this.messageList.push(
+                        { type: 'text', author: `user1`, data: { text: e.message.message } },
+                    );
+                });
         },
         methods: {
             sendMessage (text) {
@@ -77,8 +79,15 @@
                 }
             },
             onMessageWasSent (message) {
-                // called when the user sends a message
-                this.messageList = [ ...this.messageList, message ]
+                console.log(message);
+                let auth = '?api_token=' + this.loggedInUser.api_token;
+                axios.post('/api/v1/messages' + auth, {
+                    message: message.data.text,
+                    to_user_id: this.user.id,
+                }).then((response) => {
+                    // called when the user sends a message
+                    this.messageList = [ ...this.messageList, message ]
+                });
             },
             openChat () {
                 // called when the user clicks on the fab button to open the chat
@@ -96,6 +105,14 @@
             closeChat () {
                 // called when the user clicks on the botton to close the chat
                 this.isChatOpen = false
+            },
+        },
+        computed: {
+            loggedIn() {
+                return this.$store.state.user && this.$store.state.user.id;
+            },
+            loggedInUser: function() {
+                return this.$store.state.user;
             },
         }
     }

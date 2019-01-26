@@ -10,13 +10,6 @@
                 </div>
             </div>
         </top-nav>
-        <div class="p-4">
-            <input ref="message" placeholder="Send message" v-shortkey="['enter']" @shortkey="sendMessage()">
-            <br/><br/>Messages:
-            <ul>
-                <li v-for="message in messages">{{ message.message }}</li>
-            </ul>
-        </div>
         <section class="header max-w-lg mb-4 mx-auto text-center">
             <div class="avatar mb-1">
                 <img v-bind:src="user.avatar_path" class="w-16 sm:w-32 h-16 sm:h-32 rounded-full">
@@ -98,14 +91,6 @@
             window.Events.$on('upvote-removed', (upvote, allUpvotes) => {
                 this.user.upvotes = allUpvotes;
             });
-
-            window.Echo.private('chat')
-                .listen('MessageSent', (e) => {
-                    this.messages.push({
-                        message: e.message.message,
-                        user: e.user
-                    });
-                })
         },
         methods: {
             editIfOwner() {
@@ -147,13 +132,6 @@
                 }
             },
             sendMessage() {
-                let auth = '?api_token=' + this.loggedInUser.api_token;
-                axios.post('/api/v1/messages' + auth, {
-                    message: this.$refs.message.value,
-                    to_user_id: this.user.id,
-                }).then((response) => {
-                    this.messages.push(response.data);
-                });
             }
         },
         computed: {
