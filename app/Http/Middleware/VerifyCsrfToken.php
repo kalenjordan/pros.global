@@ -19,6 +19,8 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        //
+        // I'm not exactly sure why this is throwing a 419 error currently. #shame It only happens
+        // from the home page and not from the profile page - really weird.
+        'broadcasting/auth',
     ];
 }

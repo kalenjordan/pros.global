@@ -11,8 +11,9 @@
             </div>
         </top-nav>
         <section class="header max-w-lg mb-4 mx-auto text-center">
-            <div class="avatar mb-1">
+            <div class="avatar inline-block mb-1 relative">
                 <img v-bind:src="user.avatar_path" class="w-16 sm:w-32 h-16 sm:h-32 rounded-full">
+                <i v-if="this.isPresent(user)" class="absolute is-present fas fa-circle"></i>
             </div>
             <h1 ref="headline" class="text-xl sm:text-4xl editable" v-bind:contenteditable="canEdit" @focus="editing=true">
                 {{ user.headline }}
@@ -131,8 +132,14 @@
                     }
                 }
             },
-            sendMessage() {
-            }
+            isPresent(user) {
+                let ids = [];
+                let presentUsers = this.presentUsers;
+                for (let i in presentUsers) {
+                    ids.push(presentUsers[i].id);
+                }
+                return ids.includes(user.id);
+            },
         },
         computed: {
             hasUpvotes: function () {
@@ -143,6 +150,9 @@
             },
             loggedInUser: function() {
                 return this.$store.state.user;
+            },
+            presentUsers() {
+                return this.$store.state.presentUsers;
             },
             canEdit() {
                 if (! this.loggedIn) {
