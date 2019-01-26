@@ -20,5 +20,5 @@ Broadcast::channel('chat_between_{user1}_{user2}', function (\App\User $user, $u
         return false;
     }
 
-    return ($user->username == $username1 | $user->username == $username2);
+    return ($user->username == $username1 || $user->username == $username2);
 });
