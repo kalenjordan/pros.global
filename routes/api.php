@@ -20,14 +20,18 @@ Route::group(['middleware' => ['auth:api']], function () {
         return $request->user();
     });
 
+    Route::get('v1/messages', 'MessageController@list');
+    Route::post('v1/messages', 'MessageController@send');
+    Route::get('v1/notifications', 'NotificationController@list');
+    Route::get('v1/notifications/mark-read', 'NotificationController@markRead');
+
     Route::post('v1/users/{username}', 'UserController@post');
     Route::post('v1/users/{username}/add-tag', 'UserController@addTag');
     Route::get('v1/users/{username}/delete-tag/{tag}', 'UserController@deleteTag');
     Route::get('v1/users/{username}/upvote-tag/{tag}', 'UserController@upvoteTag');
+
     Route::post('v1/upvotes/{id}', 'UpvoteController@post');
     Route::post('v1/saved-searches', 'SavedSearchController@create');
     Route::post('v1/saved-searches/{id}', 'SavedSearchController@edit');
 
-    Route::get('v1/messages', 'MessageController@list');
-    Route::post('v1/messages', 'MessageController@send');
 });
