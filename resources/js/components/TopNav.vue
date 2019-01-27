@@ -6,8 +6,16 @@
             </router-link>
         </div>
         <div class="right-nav flex-5 text-right">
+            <router-link v-if="!isSearching"
+                         class="paragraph-link mr-4" style="font-size: 1.4rem;"
+                         :to="{name: 'saved-search', params: {slug: 'remote-jobs'}}">
+                Remote Jobs
+            </router-link>
+            <i v-if="!isSearching" class="fas fa-search text-gray-dark text-xl cursor-pointer mr-2"
+               @click="focusSearch()">
+            </i>
             <slot></slot>
-            <input ref="search"
+            <input v-if="isSearching" ref="search"
                    id="top-nav-search"
                    class="nav--search text w-32 p-2 mr-2"
                    v-bind:class="{'w-48' : isSearching}"
@@ -15,7 +23,7 @@
                    @focus="isSearching=1"
                    @blur="isSearching=0"
             >
-            <div class="inline-block relative" v-if="this.loggedInUser.id">
+            <div v-if="!isSearching && this.loggedInUser.id" class="inline-block relative">
                 <notification-bell></notification-bell>
                 <img class="w-10 rounded-full cursor-pointer"
                      @click="showingMenu = !showingMenu"
@@ -50,7 +58,7 @@
                     </div>
                 </div>
             </div>
-            <a v-else class="btn px-5 py-2" href="/auth/linkedin" target="_blank">Login</a>
+            <a v-if="!isSearching && !this.loggedInUser.id" class="btn px-5 py-2" href="/auth/linkedin" target="_blank">Login</a>
         </div>
     </div>
 </template>
@@ -96,11 +104,12 @@
         },
         methods: {
             focusSearch() {
-                if (!this.$refs.search) {
-                    return;
-                }
                 this.isSearching = true;
-                this.$refs.search.focus();
+                this.$nextTick(() => {
+                    if (this.$refs.search) {
+                        this.$refs.search.focus();
+                    }
+                });
             },
             hotkeyHandler(e) {
                 if (document.activeElement.id === 'top-nav-search') {

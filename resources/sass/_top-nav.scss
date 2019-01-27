@@ -8,18 +8,18 @@
         }
     }
 
+    .fas {
+        transition: all 0.25s ease;
+        &:hover {
+            @apply text-highlight;
+        }
+    }
+
     .notification-wrapper {
         .notification-list {
             z-index: 9;
             top: 35px;
             right: 60px;
-        }
-
-        .fa-bell {
-            transition: all 0.25s ease;
-            &:hover {
-                @apply text-highlight;
-            }
         }
 
         .alert-bubble {
