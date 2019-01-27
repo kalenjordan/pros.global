@@ -115,7 +115,7 @@
                 let text = "I just gave @" + this.upvote.tagged_username + " some props:\r\n\r\n" +
                     '"' + this.shortenedMessage + '"' + "\r\n\r\n" +
                     window.location.href + "\r\n\r\n" +
-                    '#' + this.upvote.tag_slug;
+                    '#' + this.upvote.tag_slug.replace('-', '');
 
                 return 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text);
             },
