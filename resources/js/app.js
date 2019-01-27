@@ -61,9 +61,9 @@ let store = new Vuex.Store({
         user: {
             name: "Kalen"
         },
-        presentUsers: [
-
-        ],
+        presentUsers: [],
+        notifications: [],
+        unreadNotificationCount: 0,
     },
     getters: {
         // Compute derived state based on the current state. More like computed property.
@@ -74,7 +74,13 @@ let store = new Vuex.Store({
         },
         updatePresentUsers(state, users) {
             state.presentUsers = users
-        }
+        },
+        updateNotifications(state, notifications) {
+            state.notifications = notifications
+        },
+        updateUnreadNotificationCount(state, count) {
+            state.unreadNotificationCount = count
+        },
     },
     actions: {
         // Get data from server and send that to mutations to mutate the current state

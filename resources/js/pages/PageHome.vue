@@ -69,11 +69,15 @@
         computed: {
             loggedInUser: function() {
                 return this.$store.state.user;
-            }
+            },
+            unreadNotificationCount() {
+                return this.$store.state.unreadNotificationCount;
+            },
         },
         metaInfo () {
+            let notificationCount = this.unreadNotificationCount ? '(' + this.unreadNotificationCount + ') ' : '';
             return {
-                title: "pros.global - Connect with awesome pros",
+                title: notificationCount + "pros.global - Connect with awesome pros",
             }
         },
     }

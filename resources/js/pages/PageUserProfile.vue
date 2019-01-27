@@ -164,11 +164,15 @@
                 }
                 
                 return (this.loggedInUser.id === this.user.id);
-            }
+            },
+            unreadNotificationCount() {
+                return this.$store.state.unreadNotificationCount;
+            },
         },
         metaInfo () {
+            let notificationCount = this.unreadNotificationCount ? '(' + this.unreadNotificationCount + ') ' : '';
             return {
-                title: this.user.name + " | pros.global",
+                title: notificationCount + this.user.name + " | pros.global",
             }
         },
     }

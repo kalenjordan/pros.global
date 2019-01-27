@@ -2,9 +2,9 @@
     <div class="notification-wrapper inline-block mr-4">
         <i class="fas fa-bell text-gray-dark text-xl cursor-pointer ml-2"
            @click="toggleNotifications()"></i>
-        <span v-if="unreadNotificationCount" class="alert-bubble bg-primary rounded-full cursor-pointer"
+        <span v-if="this.unreadNotificationCount" class="alert-bubble bg-primary rounded-full cursor-pointer"
               @click="toggleNotifications()">
-                        {{ unreadNotificationCount }}
+                        {{ this.unreadNotificationCount }}
                     </span>
         <div v-if="showingNotifications" class="card notification-list absolute p-2 w-64">
             <div class="card-inner">
@@ -32,8 +32,6 @@
         data() {
             return {
                 showingNotifications: false,
-                notifications: [],
-                unreadNotificationCount: 0,
             }
         },
         mounted() {
@@ -45,8 +43,8 @@
             initNotificatons() {
                 let auth = '?api_token=' + this.loggedInUser.api_token;
                 axios.get('/api/v1/notifications' + auth).then((response) => {
-                    this.unreadNotificationCount = response.data.unread_count;
-                    this.notifications = response.data.notifications;
+                    this.$store.commit('updateUnreadNotificationCount', response.data.unread_count);
+                    this.$store.commit('updateNotifications', response.data.notifications);
                 });
             },
             listenForMessages() {
@@ -54,22 +52,32 @@
                 console.log(chatKey);
                 window.Echo.private(chatKey)
                     .listen('MessageSentNotificationEvent', (e) => {
-                        console.log(e.notification);
-                        this.unreadNotificationCount++;
-                        this.notifications.push({data: e.notification});
+                        let count = this.unreadNotificationCount;
+                        count++;
+                        this.$store.commit('updateUnreadNotificationCount', count);
+
+                        let notifications = this.notifications;
+                        notifications.push({data: e.notification});
+                        this.$store.commit('updateNotifications', notifications);
                     });
             },
             toggleNotifications() {
                 this.showingNotifications = !this.showingNotifications;
                 let auth = '?api_token=' + this.loggedInUser.api_token;
                 axios.get('/api/v1/notifications/mark-read' + auth).then((response) => {
-                    this.unreadNotificationCount = 0;
+                    this.$store.commit('updateUnreadNotificationCount', 0);
                 });
             },
         },
         computed: {
             loggedInUser() {
                 return this.$store.state.user;
+            },
+            unreadNotificationCount() {
+                return this.$store.state.unreadNotificationCount;
+            },
+            notifications() {
+                return this.$store.state.notifications;
             },
         },
     }
