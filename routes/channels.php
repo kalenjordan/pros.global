@@ -23,6 +23,10 @@ Broadcast::channel('chat_between_{user1}_{user2}', function (\App\User $user, $u
     return ($user->username == $username1 || $user->username == $username2);
 });
 
+Broadcast::channel('user_notifications_{id}', function (\App\User $user, $userId) {
+    return Auth::check();
+});
+
 Broadcast::channel('online_presence', function (\App\User $user) {
     $user->last_online_at = \Carbon\Carbon::now();
     $user->save();

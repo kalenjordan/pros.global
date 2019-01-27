@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\MessageSent;
+use App\Events\MessageSentNotificationEvent;
 use App\Message;
 use App\Notifications\MessageSentNotification;
 use App\User;
@@ -32,7 +33,9 @@ class MessageController extends Controller
             ],
         ];
 
-        $toUser->notify(new MessageSentNotification($message, $text, $link));
+        $notification = new MessageSentNotification($message, $text, $link);
+        $toUser->notify($notification);
+        broadcast(new MessageSentNotificationEvent($notification, $toUser))->toOthers();
         broadcast(new MessageSent($message, $user))->toOthers();
 
         return $message;

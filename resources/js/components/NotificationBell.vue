@@ -39,6 +39,7 @@
         mounted() {
             // watch doesn't fire when I moved this from topnav.vue into here, but it works in mounted.
             this.initNotificatons();
+            this.listenForMessages();
         },
         methods: {
             initNotificatons() {
@@ -47,6 +48,16 @@
                     this.unreadNotificationCount = response.data.unread_count;
                     this.notifications = response.data.notifications;
                 });
+            },
+            listenForMessages() {
+                let chatKey = 'user_notifications_' + this.loggedInUser.id;
+                console.log(chatKey);
+                window.Echo.private(chatKey)
+                    .listen('MessageSentNotificationEvent', (e) => {
+                        console.log(e.notification);
+                        this.unreadNotificationCount++;
+                        this.notifications.push({data: e.notification});
+                    });
             },
             toggleNotifications() {
                 this.showingNotifications = !this.showingNotifications;
