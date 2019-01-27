@@ -109,6 +109,12 @@
 
                 return (this.loggedInUser.id === this.savedSearch.user_id);
             }
-        }
+        },
+        metaInfo () {
+            let notificationCount = this.unreadNotificationCount ? '(' + this.unreadNotificationCount + ') ' : '';
+            return {
+                title: notificationCount + this.savedSearch.name + " | pros.global",
+            }
+        },
     }
 </script>
