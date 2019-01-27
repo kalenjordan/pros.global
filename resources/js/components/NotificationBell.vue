@@ -8,7 +8,7 @@
                     </span>
         <div v-if="showingNotifications" class="card notification-list absolute p-2 w-64">
             <div class="card-inner">
-                <ul class="list-reset">
+                <ul class="list-reset" v-if="notifications.length">
                     <li v-for="notification in notifications" class="p-2">
                         {{ notification.data.text }}
                         <router-link class="paragraph-link" v-if="notification.data.link"
@@ -17,6 +17,9 @@
                         </router-link>
                         <span class="text-gray">{{ notification.created_at | moment("from") }}</span>
                     </li>
+                </ul>
+                <ul class="list-reset" v-else>
+                    <li class="p-2">No notifications yet</li>
                 </ul>
             </div>
         </div>
