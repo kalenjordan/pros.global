@@ -15,6 +15,13 @@
             right: 60px;
         }
 
+        .fa-bell {
+            transition: all 0.25s ease;
+            &:hover {
+                @apply text-highlight;
+            }
+        }
+
         .alert-bubble {
             position: absolute;
             bottom: -4px;
