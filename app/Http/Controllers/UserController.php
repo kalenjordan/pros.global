@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\BeenTagged;
 use Auth;
 
 use Illuminate\Http\Request;
@@ -69,6 +70,7 @@ class UserController extends Controller
 
     public function addTag(Request $request, $username)
     {
+        $loggedInUser = Auth::user();
         $user = User::findByUsername($username);
         $tag = $request->input('tag');
         if (!$tag) {
@@ -76,6 +78,7 @@ class UserController extends Controller
         }
 
         $user->tag($tag);
+        $user->notify(new BeenTagged($loggedInUser->name . " just tagged you with: " . $tag));
 
         return $user->tagged;
     }

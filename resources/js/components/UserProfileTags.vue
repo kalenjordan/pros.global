@@ -7,9 +7,9 @@
             <tag-clickable v-for="tag in user.tags" :user="user" :tag="tag" :key="tag.id"></tag-clickable>
             <tag-endorsement user="user"></tag-endorsement>
         </template>
-        <a class="tag add-tag" @click="addTag()">
+        <div class="tag add-tag" @click="addTag()">
             <i class="fas fa-plus mr-02"></i> Add tag
-        </a>
+        </div>
 
         <div class="tag-autocomplete card absolute" v-if="isAddingTag">
             <div class="card--inner p-4">

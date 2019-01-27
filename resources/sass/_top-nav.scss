@@ -7,4 +7,25 @@
             width: 12rem;
         }
     }
+
+    .notification-wrapper {
+        .notification-list {
+            z-index: 9;
+            top: 35px;
+            right: 60px;
+        }
+
+        .alert-bubble {
+            position: absolute;
+            bottom: -4px;
+            right: 52px;
+            width: 16px;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 11px;
+        }
+    }
 }

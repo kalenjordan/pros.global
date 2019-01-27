@@ -16,7 +16,24 @@
                    @blur="isSearching=0"
             >
             <div class="inline-block relative" v-if="this.loggedInUser.id">
-                <img class="w-10 rounded-full cursor-pointer" @click="showingMenu = !showingMenu" :src="loggedInUser.avatar_path" style="margin-bottom: -14px;">
+                <div class="notification-wrapper inline-block mr-4">
+                    <i class="fas fa-bell text-gray-dark text-xl cursor-pointer"
+                       @click="toggleNotifications()"></i>
+                    <span v-if="notifications.length" class="alert-bubble bg-primary rounded-full cursor-pointer"
+                          @click="toggleNotifications()">
+                        {{ notifications.length }}
+                    </span>
+                    <div v-if="showingNotifications" class="card notification-list absolute p-4 w-64">
+                        <div class="card-inner">
+                            <ul class="list-reset">
+                                <li v-for="notification in notifications">{{ notification.data.message }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <img class="w-10 rounded-full cursor-pointer"
+                     @click="showingMenu = !showingMenu"
+                     :src="loggedInUser.avatar_path" style="margin-bottom: -14px;">
                 <div v-if="showingMenu" class="card logged-in-menu absolute">
                     <div class="card-inner p-3">
                         <div class="block p-1">
@@ -59,6 +76,8 @@
             return {
                 isSearching: false,
                 showingMenu: false,
+                showingNotifications: false,
+                notifications: [],
             }
         },
         mounted() {
@@ -97,7 +116,7 @@
         },
         methods: {
             focusSearch() {
-                if (! this.$refs.search) {
+                if (!this.$refs.search) {
                     return;
                 }
                 this.isSearching = true;
@@ -120,7 +139,7 @@
             search() {
                 this.$router.push({
                     name: 'search-query',
-                    params: { query: this.$refs.search.value },
+                    params: {query: this.$refs.search.value},
                 });
             },
             isAdminViewingProfilePage() {
@@ -155,6 +174,13 @@
                     this.$cookies.set('user', null);
                     this.$store.commit('updateUser', {});
                     this.$toasted.show("You're logged out! Don't be a stranger now, ya hear? 🤠", {duration: 2000});
+                });
+            },
+            toggleNotifications() {
+                this.showingNotifications = !this.showingNotifications;
+                let auth = '?api_token=' + this.loggedInUser.api_token;
+                axios.get('/api/v1/notifications' + auth).then((response) => {
+                    this.notifications = response.data;
                 });
             }
         },
