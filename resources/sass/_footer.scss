@@ -1,12 +1,13 @@
 .footer {
-    @extend .font-90;
     color: $grayLight;
     padding: 1em 2em;
 
     transition: all 0.25s ease;
-    opacity: 0.3;
-    &:hover {
-        opacity: 1;
+    @media screen and (min-width: 576px) {
+        opacity: 0.3;
+        &:hover {
+            opacity: 1;
+        }
     }
 
     .footer--inner {

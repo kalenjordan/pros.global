@@ -1,5 +1,5 @@
 <template>
-    <div class="footer mx-auto max-w-lg text-xs leading-tight sm:mt-16 pb-16">
+    <div class="footer mx-auto max-w-lg text-sm leading-tight sm:mt-16 pb-16">
         <div class="section footer--inner flex flex-wrap">
             <div class="footer--column flex-2 p-3">
                 <h3 class="mb-2">About</h3>
@@ -8,7 +8,7 @@
                     being built by
                     <router-link :to="{ name: 'profile', params: {username: 'kalenjordan'}}">Kalen</router-link>
                     with &hearts; in
-                    <router-link :to="{ name: 'search-query', params: {query: 'tag:austin'}}">Austin</router-link>.
+                    <router-link :to="{ name: 'saved-search', params: {slug: 'austin'}}">Austin</router-link>.
                 </p>
                 <p>
                     Copyright 2019. All rights reserved.
@@ -19,10 +19,22 @@
                 <h3 class="mb-2">Resources</h3>
                 <ul>
                     <li><a class="naked-link" href="https://github.com/kalenjordan/founderland">Open source</a></li>
+                    <li>
+                        <router-link class="naked-link" :to="{ name: 'saved-search', params: {slug: 'remote-jobs'}}">Remote Jobs</router-link>.
+                    </li>
+                    <li>
+                        <router-link class="naked-link" :to="{ name: 'saved-search', params: {slug: 'ecommerce-founders'}}">eCommerce Founders</router-link>.
+                    </li>
+                    <li>
+                        <router-link class="naked-link" :to="{ name: 'saved-search', params: {slug: 'ecommerce-founders'}}">SaaS Founders</router-link>.
+                    </li>
+                    <li>
+                        <router-link class="naked-link" :to="{ name: 'saved-search', params: {slug: 'kalens-shout-outs'}}">Kalen's Shout-outs</router-link>.
+                    </li>
                 </ul>
             </div>
 
-            <div class="footer--column flex-2 p-3">
+            <div class="footer--column flex-1 p-3">
                 <h3 class="mb-2">Follow us</h3>
                 <p class="mb-1">
                     Sign up to get email updates:
