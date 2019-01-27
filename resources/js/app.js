@@ -13,11 +13,13 @@ import Toasted from 'vue-toasted';
 import Vuetify from 'vuetify'
 import VModal from 'vue-js-modal'
 import Vuex from 'vuex'
+import Meta from 'vue-meta'
 
 window.Vue.use(Vuetify, {iconfont: 'fa'});
 Vue.use(VModal);
 Vue.use(Vuex);
 Vue.use(VModal);
+Vue.use(Meta);
 
 window.Vue.use(VueRouter);
 window.Vue.use(Toasted, {duration: 5000, position: 'bottom-right'});

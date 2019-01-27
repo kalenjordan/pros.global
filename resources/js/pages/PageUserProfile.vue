@@ -165,6 +165,11 @@
                 
                 return (this.loggedInUser.id === this.user.id);
             }
-        }
+        },
+        metaInfo () {
+            return {
+                title: this.user.name + " | pros.global",
+            }
+        },
     }
 </script>

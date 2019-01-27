@@ -70,6 +70,11 @@
             loggedInUser: function() {
                 return this.$store.state.user;
             }
-        }
+        },
+        metaInfo () {
+            return {
+                title: "pros.global - Connect with awesome pros",
+            }
+        },
     }
 </script>
