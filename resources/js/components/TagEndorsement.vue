@@ -14,7 +14,7 @@
                 </div>
                 <div>
                     <a class="btn px-5 py-2" @click="saveEndorsement" href="javascript://">Share some love</a>
-                    <a class="paragraph-link ml-3" @click="closeEndorsement" v-shortkey="['esc']" @shortkey="closeEndorsement">Skip</a>
+                    <a class="paragraph-link ml-3" @click="closeEndorsement" >Skip</a>
                 </div>
             </div>
         </div>

@@ -39,12 +39,22 @@
             }
         },
         mounted() {
+            window.addEventListener('keyup', this.hotkeys);
             window.Events.$on('clicked-chat-notification', () => {
                 this.openChat();
             });
         },
 
         methods: {
+            hotkeys(e) {
+                if (document.activeElement.tagName === 'BODY') {
+                    if (e.key === 'c') {
+                        this.openChat();
+                    } else if (e.key === 'Escape') {
+                        this.closeChat();
+                    }
+                }
+            },
             sendMessage (text) {
                 if (text.length > 0) {
                     this.newMessagesCount = this.isChatOpen ? this.newMessagesCount : this.newMessagesCount + 1
@@ -90,7 +100,6 @@
                 let usernames = [this.user.username, this.loggedInUser.username];
                 usernames.sort();
                 let chatKey = 'chat_between_' + usernames[0] + '_' + usernames[1];
-                console.log(chatKey);
                 window.Echo.private(chatKey)
                     .listen('MessageSent', (e) => {
                         if (! ('Notification' in window)) {

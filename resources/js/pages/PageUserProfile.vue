@@ -3,7 +3,7 @@
         <top-nav class="mb-4" :user="user">
             <div v-if="editing" class="edit-profile-wrapper m-1 inline-block">
                 <div class="inline-block">
-                    <a class="paragraph-link mr-3" @click="cancelEditing()" v-shortkey="['esc']" @shortkey="cancelEditing()">
+                    <a class="paragraph-link mr-3" @click="cancelEditing()" >
                         Cancel
                     </a>
                     <a class="btn px-5 py-2" @click="save" v-shortkey="['meta', 'enter']" @shortkey="save">Save</a>
