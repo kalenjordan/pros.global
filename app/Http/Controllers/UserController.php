@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Notifications\BeenTagged;
+use App\Notifications\BeenUpvoted;
 use Auth;
 
 use Illuminate\Http\Request;
@@ -98,11 +99,13 @@ class UserController extends Controller
 
     public function upvoteTag(Request $request, $username, $taggedId)
     {
+        $loggedInUser = Auth::user();
         // todo check against auth'd user
         $user = User::findByUsername($username);
         $tagged = Tagged::find($taggedId);
         $upvote = $tagged->toggleUpvote();
 
+        $user->notify(new BeenUpvoted($loggedInUser->name . " just upvoted you for: " . $tagged->tag_name));
 
         return ['upvote' => $upvote, 'all_upvotes' => $tagged->taggedUser()->upvotes];
     }

@@ -23,6 +23,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('v1/messages', 'MessageController@list');
     Route::post('v1/messages', 'MessageController@send');
     Route::get('v1/notifications', 'NotificationController@list');
+    Route::get('v1/notifications/mark-read', 'NotificationController@markRead');
 
     Route::post('v1/users/{username}', 'UserController@post');
     Route::post('v1/users/{username}/add-tag', 'UserController@addTag');

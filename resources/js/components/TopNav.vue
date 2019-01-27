@@ -19,14 +19,17 @@
                 <div class="notification-wrapper inline-block mr-4">
                     <i class="fas fa-bell text-gray-dark text-xl cursor-pointer"
                        @click="toggleNotifications()"></i>
-                    <span v-if="notifications.length" class="alert-bubble bg-primary rounded-full cursor-pointer"
+                    <span v-if="unreadNotificationCount" class="alert-bubble bg-primary rounded-full cursor-pointer"
                           @click="toggleNotifications()">
-                        {{ notifications.length }}
+                        {{ unreadNotificationCount }}
                     </span>
-                    <div v-if="showingNotifications" class="card notification-list absolute p-4 w-64">
+                    <div v-if="showingNotifications" class="card notification-list absolute p-2 w-64">
                         <div class="card-inner">
                             <ul class="list-reset">
-                                <li v-for="notification in notifications">{{ notification.data.message }}</li>
+                                <li v-for="notification in notifications" class="p-2">
+                                    {{ notification.data.message }}
+                                    <span class="ml-2 text-gray">{{ notification.created_at | moment("from") }}</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -78,6 +81,7 @@
                 showingMenu: false,
                 showingNotifications: false,
                 notifications: [],
+                unreadNotificationCount: 0,
             }
         },
         mounted() {
@@ -113,6 +117,7 @@
                     presentUsers = presentUsers.filter(u => (u.id !== user.id));
                     this.$store.commit('updatePresentUsers', presentUsers);
                 });
+
         },
         methods: {
             focusSearch() {
@@ -176,12 +181,26 @@
                     this.$toasted.show("You're logged out! Don't be a stranger now, ya hear? 🤠", {duration: 2000});
                 });
             },
+            initNotificatons() {
+                let auth = '?api_token=' + this.loggedInUser.api_token;
+                axios.get('/api/v1/notifications' + auth).then((response) => {
+                    this.unreadNotificationCount = response.data.unread_count;
+                    this.notifications = response.data.notifications;
+                });
+            },
             toggleNotifications() {
                 this.showingNotifications = !this.showingNotifications;
                 let auth = '?api_token=' + this.loggedInUser.api_token;
-                axios.get('/api/v1/notifications' + auth).then((response) => {
-                    this.notifications = response.data;
+                axios.get('/api/v1/notifications/mark-read' + auth).then((response) => {
+                    this.unreadNotificationCount = 0;
                 });
+            }
+        },
+        watch: {
+            loggedInUser(newVal, oldVal) {
+                if (newVal && oldVal && (!oldVal.id || newVal.id !== oldVal.id)) {
+                    this.initNotificatons();
+                }
             }
         },
         computed: {
