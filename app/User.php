@@ -177,6 +177,11 @@ class User extends Authenticatable
         return $this->hasMany('App\TaggedUpvote', 'tagged_user_id');
     }
 
+    public function messages()
+    {
+        return $this->hasMany('App\Message', 'user_id');
+    }
+
     public function lastOnlineAt()
     {
         return $this->last_online_at ? Carbon::parse($this->last_online_at) : null;

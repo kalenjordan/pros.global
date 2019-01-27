@@ -9,7 +9,12 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App
  * @method static Message create($params)
+ *
  * @property User $toUser
+ * @property User $author
+ * @property $message
+ *
+ * @method static \Illuminate\Database\Query\Builder where($column, $operator = null, $value = null, $boolean = 'and')
  */
 class Message extends Model
 {
@@ -23,5 +28,10 @@ class Message extends Model
     public function toUser()
     {
         return $this->belongsTo('App\User', 'to_user_id');
+    }
+
+    public function author()
+    {
+        return $this->belongsTo('App\User', 'user_id');
     }
 }

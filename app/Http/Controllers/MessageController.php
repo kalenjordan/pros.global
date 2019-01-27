@@ -25,8 +25,8 @@ class MessageController extends Controller
 
         $text = $user->name . " sent you a";
         $link = [
-            'cta' => 'message',
-            'name' => 'profile',
+            'cta'    => 'message',
+            'name'   => 'profile',
             'params' => [
                 'username' => $user->username,
             ],
@@ -38,13 +38,36 @@ class MessageController extends Controller
         return $message;
     }
 
-    public function list(Request $request)
+    public function withOtherUser(Request $request, $otherUserId)
     {
-        return [
-            [
-                'id'      => 1,
-                'message' => 'Test',
-            ]
-        ];
+        $user = Auth::user();
+
+        $messages = Message::where('id', '>', 0);
+        $messages->whereNested(function ($model) use ($user, $otherUserId) {
+            /** @var $model \Illuminate\Database\Query\Builder */
+            $model->where('user_id', $user->id);
+            $model->where('to_user_id', $otherUserId);
+        });
+        $messages->orWhere(function ($model) use ($user, $otherUserId) {
+            /** @var $model \Illuminate\Database\Query\Builder */
+            $model->where('user_id', $otherUserId);
+            $model->where('to_user_id', $user->id);
+        });
+        $messages->orderBy('created_at', 'asc');
+
+        $data = [];
+        foreach ($messages->get() as $message) {
+            /** @var Message $message */
+            $data[] = [
+                'id'     => $message->id,
+                'type'   => 'text',
+                'author' => ($message->user_id == $user->id ? 'me' : $message->author->username),
+                'data'   => [
+                    'text' => $message->message,
+                ]
+            ];
+        }
+
+        return $data;
     }
 }

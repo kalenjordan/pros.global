@@ -20,7 +20,7 @@ Route::group(['middleware' => ['auth:api']], function () {
         return $request->user();
     });
 
-    Route::get('v1/messages', 'MessageController@list');
+    Route::get('v1/messages/with-other-user/{otherUserId}', 'MessageController@withOtherUser');
     Route::post('v1/messages', 'MessageController@send');
     Route::get('v1/notifications', 'NotificationController@list');
     Route::get('v1/notifications/mark-read', 'NotificationController@markRead');

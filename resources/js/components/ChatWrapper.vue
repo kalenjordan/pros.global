@@ -24,7 +24,7 @@
             return {
                 participants: [
                     {
-                        id: 'user1',
+                        id: 'otheruser',
                         name: 'Placeholder',
                         imageUrl: 'https://avatars3.githubusercontent.com/u/1915989?s=230&v=4'
                     },
@@ -34,7 +34,7 @@
                 newMessagesCount: 0,
                 isChatOpen: false, // to determine whether the chat window should be open or closed
                 showTypingIndicator: '', // when set to a value matching the participant.id it shows the typing indicator for the specific user
-                alwaysScrollToBottom: false,
+                alwaysScrollToBottom: true,
                 messageStyling: false,
             }
         },
@@ -57,7 +57,6 @@
                     message: message.data.text,
                     to_user_id: this.user.id,
                 }).then((response) => {
-                    // called when the user sends a message
                     this.messageList = [ ...this.messageList, message ]
                 });
             },
@@ -74,6 +73,13 @@
                 ];
                 this.titleImageUrl = this.user.avatar_path;
                 this.listenForMessages();
+
+                if (this.messageList.length === 0) {
+                    let auth = '?api_token=' + this.loggedInUser.api_token;
+                    axios.get('/api/v1/messages/with-other-user/' + this.user.id + auth).then((response) => {
+                        this.messageList = response.data;
+                    });
+                }
 
                 // Not sure why $nextTick doesn't work here.
                 setTimeout(() => {
@@ -92,7 +98,7 @@
                             return;
                         }
                         this.messageList.push(
-                            { type: 'text', author: `user1`, data: { text: e.message.message } },
+                            { type: 'text', author: `otheruser`, data: { text: e.message.message } },
                         );
                     });
             },
