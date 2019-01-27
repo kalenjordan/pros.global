@@ -11,16 +11,16 @@ class BeenTagged extends Notification
 {
     use Queueable;
 
-    public $message;
+    public $text;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($message)
+    public function __construct($text)
     {
-        $this->message = $message;
+        $this->text = $text;
     }
 
     /**
@@ -35,20 +35,6 @@ class BeenTagged extends Notification
     }
 
     /**
-     * Get the mail representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
-     */
-    public function toMail($notifiable)
-    {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
-    }
-
-    /**
      * Get the array representation of the notification.
      *
      * @param  mixed  $notifiable
@@ -57,7 +43,7 @@ class BeenTagged extends Notification
     public function toArray($notifiable)
     {
         return [
-            'message' => $this->message,
+            'text' => $this->text,
         ];
     }
 }

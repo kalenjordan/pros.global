@@ -16,24 +16,7 @@
                    @blur="isSearching=0"
             >
             <div class="inline-block relative" v-if="this.loggedInUser.id">
-                <div class="notification-wrapper inline-block mr-4">
-                    <i class="fas fa-bell text-gray-dark text-xl cursor-pointer"
-                       @click="toggleNotifications()"></i>
-                    <span v-if="unreadNotificationCount" class="alert-bubble bg-primary rounded-full cursor-pointer"
-                          @click="toggleNotifications()">
-                        {{ unreadNotificationCount }}
-                    </span>
-                    <div v-if="showingNotifications" class="card notification-list absolute p-2 w-64">
-                        <div class="card-inner">
-                            <ul class="list-reset">
-                                <li v-for="notification in notifications" class="p-2">
-                                    {{ notification.data.message }}
-                                    <span class="ml-2 text-gray">{{ notification.created_at | moment("from") }}</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                <notification-bell></notification-bell>
                 <img class="w-10 rounded-full cursor-pointer"
                      @click="showingMenu = !showingMenu"
                      :src="loggedInUser.avatar_path" style="margin-bottom: -14px;">
@@ -79,9 +62,6 @@
             return {
                 isSearching: false,
                 showingMenu: false,
-                showingNotifications: false,
-                notifications: [],
-                unreadNotificationCount: 0,
             }
         },
         mounted() {
@@ -100,19 +80,14 @@
 
             window.Echo.join('online_presence')
                 .here((users) => {
-                    console.log("There are " + users.length + " pro(s) online");
                     this.$store.commit('updatePresentUsers', users);
-                    console.log(this.presentUsers);
                 })
                 .joining((user) => {
-                    console.log("User joined: " + user.name);
                     let presentUsers = this.presentUsers;
                     presentUsers.push(user);
-                    console.log(presentUsers);
                     this.$store.commit('updatePresentUsers', presentUsers);
                 })
                 .leaving((user) => {
-                    console.log('User left: ' + user.name + ' (' + user.id + ')');
                     let presentUsers = this.presentUsers;
                     presentUsers = presentUsers.filter(u => (u.id !== user.id));
                     this.$store.commit('updatePresentUsers', presentUsers);
@@ -181,27 +156,6 @@
                     this.$toasted.show("You're logged out! Don't be a stranger now, ya hear? 🤠", {duration: 2000});
                 });
             },
-            initNotificatons() {
-                let auth = '?api_token=' + this.loggedInUser.api_token;
-                axios.get('/api/v1/notifications' + auth).then((response) => {
-                    this.unreadNotificationCount = response.data.unread_count;
-                    this.notifications = response.data.notifications;
-                });
-            },
-            toggleNotifications() {
-                this.showingNotifications = !this.showingNotifications;
-                let auth = '?api_token=' + this.loggedInUser.api_token;
-                axios.get('/api/v1/notifications/mark-read' + auth).then((response) => {
-                    this.unreadNotificationCount = 0;
-                });
-            }
-        },
-        watch: {
-            loggedInUser(newVal, oldVal) {
-                if (newVal && oldVal && (!oldVal.id || newVal.id !== oldVal.id)) {
-                    this.initNotificatons();
-                }
-            }
         },
         computed: {
             loggedInUser() {
@@ -209,7 +163,7 @@
             },
             presentUsers() {
                 return this.$store.state.presentUsers;
-            }
-        }
+            },
+        },
     }
 </script>

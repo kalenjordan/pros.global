@@ -74,6 +74,11 @@
                 ];
                 this.titleImageUrl = this.user.avatar_path;
                 this.listenForMessages();
+
+                // Not sure why $nextTick doesn't work here.
+                setTimeout(() => {
+                    document.querySelector('.sc-user-input--text').focus();
+                }, 500);
             },
             listenForMessages() {
                 let usernames = [this.user.username, this.loggedInUser.username];

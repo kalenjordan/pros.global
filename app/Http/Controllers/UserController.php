@@ -19,16 +19,17 @@ class UserController extends Controller
     {
         $users = User::with('tags');
         $limit = $request->input('limit') ? $request->input('limit') : 10;
-        $users->limit($limit);
-        $users->leftJoin("tagging_tagged_upvotes as upvotes", function($join) {
-            /** @var $join \Illuminate\Database\Query\JoinClause */
-            $join->on("upvotes.tagged_user_id", '=', 'users.id');
-        })->leftJoin("tagging_tagged as tagged", function($join) {
-            /** @var $join \Illuminate\Database\Query\JoinClause */
-            $join->on("tagged.taggable_id", '=', 'users.id');
-        })->select([
-            'users.*',
-        ])->groupBy('users.id');
+
+        $users->limit($limit)
+            ->leftJoin("tagging_tagged_upvotes as upvotes", function ($join) {
+                /** @var $join \Illuminate\Database\Query\JoinClause */
+                $join->on("upvotes.tagged_user_id", '=', 'users.id');
+            })->leftJoin("tagging_tagged as tagged", function ($join) {
+                /** @var $join \Illuminate\Database\Query\JoinClause */
+                $join->on("tagged.taggable_id", '=', 'users.id');
+            })->select([
+                'users.*',
+            ])->groupBy('users.id');
 
         if ($query = $request->input('q')) {
             $search = new UserSearch($users);
@@ -39,7 +40,8 @@ class UserController extends Controller
         }
 
         if ($request->input('show_sql')) {
-            echo \SqlFormatter::format($users->toSql()); exit;
+            echo \SqlFormatter::format($users->toSql());
+            exit;
         }
 
         return $users->get();
@@ -62,6 +64,7 @@ class UserController extends Controller
         $user = User::findByUsername($username);
         $content = json_decode($request->getContent(), true);
         $data = $content['data'];
+
         $user->about = $data['about'];
         $user->headline = $data['headline'];
         $user->save();
@@ -73,9 +76,10 @@ class UserController extends Controller
     {
         $loggedInUser = Auth::user();
         $user = User::findByUsername($username);
+
         $tag = $request->input('tag');
         if (!$tag) {
-            throw new \Exception("Empty tag");
+            return ['error_message' => 'Empty tag'];
         }
 
         $user->tag($tag);
@@ -90,7 +94,12 @@ class UserController extends Controller
         $tagged = Tagged::find($taggedId);
 
         if ($tagged) {
-            $tagged->delete();
+            try {
+                $tagged->delete();
+            } catch (\Exception $e) {
+                return ['error_message' => $e->getMessage()];
+            }
+
             $user->load('tagged');
         }
 
@@ -99,8 +108,9 @@ class UserController extends Controller
 
     public function upvoteTag(Request $request, $username, $taggedId)
     {
-        $loggedInUser = Auth::user();
         // todo check against auth'd user
+        $loggedInUser = Auth::user();
+
         $user = User::findByUsername($username);
         $tagged = Tagged::find($taggedId);
         $upvote = $tagged->toggleUpvote();
