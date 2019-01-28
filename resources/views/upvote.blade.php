@@ -16,11 +16,12 @@
     >
     <meta name="twitter:image"
           content="https://image.thum.io/get/viewportWidth/600/viewportHeight/300/width/600/noanimate/?url={{ urlencode(env('APP_URL') . "/upvotes/" . $upvote['id'] . "/twitter-card") }}"
-          />
+    />
 
-    <meta property='og:title' content='Shout-out to
-        {{ $upvote['tagged_user_firstname'] }}
-            from {{ $upvote['author_firstname'] }} | pros.global'/>
+    <meta property="og:type" content="website"/>
+    <meta property='og:title' content='Shout-out to {{ $upvote['tagged_user_firstname'] }} from
+        {{ $upvote['author_firstname'] }} | pros.global'/>
+    <meta property='og:description' content='{{ substr($upvote['message'], 0, 100) . '...' }}'/>
     <meta property='og:image'
           content="https://image.thum.io/get/viewportWidth/600/viewportHeight/300/width/600/noanimate/?url={{ urlencode(env('APP_URL') . "/upvotes/" . $upvote['id'] . "/twitter-card") }}"
     />
@@ -30,14 +31,18 @@
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132790317-1"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
+
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+
             gtag('js', new Date());
 
             gtag('config', 'UA-132790317-1');
         </script>
-    @endif
+@endif
 
-    <!-- Fonts -->
+<!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
