@@ -45,13 +45,15 @@ class TaggedUpvote extends Model
         $data['author_firstname'] = $this->user->getFirstName();
         $data['author_username'] = $this->user->username;
         $data['author_avatar'] = $this->user->avatar_path;
-        $data['tag_name'] = $this->tagged->tag_name;
-        $data['tag_slug'] = $this->tagged->tag_slug;
         $data['tagged_user_firstname'] = $this->tagged_user->getFirstName();
         $data['tagged_user_avatar'] = $this->tagged_user->avatar_path;
         $data['tagged_username'] = $this->tagged_user->username;
+
+        $tagName = $this->tagged ? $this->tagged->tag_name : "Deleted Tag";
+        $data['tag_name'] = $tagName;
+        $data['tag_slug'] = $this->tagged ? $this->tagged->tag_slug : "deleted";
         $data['message'] = $this->message ? $this->message :
-            ($data['author_firstname'] . ' upvoted ' . $data['tagged_user_firstname'] . ' for ' . $this->tagged->tag_name);
+            ($data['author_firstname'] . ' upvoted ' . $data['tagged_user_firstname'] . ' for ' . $tagName);
 
         return $data;
     }

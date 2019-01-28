@@ -19,6 +19,9 @@ use Auth;
 class Tagged extends \Conner\Tagging\Model\Tagged
 {
 
+    use \Illuminate\Database\Eloquent\SoftDeletes;
+    protected $dates = ['deleted_at'];
+
     /**
      * @return Tagged
      */
