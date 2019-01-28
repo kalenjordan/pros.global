@@ -58,7 +58,7 @@
                     </div>
                 </div>
             </div>
-            <a v-if="!isSearching && !this.loggedInUser.id" class="btn px-5 py-2" href="/auth/linkedin" target="_blank">Login</a>
+            <a v-if="!isSearching && !this.loggedInUser.id" class="btn px-5 py-2 ml-2" href="/auth/linkedin" target="_blank">Login</a>
         </div>
     </div>
 </template>

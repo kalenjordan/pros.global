@@ -71,6 +71,11 @@
                 });
             },
             openChat () {
+                if (! this.loggedIn) {
+                    alert("Please login before you can message " + this.user.name);
+                    return;
+                }
+
                 // called when the user clicks on the fab button to open the chat
                 this.isChatOpen = true;
                 this.newMessagesCount = 0;
