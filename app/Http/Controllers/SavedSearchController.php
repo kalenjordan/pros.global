@@ -49,7 +49,7 @@ class SavedSearchController extends Controller
         return $searches->get();
     }
 
-    public function view(Request $request, $slugOrId)
+    public function view($slugOrId)
     {
         $search = SavedSearch::findBySlug($slugOrId);
         if (!$search) {
@@ -66,5 +66,29 @@ class SavedSearchController extends Controller
             ->first();
 
         return $search;
+    }
+
+    public function viewHtml($slugOrId)
+    {
+        $search = SavedSearch::findBySlug($slugOrId);
+        if (!$search) {
+            $search = SavedSearch::find($slugOrId);
+        }
+
+        return view('saved-search', [
+            'savedSearch' => $search,
+        ]);
+    }
+
+    public function twitterCard($slugOrId)
+    {
+        $search = SavedSearch::findBySlug($slugOrId);
+        if (!$search) {
+            $search = SavedSearch::find($slugOrId);
+        }
+
+        return view('twitter-card-saved-search', [
+            'savedSearch' => $search,
+        ]);
     }
 }
