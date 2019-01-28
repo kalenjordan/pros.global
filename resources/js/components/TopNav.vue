@@ -6,11 +6,11 @@
             </router-link>
         </div>
         <div class="right-nav flex-5 text-right">
-            <router-link v-if="!isSearching"
-                         class="paragraph-link mr-4" style="font-size: 1.4rem;"
-                         :to="{name: 'saved-search', params: {slug: 'remote-jobs'}}">
-                Remote Jobs
-            </router-link>
+            <!--<router-link v-if="!isSearching"-->
+                         <!--class="paragraph-link mr-4" style="font-size: 1.4rem;"-->
+                         <!--:to="{name: 'saved-search', params: {slug: 'remote-jobs'}}">-->
+                <!--Remote Jobs-->
+            <!--</router-link>-->
             <i v-if="!isSearching" class="fas fa-search text-gray-dark text-xl cursor-pointer mr-2"
                @click="focusSearch()">
             </i>
