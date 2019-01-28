@@ -11,18 +11,17 @@
 |
 */
 
-Route::get('auth/linkedin', 'Auth\LinkedInController@login');
-Route::get('auth/linkedin/callback', 'Auth\LinkedInController@callback');
+Route::get('auth/linkedin', 'LinkedInController@login');
+Route::get('auth/linkedin/callback', 'LinkedInController@callback');
 
-Route::get('auth/logout', 'Auth\LinkedInController@logout'); // by default it just does post
-Route::get('auth/me', 'Auth\LinkedInController@me'); // by default it just does post
+Route::get('auth/logout', 'LinkedInController@logout');
+Route::get('auth/me', 'LinkedInController@me');
 
-Route::get('/admin/impersonate/{username}', 'AdminController@impersonate');
-Route::get('/admin/leave-impersonation', 'AdminController@impersonateLeave');
+Route::get('admin/impersonate/{username}', 'AdminController@impersonate');
+Route::get('admin/leave-impersonation', 'AdminController@impersonateLeave');
 
-Route::get('/upvotes/{id}', 'UpvoteController@viewHtml');
-Route::get('/upvotes/{id}/twitter-card-html', 'UpvoteController@twitterCardHtml');
-Route::get('/upvotes/{id}/twitter-card-image', 'UpvoteController@twitterCardImage');
+Route::get('upvotes/{id}', 'UpvoteController@viewHtml');
+Route::get('upvotes/{id}/twitter-card', 'UpvoteController@twitterCard');
 
 Route::get('{any?}', function () {
     return view('app');

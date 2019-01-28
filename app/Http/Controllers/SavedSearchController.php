@@ -8,17 +8,20 @@ use Illuminate\Http\Request;
 
 class SavedSearchController extends Controller
 {
-    public function create(Request $request) {
+
+    public function create(Request $request)
+    {
         $search = SavedSearch::create([
             'user_id' => Auth::user()->id,
-            'name' => $request->input('name'),
-            'query' => $request->input('query'),
+            'name'    => $request->input('name'),
+            'query'   => $request->input('query'),
         ]);
 
         return $search;
     }
 
-    public function edit(Request $request, $id) {
+    public function edit(Request $request, $id)
+    {
         $search = SavedSearch::find($id);
 
         $search->name = $request->input('name');
@@ -31,7 +34,8 @@ class SavedSearchController extends Controller
         return $search;
     }
 
-    public function list(Request $request) {
+    public function list(Request $request)
+    {
         $searches = SavedSearch::where('id', '>', 0);
 
         if ($request->input('featured')) {
@@ -45,16 +49,18 @@ class SavedSearchController extends Controller
         return $searches->get();
     }
 
-    public function view(Request $request, $slugOrId) {
+    public function view(Request $request, $slugOrId)
+    {
         $search = SavedSearch::findBySlug($slugOrId);
-        if (! $search) {
+        if (!$search) {
             $search = SavedSearch::find($slugOrId);
         }
 
         return $search;
     }
 
-    public function homepage(Request $request) {
+    public function homepage(Request $request)
+    {
         $search = SavedSearch::where('user_id', env('ADMIN_USER_ID'))
             ->where('featured_order', 100)
             ->first();

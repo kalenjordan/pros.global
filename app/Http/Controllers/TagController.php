@@ -9,7 +9,9 @@ use App\Tagged;
 
 class TagController extends Controller
 {
-    public function index(Request $request) {
+
+    public function index(Request $request)
+    {
         $query = Tag::where('id', '>', 0);
         if ($request->input('limit')) {
             $query->limit($request->input('limit'));
@@ -19,17 +21,23 @@ class TagController extends Controller
         return $tags->toArray();
     }
 
-    public function view(Request $request, $slug) {
+    public function view(Request $request, $slug)
+    {
         $tag = Tag::findBySlug($slug);
         return $tag->toArray();
     }
 
-    public function deleteTag(Request $request, $username, $tagSlug) {
+    public function deleteTag(Request $request, $username, $tagSlug)
+    {
         $user = User::findByUsername($username);
         $tagged = Tagged::findByUserIdAndSlug($user->id, $tagSlug);
 
         if ($tagged) {
-            $tagged->delete();
+            try {
+                $tagged->delete();
+            } catch (\Exception $e) {
+                return ['error_message' => $e->getMessage()];
+            }
         }
 
         return $user->tags;

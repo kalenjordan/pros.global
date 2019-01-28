@@ -16,6 +16,9 @@ self.addEventListener('install', function(e) {
 
 self.addEventListener('fetch', function(e) {
     // console.log('[ServiceWorker] Fetch', e.request.url);
+    if (e.request.cache === 'only-if-cached' && e.request.mode !== 'same-origin') {
+        return;
+    }
     e.respondWith(
         caches.match(e.request).then(function(response) {
             if (response) {

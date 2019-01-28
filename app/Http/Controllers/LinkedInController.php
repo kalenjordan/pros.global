@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
 use App\User;
 use Auth;
@@ -9,7 +9,7 @@ use Socialite;
 
 use Illuminate\Http\Request;
 
-class LinkedInController extends \App\Http\Controllers\Controller
+class LinkedInController extends Controller
 {
     /**
      * Create a new controller instance.

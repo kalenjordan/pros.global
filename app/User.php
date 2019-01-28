@@ -4,6 +4,7 @@ namespace App;
 
 use Carbon\Carbon;
 use Conner\Tagging\Taggable;
+use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -17,6 +18,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @method static User find($id)
  * @method static User create($params)
  *
+ * @property $id
  * @property $name
  * @property $email
  * @property $username
@@ -32,6 +34,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property $api_token
  * @property $is_admin
  * @property $last_online_at
+ *
+ * @property $notifications
+ * @property DatabaseNotificationCollection $unreadNotifications
  */
 class User extends Authenticatable
 {

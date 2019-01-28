@@ -48,9 +48,8 @@
                 });
             },
             listenForMessages() {
-                let chatKey = 'user_notifications_' + this.loggedInUser.id;
-                console.log(chatKey);
-                window.Echo.private(chatKey)
+                let channel = 'user_notifications_' + this.loggedInUser.id;
+                window.Echo.private(channel)
                     .listen('MessageSentNotificationEvent', (e) => {
                         let count = this.unreadNotificationCount;
                         count++;
