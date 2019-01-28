@@ -20,16 +20,19 @@
                 <ul>
                     <li><a class="naked-link" href="https://github.com/kalenjordan/founderland">Open source</a></li>
                     <li>
-                        <router-link class="naked-link" :to="{ name: 'saved-search', params: {slug: 'remote-jobs'}}">Remote Jobs</router-link>.
+                        <router-link class="naked-link" :to="{ name: 'saved-search', params: {slug: 'remote-jobs'}}">Remote Jobs</router-link>
                     </li>
                     <li>
-                        <router-link class="naked-link" :to="{ name: 'saved-search', params: {slug: 'ecommerce-founders'}}">eCommerce Founders</router-link>.
+                        <router-link class="naked-link" :to="{ name: 'saved-search', params: {slug: 'ecommerce-founders'}}">eCommerce Founders</router-link>
                     </li>
                     <li>
-                        <router-link class="naked-link" :to="{ name: 'saved-search', params: {slug: 'ecommerce-founders'}}">SaaS Founders</router-link>.
+                        <router-link class="naked-link" :to="{ name: 'saved-search', params: {slug: 'saas-founders'}}">SaaS Founders</router-link>
                     </li>
                     <li>
-                        <router-link class="naked-link" :to="{ name: 'saved-search', params: {slug: 'kalens-shout-outs'}}">Kalen's Shout-outs</router-link>.
+                        <router-link class="naked-link" :to="{ name: 'saved-search', params: {slug: 'kalens-shout-outs'}}">Kalen's Shout-outs</router-link>
+                    </li>
+                    <li>
+                        <router-link class="naked-link" :to="{ name: 'saved-search', params: {slug: 'new-pros'}}">New Pros</router-link>
                     </li>
                 </ul>
             </div>
