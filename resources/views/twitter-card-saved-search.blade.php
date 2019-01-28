@@ -15,11 +15,11 @@
         <i class="fas fa-bolt absolute gray-lighter"></i>
         <div class="flex flex-wrap items-center h-full">
             <h1 class=" text-2rem -mb-16 w-full">{{ $savedSearch->name }}</h1>
-            <div class="images mx-auto -ml-8 w-full ">
+            <div class="images mx-auto -ml-4 w-full ">
                 <?php $count = 0; ?>
                 @foreach ($savedSearch->fetchUsers() as $user)
                     <?php $count++; if ($count == 9) break; ?>
-                    <img class="inline-block rounded-full w-5rem -mr-8 border-2 border-primary" src="{{ $user->avatar_path }}">
+                    <img class="inline-block rounded-full w-55rem -mr-8 border-2 border-primary" src="{{ $user->avatar_path }}">
                 @endforeach
             </div>
         </div>
