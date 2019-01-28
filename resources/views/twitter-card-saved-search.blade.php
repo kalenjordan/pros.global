@@ -10,15 +10,18 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body class="flex items-center">
-    <div class="twitter-card twitter-card-saved-search relative bg-white p-8 mx-auto text-center" style="width: 600px; height: 300px;" >
+    <div class="twitter-card twitter-card-saved-search relative bg-white p-8 mx-auto text-center"
+         style="width: 600px; height: 300px;">
         <i class="fas fa-bolt absolute gray-lighter"></i>
-        <h1 class=" text-2rem mb-6">{{ $savedSearch->name }}</h1>
-        <div class="images mx-auto -ml-8">
-            <?php $count = 0; ?>
-            @foreach ($savedSearch->fetchUsers() as $user)
-                <?php $count++; if ($count == 9) break; ?>
-                <img class="inline-block rounded-full w-5rem -mr-8 border-2 border-primary" src="{{ $user->avatar_path }}">
-            @endforeach
+        <div class="flex flex-wrap items-center h-full">
+            <h1 class=" text-2rem -mb-16 w-full">{{ $savedSearch->name }}</h1>
+            <div class="images mx-auto -ml-8 w-full ">
+                <?php $count = 0; ?>
+                @foreach ($savedSearch->fetchUsers() as $user)
+                    <?php $count++; if ($count == 9) break; ?>
+                    <img class="inline-block rounded-full w-5rem -mr-8 border-2 border-primary" src="{{ $user->avatar_path }}">
+                @endforeach
+            </div>
         </div>
     </div>
 </body>

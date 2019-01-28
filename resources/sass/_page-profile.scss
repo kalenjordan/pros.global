@@ -10,6 +10,11 @@
         .avatar {
             img {
                 @apply .border-4 .border-secondary;
+                @media screen and (min-width: 576px) {
+                    &:hover {
+                        @apply w-64 h-64;
+                    }
+                }
             }
             .is-present {
                 color: green;
