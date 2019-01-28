@@ -15,7 +15,9 @@
                                      :to="{ name: notification.data.link.name, params: notification.data.link.params}">
                             {{ notification.data.link.cta }}
                         </router-link>
-                        <span class="text-gray">{{ notification.created_at | moment("from") }}</span>
+                        <span class="text-gray">{{ notification.created_at | moment("subtract", "6 hours") | moment("from") }}</span>
+                        {{ upvote.created_at | moment("subtract", "6 hours") | moment('from') }}
+
                     </li>
                 </ul>
                 <ul class="list-reset" v-else>

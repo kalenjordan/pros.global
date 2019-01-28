@@ -29,7 +29,7 @@
                     <div v-else v-html="markdown(this.upvote.message)" @click="editIfOwner()"></div>
                     <div class="inline-tag mt-2">{{ upvote.tag_name }}</div>
                     <div class="inline text-gray-light text-xs ml-1">
-                        {{ upvote.created_at | moment("from") }}
+                        {{ upvote.created_at | moment("subtract", "6 hours") | moment('from') }}
                     </div>
                 </div>
             </div>
@@ -112,10 +112,11 @@
                 return 'https://www.linkedin.com/shareArticle?mini=true&url=' + window.location.href;
             },
             twitterShareUrl() {
+                let hashtag = this.upvote.tag_slug ? this.upvote.tag_slug.replace('-', '') : null;
                 let text = "I just gave @" + this.upvote.tagged_username + " some props:\r\n\r\n" +
                     '"' + this.shortenedMessage + '"' + "\r\n\r\n" +
                     window.location.href + "\r\n\r\n" +
-                    '#' + this.upvote.tag_slug.replace('-', '');
+                    '#' + hashtag;
 
                 return 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text);
             },

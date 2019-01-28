@@ -50,7 +50,7 @@
                             <div class="inline text-gray-light">
                                 <router-link class="naked-link text-xs ml-1"
                                              :to="{name: 'upvote', params: {id: upvote.id}}">
-                                    {{ upvote.created_at | moment("from") }}
+                                    {{ upvote.created_at | moment("subtract", "6 hours") | moment('from') }}
                                 </router-link>
                             </div>
                         </div>

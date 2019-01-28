@@ -12,7 +12,7 @@
 <body class="flex items-center">
     <div class="twitter-card twitter-card-saved-search relative bg-white p-8 mx-auto text-center" style="width: 600px; height: 300px;" >
         <i class="fas fa-bolt absolute gray-lighter"></i>
-        <h1 class=" text-3rem mb-6">{{ $savedSearch->name }}</h1>
+        <h1 class=" text-2rem mb-6">{{ $savedSearch->name }}</h1>
         <div class="images mx-auto -ml-8">
             <?php $count = 0; ?>
             @foreach ($savedSearch->fetchUsers() as $user)
