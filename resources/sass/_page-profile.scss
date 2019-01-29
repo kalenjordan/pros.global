@@ -1,11 +1,4 @@
 .page-profile {
-    .nav .nav--search {
-        display: none;
-        @media screen and (min-width: 576px) {
-            display: inline-block;
-        }
-    }
-
     .header {
         .avatar {
             transition: all 0.25s ease;
