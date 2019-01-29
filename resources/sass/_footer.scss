@@ -13,7 +13,8 @@
     .footer--inner {
         img.logo {
             filter: grayscale(100);
-            width: 13rem;
+            width: 10rem;
+            opacity: 0.5;
         }
 
         .footer--column {

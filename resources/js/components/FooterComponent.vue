@@ -2,7 +2,6 @@
     <div class="footer mx-auto max-w-lg text-sm leading-tight sm:mt-16 pb-16">
         <div class="section footer--inner flex flex-wrap">
             <div class="footer--column flex-2 p-3">
-                <h3 class="mb-2">About</h3>
                 <div class="mb-2">
                     <img class="logo" src="/img/logo.png">
                 </div>
