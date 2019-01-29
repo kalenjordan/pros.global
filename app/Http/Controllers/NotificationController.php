@@ -10,11 +10,13 @@ use Illuminate\Notifications\Notification;
 class NotificationController extends Controller
 {
 
-    public function list()
+    public function list(Request $request)
     {
         $user = Auth::user();
+        $limit = $request->input('limit') ? $request->input('limit') : 20;
+
         return [
-            'notifications' => $user->notifications,
+            'notifications' => $user->notifications()->limit($limit)->get(),
             'unread_count'  => $user->unreadNotifications()->count(),
         ];
     }

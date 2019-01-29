@@ -6,18 +6,21 @@
               @click="toggleNotifications()">
                         {{ this.unreadNotificationCount }}
                     </span>
-        <div v-if="showingNotifications" class="card notification-list absolute p-2 w-64">
+        <div v-if="showingNotifications" class="card notification-list absolute w-64">
             <div class="card-inner">
                 <ul class="list-reset" v-if="notifications.length">
-                    <li v-for="notification in notifications" class="p-2">
+                    <li v-for="notification in notifications" class="px-4 py-2" :class="{'bg-primary-lightest' : notification.data.read_at === null}">
                         {{ notification.data.text }}
                         <router-link class="paragraph-link" v-if="notification.data.link"
                                      :to="{ name: notification.data.link.name, params: notification.data.link.params}">
                             {{ notification.data.link.cta }}
                         </router-link>
-                        <span class="text-gray">{{ notification.created_at | moment("subtract", "6 hours") | moment("from") }}</span>
-                        {{ upvote.created_at | moment("subtract", "6 hours") | moment('from') }}
-
+                        <span class="text-gray" v-if="notification.created_at">
+                            {{ notification.created_at | moment("subtract", "6 hours") | moment("from") }}
+                        </span>
+                        <span class="text-gray" v-else>
+                            Just now
+                        </span>
                     </li>
                 </ul>
                 <ul class="list-reset" v-else>
@@ -58,7 +61,10 @@
                         this.$store.commit('updateUnreadNotificationCount', count);
 
                         let notifications = this.notifications;
-                        notifications.push({data: e.notification});
+                        let notification = {data: e.notification};
+                        notification.data.read_at = null;
+                        notifications.unshift(notification);
+
                         this.$store.commit('updateNotifications', notifications);
                     });
             },

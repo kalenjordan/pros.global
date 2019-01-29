@@ -34,7 +34,7 @@
             </div>
         </div>
         <hr v-if="hasUpvotes" class="m-6 sm:my-16 sm:w-md sm:mx-auto"/>
-        <div v-if="hasUpvotes" class="section endorsements mx-auto max-w-sm text-sm leading-tight">
+        <section v-if="hasUpvotes" class="endorsements mx-auto max-w-sm text-sm leading-tight">
             <div class="card hoverable endorsement-card mb-4" v-for="upvote in user.upvotes" :key="upvote.id">
                 <div class="card--inner p-4 flex">
                     <div class="avatar centered text-center -ml-3">
@@ -57,8 +57,14 @@
                     </div>
                 </div>
             </div>
+        </section>
+        <section class="mt-16 text-center text-4xl text-gray-light">
+            <a class="naked-link mr-3" target="_blank" :href="linkedInUrl">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </section>
 
-        </div>
+
         <chat-wrapper :user="user"></chat-wrapper>
 
         <keyboard-shortcuts></keyboard-shortcuts>
@@ -168,6 +174,9 @@
             unreadNotificationCount() {
                 return this.$store.state.unreadNotificationCount;
             },
+            linkedInUrl() {
+                return 'https://www.linkedin.com/search/results/all/?keywords=' + this.user.name;
+            }
         },
         metaInfo () {
             let notificationCount = this.unreadNotificationCount ? '(' + this.unreadNotificationCount + ') ' : '';
