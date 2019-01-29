@@ -9,7 +9,7 @@
         <div v-if="showingNotifications" class="card notification-list absolute w-64">
             <div class="card-inner">
                 <ul class="list-reset" v-if="notifications.length">
-                    <li v-for="notification in notifications" class="px-4 py-2" :class="{'bg-primary-lightest' : notification.data.read_at === null}">
+                    <li v-for="notification in notifications" class="px-4 py-2" :class="{'bg-primary-lightest' : notification.read_at === null}">
                         {{ notification.data.text }}
                         <router-link class="paragraph-link" v-if="notification.data.link"
                                      :to="{ name: notification.data.link.name, params: notification.data.link.params}">
@@ -62,7 +62,7 @@
 
                         let notifications = this.notifications;
                         let notification = {data: e.notification};
-                        notification.data.read_at = null;
+                        notification.read_at = null;
                         notifications.unshift(notification);
 
                         this.$store.commit('updateNotifications', notifications);
