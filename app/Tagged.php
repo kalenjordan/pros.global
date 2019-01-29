@@ -15,6 +15,7 @@ use Auth;
  * @property $tag_name
  * @property $tag_slug
  * @property $upvote_count
+ * @property $tagged_by
  */
 class Tagged extends \Conner\Tagging\Model\Tagged
 {
