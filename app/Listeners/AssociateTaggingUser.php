@@ -2,6 +2,8 @@
 
 namespace App\Listeners;
 
+use Auth;
+
 use App\Tagged;
 use App\User;
 use Conner\Tagging\Events\TagAdded;
@@ -26,12 +28,14 @@ class AssociateTaggingUser
      */
     public function handle(TagAdded $event)
     {
-        /** @var User $user */
-        $user = $event->model;
+        /** @var User $taggedUser */
+        $taggedUser = $event->model;
 
         /** @var Tagged $tagged */
-        $tagged = $user->tagged->last();
-        $tagged->tagged_by = $user->id;
-        $tagged->save();
+        $tagged = $taggedUser->tagged->last();
+        if (Auth::user()) {
+            $tagged->tagged_by = Auth::user()->id;
+            $tagged->save();
+        }
     }
 }
