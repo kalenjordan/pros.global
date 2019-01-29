@@ -74,11 +74,27 @@ hr {
 .nav {
     img {
         transition: all 0.25s ease;
-        border: solid 2px $primaryColorLighter;
+    }
+
+    img.logo {
+        filter: grayscale(100);
+        width: 13rem;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+
+    img.avatar {
+        border-color: $primaryColorLighter;
         &:hover {
             border-color: $primaryColor;
         }
     }
+}
+
+.w-3rem {
+    width: 3rem;
 }
 
 .w-5rem {

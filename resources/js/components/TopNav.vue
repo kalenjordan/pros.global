@@ -2,7 +2,8 @@
     <div class="nav flex a items-center">
         <div class="logo-wrapper flex-1 text-left">
             <router-link :to="{name: 'home'}" class="naked-link" href="/">
-                <i class="fas fa-bolt font-200"></i>
+                <!--<i class="fas fa-bolt font-200"></i>-->
+                <img class="logo w-3rem" src="/img/icon.png">
             </router-link>
         </div>
         <div class="right-nav flex-5 text-right">
@@ -25,7 +26,7 @@
             >
             <div v-if="!isSearching && this.loggedInUser.id" class="inline-block relative">
                 <notification-bell></notification-bell>
-                <img class="w-10 rounded-full cursor-pointer"
+                <img class="avatar w-10 rounded-full cursor-pointer border-2"
                      @click="showingMenu = !showingMenu"
                      :src="loggedInUser.avatar_path" style="margin-bottom: -14px;">
                 <div v-if="showingMenu" class="card logged-in-menu absolute">

@@ -3,6 +3,9 @@
         <div class="section footer--inner flex flex-wrap">
             <div class="footer--column flex-2 p-3">
                 <h3 class="mb-2">About</h3>
+                <div class="mb-2">
+                    <img class="w-3rem" src="/img/logo.png">
+                </div>
                 <p class="mb-2">
                     pros.global is a matchmaking platform for pros
                     being built by
