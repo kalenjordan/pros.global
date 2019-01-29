@@ -11,6 +11,11 @@
     }
 
     .footer--inner {
+        img.logo {
+            filter: grayscale(100);
+            width: 13rem;
+        }
+
         .footer--column {
             ul {
                 list-style-type: none;

@@ -77,9 +77,6 @@ hr {
     }
 
     img.logo {
-        filter: grayscale(100);
-        width: 13rem;
-
         &:hover {
             transform: scale(1.1);
         }

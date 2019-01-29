@@ -4,7 +4,7 @@
             <div class="footer--column flex-2 p-3">
                 <h3 class="mb-2">About</h3>
                 <div class="mb-2">
-                    <img class="w-3rem" src="/img/logo.png">
+                    <img class="logo" src="/img/logo.png">
                 </div>
                 <p class="mb-2">
                     pros.global is a matchmaking platform for pros
@@ -46,7 +46,7 @@
                     Sign up to get email updates:
                 </p>
                 <div class="email-signup mb-4">
-                    <input class="text p-1" type="text" style="width: 173px;" placeholder="you@example.com">
+                    <input class="text p-1" type="text" style="width: 125px;" placeholder="you@example.com">
                     <a class="btn px-3 py-1"><i class="fa fa-envelope"></i></a>
                 </div>
                 <div class="text-2xl gray-lighter">
