@@ -87,11 +87,13 @@
 
             this.broadcastPresence();
 
-            axios.get('/auth/me').then((response) => {
-                if (response.data.error_message) {
-                    this.logout();
-                }
-            });
+            if (this.loggedIn) {
+                axios.get('/auth/me').then((response) => {
+                    if (response.data.error_message) {
+                        this.logout();
+                    }
+                });
+            }
         },
         methods: {
             broadcastPresence() {
@@ -174,6 +176,9 @@
             },
         },
         computed: {
+            loggedIn() {
+                return this.$store.state.user && this.$store.state.user.id;
+            },
             loggedInUser() {
                 return this.$store.state.user;
             },
