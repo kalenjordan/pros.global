@@ -57,6 +57,7 @@ class User extends Authenticatable
         'avatar_path',
         'headline',
         'password',
+        'added_by',
     ];
 
     /**

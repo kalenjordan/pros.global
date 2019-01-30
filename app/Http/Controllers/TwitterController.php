@@ -8,9 +8,10 @@ use Illuminate\Http\Request;
 
 class TwitterController extends Controller
 {
+
     public function addUser($username)
     {
-        if (Auth::user()) {
+        if (!Auth::user()) {
             return ['error_message' => 'Not logged in'];
         }
 
@@ -39,6 +40,7 @@ class TwitterController extends Controller
             'avatar_path' => "/avatars/$fileName",
             'headline'    => $twitter->description ? $twitter->description : '(No description)',
             'password'    => md5(time() . env('APP_KEY')),
+            'added_by'    => Auth::user()->id,
         ]);
 
         return $user->toArray();

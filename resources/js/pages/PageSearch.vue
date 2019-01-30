@@ -46,11 +46,9 @@
                 users: [],
                 search_processing: false,
                 query: null,
-                loggedInUser: {},
             }
         },
         mounted() {
-            this.loggedInUser = this.$cookies.get('user') ? this.$cookies.get('user') : {};
             window.addEventListener('keyup', this.hotkeyHandler);
             if (this.$route.params.query) {
                 this.query = this.$route.params.query;

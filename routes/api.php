@@ -8,7 +8,6 @@ Route::get('v1/saved-searches/{slug}', 'SavedSearchController@view');
 
 Route::get('v1/tags', 'TagController@index');
 Route::get('v1/tags/{slug}', 'TagController@view');
-Route::get('v1/twitter/add-user/{username}', 'TwitterController@addUser');
 
 Route::get('v1/users', 'UserController@list');
 Route::get('v1/users/{username}', 'UserController@view');
@@ -24,6 +23,8 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('v1/messages', 'MessageController@send');
     Route::get('v1/notifications', 'NotificationController@list');
     Route::get('v1/notifications/mark-read', 'NotificationController@markRead');
+
+    Route::get('v1/twitter/add-user/{username}', 'TwitterController@addUser');
 
     Route::post('v1/users/{username}', 'UserController@post');
     Route::post('v1/users/{username}/add-tag', 'UserController@addTag');
