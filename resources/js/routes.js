@@ -6,8 +6,14 @@ import PageUserProfile from './pages/PageUserProfile';
 import PageUpvote from './pages/PageUpvote';
 import PageSavedSearches from './pages/PageSavedSearches';
 import PageSavedSearch from './pages/PageSavedSearch';
+import PageLinked from './pages/PageLinked';
 
 let routes = [
+    {
+        name: 'linkedin-auth',
+        path: '/auth/linkedin/callback',
+        component: PageLinked,
+    },
     {
         name: 'home',
         path: '/',

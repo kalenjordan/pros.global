@@ -11,6 +11,9 @@
     @section('meta-twitter-card')
     @show
 
+    @section('script')
+    @show
+
     @if (env('GOOGLE_ANALYTICS_ENABLED'))
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132790317-1"></script>
         <script>

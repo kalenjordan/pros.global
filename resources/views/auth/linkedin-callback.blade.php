@@ -1,12 +1,7 @@
-<?php
-/** @var \App\User $user */
-?>
+@extends('app')
 
-<html>
-<body>
+@section('script')
     <script type="text/javascript">
-        window.opener.Events.$emit('user-authenticated', JSON.stringify({!! Auth::user() ? json_encode(Auth::user()->toArrayForCookie()) : null  !!}));
-        window.close();
+        let userData = JSON.stringify({!! $user ? json_encode($user->toArrayForCookie()) : null  !!});
     </script>
-</body>
-</html>
+@endsection
