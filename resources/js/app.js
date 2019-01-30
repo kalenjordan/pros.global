@@ -14,22 +14,26 @@ import Vuetify from 'vuetify'
 import VModal from 'vue-js-modal'
 import Vuex from 'vuex'
 import Meta from 'vue-meta'
+import VueClipboard from 'vue-clipboard2'
+import Chat from 'vue-beautiful-chat'
 
-window.Vue.use(Vuetify, {iconfont: 'fa'});
+Vue.use(Vuetify, {iconfont: 'fa'});
 Vue.use(VModal);
 Vue.use(Vuex);
 Vue.use(VModal);
 Vue.use(Meta);
 
-window.Vue.use(VueRouter);
-window.Vue.use(Toasted, {duration: 5000, position: 'bottom-right'});
+VueClipboard.config.autoSetContainer = true;
+Vue.use(VueClipboard);
+
+Vue.use(VueRouter);
+Vue.use(Toasted, {duration: 5000, position: 'bottom-right'});
+
+Vue.use(Chat);
 
 Vue.use(require('vue-shortkey'));
 Vue.use(require('vue-moment'));
 Vue.use(require('vue-cookies'));
-
-import Chat from 'vue-beautiful-chat'
-Vue.use(Chat);
 
 // Event (singular) conflicts with vue-shortkey
 window.Events = new window.Vue();

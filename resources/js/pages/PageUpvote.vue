@@ -42,10 +42,12 @@
                     {{ upvote.author_firstname }}
                 </router-link>
             </div>
-            <div class="text-center text-4xl text-gray-light">
-                <a class="naked-link mr-3" target="_blank" :href="linkedinShareUrl">
-                    <i class="fab fa-linkedin"></i>
-                </a>
+            <div class="container text-center text-4xl text-gray-light">
+                <input type="hidden" v-model="message">
+                <a class="naked-link mr-3" href="javascript://"
+                   v-clipboard:copy="message"
+                   v-clipboard:success="linkedinShare"
+                   v-clipboard:error="onError"><i class="fab fa-linkedin"></i></a>
                 <a class="naked-link" target="_blank" :href="twitterShareUrl">
                     <i class="fab fa-twitter"></i>
                 </a>
@@ -62,14 +64,30 @@
             return {
                 upvote: {},
                 editing: false,
+                message: null,
             }
         },
         mounted() {
             axios.get('/api/v1/upvotes/' + this.$route.params.id).then((response) => {
                 this.upvote = response.data;
+                this.message = this.linkedinShareContent();
             });
         },
         methods: {
+            linkedinShare() {
+                this.$toasted.show('Copied message to clipboard. Opening LinkedIn share window now.');
+                setTimeout(() => {
+                    let url = 'https://www.linkedin.com/shareArticle?mini=true&url=' + window.location.href;
+                    window.open(url);
+                }, 1000);
+            },
+            linkedinShareContent() {
+                let hashtag = this.upvote.tag_slug ? this.upvote.tag_slug.replace('-', '') : null;
+                return "I just gave @" + this.upvote.tagged_user_firstname + " some props:\r\n\r\n" +
+                    '"' + this.shortenedMessage + '"' + "\r\n\r\n" +
+                    window.location.href + "\r\n\r\n" +
+                    '#' + hashtag;
+            },
             editIfOwner() {
                 if (!this.loggedInUser.id) {
                     return;
@@ -107,9 +125,6 @@
         computed: {
             loggedInUser() {
                 return this.$cookies.get('user');
-            },
-            linkedinShareUrl() {
-                return 'https://www.linkedin.com/shareArticle?mini=true&url=' + window.location.href;
             },
             twitterShareUrl() {
                 let hashtag = this.upvote.tag_slug ? this.upvote.tag_slug.replace('-', '') : null;
