@@ -101,6 +101,10 @@
                 }
             },
             addTwitterUser() {
+                if (! this.loggedIn) {
+                    return alert('Please login first');
+                }
+
                 let auth = '?api_token=' + this.loggedInUser.api_token;
                 axios.get('/api/v1/twitter/add-user/' + this.$refs.twitterUsername.value + auth).then((response) => {
                     if (response.data.username) {
@@ -113,6 +117,14 @@
                     }
                 });
             },
-        }
+        },
+        computed: {
+            loggedIn() {
+                return this.$store.state.user && this.$store.state.user.id;
+            },
+            loggedInUser() {
+                return this.$store.state.user;
+            },
+        },
     }
 </script>

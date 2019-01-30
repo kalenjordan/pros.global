@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\User;
 use Illuminate\Http\Request;
 
 class TwitterController extends Controller
 {
-    public function addUser(Request $request, $username)
+    public function addUser($username)
     {
+        if (Auth::user()) {
+            return ['error_message' => 'Not logged in'];
+        }
+
         $twitter = \Thujohn\Twitter\Facades\Twitter::get('/users/show.json', [
             'screen_name' => $username
         ]);
