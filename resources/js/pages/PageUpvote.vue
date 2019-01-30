@@ -133,6 +133,13 @@
                 let subString = this.upvote.message.substr(0, n - 1);
                 return subString.substr(0, subString.lastIndexOf(' ')) + "...";
             }
-        }
+        },
+        metaInfo () {
+            return {
+                title: this.unreadNotificationCount ? '(' + this.unreadNotificationCount + ') ' : '' +
+                    "Shout-out to " + this.upvote.tagged_user_firstname + " from " + this.upvote.author_firstname
+                    +  " | pros.global",
+            }
+        },
     }
 </script>

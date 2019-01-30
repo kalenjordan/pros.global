@@ -124,5 +124,12 @@
                 return this.$store.state.user;
             },
         },
+        metaInfo () {
+            return {
+                title: this.unreadNotificationCount ? '(' + this.unreadNotificationCount + ') ' : '' +
+                    "Search for " + " " + this.query
+                    +  " | pros.global",
+            }
+        },
     }
 </script>
