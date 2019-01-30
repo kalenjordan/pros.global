@@ -4,7 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{{ env('DEFAULT_TITLE') }}</title>
+    @section('title')
+        <title>{{ env('DEFAULT_TITLE') }}</title>
+    @show
+
+    @section('meta-twitter-card')
+    @show
 
     @if (env('GOOGLE_ANALYTICS_ENABLED'))
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132790317-1"></script>

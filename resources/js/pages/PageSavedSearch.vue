@@ -111,9 +111,10 @@
             }
         },
         metaInfo () {
-            let notificationCount = this.unreadNotificationCount ? '(' + this.unreadNotificationCount + ') ' : '';
             return {
-                title: notificationCount + this.savedSearch.name + " | pros.global",
+                title: this.unreadNotificationCount ? '(' + this.unreadNotificationCount + ') ' : '' +
+                (this.savedSearch ? this.savedSearch.name + " | " : "")
+                +  "pros.global",
             }
         },
     }
