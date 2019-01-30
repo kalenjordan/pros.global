@@ -81,7 +81,7 @@ class LinkedInController extends Controller
     public function me(Request $request) {
         $user = Auth::user();
         if (! $user) {
-            return ['message' => 'Not logged in'];
+            return ['error_message' => 'Not logged in'];
         }
 
         return $user->toArrayForCookie();

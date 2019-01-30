@@ -78,32 +78,38 @@
             window.Events.$on('user-authenticated', (data) => {
                 this.$cookies.set('user', data);
                 this.$store.commit('updateUser', JSON.parse(data));
-
-                if (this.$router.currentRoute.name === 'logout') {
-                    this.$router.push({name: 'home'});
-                }
+                window.location.reload();
             });
+
             if (this.$cookies.get('user')) {
                 this.$store.commit('updateUser', this.$cookies.get('user'));
             }
 
-            window.Echo.join('online_presence')
-                .here((users) => {
-                    this.$store.commit('updatePresentUsers', users);
-                })
-                .joining((user) => {
-                    let presentUsers = this.presentUsers;
-                    presentUsers.push(user);
-                    this.$store.commit('updatePresentUsers', presentUsers);
-                })
-                .leaving((user) => {
-                    let presentUsers = this.presentUsers;
-                    presentUsers = presentUsers.filter(u => (u.id !== user.id));
-                    this.$store.commit('updatePresentUsers', presentUsers);
-                });
+            this.broadcastPresence();
 
+            axios.get('/auth/me').then((response) => {
+                if (response.data.error_message) {
+                    this.logout();
+                }
+            });
         },
         methods: {
+            broadcastPresence() {
+                window.Echo.join('online_presence')
+                    .here((users) => {
+                        this.$store.commit('updatePresentUsers', users);
+                    })
+                    .joining((user) => {
+                        let presentUsers = this.presentUsers;
+                        presentUsers.push(user);
+                        this.$store.commit('updatePresentUsers', presentUsers);
+                    })
+                    .leaving((user) => {
+                        let presentUsers = this.presentUsers;
+                        presentUsers = presentUsers.filter(u => (u.id !== user.id));
+                        this.$store.commit('updatePresentUsers', presentUsers);
+                    });
+            },
             focusSearch() {
                 this.isSearching = true;
                 this.$nextTick(() => {

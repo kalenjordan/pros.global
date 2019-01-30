@@ -14,7 +14,7 @@
                 />
             </div>
             <div class="centered">
-                <router-link class="btn px-5 py-2" :to="{name: 'search-query', params: { query: homeSavedSearch.query }}">
+                <router-link v-if="homeSavedSearch.query" class="btn px-5 py-2" :to="{name: 'search-query', params: { query: homeSavedSearch.query }}">
                     See more
                     <i class="fas fa-caret-right ml-2"></i>
                 </router-link>
@@ -77,7 +77,7 @@
         metaInfo () {
             let notificationCount = this.unreadNotificationCount ? '(' + this.unreadNotificationCount + ') ' : '';
             return {
-                title: notificationCount + "pros.global - Connect with awesome pros",
+                title: notificationCount + window.app_name + " - Connect with awesome pros",
             }
         },
     }
