@@ -24,9 +24,31 @@
         <section class="max-w-3xl mb-8 mx-auto">
             <h2 class="text-center mx-auto mb-8">Browse by category</h2>
             <div class="saved-searches m-2 mb-4 sm:mb-8 flex flex-wrap justify-center">
-                <saved-search-card class="mb-12 m-4" v-for="savedSearch in savedSearches" :key="savedSearches.id" :savedSearch="savedSearch" />
+                <saved-search-card class="mb-12 m-4" v-for="savedSearch in savedSearches" :key="savedSearches.id" :savedSearch="savedSearch"/>
             </div>
         </section>
+        <hr class="mt-16 mb-16"/>
+        <section class="max-w-3xl mb-8 mt-8 mx-auto">
+            <h2 class="text-center mx-auto mb-8">How it Works</h2>
+            <div class="font-120 mx-auto" style="max-width: 40rem;">
+                <p class="mb-4">
+                    The goal of this platform is to faciliate various types of matchmaking. Having run a
+                    <a href="https://commercehero.io">matchmaking platform</a> in a specific eCommerce developer niche successfully
+                    for the last 2 years, I'm taking some of the learnings from that, and trying to create an offering that's a little bit more broad and flexible.
+                </p>
+                <p class="mb-4">
+                    I'm not exactly sure what audiences will be best served by this, but currently the platform is being seeded with people in the communities that I'm most connected to—eCommerce professionals, developers, and bootstrapped software founders.
+                </p>
+                <p class="mb-4">
+                    As the number of people on the platform grows, the value that we can provide in matchmaking for the purposes of hiring employees, contractors, or even finding a co-founder, advisor, or investor should improve.
+                </p>
+                <p class="mb-4">
+                    If you have any questions, I'd love to
+                    <a href="https://twitter.com/kalenjordan">hear from you</a>!
+                </p>
+            </div>
+        </section>
+        <hr class="mt-16 mb-16"/>
         <keyboard-shortcuts></keyboard-shortcuts>
         <footer-component></footer-component>
     </div>
@@ -67,14 +89,14 @@
                 .start();
         },
         computed: {
-            loggedInUser: function() {
+            loggedInUser: function () {
                 return this.$store.state.user;
             },
             unreadNotificationCount() {
                 return this.$store.state.unreadNotificationCount;
             },
         },
-        metaInfo () {
+        metaInfo() {
             let notificationCount = this.unreadNotificationCount ? '(' + this.unreadNotificationCount + ') ' : '';
             return {
                 title: notificationCount + window.app_name + " - Connect with awesome pros",
