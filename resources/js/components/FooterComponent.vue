@@ -36,9 +36,6 @@
                     <li>
                         <router-link class="naked-link" :to="{ name: 'saved-search', params: {slug: 'new-pros'}}">New Pros</router-link>
                     </li>
-                    <li>
-                        <a class="naked-link" href="/pros.global.zip">Download MacOS app</a>
-                    </li>
                 </ul>
             </div>
 
