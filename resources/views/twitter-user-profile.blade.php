@@ -17,7 +17,7 @@
             <div class="avatar-wrapper mb-2">
                 <img class="rounded-full border-4 border-secondary w-35rem" src="{{ $user->avatar_path }}">
             </div>
-            <h1 class="font-15rem">
+            <h1 class="font-15rem mb-2">
                 {{ $user->headline }}
             </h1>
             <div class="tags font-80">
