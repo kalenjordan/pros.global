@@ -22,7 +22,7 @@ class SavedSearches extends Migration
             $table->string('name')->nullable();
             $table->string('query')->nullable();
             $table->string('icon')->nullable();
-            $table->tinyInteger('featured_order')->default(0);
+            $table->integer('featured_order')->default(0);
 
             $table->timestamps();
         });

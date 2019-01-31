@@ -40,9 +40,15 @@
             }
         },
         mounted() {
-            // watch doesn't fire when I moved this from topnav.vue into here, but it works in mounted.
-            this.initNotificatons();
             this.listenForMessages();
+        },
+        watch: {
+            // Used to work from mounted() but then it stopped and now this works
+            loggedInUser(newVal, oldVal) {
+                if (newVal && oldVal && (!oldVal.id || newVal.id !== oldVal.id)) {
+                    this.initNotificatons();
+                }
+            }
         },
         methods: {
             initNotificatons() {

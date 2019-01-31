@@ -21,20 +21,10 @@
                 <h3 class="mb-2">Resources</h3>
                 <ul>
                     <li><a class="naked-link" href="https://github.com/kalenjordan/founderland">Open source</a></li>
-                    <li>
-                        <router-link class="naked-link" :to="{ name: 'saved-search', params: {slug: 'remote-jobs'}}">Remote Jobs</router-link>
-                    </li>
-                    <li>
-                        <router-link class="naked-link" :to="{ name: 'saved-search', params: {slug: 'ecommerce-founders'}}">eCommerce Founders</router-link>
-                    </li>
-                    <li>
-                        <router-link class="naked-link" :to="{ name: 'saved-search', params: {slug: 'saas-founders'}}">SaaS Founders</router-link>
-                    </li>
-                    <li>
-                        <router-link class="naked-link" :to="{ name: 'saved-search', params: {slug: 'kalens-shout-outs'}}">Kalen's Shout-outs</router-link>
-                    </li>
-                    <li>
-                        <router-link class="naked-link" :to="{ name: 'saved-search', params: {slug: 'new-pros'}}">New Pros</router-link>
+                    <li v-for="savedSearch in savedSearches" :key="savedSearch.id">
+                        <router-link class="naked-link" :to="{ name: 'saved-search', params: {slug: savedSearch.slug}}">
+                            {{ savedSearch.name }}
+                        </router-link>
                     </li>
                 </ul>
             </div>
@@ -61,8 +51,17 @@
 <script>
     export default {
         props: ['user'],
+        data() {
+            return {
+                savedSearches: [],
+            }
+        },
         mounted() {
             window.addEventListener('keyup', this.hotkeys);
+
+            axios.get('/api/v1/saved-searches?featured_min=10&featured_max=999').then((response) => {
+                this.savedSearches = response.data;
+            });
 
             this.initCookies();
             this.initServiceWorker();

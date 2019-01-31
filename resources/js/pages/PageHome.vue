@@ -44,11 +44,11 @@
             }
         },
         mounted() {
-            axios.get('/api/v1/saved-searches?limit=4&featured=1').then((response) => {
+            axios.get('/api/v1/saved-searches?limit=4&featured_min=100&featured_max=999').then((response) => {
                 this.savedSearches = response.data;
             });
-            axios.get('/api/v1/saved-searches/homepage').then((response) => {
-                this.homeSavedSearch = response.data;
+            axios.get('/api/v1/saved-searches?limit=1&featured_min=1000').then((response) => {
+                this.homeSavedSearch = response.data[0];
             });
             let typewriter = new Typewriter('#typewriter', {
                 loop: false

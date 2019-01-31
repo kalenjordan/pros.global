@@ -38,12 +38,21 @@ class SavedSearchController extends Controller
     {
         $searches = SavedSearch::where('id', '>', 0);
 
-        if ($request->input('featured')) {
-            $searches->where('featured_order', '>', 0)
-                ->where('featured_order', '!=', 100);
-            $searches->orderBy('featured_order', 'desc');
-        } else {
-            $searches->orderBy('created_at', 'desc');
+        if ($request->input('featured_min')) {
+            $searches->where('featured_order', '>=', $request->input('featured_min'))
+                ->orderBy('featured_order', 'desc')
+                ->orderBy('name', 'asc');
+        }
+
+        if ($request->input('featured_max')) {
+            $searches->where('featured_order', '<=', $request->input('featured_max'))
+                ->orderBy('featured_order', 'desc');
+        }
+
+        $searches->orderBy('created_at', 'desc');
+
+        if ($request->input('limit')) {
+            $searches->limit($request->input('limit'));
         }
 
         return $searches->get();
@@ -55,15 +64,6 @@ class SavedSearchController extends Controller
         if (!$search) {
             $search = SavedSearch::find($slugOrId);
         }
-
-        return $search;
-    }
-
-    public function homepage(Request $request)
-    {
-        $search = SavedSearch::where('user_id', env('ADMIN_USER_ID'))
-            ->where('featured_order', 100)
-            ->first();
 
         return $search;
     }
