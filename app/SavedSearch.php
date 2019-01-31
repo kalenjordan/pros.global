@@ -2,10 +2,7 @@
 
 namespace App;
 
-use Conner\Tagging\Taggable;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * @package App
@@ -20,7 +17,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property      $featured_order
  * @property User $user
  */
-class SavedSearch extends Authenticatable
+class SavedSearch extends Model
 {
 
     protected $fillable = [

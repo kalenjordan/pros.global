@@ -71,25 +71,6 @@ hr {
     position: relative;
 }
 
-.nav {
-    img {
-        transition: all 0.25s ease;
-    }
-
-    img.logo {
-        &:hover {
-            transform: scale(1.1);
-        }
-    }
-
-    img.avatar {
-        border-color: $primaryColorLighter;
-        &:hover {
-            border-color: $primaryColor;
-        }
-    }
-}
-
 .w-3rem {
     width: 3rem;
 }

@@ -1,15 +1,18 @@
 .nav {
-    .right-nav {
-        .logged-in-menu {
-            z-index: 9;
-            top: 40px;
-            right: 0;
-            width: 12rem;
+    .logo img {
+        &:hover {
+            transform: scale(1.1);
         }
     }
 
+    .logged-in-menu {
+        z-index: 9;
+        top: 40px;
+        right: 0;
+        width: 12rem;
+    }
+
     .fas {
-        transition: all 0.25s ease;
         &:hover {
             @apply text-highlight;
         }
@@ -33,6 +36,13 @@
             justify-content: center;
             color: white;
             font-size: 11px;
+        }
+    }
+
+    img.avatar {
+        border-color: $primaryColorLighter;
+        &:hover {
+            border-color: $primaryColor;
         }
     }
 }

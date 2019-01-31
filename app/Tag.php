@@ -6,8 +6,6 @@ use Conner\Tagging\Taggable;
 use Illuminate\Notifications\Notifiable;
 
 /**
- * Class Tag
- *
  * @package App
  * @method static \Illuminate\Database\Query\Builder where($column, $operator = null, $value = null, $boolean = 'and')
  *
