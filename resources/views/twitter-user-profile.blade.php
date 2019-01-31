@@ -1,6 +1,6 @@
 <?php
 /** @var \App\User $user */
-/** @var \App\Tag $tag */
+/** @var \App\Tagged $tagged */
 ?>
 
 <html>
@@ -21,14 +21,16 @@
                 {{ $user->headline }}
             </h1>
             <div class="tags font-80">
-                @foreach ($user->tags as $tag)
+                @foreach ($user->tagged as $tagged)
                     <div class="tag">
-                    <span class="tag-name">
-                        <template v-if="tag.icon"><i :class="tag.icon"></i></template>
-                        {{ $tag->name }}
-                    </span>
-                        @if ($tag->upvote_count)
-                            <span class="tag-count">{{ $tag->upvote_count }}</span>
+                        <span class="tag-name">
+                            @if ($tagged->icon)
+                                <i class="{{ $tagged->icon }}"></i>
+                            @endif
+                            {{ $tagged->tag_name }}
+                        </span>
+                        @if ($tagged->upvote_count)
+                            <span class="tag-count">{{ $tagged->upvote_count }}</span>
                         @endif
                     </div>
                 @endforeach

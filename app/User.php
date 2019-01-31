@@ -175,7 +175,16 @@ class User extends Authenticatable
      */
     public function tagged()
     {
-        return $this->hasMany('App\Tagged', 'taggable_id');
+        return $this->hasMany('App\Tagged', 'taggable_id')
+            ->leftJoin("tagging_tags", function($join) {
+                /** @var $join \Illuminate\Database\Query\JoinClause */
+                $join->on("tagging_tags.slug", '=', 'tagging_tagged.tag_slug');
+            })->select([
+                'tagging_tagged.*',
+                'tagging_tags.icon',
+            ])
+            ->orderBy('tagging_tags.icon', 'desc')
+            ->orderBy('upvote_count', 'desc');
     }
 
     public function upvotes()
