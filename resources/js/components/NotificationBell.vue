@@ -1,13 +1,13 @@
 <template>
-    <div class="notification-wrapper inline-block mr-4">
-        <i class="fas fa-bell text-gray-dark text-xl cursor-pointer ml-2"
+    <div class="notification-wrapper">
+        <i class="fas fa-bell text-gray-dark text-xl cursor-pointer font-120"
            @click="toggleNotifications()"></i>
         <span v-if="this.unreadNotificationCount" class="alert-bubble bg-primary rounded-full cursor-pointer"
               @click="toggleNotifications()">
                         {{ this.unreadNotificationCount }}
                     </span>
         <div v-if="showingNotifications" class="card notification-list absolute w-64">
-            <div class="card-inner">
+            <div class="card-inner font-120">
                 <ul class="list-reset" v-if="notifications.length">
                     <li v-for="notification in notifications" class="px-4 py-2" :class="{'bg-primary-lightest' : notification.read_at === null}">
                         {{ notification.data.text }}

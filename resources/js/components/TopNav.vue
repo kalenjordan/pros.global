@@ -1,82 +1,63 @@
 <template>
+    <div>
     <div class="nav flex items-center">
         <div class="logo">
-            <img class="logo w-3rem" src="/img/icon.png">
+            <router-link :to="{name: 'home'}" class="naked-link" href="/">
+                <img class="logo w-3rem" src="/img/icon.png">
+            </router-link>
         </div>
-        <div class="ml-auto mr-4">
-            <i class="fas fa-search"></i>
+        <div class="ml-auto mr-6" v-if="!isSearching" @click="focusSearch()">
+            <i class="fas fa-search text-gray-dark font-120 cursor-pointer"></i>
         </div>
-        <div class="mr-4">
-            <i class="fas fa-bell"></i>
+        <slot></slot>
+        <div class="mr-6" v-if="!isSearching" >
+            <notification-bell></notification-bell>
         </div>
-        <div>
-            <img class="animate avatar w-10 rounded-full cursor-pointer border-2"
-                 :src="loggedInUser.avatar_path">
+        <div v-if="!isSearching" >
+            <div>
+                <img v-if="loggedIn" class="animate avatar w-10 rounded-full cursor-pointer border-2"
+                     @click="showingMenu = !showingMenu"
+                     :src="loggedInUser.avatar_path">
+                <a v-else class="btn px-5 py-2" href="/auth/linkedin" target="_blank">Login</a>
+            </div>
+            <div v-if="showingMenu" class="card logged-in-menu absolute">
+                <div class="card-inner p-3 font-120">
+                    <div class="block p-2">
+                        <router-link class="naked-link" v-if="loggedIn"
+                                :to="{name: 'profile', params: {username: loggedInUser.username}}">
+                            View Profile
+                        </router-link>
+                    </div>
+                    <div class="block p-2">
+                        <router-link class="naked-link" :to="{name: 'saved-searches'}">Saved Searches</router-link>
+                    </div>
+                    <div class="block p-2">
+                        <a href="javascript://" class="naked-link" @click="logout">Log out</a>
+                    </div>
+                    <div class="block p-2" v-if="isAdminViewingProfilePage() && ! isAdminImpersonating()">
+                        <a class="naked-link" href="javascript://" @click="impersonate(user)">
+                            Impersonate {{ user.first_name }}
+                        </a>
+                    </div>
+                    <div class="block p-2" v-if="isAdminImpersonating()">
+                        <a class="naked-link" href="javascript://" @click="leaveImpersonation">
+                            Leave impersonation
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ml-auto" v-if="isSearching">
+            <input ref="search"
+                   id="top-nav-search"
+                   class="nav--search text w-64 p-2"
+                   placeholder="Search"
+                   @focus="isSearching=1"
+                   @blur="isSearching=0"
+            >
         </div>
     </div>
-    <!--<div class="nav flex a items-center">-->
-        <!--<div class="logo-wrapper flex-1 text-left">-->
-            <!--<router-link :to="{name: 'home'}" class="naked-link" href="/">-->
-                <!--&lt;!&ndash;<i class="fas fa-bolt font-200"></i>&ndash;&gt;-->
-                <!--<img class="logo w-3rem" src="/img/icon.png">-->
-            <!--</router-link>-->
-        <!--</div>-->
-        <!--<div class="right-nav flex-5 text-right">-->
-            <!--&lt;!&ndash;<router-link v-if="!isSearching"&ndash;&gt;-->
-                         <!--&lt;!&ndash;class="paragraph-link mr-4" style="font-size: 1.4rem;"&ndash;&gt;-->
-                         <!--&lt;!&ndash;:to="{name: 'saved-search', params: {slug: 'remote-jobs'}}">&ndash;&gt;-->
-                <!--&lt;!&ndash;Remote Jobs&ndash;&gt;-->
-            <!--&lt;!&ndash;</router-link>&ndash;&gt;-->
-            <!--<i v-if="!isSearching" class="fas fa-search text-gray-dark text-xl cursor-pointer mr-2"-->
-               <!--@click="focusSearch()">-->
-            <!--</i>-->
-            <!--<slot></slot>-->
-            <!--<input v-if="isSearching" ref="search"-->
-                   <!--id="top-nav-search"-->
-                   <!--class="nav&#45;&#45;search text w-32 p-2 mr-2"-->
-                   <!--v-bind:class="{'w-48' : isSearching}"-->
-                   <!--placeholder="Search"-->
-                   <!--@focus="isSearching=1"-->
-                   <!--@blur="isSearching=0"-->
-            <!--&gt;-->
-            <!--<div v-if="!isSearching && this.loggedInUser.id" class="inline-block relative">-->
-                <!--<notification-bell></notification-bell>-->
-                <!--<img class="avatar w-10 rounded-full cursor-pointer border-2"-->
-                     <!--@click="showingMenu = !showingMenu"-->
-                     <!--:src="loggedInUser.avatar_path" style="margin-bottom: -14px;">-->
-                <!--<div v-if="showingMenu" class="card logged-in-menu absolute">-->
-                    <!--<div class="card-inner p-3">-->
-                        <!--<div class="block p-1">-->
-                            <!--<router-link-->
-                                    <!--class="naked-link"-->
-                                    <!--v-if="loggedInUser.id"-->
-                                    <!--:to="{name: 'profile', params: {username: loggedInUser.username}}"-->
-                            <!--&gt;-->
-                                <!--View Profile-->
-                            <!--</router-link>-->
-                        <!--</div>-->
-                        <!--<div class="block p-1">-->
-                            <!--<router-link class="naked-link" :to="{name: 'saved-searches'}">Saved Searches</router-link>-->
-                        <!--</div>-->
-                        <!--<div class="block p-1">-->
-                            <!--<a href="javascript://" class="naked-link" @click="logout">Log out</a>-->
-                        <!--</div>-->
-                        <!--<div class="block p-1" v-if="isAdminViewingProfilePage() && ! isAdminImpersonating()">-->
-                            <!--<a class="naked-link" href="javascript://" @click="impersonate(user)">-->
-                                <!--Impersonate {{ user.first_name }}-->
-                            <!--</a>-->
-                        <!--</div>-->
-                        <!--<div class="block p-1" v-if="isAdminImpersonating()">-->
-                            <!--<a class="naked-link" href="javascript://" @click="leaveImpersonation">-->
-                                <!--Leave impersonation-->
-                            <!--</a>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<a v-if="!isSearching && !this.loggedInUser.id" class="btn px-5 py-2 ml-2" href="javascript:window.open('/auth/linkedin')" target="_blank">Login</a>-->
-        <!--</div>-->
-    <!--</div>-->
+    </div>
 </template>
 
 <script>

@@ -3,11 +3,14 @@
         &:hover {
             transform: scale(1.1);
         }
+        @media screen and (min-width: 576px) {
+            width: 3.5rem;
+        }
     }
 
     .logged-in-menu {
-        z-index: 9;
-        top: 40px;
+        z-index: 2;
+        top: 70px;
         right: 0;
         width: 12rem;
     }
@@ -20,9 +23,9 @@
 
     .notification-wrapper {
         .notification-list {
-            z-index: 9;
-            top: 35px;
-            right: 60px;
+            z-index: 2;
+            top: 70px;
+            right: 68px;
         }
 
         .alert-bubble {
@@ -40,9 +43,9 @@
     }
 
     img.avatar {
-        border-color: $primaryColorLighter;
+        border-color: $primaryColor;
         &:hover {
-            border-color: $primaryColor;
+            border-color: $highlightColor;
         }
     }
 }
