@@ -36,6 +36,8 @@
                 </div>
             </div>
         </section>
+        <keyboard-shortcuts></keyboard-shortcuts>
+        <footer-component></footer-component>
     </div>
 </template>
 

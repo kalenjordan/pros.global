@@ -1,63 +1,67 @@
 .twitter-card {
     padding-right: 35px !important;
+    width: 600px;
+    height: 300px;
 
-    i.fa-bolt {
-        right: 28px;
-        top: 25px;
-        font-size: 9rem;
-        opacity: 0.05;
-        color: black;
+    img.logo {
+        top: 1rem;
+        right: 2rem;
     }
 
-    &.twitter-card-upvote {
-        .avatar-wrapper {
-            img {
-                width: 4rem;
-                height: 4rem;
-            }
-        }
+    h1 {
+        font-weight: normal;
+        font-style: italic;
+        line-height: inherit;
+    }
+}
 
-        .message {
-            max-height: 8rem;
-            overflow: hidden;
-            line-height: 1.1;
-
-            h1 {
-                font-weight: normal;
-                font-style: italic;
-                margin-bottom: .25rem;
-                font-size: 2rem;
-                line-height: inherit;
-            }
-
-            p {
-                font-size: 1.5rem;
-                line-height: inherit;
-                font-weight: normal;
-                font-style: italic;
-            }
-
-            &:before {
-                content:'';
-                width:100%;
-                height:100%;
-                position:absolute;
-                left:0;
-                top:0;
-                background:linear-gradient(transparent 100px, white);
-            }
-        }
-
-        .author-wrapper {
-            right: 48px;
-            bottom: 31px;
+.twitter-card-upvote {
+    .avatar-wrapper {
+        img {
+            width: 4rem;
+            height: 4rem;
         }
     }
 
-    &.twitter-card-saved-search {
+    .message {
+        max-height: 8rem;
+        overflow: hidden;
+        line-height: 1.1;
+
         h1 {
-            // flex-basis: 10rem;
+            display: none;
         }
 
+        p {
+            font-size: 1.5rem;
+            line-height: inherit;
+            font-weight: normal;
+            font-style: italic;
+        }
+
+        &:before {
+            content:'';
+            width:100%;
+            height:100%;
+            position:absolute;
+            left:0;
+            top:0;
+            background:linear-gradient(transparent 100px, white);
+        }
     }
+
+    .author-wrapper {
+        right: 48px;
+        bottom: 31px;
+    }
+}
+
+.twitter-card-saved-search {
+    h1 {
+        // flex-basis: 10rem;
+    }
+
+}
+
+.twitter-card-user-profile {
 }

@@ -119,4 +119,24 @@ class UserController extends Controller
 
         return ['upvote' => $upvote, 'all_upvotes' => $tagged->taggedUser()->upvotes];
     }
+
+    public function viewHtml($username)
+    {
+        $user = User::findByUsername($username);
+
+        if ($user) {
+            return view('user-profile', ['user' => $user,]);
+        } else {
+            return view('app');
+        }
+    }
+
+    public function twitterCard($username)
+    {
+        $user = User::findByUsername($username);
+
+        return view('twitter-user-profile', [
+            'user' => $user,
+        ]);
+    }
 }

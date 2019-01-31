@@ -13,6 +13,7 @@ use Illuminate\Notifications\Notifiable;
  * @property $slug
  * @property $headline
  * @property $icon
+ * @property $upvote_count
  */
 class Tag extends \Conner\Tagging\Model\Tag
 {
