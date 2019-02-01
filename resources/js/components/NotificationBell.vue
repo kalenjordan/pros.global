@@ -1,8 +1,8 @@
 <template>
-    <div class="notification-wrapper">
+    <div class="notification-wrapper relative">
         <i class="fas fa-bell text-gray-dark text-xl cursor-pointer font-120"
            @click="toggleNotifications()"></i>
-        <span v-if="this.unreadNotificationCount" class="alert-bubble bg-primary rounded-full cursor-pointer"
+        <span v-if="this.unreadNotificationCount" class="alert-bubble absolute bg-primary rounded-full cursor-pointer"
               @click="toggleNotifications()">
                         {{ this.unreadNotificationCount }}
                     </span>
