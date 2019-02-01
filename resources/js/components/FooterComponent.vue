@@ -10,7 +10,17 @@
                     being built by
                     <router-link :to="{ name: 'profile', params: {username: 'kalenjordan'}}">Kalen</router-link>
                     with &hearts; in
-                    <router-link :to="{ name: 'saved-search', params: {slug: 'austin'}}">Austin</router-link>.
+                    <router-link :to="{ name: 'saved-search', params: {slug: 'austin'}}">Austin</router-link>
+                    .
+                </p>
+                <p class="mb-2">
+                    pros.global is currently open-source-ish. You can take a look at the
+                    <a href="https://github.com/kalenjordan/pros.global">readme</a> and get in touch if you're
+                    interested in contributing or using it.
+                </p>
+                <p class="mb-2">
+                    If you're interested in signing up to create a profile on the site, just go ahead and
+                    <a href="/auth/linkedin" target="_blank">login</a> - once logged in you can edit your profile page.
                 </p>
                 <p>
                     Copyright 2019. All rights reserved.
@@ -20,7 +30,6 @@
             <div class="footer--column flex-1 p-3" style="flex-basis: 10rem;">
                 <h3 class="mb-2">Skills</h3>
                 <ul class="list-reset">
-                    <li><a class="naked-link" href="https://github.com/kalenjordan/founderland">Open source</a></li>
                     <template v-for="savedSearch in savedSearches">
                         <li v-if="savedSearch.icon !== 'fas fa-location-arrow'" :key="savedSearch.id">
                             <router-link class="naked-link" :to="{ name: 'saved-search', params: {slug: savedSearch.slug}}">
@@ -93,7 +102,7 @@
                 this.$cookies.config('30d');
                 let user = this.$cookies.get('user');
 
-                if (! user) {
+                if (!user) {
                     axios.get('auth/me').then((response) => {
                         if (response.data.id) {
                             this.$cookies.set('user', response.data);
