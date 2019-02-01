@@ -66,7 +66,7 @@
         methods: {
             search() {
                 this.search_processing = true;
-                window.history.replaceState({} , null, '/search/' + this.query)
+                window.history.replaceState({}, null, '/search/' + this.query)
 
                 axios.get('/api/v1/users?q=' + this.query).then((response) => {
                     this.search_processing = false;
@@ -75,7 +75,7 @@
             },
             saveSearch() {
                 let name = prompt("Name for saved search");
-                if (! name) {
+                if (!name) {
                     return;
                 }
 
@@ -84,7 +84,9 @@
                     'name': name,
                     'query': this.$refs.search.value,
                 }).then((response) => {
-                    this.$toasted.show("Saved search: " + name);
+                    this.$toasted.show("" +
+                        "Saved search: <a class='paragraph-link' href='/s/" + response.data.id + "'>" + name + "</a>" +
+                        "");
                 });
             },
             hotkeyHandler(e) {
@@ -101,7 +103,7 @@
                 }
             },
             addTwitterUser() {
-                if (! this.loggedIn) {
+                if (!this.loggedIn) {
                     return alert('Please login first');
                 }
 
@@ -110,7 +112,7 @@
                     if (response.data.username) {
                         this.$router.push({
                             name: 'profile',
-                            params: { username: response.data.username },
+                            params: {username: response.data.username},
                         });
                     } else if (response.data.message) {
                         alert(response.data.message);
@@ -126,11 +128,11 @@
                 return this.$store.state.user;
             },
         },
-        metaInfo () {
+        metaInfo() {
             return {
                 title: this.unreadNotificationCount ? '(' + this.unreadNotificationCount + ') ' : '' +
                     "Search for " + " " + this.query
-                    +  " | pros.global",
+                    + " | pros.global",
             }
         },
     }
