@@ -55,7 +55,13 @@ class SavedSearchController extends Controller
             $searches->limit($request->input('limit'));
         }
 
-        return $searches->get();
+        $data = [];
+        foreach ($searches->get() as $search) {
+            /** @var SavedSearch $search */
+            $data[] = $request->input('with_users') ? $search->toArrayWithUsers() : $search->toArray();
+        }
+
+        return $data;
     }
 
     public function view($slugOrId)
@@ -65,7 +71,7 @@ class SavedSearchController extends Controller
             $search = SavedSearch::find($slugOrId);
         }
 
-        return $search;
+        return $search->toArrayWithUsers();
     }
 
     public function viewHtml($slugOrId)

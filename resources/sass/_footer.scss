@@ -1,6 +1,5 @@
 .footer {
     color: $grayLight;
-    padding: 1em 2em;
 
     transition: all 0.25s ease;
     @media screen and (min-width: 576px) {
@@ -13,16 +12,8 @@
     .footer--inner {
         img.logo {
             filter: grayscale(100);
-            width: 10rem;
+            width: 16rem;
             opacity: 0.5;
-        }
-
-        .footer--column {
-            ul {
-                list-style-type: none;
-                margin: 0;
-                padding: 0;
-            }
         }
 
         .email-signup {

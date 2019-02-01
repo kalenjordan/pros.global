@@ -1,7 +1,7 @@
 <template>
-    <div class="footer mx-auto max-w-lg text-sm leading-tight sm:mt-16 pb-16">
-        <div class="section footer--inner flex flex-wrap">
-            <div class="footer--column flex-2 p-3">
+    <div class="footer mx-auto max-w-2xl leading-tight sm:mt-16 pb-16">
+        <div class="section footer--inner flex flex-wrap mx-4">
+            <div class="footer--column flex-2 m-2" style="flex-basis: 15rem;">
                 <div class="mb-2">
                     <img class="logo" src="/img/logo.png">
                 </div>
@@ -17,25 +17,40 @@
                 </p>
             </div>
 
-            <div class="footer--column flex-1 p-3">
-                <h3 class="mb-2">Resources</h3>
-                <ul>
+            <div class="footer--column flex-1 p-3" style="flex-basis: 10rem;">
+                <h3 class="mb-2">Skills</h3>
+                <ul class="list-reset">
                     <li><a class="naked-link" href="https://github.com/kalenjordan/founderland">Open source</a></li>
-                    <li v-for="savedSearch in savedSearches" :key="savedSearch.id">
-                        <router-link class="naked-link" :to="{ name: 'saved-search', params: {slug: savedSearch.slug}}">
-                            {{ savedSearch.name }}
-                        </router-link>
-                    </li>
+                    <template v-for="savedSearch in savedSearches">
+                        <li v-if="savedSearch.icon !== 'fas fa-location-arrow'" :key="savedSearch.id">
+                            <router-link class="naked-link" :to="{ name: 'saved-search', params: {slug: savedSearch.slug}}">
+                                {{ savedSearch.name }}
+                            </router-link>
+                        </li>
+                    </template>
                 </ul>
             </div>
 
-            <div class="footer--column flex-1 p-3">
+            <div class="footer--column flex-1 p-3" style="flex-basis: 10rem;">
+                <h3 class="mb-2">Locations</h3>
+                <ul class="list-reset">
+                    <template v-for="savedSearch in savedSearches">
+                        <li v-if="savedSearch.icon === 'fas fa-location-arrow'" :key="savedSearch.id">
+                            <router-link class="naked-link" :to="{ name: 'saved-search', params: {slug: savedSearch.slug}}">
+                                {{ savedSearch.name }}
+                            </router-link>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+
+            <div class="footer--column flex-1 p-3" style="flex-basis: 15rem;">
                 <h3 class="mb-2">Follow us</h3>
                 <p class="mb-1">
                     Sign up to get email updates:
                 </p>
                 <div class="email-signup mb-4">
-                    <input class="text p-1" type="text" style="width: 125px;" placeholder="you@example.com">
+                    <input class="text p-1" type="text" style="width: 178px;" placeholder="you@example.com">
                     <a class="btn px-3 py-1"><i class="fa fa-envelope"></i></a>
                 </div>
                 <div class="text-2xl gray-lighter">

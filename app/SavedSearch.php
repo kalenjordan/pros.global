@@ -41,7 +41,7 @@ class SavedSearch extends Model
         return $this->hasOne('App\User');
     }
 
-    public function toArray()
+    public function toArrayWithUsers()
     {
         $data = parent::toArray();
         $data['users'] = $this->fetchUsers();

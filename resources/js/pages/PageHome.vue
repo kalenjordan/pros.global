@@ -29,8 +29,8 @@
         </section>
         <hr class="mt-16 mb-16"/>
         <section class="max-w-3xl mb-8 mt-8 mx-auto">
-            <h2 class="text-center mx-auto mb-8">How it Works</h2>
-            <div class="font-120 mx-auto" style="max-width: 40rem;">
+            <h2 class="text-center mx-auto mb-8">About</h2>
+            <div class="font-120 mx-auto px-4" style="max-width: 40rem;">
                 <p class="mb-4">
                     The goal of this platform is to faciliate various types of matchmaking. Having run a
                     <a href="https://commercehero.io">matchmaking platform</a> in a specific eCommerce developer niche successfully
@@ -66,11 +66,9 @@
             }
         },
         mounted() {
-            axios.get('/api/v1/saved-searches?limit=4&featured_min=100&featured_max=999').then((response) => {
-                this.savedSearches = response.data;
-            });
-            axios.get('/api/v1/saved-searches?limit=1&featured_min=1000').then((response) => {
+            axios.get('/api/v1/saved-searches?limit=5&featured_min=100&with_users=1').then((response) => {
                 this.homeSavedSearch = response.data[0];
+                this.savedSearches = response.data.slice(1,4);
             });
             let typewriter = new Typewriter('#typewriter', {
                 loop: false
