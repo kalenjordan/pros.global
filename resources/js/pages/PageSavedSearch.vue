@@ -30,8 +30,12 @@
                        v-model="savedSearch.slug"
                        v-shortkey="['enter']" @shortkey="save()"
                 >
-                <input ref="featured_order" class="text-lg text-center no-border w-full"
+                <input ref="featured_order" class="text-lg text-center no-border w-full" placeholder="e.g. 10"
                        v-model="savedSearch.featured_order"
+                       v-shortkey="['enter']" @shortkey="save()"
+                >
+                <input ref="icon" class="text-lg text-center no-border w-full" placeholder="e.g. fas fa-location-arrow"
+                       v-model="savedSearch.icon"
                        v-shortkey="['enter']" @shortkey="save()"
                 >
             </template>
@@ -84,7 +88,8 @@
                     name: this.savedSearch.name,
                     query: this.savedSearch.query,
                     featured_order: this.savedSearch.featured_order,
-                    slug: this.savedSearch.slug
+                    icon: this.savedSearch.icon,
+                    slug: this.savedSearch.slug,
                 }).then((response) => {
                     this.savedSearch = response.data;
                     this.$toasted.show("Saved!");
