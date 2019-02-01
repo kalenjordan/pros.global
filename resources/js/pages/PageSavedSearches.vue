@@ -24,7 +24,7 @@
             }
         },
         mounted() {
-            axios.get('/api/v1/saved-searches').then((response) => {
+            axios.get('/api/v1/saved-searches?with_users=1').then((response) => {
                 this.savedSearches = response.data;
             });
        },

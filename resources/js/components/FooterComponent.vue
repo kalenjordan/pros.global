@@ -74,7 +74,7 @@
         mounted() {
             window.addEventListener('keyup', this.hotkeys);
 
-            axios.get('/api/v1/saved-searches?featured_min=10&featured_max=999').then((response) => {
+            axios.get('/api/v1/saved-searches?featured_min=10&featured_max=99').then((response) => {
                 this.savedSearches = response.data;
             });
 
