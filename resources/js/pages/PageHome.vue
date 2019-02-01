@@ -66,9 +66,11 @@
             }
         },
         mounted() {
-            axios.get('/api/v1/saved-searches?limit=5&featured_min=100&with_users=1').then((response) => {
+            axios.get('/api/v1/saved-searches?limit=3&featured_min=100&with_users=1').then((response) => {
+                this.savedSearches = response.data;
+            });
+            axios.get('/api/v1/saved-searches?limit=1&featured_min=1000&with_users=1').then((response) => {
                 this.homeSavedSearch = response.data[0];
-                this.savedSearches = response.data.slice(1,4);
             });
             let typewriter = new Typewriter('#typewriter', {
                 loop: false
