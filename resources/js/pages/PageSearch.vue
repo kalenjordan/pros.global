@@ -1,8 +1,8 @@
 <template>
-    <div class="page page-search m-4 sm:m-8">
-        <top-nav></top-nav>
+    <div class="page page-search">
+        <top-nav class="m-4 sm:m-8"></top-nav>
         <section class="mb-6 max-w-md mx-auto">
-            <div class="flex mb-4 mt-6">
+            <div class="flex m-4 mt-6">
                 <input ref="search"
                        v-model="query"
                        placeholder="e.g. tag:founder"
@@ -36,6 +36,7 @@
                 </div>
             </div>
         </section>
+        <hr class="mt-16 mb-16"/>
         <keyboard-shortcuts></keyboard-shortcuts>
         <footer-component></footer-component>
     </div>

@@ -9,6 +9,9 @@
     export default {
         mounted() {
             window.Events.$emit('user-authenticated', userData);
+            if (window.parent) {
+                window.parent.Events.$emit('user-authenticated', userData);
+            }
             window.close();
         },
     }

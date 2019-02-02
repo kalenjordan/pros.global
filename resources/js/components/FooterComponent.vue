@@ -1,7 +1,7 @@
 <template>
     <div class="footer mx-auto max-w-2xl leading-tight sm:mt-16 pb-16">
-        <div class="section footer--inner flex flex-wrap mx-4">
-            <div class="footer--column flex-2 m-2" style="flex-basis: 15rem;">
+        <div class="section footer--inner flex flex-wrap">
+            <div class="footer--column flex-2 m-4" style="flex-basis: 15rem;">
                 <div class="mb-2">
                     <img class="logo" src="/img/logo.png">
                 </div>
@@ -27,11 +27,11 @@
                 </p>
             </div>
 
-            <div class="footer--column flex-1 p-3" style="flex-basis: 10rem;">
+            <div class="footer--column flex-1 m-4" style="flex-basis: 10rem;">
                 <h3 class="mb-2">Skills</h3>
                 <ul class="list-reset">
                     <template v-for="savedSearch in savedSearches">
-                        <li v-if="savedSearch.icon !== 'fas fa-location-arrow'" :key="savedSearch.id">
+                        <li class="pb-2" v-if="savedSearch.icon !== 'fas fa-location-arrow'" :key="savedSearch.id">
                             <router-link class="naked-link" :to="{ name: 'saved-search', params: {slug: savedSearch.slug}}">
                                 {{ savedSearch.name }}
                             </router-link>
@@ -40,11 +40,11 @@
                 </ul>
             </div>
 
-            <div class="footer--column flex-1 p-3" style="flex-basis: 10rem;">
+            <div class="footer--column flex-1 m-4" style="flex-basis: 10rem;">
                 <h3 class="mb-2">Locations</h3>
                 <ul class="list-reset">
                     <template v-for="savedSearch in savedSearches">
-                        <li v-if="savedSearch.icon === 'fas fa-location-arrow'" :key="savedSearch.id">
+                        <li class="pb-2" v-if="savedSearch.icon === 'fas fa-location-arrow'" :key="savedSearch.id">
                             <router-link class="naked-link" :to="{ name: 'saved-search', params: {slug: savedSearch.slug}}">
                                 {{ savedSearch.name }}
                             </router-link>
@@ -53,7 +53,7 @@
                 </ul>
             </div>
 
-            <div class="footer--column flex-1 p-3" style="flex-basis: 15rem;">
+            <div class="footer--column flex-1 m-4" style="flex-basis: 15rem;">
                 <h3 class="mb-2">Follow us</h3>
                 <p class="mb-1">
                     Sign up to get email updates:
