@@ -19,7 +19,7 @@
                   from {{ $upvote['author_firstname'] }}"
     >
     <meta name="twitter:image"
-          content="https://image.thum.io/get/viewportWidth/600/viewportHeight/300/width/600/noanimate/?url={{ urlencode(env('APP_URL') . "/upvotes/" . $upvote['id'] . "/twitter-card") }}"
+          content="https://image.thum.io/get/viewportWidth/900/viewportHeight/450/width/900/noanimate/?url={{ urlencode(env('APP_URL') . "/upvotes/" . $upvote['id'] . "/twitter-card") }}"
     />
 
     <meta property="og:type" content="website"/>
@@ -27,7 +27,7 @@
         {{ $upvote['author_firstname'] }} | pros.global'/>
     <meta property='og:description' content='{{ substr($upvote['message'], 0, 100) . '...' }}'/>
     <meta property='og:image'
-          content="https://image.thum.io/get/viewportWidth/600/viewportHeight/300/width/600/noanimate/?url={{ urlencode(env('APP_URL') . "/upvotes/" . $upvote['id'] . "/twitter-card") }}"
+          content="https://image.thum.io/get/viewportWidth/900/viewportHeight/450/width/900/noanimate/?url={{ urlencode(env('APP_URL') . "/upvotes/" . $upvote['id'] . "/twitter-card") }}"
     />
     <meta property='og:url' content='{{ env('APP_URL') }}/upvotes/{{ $upvote['id'] }}'/>
 @endsection
