@@ -1,6 +1,6 @@
 <template>
-    <div class="page page-upvote m-4 sm:m-8">
-        <top-nav class="mb-4">
+    <div class="page page-upvote">
+        <top-nav class="m-4 sm:m-8">
             <div v-if="editing" class="edit-profile-wrapper m-1 inline-block">
                 <div class="inline-block">
                     <a class="paragraph-link mr-3" @click="cancel()" >
@@ -10,8 +10,8 @@
                 </div>
             </div>
         </top-nav>
-        <section class="hero text-center max-w-lg mb-4 mx-auto">
-            <div class="avatar mb-3">
+        <section class="hero text-center max-w-lg m-4 mx-auto">
+            <div class="avatar">
                 <router-link :to="{name: 'profile', params: {username: upvote.tagged_username}}">
                     <img v-bind:src="upvote.tagged_user_avatar"
                          class="w-16 sm:w-32 h-16 sm:h-32 rounded-full border-4 border-secondary-light hover:border-secondary"
@@ -20,39 +20,42 @@
             </div>
             <div class="inline-block" @click="editIfOwner()" v-html="markdown(this.upvote.message)"></div>
         </section>
-        <section class="mx-auto max-w-sm text-md">
-            <div class="card mb-8">
-                <div class="card--inner text-left p-4 leading-normal">
-                    <div v-if="editing">
-                        <textarea ref="message" class="width-100" rows="30">{{ upvote.message }}</textarea>
-                    </div>
-                    <div v-else v-html="markdown(this.upvote.message)" @click="editIfOwner()"></div>
-                    <div class="inline-tag mt-2">{{ upvote.tag_name }}</div>
-                    <div class="inline text-gray-light text-xs ml-1">
-                        {{ upvote.created_at | moment("subtract", "6 hours") | moment('from') }}
+        <section class="m-4 max-w-sm text-md">
+            <div class="mx-auto">
+                <div class="card mb-8">
+                    <div class="card--inner text-left p-4 leading-normal">
+                        <div v-if="editing">
+                            <textarea ref="message" class="width-100" rows="30">{{ upvote.message }}</textarea>
+                        </div>
+                        <div v-else v-html="markdown(this.upvote.message)" @click="editIfOwner()"></div>
+                        <div class="inline-tag mt-2">{{ upvote.tag_name }}</div>
+                        <div class="inline text-gray-light text-xs ml-1">
+                            {{ upvote.created_at | moment("subtract", "6 hours") | moment('from') }}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="text-center mb-8">
-                <router-link class="naked-link block" :to="{name: 'profile', params: {username: upvote.author_username}}">
-                    <img class="w-8 h-8 rounded-full border-2 border-primary-lighter hover:border-primary"
-                         v-bind:src="upvote.author_avatar">
-                </router-link>
-                <router-link class="naked-link block" :to="{name: 'profile', params: {username: upvote.author_username}}">
-                    {{ upvote.author_firstname }}
-                </router-link>
-            </div>
-            <div class="container text-center text-4xl text-gray-light">
-                <input type="hidden" v-model="message">
-                <a class="naked-link mr-3" href="javascript://"
-                   v-clipboard:copy="message"
-                   v-clipboard:success="linkedinShare"
-                   v-clipboard:error="onError"><i class="fab fa-linkedin"></i></a>
-                <a class="naked-link" target="_blank" :href="twitterShareUrl">
-                    <i class="fab fa-twitter"></i>
-                </a>
+                <div class="text-center mb-8">
+                    <router-link class="naked-link block" :to="{name: 'profile', params: {username: upvote.author_username}}">
+                        <img class="w-8 h-8 rounded-full border-2 border-primary-lighter hover:border-primary"
+                             v-bind:src="upvote.author_avatar">
+                    </router-link>
+                    <router-link class="naked-link block" :to="{name: 'profile', params: {username: upvote.author_username}}">
+                        {{ upvote.author_firstname }}
+                    </router-link>
+                </div>
+                <div class="container text-center text-4xl text-gray-light">
+                    <input type="hidden" v-model="message">
+                    <a class="naked-link mr-3" href="javascript://"
+                       v-clipboard:copy="message"
+                       v-clipboard:success="linkedinShare"
+                       v-clipboard:error="onError"><i class="fab fa-linkedin"></i></a>
+                    <a class="naked-link" target="_blank" :href="twitterShareUrl">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
             </div>
         </section>
+        <hr class="mt-16 mb-16"/>
         <footer-component></footer-component>
         <keyboard-shortcuts></keyboard-shortcuts>
     </div>

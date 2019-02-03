@@ -1,6 +1,6 @@
 <template>
-    <div class="page page-profile m-4 sm:m-8" :class="{ 'can-edit' : canEdit }">
-        <top-nav class="mb-4" :user="user">
+    <div class="page page-profile" :class="{ 'can-edit' : canEdit }">
+        <top-nav class="m-4 sm:m-8" :user="user">
             <div v-if="editing" class="edit-profile-wrapper m-1 inline-block">
                 <div class="inline-block">
                     <a class="paragraph-link mr-3" @click="cancelEditing()" >
@@ -10,21 +10,25 @@
                 </div>
             </div>
         </top-nav>
-        <section class="header max-w-lg mb-4 mx-auto text-center">
-            <div class="avatar inline-block mb-1 relative">
-                <img v-bind:src="user.avatar_path" class="w-16 sm:w-32 h-16 sm:h-32 rounded-full">
-                <i v-if="this.isPresent(user)" class="absolute is-present fas fa-circle"></i>
+        <section class="header max-w-lg mx-auto text-center">
+            <div class="m-4">
+                <div class="avatar inline-block mb-1 relative">
+                    <img v-bind:src="user.avatar_path" class="w-16 sm:w-32 h-16 sm:h-32 rounded-full">
+                    <i v-if="this.isPresent(user)" class="absolute is-present fas fa-circle"></i>
+                </div>
+                <h1 ref="headline" class="text-xl sm:text-4xl editable" v-bind:contenteditable="canEdit" @focus="editing=true">
+                    {{ user.headline }}
+                    <i class="edit-icon fas fa-pencil-alt" v-if="canEdit"></i>
+                </h1>
             </div>
-            <h1 ref="headline" class="text-xl sm:text-4xl editable" v-bind:contenteditable="canEdit" @focus="editing=true">
-                {{ user.headline }}
-                <i class="edit-icon fas fa-pencil-alt" v-if="canEdit"></i>
-            </h1>
         </section>
-        <div class="mx-auto max-w-md text-center mb-4">
-            <user-profile-tags :user="user" :editing="editing"></user-profile-tags>
-        </div>
+        <section class="mx-auto max-w-md text-center">
+            <div class="m-4">
+                <user-profile-tags :user="user" :editing="editing"></user-profile-tags>
+            </div>
+        </section>
         <div class="section mx-auto max-w-md text-md" v-if="user.about || editing">
-            <div class="card">
+            <div class="card m-4">
                 <div class="card--inner text-left p-4">
                     <div class="editable-about" v-if="editing">
                         <textarea ref="about" class="font-90 width-100">{{ user.about }}</textarea>
@@ -35,7 +39,7 @@
         </div>
         <hr v-if="hasUpvotes" class="m-6 sm:my-16 sm:w-md sm:mx-auto"/>
         <section v-if="hasUpvotes" class="endorsements mx-auto max-w-sm text-sm leading-tight">
-            <div class="card hoverable endorsement-card mb-4" v-for="upvote in user.upvotes" :key="upvote.id">
+            <div class="card hoverable endorsement-card m-4" v-for="upvote in user.upvotes" :key="upvote.id">
                 <div class="card--inner p-4 flex">
                     <div class="avatar centered text-center -ml-3">
                         <router-link :to="{name: 'profile', params: {username: upvote.author_username }}">
@@ -66,7 +70,7 @@
 
 
         <chat-wrapper :user="user"></chat-wrapper>
-
+        <hr class="mt-16 mb-16"/>
         <keyboard-shortcuts></keyboard-shortcuts>
         <footer-component :user="user"></footer-component>
     </div>

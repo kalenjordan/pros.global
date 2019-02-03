@@ -6,7 +6,8 @@
                     <img class="logo" src="/img/logo.png">
                 </div>
                 <p class="mb-2">
-                    pros.global is a matchmaking platform for pros
+                    pros.global is a matchmaking platform for founders, eCommerce professionals,
+                    and software developers
                     being built by
                     <router-link :to="{ name: 'profile', params: {username: 'kalenjordan'}}">Kalen</router-link>
                     with &hearts; in

@@ -11,6 +11,7 @@
                 <saved-search-card class="mb-12 m-4" v-for="savedSearch in savedSearches" :key="savedSearches.id" :savedSearch="savedSearch" />
             </div>
         </section>
+        <hr class="mt-16 mb-16"/>
         <keyboard-shortcuts></keyboard-shortcuts>
         <footer-component></footer-component>
     </div>
