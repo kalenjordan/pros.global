@@ -6,16 +6,14 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body class="flex items-center">
-    <div class="twitter-card-bigger twitter-card-upvote relative bg-white p-8 mx-auto text-left" >
+    <div class="twitter-card-bigger twitter-card-upvote relative bg-white mx-auto text-left" >
         <img class="logo absolute" src="/img/icon-200.png">
-        <div class="avatar-wrapper mb-2">
-            <img class="rounded-full border-4 border-secondary" src="{{ $upvote['tagged_user_avatar'] }}">
-        </div>
+        <img class="avatar rounded-full border-4 border-secondary" src="{{ $upvote['tagged_user_avatar'] }}">
         <div class="message" style="-webkit-box-orient: vertical;">
             {!! Markdown::convertToHtml($upvote['message']) !!}
         </div>
         <div class="author-wrapper absolute flex items-center">
-            <img class="rounded-full w-6 h-6 mr-2 border-2 border-primary" src="{{ $upvote['author_avatar'] }}">
+            <img class="rounded-full mr-4 border-2 border-primary" src="{{ $upvote['author_avatar'] }}">
             {{ $upvote['author_firstname'] }}
         </div>
     </div>

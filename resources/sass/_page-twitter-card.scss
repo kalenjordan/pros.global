@@ -16,15 +16,15 @@
 }
 
 .twitter-card-bigger {
-    padding-right: 48px !important;
     width: 900px;
     height: 450px;
+    padding: 4rem;
+    padding-right: 48px !important;
 
     img.logo {
-        top: 1rem;
-        right: 2rem;
-        opacity: 0.1;
-        width: 5rem;
+        top: 9rem;
+        right: 3.5rem;
+        width: 4rem;
     }
 
     h1 {
@@ -35,17 +35,18 @@
 }
 
 .twitter-card-upvote {
-    .avatar-wrapper {
-        img {
-            width: 8rem;
-            height: 8rem;
-        }
+    img.avatar {
+        float: right;
+        margin-left: 2rem;
+        margin-right: 1rem;
+        width: 8rem;
+        height: 8rem;
     }
 
     .message {
-        max-height: 14rem;
+        max-height: 18rem;
         overflow: hidden;
-        line-height: 1.1;
+        line-height: 1.2;
         font-size: 2.5rem;
 
         h1 {
@@ -65,13 +66,19 @@
             position:absolute;
             left:0;
             top:0;
-            background:linear-gradient(transparent 100px, white);
+            background:linear-gradient(transparent 10px, white);
         }
     }
 
     .author-wrapper {
-        right: 48px;
-        bottom: 19px;
+        font-size: 1.3rem;
+        left: 4rem;
+        bottom: 3rem;
+
+        img {
+            width: 2rem;
+            height: 2rem;
+        }
     }
 }
 
