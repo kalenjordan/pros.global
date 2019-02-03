@@ -32,6 +32,7 @@
                 <router-link :to="{ path: '/search/tag:' + tag.slug }" v-for="tag in user.tags" :key="tag.id">
                     <div class="tag fast"
                          v-bind:class="{isUpvotedByMe : tag.is_upvoted_by_me}">
+                        <template v-if="tag.icon"><i :class="tag.icon"></i></template>
                         <span class="tag-name">{{ tag.name }}</span>
                         <span v-if="tag.upvote_count" class="tag-count">{{ tag.upvote_count }}</span>
                     </div>
