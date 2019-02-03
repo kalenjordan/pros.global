@@ -20,39 +20,37 @@
             </div>
             <div class="inline-block" @click="editIfOwner()" v-html="markdown(this.upvote.message)"></div>
         </section>
-        <section class="m-4 max-w-sm text-md">
-            <div class="mx-auto">
-                <div class="card mb-8">
-                    <div class="card--inner text-left p-4 leading-normal">
-                        <div v-if="editing">
-                            <textarea ref="message" class="width-100" rows="30">{{ upvote.message }}</textarea>
-                        </div>
-                        <div v-else v-html="markdown(this.upvote.message)" @click="editIfOwner()"></div>
-                        <div class="inline-tag mt-2">{{ upvote.tag_name }}</div>
-                        <div class="inline text-gray-light text-xs ml-1">
-                            {{ upvote.created_at | moment("subtract", "6 hours") | moment('from') }}
-                        </div>
+        <section class="mx-auto p-4 max-w-sm text-md">
+            <div class="card mb-8">
+                <div class="card--inner text-left p-4 leading-normal">
+                    <div v-if="editing">
+                        <textarea ref="message" class="width-100" rows="30">{{ upvote.message }}</textarea>
+                    </div>
+                    <div v-else v-html="markdown(this.upvote.message)" @click="editIfOwner()"></div>
+                    <div class="inline-tag mt-2">{{ upvote.tag_name }}</div>
+                    <div class="inline text-gray-light text-xs ml-1">
+                        {{ upvote.created_at | moment("subtract", "6 hours") | moment('from') }}
                     </div>
                 </div>
-                <div class="text-center mb-8">
-                    <router-link class="naked-link block" :to="{name: 'profile', params: {username: upvote.author_username}}">
-                        <img class="w-8 h-8 rounded-full border-2 border-primary-lighter hover:border-primary"
-                             v-bind:src="upvote.author_avatar">
-                    </router-link>
-                    <router-link class="naked-link block" :to="{name: 'profile', params: {username: upvote.author_username}}">
-                        {{ upvote.author_firstname }}
-                    </router-link>
-                </div>
-                <div class="container text-center text-4xl text-gray-light">
-                    <input type="hidden" v-model="message">
-                    <a class="naked-link mr-3" href="javascript://"
-                       v-clipboard:copy="message"
-                       v-clipboard:success="linkedinShare"
-                       v-clipboard:error="onError"><i class="fab fa-linkedin"></i></a>
-                    <a class="naked-link" target="_blank" :href="twitterShareUrl">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                </div>
+            </div>
+            <div class="text-center mb-8">
+                <router-link class="naked-link block" :to="{name: 'profile', params: {username: upvote.author_username}}">
+                    <img class="w-8 h-8 rounded-full border-2 border-primary-lighter hover:border-primary"
+                         v-bind:src="upvote.author_avatar">
+                </router-link>
+                <router-link class="naked-link block" :to="{name: 'profile', params: {username: upvote.author_username}}">
+                    {{ upvote.author_firstname }}
+                </router-link>
+            </div>
+            <div class="container text-center text-4xl text-gray-light">
+                <input type="hidden" v-model="message">
+                <a class="naked-link mr-3" href="javascript://"
+                   v-clipboard:copy="message"
+                   v-clipboard:success="linkedinShare"
+                   v-clipboard:error="onError"><i class="fab fa-linkedin"></i></a>
+                <a class="naked-link" target="_blank" :href="twitterShareUrl">
+                    <i class="fab fa-twitter"></i>
+                </a>
             </div>
         </section>
         <hr class="mt-16 mb-16"/>
