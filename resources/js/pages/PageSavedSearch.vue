@@ -54,9 +54,24 @@
                 </router-link>
             </div>
         </section>
+        <section class="max-w-lg mb-8 mx-auto p-4 text-center">
+            <h2 class="mb-4">Want to be added to this list?</h2>
+            <div v-if="!this.loggedIn">
+                <a class="btn px-5 py-2" href="/auth/linkedin" target="_blank">Sign up for free</a>
+            </div>
+            <div v-else class="text-xl">
+                <p>
+                    If you want to be added to this list and aren't on it already, just
+                    <router-link :to="{name: 'profile', params: {username: loggedInUser.username}}">
+                        tag your profile
+                    </router-link>
+                    with the tags that this list is associated with.
+                </p>
+            </div>
+        </section>
         <hr class="mt-16 mb-16"/>
-        <keyboard-shortcuts></keyboard-shortcuts>
-        <footer-component></footer-component>
+        <keyboard-shortcuts />
+        <footer-component />
     </div>
 </template>
 <script>

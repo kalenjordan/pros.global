@@ -104,7 +104,7 @@
                 let user = this.$cookies.get('user');
 
                 if (!user) {
-                    axios.get('auth/me').then((response) => {
+                    axios.get('/auth/me').then((response) => {
                         if (response.data.id) {
                             this.$cookies.set('user', response.data);
                         }

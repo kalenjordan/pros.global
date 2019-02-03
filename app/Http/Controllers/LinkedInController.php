@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Date;
 use App\User;
 use Auth;
 use Laravel\Socialite\Two\InvalidStateException;
@@ -71,6 +72,7 @@ class LinkedInController extends Controller
         \Log::info("LinkedIn Auth: " . json_encode($linkedinUser, true));
         $user->save();
 
+        $user->last_online_at = Date::now();
         Auth::login($user, true);
 
         return view('auth.linkedin-callback', [

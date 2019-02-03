@@ -74,7 +74,6 @@
             window.Events.$on('user-authenticated', (data) => {
                 this.$cookies.set('user', data);
                 this.$store.commit('updateUser', JSON.parse(data));
-                window.location.reload();
             });
 
             if (this.$cookies.get('user')) {

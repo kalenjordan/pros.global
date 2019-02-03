@@ -1,7 +1,8 @@
-@extends('app')
-
-@section('script')
+<html>
+<body>
     <script type="text/javascript">
-        let userData = JSON.stringify({!! $user ? json_encode($user->toArrayForCookie()) : null  !!});
+        window.opener.Events.$emit('user-authenticated', JSON.stringify({!! Auth::user() ? json_encode(Auth::user()->toArrayForCookie()) : null  !!}));
+        window.close();
     </script>
-@endsection
+</body>
+</html>
