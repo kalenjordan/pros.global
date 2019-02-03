@@ -6,8 +6,8 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body class="flex items-center">
-    <div class="twitter-card twitter-card-upvote relative bg-white p-8 mx-auto text-left" style="width: 600px; height: 300px;" >
-        <img class="logo w-3rem absolute opacity-50" src="/img/icon-200.png">
+    <div class="twitter-card-bigger twitter-card-upvote relative bg-white p-8 mx-auto text-left" >
+        <img class="logo absolute" src="/img/icon-200.png">
         <div class="avatar-wrapper mb-2">
             <img class="rounded-full border-4 border-secondary" src="{{ $upvote['tagged_user_avatar'] }}">
         </div>
