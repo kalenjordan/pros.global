@@ -52,11 +52,13 @@
         },
         methods: {
             initNotificatons() {
-                let auth = '?api_token=' + this.loggedInUser.api_token;
-                axios.get('/api/v1/notifications' + auth).then((response) => {
-                    this.$store.commit('updateUnreadNotificationCount', response.data.unread_count);
-                    this.$store.commit('updateNotifications', response.data.notifications);
-                });
+                if (this.loggedInUser.api_token) {
+                    let auth = '?api_token=' + this.loggedInUser.api_token;
+                    axios.get('/api/v1/notifications' + auth).then((response) => {
+                        this.$store.commit('updateUnreadNotificationCount', response.data.unread_count);
+                        this.$store.commit('updateNotifications', response.data.notifications);
+                    });
+                }
             },
             listenForMessages() {
                 let channel = 'user_notifications_' + this.loggedInUser.id;

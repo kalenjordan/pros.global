@@ -74,15 +74,15 @@
             window.Events.$on('user-authenticated', (data) => {
                 this.$cookies.set('user', data);
                 this.$store.commit('updateUser', JSON.parse(data));
+                this.broadcastPresence();
             });
 
             if (this.$cookies.get('user')) {
                 this.$store.commit('updateUser', this.$cookies.get('user'));
             }
 
-            this.broadcastPresence();
-
             if (this.loggedIn) {
+                this.broadcastPresence();
                 axios.get('/auth/me').then((response) => {
                     if (response.data.error_message) {
                         this.logout();

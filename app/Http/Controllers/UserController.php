@@ -78,7 +78,7 @@ class UserController extends Controller
         if (! $loggedInUser) {
             return ['error_message' => "Please login first before you can add a tag"];
         }
-        
+
         $user = User::findByUsername($username);
 
         $tag = $request->input('tag');
