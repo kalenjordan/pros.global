@@ -19,15 +19,15 @@ $users = $savedSearch->fetchUsers();
                 <?php $count = 0; ?>
                 @for ($i = 0; $i < count($users) && $i < 8; $i++)
                     <?php $user = $users[$i]; ?>
-                    <img class="avatar inline-block rounded-full border-2 border-primary" src="{{ $user->avatar_path }}">
+                    <img class="avatar inline-block rounded-full border-4 border-white" src="{{ $user->avatar_path }}">
                 @endfor
                 @for (; $i < count($users) && $i < 16; $i++)
                     <?php $user = $users[$i]; ?>
-                    <img class="avatar inline-block rounded-full border-2 border-primary" src="{{ $user->avatar_path }}">
+                    <img class="avatar inline-block rounded-full border-4 border-white" src="{{ $user->avatar_path }}">
                 @endfor
                 @for (; $i < count($users) && $i < 24; $i++)
                     <?php $user = $users[$i]; ?>
-                    <img class="avatar inline-block rounded-full border-2 border-primary" src="{{ $user->avatar_path }}">
+                    <img class="avatar inline-block rounded-full border-4 border-white" src="{{ $user->avatar_path }}">
                 @endfor
             </div>
         </div>
