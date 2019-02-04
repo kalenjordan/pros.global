@@ -47,7 +47,7 @@
                            :user="user" :key="user.id"
                 />
             </div>
-            <div class="centered" v-if="savedSearch.users.length > 12">
+            <div class="centered" v-if="savedSearch.users.length > 24">
                 <router-link class="btn px-5 py-2" :to="{name: 'search-query', params: { query: savedSearch.query }}">
                     See more
                     <i class="fas fa-caret-right ml-2"></i>
