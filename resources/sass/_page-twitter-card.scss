@@ -22,14 +22,13 @@
     padding-right: 48px !important;
 
     img.logo {
-        top: 9rem;
-        right: 3.5rem;
+        bottom: 2rem;
+        right: 3rem;
         width: 4rem;
     }
 
     h1 {
         font-weight: normal;
-        font-style: italic;
         line-height: inherit;
     }
 }
@@ -51,12 +50,6 @@
 
         h1 {
             display: none;
-        }
-
-        p {
-            line-height: inherit;
-            font-weight: normal;
-            font-style: italic;
         }
 
         &:before {
@@ -83,10 +76,15 @@
 }
 
 .twitter-card-saved-search {
-    h1 {
-        // flex-basis: 10rem;
+    .images {
+        margin-left: 2rem;
+        margin-bottom: 2rem;
+        .avatar {
+            width: 7rem;
+            margin-left: -2rem;
+            margin-bottom: -2rem;
+        }
     }
-
 }
 
 .twitter-card-user-profile {

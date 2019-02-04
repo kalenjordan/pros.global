@@ -1,5 +1,6 @@
 <?php
 /** @var \App\SavedSearch $savedSearch */
+$users = $savedSearch->fetchUsers();
 ?>
 
 <html>
@@ -10,16 +11,24 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body class="flex items-center">
-    <div class="twitter-card twitter-card-saved-search relative bg-white p-8 mx-auto text-center flex items-center">
-        <img class="logo w-3rem absolute opacity-50" src="/img/icon-200.png">
+    <div class="twitter-card-bigger twitter-card-saved-search relative bg-white p-8 mx-auto text-center flex items-center">
+        <img class="logo w-3rem absolute" src="/img/icon-200.png">
         <div class="w-full">
             <h1 class="text-2rem mb-4 w-full">{{ $savedSearch->name }}</h1>
-            <div class="images mx-auto -ml-4 w-full ">
+            <div class="images mx-auto w-full ">
                 <?php $count = 0; ?>
-                @foreach ($savedSearch->fetchUsers() as $user)
-                    <?php $count++; if ($count == 9) break; ?>
-                    <img class="inline-block rounded-full w-5rem -mr-8 border-2 border-primary" src="{{ $user->avatar_path }}">
-                @endforeach
+                @for ($i = 0; $i < count($users) && $i < 8; $i++)
+                    <?php $user = $users[$i]; ?>
+                    <img class="avatar inline-block rounded-full border-2 border-primary" src="{{ $user->avatar_path }}">
+                @endfor
+                @for (; $i < count($users) && $i < 16; $i++)
+                    <?php $user = $users[$i]; ?>
+                    <img class="avatar inline-block rounded-full border-2 border-primary" src="{{ $user->avatar_path }}">
+                @endfor
+                @for (; $i < count($users) && $i < 24; $i++)
+                    <?php $user = $users[$i]; ?>
+                    <img class="avatar inline-block rounded-full border-2 border-primary" src="{{ $user->avatar_path }}">
+                @endfor
             </div>
         </div>
     </div>
