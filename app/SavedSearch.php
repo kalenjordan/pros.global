@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property      $slug
  * @property      $featured_order
  * @property User $user
+ * @property      $updated_at
  */
 class SavedSearch extends Model
 {

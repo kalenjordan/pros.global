@@ -20,6 +20,7 @@
         "oe/lukas": "dev-master",
         "pusher/pusher-php-server": "^3.3",
         "rtconner/laravel-tagging": "~2.2",
+        "spatie/laravel-sitemap": "^5.2",
         "thujohn/twitter": "^2.2"
     },
     "require-dev": {

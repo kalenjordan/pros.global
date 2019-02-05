@@ -14,6 +14,7 @@ use Illuminate\Notifications\Notifiable;
  * @property $headline
  * @property $icon
  * @property $upvote_count
+ * @property $updated_at
  */
 class Tag extends \Conner\Tagging\Model\Tag
 {

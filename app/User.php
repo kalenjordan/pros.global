@@ -34,6 +34,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property $api_token
  * @property $is_admin
  * @property $last_online_at
+ * @property $updated_at
  *
  * @property $notifications
  * @property DatabaseNotificationCollection $unreadNotifications

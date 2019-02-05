@@ -26,8 +26,12 @@ Route::get('upvotes/{id}/twitter-card', 'UpvoteController@twitterCard');
 Route::get('/s/{slug}', 'SavedSearchController@viewHtml');
 Route::get('/s/{slug}/twitter-card', 'SavedSearchController@twitterCard');
 
+Route::get('/generate-sitemap', 'SitemapController@generate');
+
 Route::get('{username}', 'UserController@viewHtml');
 Route::get('{username}/twitter-card', 'UserController@twitterCard');
+
+
 
 Route::get('{any?}', function () {
     return view('app');
