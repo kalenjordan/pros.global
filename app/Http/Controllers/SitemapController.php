@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\SavedSearch;
 use App\Tag;
 use App\User;
-use Illuminate\Http\Request;
 use App\Date;
+
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
 

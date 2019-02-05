@@ -35,6 +35,12 @@
 }
 
 .twitter-card-upvote {
+    img.logo {
+        top: 9rem;
+        right: 3rem;
+        width: 4rem;
+    }
+
     img.avatar {
         float: right;
         margin-left: 2rem;
@@ -55,7 +61,7 @@
 
         &:before {
             content:'';
-            width:100%;
+            width:75%;
             height:100%;
             position:absolute;
             left:0;

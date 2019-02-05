@@ -39,7 +39,7 @@
         </div>
         <hr v-if="hasUpvotes" class="m-6 sm:my-16 sm:w-md sm:mx-auto"/>
         <section v-if="hasUpvotes" class="endorsements mx-auto p-4 max-w-sm text-sm leading-tight">
-            <div class="card hoverable endorsement-card" v-for="upvote in user.upvotes" :key="upvote.id">
+            <div class="card hoverable endorsement-card mb-4" v-for="upvote in user.upvotes" :key="upvote.id">
                 <div class="card--inner p-4 flex">
                     <div class="avatar centered text-center -ml-3">
                         <router-link :to="{name: 'profile', params: {username: upvote.author_username }}">
