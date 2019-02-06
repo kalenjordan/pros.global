@@ -17,10 +17,19 @@
                     {{ user.headline }}
                 </div>
             </div>
-            <div class="flex-4 card--tags" v-if="user.tags.length" style="-webkit-box-orient: vertical;">
-                <div class="font-70">
-                    <tag-clickable v-for="tag in user.tags" v-bind:tag="tag" :key="tag.id"></tag-clickable>
-                </div>
+            <div v-if="user.tags.length" class="flex-4  card--tags text-xs" style="-webkit-box-orient: vertical">
+                <router-link :to="{ path: '/search/tag:' + tag.slug }" v-for="tag in user.tags" :key="tag.id">
+                    <div class="tag animated fast">
+                        <span class="tag-name">
+                            <template v-if="tag.icon"><i class="tag-icon" :class="tag.icon"></i></template>
+                            {{ tag.name }}
+                        </span>
+                        <span v-if="tag.upvote_count" class="separator">&nbsp;</span>
+                        <span class="count-and-upvote">
+                            <span v-if="tag.upvote_count" class="tag-count">{{ tag.upvote_count }}</span>
+                        </span>
+                    </div>
+                </router-link>
             </div>
         </div>
     </div>
