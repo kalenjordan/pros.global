@@ -42,4 +42,13 @@ class TagController extends Controller
 
         return $user->tags;
     }
+
+    public function viewHtml($slug)
+    {
+        $tag = Tag::findBySlug($slug);
+
+        return view('tag', [
+            'tag' => $tag,
+        ]);
+    }
 }

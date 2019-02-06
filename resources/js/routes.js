@@ -6,6 +6,7 @@ import PageUserProfile from './pages/PageUserProfile';
 import PageUpvote from './pages/PageUpvote';
 import PageSavedSearches from './pages/PageSavedSearches';
 import PageSavedSearch from './pages/PageSavedSearch';
+import PageTag from './pages/PageTag';
 import PageLinked from './pages/PageLinked';
 
 let routes = [
@@ -28,6 +29,11 @@ let routes = [
         name: 'saved-search',
         path: '/s/:slug',
         component: PageSavedSearch
+    },
+    {
+        name: 'tag',
+        path: '/tag/:slug',
+        component: PageTag
     },
     {
         name: 'search',

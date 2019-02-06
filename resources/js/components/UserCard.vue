@@ -29,7 +29,7 @@
                 {{ user.headline }}
             </div>
             <div class="card--tags text-xs" style="-webkit-box-orient: vertical">
-                <router-link :to="{ path: '/search/tag:' + tag.slug }" v-for="tag in user.tags" :key="tag.id">
+                <router-link :to="{ path: '/tag/' + tag.slug }" v-for="tag in user.tags" :key="tag.id">
                     <div class="tag animated fast">
                         <span class="tag-name">
                             <template v-if="tag.icon"><i class="tag-icon" :class="tag.icon"></i></template>
