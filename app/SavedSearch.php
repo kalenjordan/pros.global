@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property      $name
  * @property      $query
+ * @property      $icon
  * @property      $slug
  * @property      $featured_order
  * @property User $user

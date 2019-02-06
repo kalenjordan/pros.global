@@ -26,7 +26,7 @@ class SavedSearchController extends Controller
 
         $search->name = $request->input('name');
         $search->query = $request->input('query');
-        $search->featured_order = $request->input('featured_order');
+        $search->featured_order = (int)$request->input('featured_order');
         $search->slug = $request->input('slug');
         $search->icon = $request->input('icon');
 
