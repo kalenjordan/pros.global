@@ -28,7 +28,7 @@
             <div class="card--about text-xs mb-2 leading-tight" style="-webkit-box-orient: vertical">
                 {{ user.headline }}
             </div>
-            <div class="card--tags text-xs" style="-webkit-box-orient: vertical">
+            <div class="card--tags text-xs">
                 <router-link :to="{ path: '/tag/' + tag.slug }" v-for="tag in user.tags" :key="tag.id">
                     <div class="tag animated fast">
                         <span class="tag-name">
