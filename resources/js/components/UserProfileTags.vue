@@ -8,7 +8,9 @@
             <tag-endorsement user="user"></tag-endorsement>
         </template>
         <div class="tag add-tag" @click="addTag()">
-            <i class="fas fa-plus mr-02"></i> Add tag
+            <span class="tag-name">
+                <i class="tag-icon fas fa-plus"></i> Add tag
+            </span>
         </div>
 
         <div class="tag-autocomplete card absolute" v-if="isAddingTag">

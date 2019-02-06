@@ -30,11 +30,15 @@
             </div>
             <div class="card--tags text-xs" style="-webkit-box-orient: vertical">
                 <router-link :to="{ path: '/search/tag:' + tag.slug }" v-for="tag in user.tags" :key="tag.id">
-                    <div class="tag fast"
-                         v-bind:class="{isUpvotedByMe : tag.is_upvoted_by_me}">
-                        <template v-if="tag.icon"><i :class="tag.icon"></i></template>
-                        <span class="tag-name">{{ tag.name }}</span>
-                        <span v-if="tag.upvote_count" class="tag-count">{{ tag.upvote_count }}</span>
+                    <div class="tag animated fast">
+                        <span class="tag-name">
+                            <template v-if="tag.icon"><i class="tag-icon" :class="tag.icon"></i></template>
+                            {{ tag.name }}
+                        </span>
+                        <span v-if="tag.upvote_count" class="separator">&nbsp;</span>
+                        <span class="count-and-upvote">
+                            <span v-if="tag.upvote_count" class="tag-count">{{ tag.upvote_count }}</span>
+                        </span>
                     </div>
                 </router-link>
             </div>

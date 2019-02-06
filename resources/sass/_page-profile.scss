@@ -27,14 +27,11 @@
 
     .tag {
         margin: 1px 3px;
-        @apply .bg-secondary-lighter .border-secondary-light;
-
-        &:hover {
-            @apply .bg-secondary-light;
+        .tag-name {
+            padding-left: .75rem;
         }
-
-        &.isUpvotedByMe {
-            @apply .border-secondary-dark;
+        .count-and-upvote {
+            padding-right: .75rem;
         }
     }
 

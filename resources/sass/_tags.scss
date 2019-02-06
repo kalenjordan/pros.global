@@ -4,42 +4,82 @@
     display: inline-block;
     border-radius: 5px;
     margin: 0.25em;
-    padding: 0.25em 0.8em;
     border: solid 1px;
 
     transition: all 0.25s ease;
 
     background-color: $grayLightest;
-    border-color: $grayLightest;
+    border-color: $grayLighter;
     color: $grayLight;
     &:hover {
-        background-color: $grayLighter;
-        color: $gray;
+        color: $highlightColor;
+    }
+
+    i.tag-icon {
+        font-size: 80%;
+        margin-right: 3px;
+
+        &.fa-location-arrow {
+            opacity: 0.7;
+        }
+    }
+
+    .tag-name {
+        display: inline-block;
+        padding: 0.25rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    .separator {
+        border-left: solid 1px $grayLighter;
+        padding: 0.25rem;
+        margin-right: -.5rem;
+    }
+
+    .count-and-upvote {
+        display: inline-block;
+        padding-right: 0.5rem;
+
+        cursor: pointer;
+        &:hover {
+            color: $highlightColor;
+        }
+    }
+}
+
+.tag.add-tag {
+    cursor: pointer;
+    &:hover {
+        color: $highlightColor;
+    }
+}
+
+.tag.tag-with-upvote {
+    padding: 0;
+    cursor: default;
+    &:hover {
+        color: inherit;
+    }
+
+    .tag-name {
+        cursor: pointer;
+
+        &:hover {
+            color: $highlightColor;
+        }
     }
 
     .fa-thumbs-up {
-        transition: all 0.25s ease;
-        margin-left: -2.2em;
-        padding-right: 8px;
+        font-size: 80%;
+        display: block;
+        margin-left: 7px;
+        margin-top: 3px;
+        float: right;
+
         &.upvoted {
             font-weight: bold;
         }
-    }
-    &:hover {
-        .fa-thumbs-up {
-            margin-left: 0;
-            padding-right: 2px;
-        }
-    }
-
-    i {
-        font-size: 76%;
-        opacity: 0.6;
-    }
-
-    .tag-count {
-        padding-left: 3px;
-        opacity: 0.6;
     }
 }
 

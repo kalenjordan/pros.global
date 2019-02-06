@@ -1,14 +1,15 @@
 <template>
     <div style="display: inline-block">
-        <div class="tag fast text-sm sm:text-base"
-             @click="tagClick(tag)"
-             v-bind:class="{'border-gray-lighter' : tag.is_upvoted_by_me, animated : hasBeenClicked, tada: tag.is_upvoted_by_me}">
-            <i class="far fa-thumbs-up" v-bind:class="{upvoted : tag.is_upvoted_by_me}"></i>
-            <span class="tag-name">
-                <template v-if="tag.icon"><i :class="tag.icon"></i></template>
+        <div class="tag tag-with-upvote border-1 fast text-sm sm:text-base">
+            <router-link class="tag-name animated no-link" :to="{ path: '/search/tag:' + tag.slug }">
+                <template v-if="tag.icon"><i class="tag-icon" :class="tag.icon"></i></template>
                 {{ tag.name }}
+            </router-link>
+            <span class="separator">&nbsp;</span>
+            <span class="count-and-upvote animated" @click="tagClick(tag)">
+                <span class="tag-count" v-if="tag.upvote_count">{{ tag.upvote_count }}</span>
+                <i class="far fa-thumbs-up" :class="{upvoted : tag.is_upvoted_by_me}"></i>
             </span>
-            <span v-if="tag.upvote_count" class="tag-count">{{ tag.upvote_count }}</span>
         </div>
     </div>
 </template>
