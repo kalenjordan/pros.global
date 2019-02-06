@@ -9,6 +9,11 @@
                     <a class="btn px-5 py-2" @click="save" v-shortkey="['meta', 'enter']" @shortkey="save">Save</a>
                 </div>
             </div>
+            <div v-if="canEdit && !editing">
+                <div class="mr-6" @click="editing=1">
+                    <i class="fas fa-edit text-gray-dark font-120 cursor-pointer"></i>
+                </div>
+            </div>
         </top-nav>
         <section class="header max-w-lg mx-auto text-center">
             <div class="m-4">
@@ -16,9 +21,8 @@
                     <img v-bind:src="user.avatar_path" class="w-16 sm:w-32 h-16 sm:h-32 rounded-full">
                     <i v-if="this.isPresent(user)" class="absolute is-present fas fa-circle"></i>
                 </div>
-                <h1 ref="headline" class="text-xl sm:text-4xl editable" v-bind:contenteditable="canEdit" @focus="editing=true">
+                <h1 ref="headline" class="text-xl sm:text-4xl editable animated" v-bind:contenteditable="canEdit" @focus="editing=true">
                     {{ user.headline }}
-                    <i class="edit-icon fas fa-pencil-alt" v-if="canEdit"></i>
                 </h1>
             </div>
         </section>

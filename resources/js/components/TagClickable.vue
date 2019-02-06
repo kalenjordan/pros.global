@@ -1,7 +1,7 @@
 <template>
     <div style="display: inline-block">
         <div class="tag tag-with-upvote border-1 fast text-sm sm:text-base">
-            <router-link class="tag-name animated no-link" :to="{ path: '/search/tag:' + tag.slug }">
+            <router-link class="tag-name animated" :to="{ path: '/search/tag:' + tag.slug }">
                 <template v-if="tag.icon"><i class="tag-icon" :class="tag.icon"></i></template>
                 {{ tag.name }}
             </router-link>

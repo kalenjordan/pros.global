@@ -1,6 +1,6 @@
 <template>
     <div class="relative">
-        <template v-if="loggedInUserViewingOwnPage()">
+        <template v-if="editing">
             <tag-editable v-for="tag in user.tags" :user="user" :tag="tag" :key="tag.id"></tag-editable>
         </template>
         <template v-else >
