@@ -42,7 +42,7 @@ class SitemapController extends Controller
 
         foreach (Tag::all() as $tag) {
             /** @var Tag $tag */
-            $url = Url::create('/search/tag:' . $tag->slug);
+            $url = Url::create('/tag/' . $tag->slug);
             if ($tag->updated_at) {
                 $url->setLastModificationDate($tag->updated_at);
             }
