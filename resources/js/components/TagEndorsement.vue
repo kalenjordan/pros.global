@@ -64,10 +64,8 @@
                 this.$refs.wrapper.style.right = '-500px';
             },
             hotkeyHandler(e) {
-                if (document.activeElement.tagName === 'INPUT') {
-                    if (e.key === 'Escape') {
-                        // Not using escape for this b/c it doesn't fire an event. Using blur instead.
-                    }
+                if (e.key === 'Escape') {
+                    this.closeEndorsement();
                 }
             },
         },
