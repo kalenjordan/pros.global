@@ -213,4 +213,9 @@ class User extends Authenticatable
             ->whereNull('read_at')
             ->whereNull('emailed_at');
     }
+
+    public function url()
+    {
+        return env('APP_URL') . '/' . $this->username;
+    }
 }
