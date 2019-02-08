@@ -87,7 +87,7 @@ class UserController extends Controller
         }
 
         $user->tag($tag);
-        $user->notify(new BeenTagged($loggedInUser->name . " just tagged you with: " . $tag));
+        $user->notify(new BeenTagged($loggedInUser->name . " tagged you with: " . $tag));
 
         return $user->tagged;
     }
@@ -119,7 +119,7 @@ class UserController extends Controller
         $tagged = Tagged::find($taggedId);
         $upvote = $tagged->toggleUpvote();
 
-        $user->notify(new BeenUpvoted($loggedInUser->name . " just upvoted you for: " . $tagged->tag_name));
+        $user->notify(new BeenUpvoted($loggedInUser->name . " upvoted you for: " . $tagged->tag_name));
 
         return ['upvote' => $upvote, 'all_upvotes' => $tagged->taggedUser()->upvotes];
     }

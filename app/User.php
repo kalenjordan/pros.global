@@ -4,6 +4,7 @@ namespace App;
 
 use Carbon\Carbon;
 use Conner\Tagging\Taggable;
+use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -201,5 +202,16 @@ class User extends Authenticatable
     public function lastOnlineAt()
     {
         return $this->last_online_at ? Carbon::parse($this->last_online_at) : null;
+    }
+
+    /**
+     * @return DatabaseNotificationCollection
+     */
+    public function notificationsToEmail()
+    {
+        return DatabaseNotification::where('notifiable_id', $this->id)
+            ->whereNull('read_at')
+            ->orderBy('created_at', 'desc')
+            ->whereNull('emailed_at');
     }
 }

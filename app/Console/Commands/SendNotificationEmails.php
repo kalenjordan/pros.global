@@ -2,11 +2,14 @@
 
 namespace App\Console\Commands;
 
+use App\Mail\UnreadNotifications;
+use Log;
+use Mail;
+
 use App\Date;
 use App\User;
+
 use Illuminate\Notifications\DatabaseNotification;
-use Illuminate\Notifications\DatabaseNotificationCollection;
-use Log;
 use Illuminate\Console\Command;
 
 class SendNotificationEmails extends Command
@@ -40,6 +43,8 @@ class SendNotificationEmails extends Command
         return $this->option('dry') !== null ? (int)$this->option('dry') : 1;
     }
 
+    protected $usersWithNotificationsToEmail = 0;
+
     /**
      * Execute the console command.
      *
@@ -56,38 +61,48 @@ class SendNotificationEmails extends Command
         $this->info("Running command - with limit of $limit ($dryRunMessage)");
         Log::info("Running command - with limit of $limit");
 
-
-        $notifications = DatabaseNotification::whereNull('read_at')
-            ->whereNull('emailed_at')
-            ->orderBy('created_at', 'desc')
-            ->limit($limit)
-            ->get();
-        foreach ($notifications as $notification) {
-            $this->_handleNotification($notification);
+        $users = User::where('id', '>', 0);
+        foreach ($users->get() as $user) {
+            $this->_handleUser($user);
         }
         return;
     }
 
     /**
-     * @param $notification DatabaseNotification
+     * @param $user User
      */
-    protected function _handleNotification($notification) {
-        $text = $notification->data['text'];
-        $notifiedUser = User::find($notification->notifiable_id);
-        $to = $notifiedUser->name . " ($notifiedUser->email)";
-        $this->info("Notification to $to: " . $text);
+    protected function _handleUser($user) {
+        $count = $user->notificationsToEmail()->count();
+        $this->info("User $user->name has $count unread notifications to email");
+        if ($count) {
+            $this->usersWithNotificationsToEmail++;
+        }
 
-        if (! $this->_dryRun()) {
-            $this->_send($notifiedUser, $notification);
+        if (! $this->_dryRun() && $count) {
+            $this->_send($user);
+        }
+        if ($this->usersWithNotificationsToEmail >= $this->option('limit')) {
+            exit;
         }
     }
 
     /**
-     * @param $user
-     * @param $notification DatabaseNotification
+     * @param $user User
      */
-    protected function _send($user, $notification) {
-        $notification->emailed_at = Date::now();
-        $notification->save();
+    protected function _send($user) {
+        $isDummyEmail = env('DUMMY_EMAIL_PATTERN') ? strpos($user->email, env('DUMMY_EMAIL_PATTERN')) : false;
+        if ($isDummyEmail) {
+            $this->info("Dummy email, skipping");
+            return;
+        } else {
+            $this->info("Sending notification to $user->name ($user->email)");
+        }
+
+        Mail::to($user->email)->send(new UnreadNotifications($user));
+        foreach ($user->notificationsToEmail()->get() as $notification) {
+            /** @var DatabaseNotification $notification */
+            $notification->emailed_at = Date::now();
+            $notification->save();
+        }
     }
 }
