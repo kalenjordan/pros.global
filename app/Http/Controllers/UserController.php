@@ -143,4 +143,36 @@ class UserController extends Controller
             'user' => $user,
         ]);
     }
+
+    /**
+     * @param $username
+     * @param $mergedUsername
+     *
+     * @return array
+     * @throws \Exception
+     */
+    public function merge($username, $mergedUsername)
+    {
+        $user = User::findByUsername($username);
+        $mergingUser = User::findByUsername($mergedUsername);
+
+        if ($user->linkedin_token) {
+            return ['success' => false, 'message' => "User already has a linkedin token, not going to merge"];
+        }
+
+        if (! $user->linkedin_token && $mergingUser->linkedin_token) {
+            $user->name = $mergingUser->name;
+            $user->linkedin_token = $mergingUser->linkedin_token;
+            $user->email = $mergingUser->email;
+            $user->last_online_at = $mergingUser->last_online_at;
+
+            $mergingUser->email = $mergingUser->email . "-deleting";
+            $mergingUser->save();
+
+            $user->save();
+            $mergingUser->delete();
+            return ['success' => true, 'message' => "Merged"];
+        }
+        $a = 1;
+    }
 }

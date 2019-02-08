@@ -63,10 +63,13 @@
                     <input class="text p-1" type="text" style="width: 178px;" placeholder="you@example.com">
                     <a class="btn px-3 py-1"><i class="fa fa-envelope"></i></a>
                 </div>
-                <div class="text-2xl gray-lighter">
+                <div class="text-2xl gray-lighter mb-4">
                     <a class="naked-link mr-2" href="https://twitter.com/kalenjordan"><i class="fab fa-twitter"></i></a>
                     <a class="naked-link mr-2" href="https://github.com/kalenjordan/founderland"><i class="fab fa-github"></i></a>
                     <a class="naked-link mr-2" href="https://github.com/kalenjordan/founderland"><i class="fab fa-linkedin"></i></a>
+                </div>
+                <div v-if="user && this.loggedInUser && this.loggedInUser.is_admin">
+                    <a class="naked-link" href="javascript://" @click="mergeUser">Merge user</a>
                 </div>
             </div>
         </div>
@@ -121,7 +124,23 @@
                         console.log('ServiceWorker registration failed: ', err);
                     });
                 }
-            }
+            },
+            mergeUser() {
+                let username = prompt('Enter username');
+                let auth = '?api_token=' + this.loggedInUser.api_token;
+
+                axios.get('/api/v1/users/' + this.user.username + '/merge/' + username + auth).then((response) => {
+                    alert(response.message);
+                });
+            },
+        },
+        computed: {
+            loggedIn() {
+                return this.$store.state.user && this.$store.state.user.id;
+            },
+            loggedInUser: function() {
+                return this.$store.state.user;
+            },
         },
     }
 </script>

@@ -30,6 +30,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('v1/users/{username}/add-tag', 'UserController@addTag');
     Route::get('v1/users/{username}/delete-tag/{tag}', 'UserController@deleteTag');
     Route::get('v1/users/{username}/upvote-tag/{tag}', 'UserController@upvoteTag');
+    Route::get('v1/users/{username}/merge/{merging_username}', 'UserController@merge');
 
     Route::post('v1/upvotes/{id}', 'UpvoteController@post');
     Route::post('v1/saved-searches', 'SavedSearchController@create');
