@@ -211,7 +211,6 @@ class User extends Authenticatable
     {
         return DatabaseNotification::where('notifiable_id', $this->id)
             ->whereNull('read_at')
-            ->orderBy('created_at', 'desc')
             ->whereNull('emailed_at');
     }
 }

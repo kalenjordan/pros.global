@@ -3,12 +3,12 @@
 /** @var \Illuminate\Notifications\DatabaseNotification $notification */
 ?>
 @component('mail::message')
-    # You have X unread notifications
+    # You have {{ $user->notificationsToEmail()->count() }} unread notifications
 
     Name: {{ $user->name }}
 
     @foreach ($user->notificationsToEmail()->get() as $notification)
-        - {{ $notification->data['text'] }} - {{ \App\Date::parse($notification->created_at)->diffForHumans() }}
+    - {{ $notification->data['text'] }} - {{ \App\Date::parse($notification->created_at)->diffForHumans() }}
     @endforeach
 
     Thanks,
