@@ -35,7 +35,7 @@ class TwitterController extends Controller
 
         $user = User::create([
             'name'        => $twitter->name,
-            'username'    => $twitter->screen_name,
+            'username'    => User::generateUniqueUsername($twitter->screen_name),
             'email'       => $twitter->screen_name . '@example.com',
             'avatar_path' => "/avatars/$fileName",
             'headline'    => $twitter->description ? $twitter->description : '(No description)',

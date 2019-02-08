@@ -14,7 +14,7 @@ class MoreUserInfo extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('username')->after('password')->nullable();
+            $table->string('username')->unique()->after('password')->nullable();
             $table->string('headline')->after('username')->nullable();
             $table->text('about')->after('headline')->nullable();
             $table->string('avatar_path')->after('about')->nullable();

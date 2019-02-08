@@ -125,6 +125,30 @@ class User extends Authenticatable
         return self::where('api_token', $username)->first();
     }
 
+    /**
+     * @param $string
+     *
+     * @return null|string|string[]
+     * @throws \Exception
+     */
+    public static function generateUniqueUsername($string)
+    {
+        $username = preg_replace("/[^a-z0-9.]+/i", "", strtolower($string));
+        if (!User::findByUsername($username)) {
+            return $username;
+        }
+
+        $usernameOriginal = $username;
+        for ($i = 1; $i <= 9; $i++) {
+            $username = $usernameOriginal . $i;
+            if (!User::findByUsername($username)) {
+                return $username;
+            }
+        }
+
+        throw new \Exception("Problem generating username");
+    }
+
     public function toArray()
     {
         $data = parent::toArray();
