@@ -43,6 +43,11 @@ class SendNotificationEmails extends Command
         return $this->option('dry') !== null ? (int)$this->option('dry') : 1;
     }
 
+    protected function _limit()
+    {
+        return $this->option('limit') ? $this->option('limit') : 1;
+    }
+
     protected $usersWithNotificationsToEmail = 0;
 
     /**
@@ -57,7 +62,7 @@ class SendNotificationEmails extends Command
         // todo maybe control whether these are sent out via an upvote on a tag on my
         // profile - that way I can easily disable them from my phone without having
         // to go into .env
-        $limit = $this->option('limit') ? $this->option('limit') : 10;
+        $limit = $this->_limit();
         $this->info("Running command - with limit of $limit ($dryRunMessage)");
         Log::info("Running command - with limit of $limit");
 
@@ -81,7 +86,7 @@ class SendNotificationEmails extends Command
         if (! $this->_dryRun() && $count) {
             $this->_send($user);
         }
-        if ($this->usersWithNotificationsToEmail >= $this->option('limit')) {
+        if ($this->usersWithNotificationsToEmail >= $this->_limit()) {
             exit;
         }
     }
