@@ -20,7 +20,7 @@ class SendNotificationEmails extends Command
      *
      * @var string
      */
-    protected $signature = 'notifications:send {--limit=} {--dry=}';
+    protected $signature = 'notifications:send {--limit=} {--live}';
 
     /**
      * The console command description.
@@ -41,7 +41,7 @@ class SendNotificationEmails extends Command
 
     protected function _dryRun()
     {
-        return $this->option('dry') !== null ? (int)$this->option('dry') : 1;
+        return $this->option('live') === false ? 1 : 0;
     }
 
     protected function _limit()
