@@ -28,6 +28,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('notifications:send --limit=2 --live')
             ->hourly()
+            ->sendOutputTo(storage_path('logs/cron.log'))
             ->emailOutputTo(env('ADMIN_EMAIL'));
     }
 
