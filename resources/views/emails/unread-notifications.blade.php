@@ -14,6 +14,6 @@ $count = $user->notificationsToEmail()->count();
     Go to pros.global
 @endcomponent
 
-Thanks,
-pros.global
+Thanks,<br/>
+Management
 @endcomponent
