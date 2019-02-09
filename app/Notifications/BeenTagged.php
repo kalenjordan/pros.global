@@ -9,8 +9,10 @@ use Illuminate\Notifications\Messages\MailMessage;
 
 class BeenTagged extends Notification
 {
+
     use Queueable;
 
+    public $user;
     public $text;
 
     /**
@@ -18,15 +20,17 @@ class BeenTagged extends Notification
      *
      * @return void
      */
-    public function __construct($text)
+    public function __construct($user, $text)
     {
+        $this->user = $user;
         $this->text = $text;
     }
 
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed  $notifiable
+     * @param  mixed $notifiable
+     *
      * @return array
      */
     public function via($notifiable)
@@ -37,13 +41,15 @@ class BeenTagged extends Notification
     /**
      * Get the array representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param  mixed $notifiable
+     *
      * @return array
      */
     public function toArray($notifiable)
     {
         return [
-            'text' => $this->text,
+            'from_user_id' => $this->user->id,
+            'text'         => $this->text,
         ];
     }
 }

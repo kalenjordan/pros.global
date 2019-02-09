@@ -2,6 +2,8 @@
 
 namespace App;
 
+use DB;
+
 use Carbon\Carbon;
 use Conner\Tagging\Taggable;
 use Illuminate\Notifications\DatabaseNotification;
@@ -233,7 +235,22 @@ class User extends Authenticatable
      */
     public function notificationsToEmail()
     {
+        $adminUserIds = Tagged::where('tag_slug', 'admin')
+            ->leftJoin("tagging_tagged_upvotes", function($join) {
+                /** @var $join \Illuminate\Database\Query\JoinClause */
+                $join->on("tagging_tagged_upvotes.tagged_id", '=', 'tagging_tagged.id');
+            })->select([
+                'tagging_tagged.*',
+            ])->where('tagging_tagged_upvotes.user_id', env('ADMIN_USER_ID'))
+            ->get()->pluck('taggable_id');
+
+        $whitelistedUserIds = TaggedUpvote::whereIn('user_id', $adminUserIds)
+            ->select([
+                DB::raw('DISTINCT tagged_user_id')
+            ])->get()->pluck('tagged_user_id');
+
         return DatabaseNotification::where('notifiable_id', $this->id)
+            ->whereIn('data->from_user_id', $whitelistedUserIds)
             ->whereNull('read_at')
             ->whereNull('emailed_at');
     }

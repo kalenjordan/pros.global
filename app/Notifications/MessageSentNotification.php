@@ -15,6 +15,7 @@ class MessageSentNotification extends Notification
 
     /** @var Message */
     public $message;
+
     public $text;
     public $link;
 
@@ -52,9 +53,10 @@ class MessageSentNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'message' => $this->message,
-            'text'    => $this->text,
-            'link'  => $this->link,
+            'from_user_id' => $this->message->user_id,
+            'message'      => $this->message,
+            'text'         => $this->text,
+            'link'         => $this->link,
         ];
     }
 }

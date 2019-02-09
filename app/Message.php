@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property User $toUser
  * @property User $author
  * @property $message
+ * @property $user_id
  *
  * @method static \Illuminate\Database\Query\Builder where($column, $operator = null, $value = null, $boolean = 'and')
  */
