@@ -4,9 +4,6 @@ namespace App\Notifications;
 
 use App\Message;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 
 class MessageSentNotification extends Notification
 {

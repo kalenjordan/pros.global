@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Mail\UnreadNotifications;
+use App\Notifications\Notification;
 use Log;
 use Mail;
 
@@ -59,16 +60,22 @@ class SendNotificationEmails extends Command
     {
         $dryRunMessage = $this->_dryRun() ? "Dry run" : "SENDING";
 
-        // todo maybe control whether these are sent out via an upvote on a tag on my
-        // profile - that way I can easily disable them from my phone without having
-        // to go into .env
         $limit = $this->_limit();
-        $this->info("Running command - with limit of $limit ($dryRunMessage)");
-        Log::info("Running command - with limit of $limit");
 
-        $users = User::where('id', '>', 0);
-        foreach ($users->get() as $user) {
-            $this->_handleUser($user);
+        $notifications = Notification::toBeEmailed()
+            ->groupBy('notifiable_id')
+            ->select([
+                'notifiable_id'
+            ])
+            ->get();
+
+        $count = $notifications->count();
+        $this->info("Sending $count notifications with limit of $limit ($dryRunMessage)");
+
+        foreach ($notifications as $notification) {
+            /** @var DatabaseNotification $notification */
+            $userToNotify = User::find($notification->notifiable_id);
+            $this->_handleUser($userToNotify);
         }
         return;
     }
@@ -77,7 +84,7 @@ class SendNotificationEmails extends Command
      * @param $user User
      */
     protected function _handleUser($user) {
-        $count = $user->notificationsToEmail()->count();
+        $count =  $user->notificationsToEmail()->count();
         $this->info("User $user->name ($user->id) has $count unread notifications to email");
         if ($count) {
             $this->usersWithNotificationsToEmail++;
