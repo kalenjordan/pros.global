@@ -85,7 +85,7 @@ class SendNotificationEmails extends Command
      */
     protected function _handleUser($user) {
         $count =  $user->notificationsToEmail()->count();
-        $this->info("User $user->name ($user->id) has $count unread notifications to email");
+        $this->info("User $user->name <$user->email> ($user->id) has $count unread notifications to email");
         if ($count) {
             $this->usersWithNotificationsToEmail++;
         }
