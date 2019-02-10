@@ -35,7 +35,7 @@ class Notification extends \Illuminate\Notifications\Notification
             ])->where('tagging_tagged_upvotes.user_id', env('ADMIN_USER_ID'))
             ->get()->pluck('taggable_id');
 
-        $whitelistedUserIds = TaggedUpvote::whereIn('user_id', $adminUserIds)
+        $whitelistedUserIds = TaggedUpvote::where('id', '>', 0)->whereIn('user_id', $adminUserIds)
             ->select([
                 DB::raw('DISTINCT tagged_user_id')
             ])->get()->pluck('tagged_user_id');

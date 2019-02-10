@@ -13,7 +13,7 @@
                 :showFile="true"
                 :showTypingIndicator="showTypingIndicator"
                 :alwaysScrollToBottom="alwaysScrollToBottom"
-                :messageStyling="messageStyling"/>
+                :messageStyling="messageStyling"></beautiful-chat>
     </div>
 </template>
 

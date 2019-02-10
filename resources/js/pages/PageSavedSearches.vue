@@ -8,7 +8,8 @@
         </section>
         <section class="max-w-3xl mb-8 mx-auto">
             <div class="saved-searches m-2 mb-4 sm:mb-8 flex flex-wrap justify-center">
-                <saved-search-card class="mb-12 m-4" v-for="savedSearch in savedSearches" :key="savedSearches.id" :savedSearch="savedSearch" />
+                <saved-search-card class="mb-12 m-4" v-for="savedSearch in savedSearches"
+                                   :key="savedSearches.id" :savedSearch="savedSearch"></saved-search-card>
             </div>
         </section>
         <hr class="mt-16 mb-16"/>
@@ -28,6 +29,6 @@
             axios.get('/api/v1/saved-searches?with_users=1').then((response) => {
                 this.savedSearches = response.data;
             });
-       },
+        },
     }
 </script>

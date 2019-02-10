@@ -37,7 +37,7 @@
                 <user-card class="hoverable w-full sm:max-w-xs m-2"
                            v-for="user in tag.users.slice(0, 24)"
                            :user="user" :key="user.id"
-                />
+                ></user-card>
             </div>
             <div class="centered" v-if="tag.users.length > 24">
                 <router-link class="btn px-5 py-2" :to="{name: 'search-query', params: { query: tag.query }}">
@@ -62,8 +62,8 @@
             </div>
         </section>
         <hr class="mt-16 mb-16"/>
-        <keyboard-shortcuts />
-        <footer-component />
+        <keyboard-shortcuts></keyboard-shortcuts>
+        <footer-component></footer-component>
     </div>
 </template>
 <script>
@@ -106,11 +106,7 @@
                     return false;
                 }
 
-                if (this.loggedInUser.is_admin) {
-                    return true;
-                }
-
-                return false;
+                return !!this.loggedInUser.is_admin;
             }
         },
         metaInfo () {

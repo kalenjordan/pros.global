@@ -18,11 +18,14 @@
         </section>
         <section class="max-w-md mx-auto" v-bind:class="{opacity50 : search_processing}">
             <div v-if="users.length">
-                <search-result-card class="hoverable mb-4" v-for="user in users" v-bind:user="user" :key="user.id"></search-result-card>
+                <search-result-card class="hoverable mb-4"
+                                    v-for="user in users" v-bind:user="user" :key="user.id"></search-result-card>
             </div>
             <div v-else>
                 <div class="p-4 text-center">
-                    <div class="italic mb-4 text-gray-dark">No pros were found. Want to add someone you know from Twitter?</div>
+                    <div class="italic mb-4 text-gray-dark">
+                        No pros were found. Want to add someone you know from Twitter?
+                    </div>
                     <div>
                         <input class="p-4 mr-4"
                                placeholder="e.g. @username"
@@ -67,7 +70,7 @@
         methods: {
             search() {
                 this.search_processing = true;
-                window.history.replaceState({}, null, '/search/' + this.query)
+                window.history.replaceState({}, null, '/search/' + this.query);
 
                 axios.get('/api/v1/users?q=' + this.query).then((response) => {
                     this.search_processing = false;

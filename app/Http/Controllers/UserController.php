@@ -173,5 +173,7 @@ class UserController extends Controller
             $mergingUser->delete();
             return ['success' => true, 'message' => "Merged"];
         }
+
+        return ['success' => false, 'message' => "Problem merging"];
     }
 }

@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 class TwitterController extends Controller
 {
 
+    /**
+     * @param $username
+     *
+     * @return array
+     * @throws \Exception
+     */
     public function addUser($username)
     {
         if (!Auth::user()) {

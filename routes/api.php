@@ -2,38 +2,41 @@
 
 use Illuminate\Http\Request;
 
-Route::get('v1/saved-searches', 'SavedSearchController@list');
-Route::get('v1/saved-searches/homepage', 'SavedSearchController@homepage');
-Route::get('v1/saved-searches/{slug}', 'SavedSearchController@view');
+Route::prefix('v1')->group(function () {
+    Route::get('saved-searches', 'SavedSearchController@list');
+    Route::get('saved-searches/{slug}', 'SavedSearchController@view');
 
-Route::get('v1/tags', 'TagController@index');
-Route::get('v1/tags/{slug}', 'TagController@view');
+    Route::get('tags', 'TagController@index');
+    Route::get('tags/{slug}', 'TagController@view');
 
-Route::get('v1/users', 'UserController@list');
-Route::get('v1/users/{username}', 'UserController@view');
-Route::get('v1/upvotes/{id}', 'UpvoteController@view');
+    Route::get('users', 'UserController@list');
+    Route::get('users/{username}', 'UserController@view');
 
-Route::group(['middleware' => ['auth:api']], function () {
+    Route::get('upvotes/{id}', 'UpvoteController@view');
 
-    Route::get('v1/me', function (Request $request) {
-        return $request->user();
+    Route::group(['middleware' => ['auth:api']], function () {
+
+        Route::get('me', function (Request $request) {
+            return $request->user();
+        });
+
+        Route::get('messages/with-other-user/{otherUserId}', 'MessageController@withOtherUser');
+        Route::post('messages', 'MessageController@send');
+
+        Route::get('notifications', 'NotificationController@list');
+        Route::get('notifications/mark-read', 'NotificationController@markRead');
+
+        Route::post('saved-searches', 'SavedSearchController@create');
+        Route::post('saved-searches/{id}', 'SavedSearchController@edit');
+
+        Route::get('twitter/add-user/{username}', 'TwitterController@addUser');
+
+        Route::post('upvotes/{id}', 'UpvoteController@post');
+
+        Route::post('users/{username}', 'UserController@post');
+        Route::post('users/{username}/add-tag', 'UserController@addTag');
+        Route::get('users/{username}/delete-tag/{tag}', 'UserController@deleteTag');
+        Route::get('users/{username}/upvote-tag/{tag}', 'UserController@upvoteTag');
+        Route::get('users/{username}/merge/{merging_username}', 'UserController@merge');
     });
-
-    Route::get('v1/messages/with-other-user/{otherUserId}', 'MessageController@withOtherUser');
-    Route::post('v1/messages', 'MessageController@send');
-    Route::get('v1/notifications', 'NotificationController@list');
-    Route::get('v1/notifications/mark-read', 'NotificationController@markRead');
-
-    Route::get('v1/twitter/add-user/{username}', 'TwitterController@addUser');
-
-    Route::post('v1/users/{username}', 'UserController@post');
-    Route::post('v1/users/{username}/add-tag', 'UserController@addTag');
-    Route::get('v1/users/{username}/delete-tag/{tag}', 'UserController@deleteTag');
-    Route::get('v1/users/{username}/upvote-tag/{tag}', 'UserController@upvoteTag');
-    Route::get('v1/users/{username}/merge/{merging_username}', 'UserController@merge');
-
-    Route::post('v1/upvotes/{id}', 'UpvoteController@post');
-    Route::post('v1/saved-searches', 'SavedSearchController@create');
-    Route::post('v1/saved-searches/{id}', 'SavedSearchController@edit');
-
 });

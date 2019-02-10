@@ -3,7 +3,7 @@
         <top-nav class="m-4 sm:m-8">
             <div v-if="editing" class="edit-profile-wrapper m-1 inline-block">
                 <div class="inline-block">
-                    <a class="paragraph-link mr-3" @click="cancel()" >
+                    <a class="paragraph-link mr-3" @click="cancel()">
                         Cancel
                     </a>
                     <a class="btn px-5 py-2" @click="save()" v-shortkey="['meta', 'enter']" @shortkey="save()">Save</a>
@@ -13,8 +13,9 @@
         <section class="hero text-center max-w-lg m-4 mx-auto">
             <div class="avatar">
                 <router-link :to="{name: 'profile', params: {username: upvote.tagged_username}}">
-                    <img v-bind:src="upvote.tagged_user_avatar"
-                         class="w-16 sm:w-32 h-16 sm:h-32 rounded-full border-4 border-secondary-light hover:border-secondary"
+                    <img :src="upvote.tagged_user_avatar"
+                         class="w-16 sm:w-32 h-16 sm:h-32 rounded-full border-4 border-secondary-light
+                         hover:border-secondary"
                     >
                 </router-link>
             </div>
@@ -34,11 +35,13 @@
                 </div>
             </div>
             <div class="text-center mb-8">
-                <router-link class="naked-link block" :to="{name: 'profile', params: {username: upvote.author_username}}">
+                <router-link class="naked-link block"
+                             :to="{name: 'profile', params: {username: upvote.author_username}}">
                     <img class="w-8 h-8 rounded-full border-2 border-primary-lighter hover:border-primary"
                          v-bind:src="upvote.author_avatar">
                 </router-link>
-                <router-link class="naked-link block" :to="{name: 'profile', params: {username: upvote.author_username}}">
+                <router-link class="naked-link block"
+                             :to="{name: 'profile', params: {username: upvote.author_username}}">
                     {{ upvote.author_firstname }}
                 </router-link>
             </div>
@@ -109,12 +112,11 @@
             save() {
                 this.editing = false;
                 this.upvote.message = this.$refs.message.value;
-                this.$toasted.show('Saved', {duration: 5000, position: "bottom-right"});
 
-                let auth = '?api_token=' + this.loggedInUser.api_token;
-                axios.post("/api/v1/upvotes/" + this.upvote.id + auth, {
+                axios.post("/api/v1/upvotes/" + this.upvote.id + '?' + this.auth, {
                     'message': this.upvote.message
                 }).then((response) => {
+                    this.$toasted.show('Saved your shout-out');
                     this.user = response.data;
                 });
             },
@@ -124,6 +126,9 @@
             },
         },
         computed: {
+            auth() {
+                return 'api_token=' + this.loggedInUser.api_token;
+            },
             loggedInUser() {
                 return this.$cookies.get('user');
             },
@@ -150,11 +155,11 @@
                 return subString.substr(0, subString.lastIndexOf(' ')) + "...";
             }
         },
-        metaInfo () {
+        metaInfo() {
             return {
                 title: this.unreadNotificationCount ? '(' + this.unreadNotificationCount + ') ' : '' +
                     "Shout-out to " + this.upvote.tagged_user_firstname + " from " + this.upvote.author_firstname
-                    +  " | pros.global",
+                    + " | pros.global",
             }
         },
     }

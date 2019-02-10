@@ -27,6 +27,11 @@ class LinkedInController extends Controller
         return Socialite::with('linkedin')->redirect();
     }
 
+    /**
+     * @param Request $request
+     *
+     * @throws \Exception
+     */
     public function callback(Request $request)
     {
         try {
