@@ -63,7 +63,7 @@ input.text, textarea.text {
             display: none;
         }
         &:hover {
-            cursor: pointer;
+            // cursor: pointer;
             .edit-icon {
                 display: inline;
                 @apply .text-gray-light;

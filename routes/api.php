@@ -33,6 +33,7 @@ Route::prefix('v1')->group(function () {
 
         Route::post('upvotes/{id}', 'UpvoteController@post');
 
+        Route::post('users', 'UserController@newUser');
         Route::post('users/{username}', 'UserController@post');
         Route::post('users/{username}/add-tag', 'UserController@addTag');
         Route::get('users/{username}/delete-tag/{tag}', 'UserController@deleteTag');

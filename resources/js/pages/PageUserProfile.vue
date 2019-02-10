@@ -23,6 +23,8 @@
                 </div>
                 <input ref="avatar_path" v-if="editing" v-model="user.avatar_path" class="p-2 block mx-auto w-128"
                        placeholder="e.g. path to avatar">
+                <input ref="name" v-if="editing" v-model="user.name" class="p-2 block mx-auto w-128"
+                       placeholder="e.g. Jane Smith">
                 <h1 ref="headline" class="text-xl sm:text-4xl editable animated"
                     v-bind:contenteditable="canEdit" @focus="editing=true">
                     {{ user.headline }}
@@ -126,7 +128,7 @@
                 this.editing = false;
                 this.user.about = this.$refs.about.value;
                 this.user.headline = this.$refs.headline.innerText;
-                this.user.avatar_path = this.$refs.avatar_path.value;
+                // Don't need to set avatar_path or name because of v-model
                 this.$toasted.show('Saved profile!', {duration: 5000, position: "bottom-right"});
 
                 let auth = '?api_token=' + this.loggedInUser.api_token;

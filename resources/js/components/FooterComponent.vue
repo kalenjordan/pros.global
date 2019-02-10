@@ -68,8 +68,9 @@
                     <a class="naked-link mr-2" href="https://github.com/kalenjordan/pros.global"><i class="fab fa-github"></i></a>
                     <a class="naked-link mr-2" href="https://www.linkedin.com/company/35561588/"><i class="fab fa-linkedin"></i></a>
                 </div>
-                <div v-if="user && this.loggedInUser && this.loggedInUser.is_admin">
-                    <a class="naked-link" href="javascript://" @click="mergeUser">Merge user</a>
+                <div v-if="this.loggedInUser && this.loggedInUser.is_admin">
+                    <a v-if="user" class="my-2 naked-link" href="javascript://" @click="mergeUser">Merge user</a>
+                    <a class="my-2 naked-link" href="javascript://" @click="addUser">Add user</a>
                 </div>
             </div>
         </div>
@@ -133,12 +134,27 @@
                     alert(response.message);
                 });
             },
+            addUser() {
+                let name = prompt('Name?');
+
+                axios.post('/api/v1/users?' + this.auth, {
+                    'name': name,
+                }).then((response) => {
+                    this.$router.push({
+                        name: 'profile',
+                        params: {username: response.data.username},
+                    });
+                });
+            },
         },
         computed: {
+            auth() {
+                return 'api_token=' + this.loggedInUser.api_token;
+            },
             loggedIn() {
                 return this.$store.state.user && this.$store.state.user.id;
             },
-            loggedInUser: function() {
+            loggedInUser: function () {
                 return this.$store.state.user;
             },
         },

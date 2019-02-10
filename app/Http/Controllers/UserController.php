@@ -70,6 +70,7 @@ class UserController extends Controller
         if ($user->avatar_path != $data['avatar_path']) {
             $user->avatar_path = $user->downloadAndSave($data['avatar_path']);
         }
+        $user->name = $data['name'];
         $user->save();
 
         return $user->toArray();
@@ -177,5 +178,43 @@ class UserController extends Controller
         }
 
         return ['success' => false, 'message' => "Problem merging"];
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return array
+     * @throws \Exception
+     */
+    public function newUser(Request $request)
+    {
+        if (!Auth::user()) {
+            return ['error_message' => 'Not logged in'];
+        }
+
+        if (! Auth::user()->is_admin) {
+            return ['error_message' => 'Access denied'];
+        }
+
+        $name = $request->input('name');
+        if (! $name) {
+            return ['error_message' => 'Missing name'];
+        }
+        $user = User::findByName($name);
+        if ($user) {
+            return ['success' => false, 'message' => "User already exists by name: $name"];
+        }
+
+        $username = User::generateUniqueUsername($name);
+        $user = User::create([
+            'name'        => $name,
+            'username'    => $username,
+            'email'       => $username . '@example.com',
+            'headline'    => $name . " is a pro who hasn't updated their headline yet",
+            'password'    => md5(time() . env('APP_KEY')),
+            'added_by'    => Auth::user()->id,
+        ]);
+
+        return $user->toArray();
     }
 }
