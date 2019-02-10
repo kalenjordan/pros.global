@@ -244,4 +244,14 @@ class User extends Authenticatable
     {
         return env('APP_URL') . '/' . $this->username;
     }
+
+    public function downloadAndSave($imageUrl)
+    {
+        $fileName = 'user_' . $this->id . md5($imageUrl . time()) . '.jpg';
+
+        $img = public_path("avatars/$fileName");
+        file_put_contents($img, file_get_contents($imageUrl));
+
+        return "/avatars/$fileName";
+    }
 }

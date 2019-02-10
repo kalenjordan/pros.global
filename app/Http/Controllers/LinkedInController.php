@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Date;
+use App\Image;
 use App\User;
 use Auth;
 use Laravel\Socialite\Two\InvalidStateException;
@@ -66,11 +67,7 @@ class LinkedInController extends Controller
 
         $imageUrl = $linkedinUser->avatar;
         if (! $user->avatar_path && $imageUrl) {
-            $fileName = $user->id . "_linkedin.jpg";
-            $user->avatar_path = "/avatars/$fileName";
-
-            $img = public_path("avatars/$fileName");
-            file_put_contents($img, file_get_contents($imageUrl));
+            $user->avatar_path = $user->downloadAndSave($imageUrl);
         }
 
         $user->linkedin_token = $linkedinUser->token;

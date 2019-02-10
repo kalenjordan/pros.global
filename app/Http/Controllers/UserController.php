@@ -36,7 +36,7 @@ class UserController extends Controller
             $search->query($query);
             //$count = $users->count();
             //$filters = $search->parseSearchFilters($query);
-            //$users->skip($page * $limit); // todo pagination
+            //$users->skip($page * $limit);
         }
 
         if ($request->input('show_sql')) {
@@ -67,6 +67,9 @@ class UserController extends Controller
 
         $user->about = $data['about'];
         $user->headline = $data['headline'];
+        if ($user->avatar_path != $data['avatar_path']) {
+            $user->avatar_path = $user->downloadAndSave($data['avatar_path']);
+        }
         $user->save();
 
         return $user->toArray();
@@ -110,9 +113,8 @@ class UserController extends Controller
         return $user->tagged;
     }
 
-    public function upvoteTag(Request $request, $username, $taggedId)
+    public function upvoteTag($username, $taggedId)
     {
-        // todo check against auth'd user
         $loggedInUser = Auth::user();
 
         $user = User::findByUsername($username);

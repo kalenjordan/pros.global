@@ -2,7 +2,7 @@
     <div class="page page-profile" :class="{ 'can-edit' : canEdit }">
         <top-nav class="m-4 sm:m-8" :user="user">
             <div v-if="editing" class="edit-profile-wrapper m-1 inline-block">
-                <div class="inline-block">
+                <div class="inline-block mr-3">
                     <a class="paragraph-link mr-3" @click="cancelEditing()" >
                         Cancel
                     </a>
@@ -21,7 +21,10 @@
                     <img v-bind:src="user.avatar_path" class="w-16 sm:w-32 h-16 sm:h-32 rounded-full">
                     <i v-if="this.isPresent(user)" class="absolute is-present fas fa-circle"></i>
                 </div>
-                <h1 ref="headline" class="text-xl sm:text-4xl editable animated" v-bind:contenteditable="canEdit" @focus="editing=true">
+                <input ref="avatar_path" v-if="editing" v-model="user.avatar_path" class="p-2 block mx-auto w-128"
+                       placeholder="e.g. path to avatar">
+                <h1 ref="headline" class="text-xl sm:text-4xl editable animated"
+                    v-bind:contenteditable="canEdit" @focus="editing=true">
                     {{ user.headline }}
                 </h1>
             </div>
@@ -123,6 +126,7 @@
                 this.editing = false;
                 this.user.about = this.$refs.about.value;
                 this.user.headline = this.$refs.headline.innerText;
+                this.user.avatar_path = this.$refs.avatar_path.value;
                 this.$toasted.show('Saved profile!', {duration: 5000, position: "bottom-right"});
 
                 let auth = '?api_token=' + this.loggedInUser.api_token;
