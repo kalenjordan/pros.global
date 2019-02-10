@@ -60,13 +60,13 @@
                     Sign up to get email updates:
                 </p>
                 <div class="email-signup mb-4">
-                    <input class="text p-1" type="text" style="width: 178px;" placeholder="you@example.com">
+                    <input class="text p-2" type="text" style="width: 178px;" placeholder="you@example.com">
                     <a class="btn px-3 py-1"><i class="fa fa-envelope"></i></a>
                 </div>
                 <div class="text-2xl gray-lighter mb-4">
                     <a class="naked-link mr-2" href="https://twitter.com/kalenjordan"><i class="fab fa-twitter"></i></a>
-                    <a class="naked-link mr-2" href="https://github.com/kalenjordan/founderland"><i class="fab fa-github"></i></a>
-                    <a class="naked-link mr-2" href="https://github.com/kalenjordan/founderland"><i class="fab fa-linkedin"></i></a>
+                    <a class="naked-link mr-2" href="https://github.com/kalenjordan/pros.global"><i class="fab fa-github"></i></a>
+                    <a class="naked-link mr-2" href="https://www.linkedin.com/company/35561588/"><i class="fab fa-linkedin"></i></a>
                 </div>
                 <div v-if="user && this.loggedInUser && this.loggedInUser.is_admin">
                     <a class="naked-link" href="javascript://" @click="mergeUser">Merge user</a>
