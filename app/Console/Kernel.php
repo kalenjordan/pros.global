@@ -27,7 +27,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('notifications:send --limit=3 --live')
-            ->twiceDaily()
+            ->hourly()
             ->sendOutputTo(storage_path('logs/cron.log'));
     }
 
