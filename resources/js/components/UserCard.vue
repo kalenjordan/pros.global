@@ -36,8 +36,8 @@
                             {{ tag.name }}
                         </span>
                         <span v-if="tag.upvote_count" class="separator">&nbsp;</span>
-                        <span class="count-and-upvote">
-                            <span v-if="tag.upvote_count" class="tag-count">{{ tag.upvote_count }}</span>
+                        <span v-if="tag.upvote_count" class="count-and-upvote">
+                            <span class="tag-count">{{ tag.upvote_count }}</span>
                         </span>
                     </div>
                 </router-link>
