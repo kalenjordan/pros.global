@@ -38,6 +38,16 @@ class SavedSearch extends Model
         return self::where('slug', $slug)->first();
     }
 
+    public static function findBySlugOrId($slugOrId)
+    {
+        $search = SavedSearch::findBySlug($slugOrId);
+        if (!$search) {
+            $search = SavedSearch::find($slugOrId);
+        }
+
+        return $search;
+    }
+
     public function user()
     {
         return $this->hasOne('App\User');

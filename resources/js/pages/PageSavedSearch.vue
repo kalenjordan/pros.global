@@ -54,6 +54,17 @@
                 </router-link>
             </div>
         </section>
+
+        <hr v-if="relatedSavedSearches.length" class="mt-16 mb-16"/>
+        <section v-if="relatedSavedSearches.length" class="max-w-3xl mb-8 mx-auto">
+            <div class="saved-searches m-2 mb-4 sm:mb-8 flex flex-wrap justify-center">
+                <saved-search-card class="mb-12 m-4" v-for="savedSearch in relatedSavedSearches"
+                                   :key="savedSearch.id"
+                                   :savedSearch="savedSearch"/>
+            </div>
+        </section>
+
+        <hr class="mt-16 mb-16"/>
         <section class="max-w-lg mb-8 mx-auto p-4 text-center">
             <h2 class="mb-4">Want to be added to this list?</h2>
             <div v-if="!this.loggedIn">
@@ -70,8 +81,8 @@
             </div>
         </section>
         <hr class="mt-16 mb-16"/>
-        <keyboard-shortcuts />
-        <footer-component />
+        <keyboard-shortcuts/>
+        <footer-component/>
     </div>
 </template>
 <script>
@@ -79,6 +90,7 @@
         data() {
             return {
                 savedSearch: {users: []},
+                relatedSavedSearches: [],
                 editing: false,
             }
         },
@@ -86,6 +98,10 @@
             axios.get('/api/v1/saved-searches/' + this.$route.params.slug).then((response) => {
                 this.savedSearch = response.data;
             });
+            axios.get('/api/v1/saved-searches/' + this.$route.params.slug + '/related?with_users=1')
+                .then((response) => {
+                    this.relatedSavedSearches = response.data;
+                });
         },
         methods: {
             editIfOwner() {
@@ -116,11 +132,11 @@
             loggedIn() {
                 return this.$store.state.user && this.$store.state.user.id;
             },
-            loggedInUser: function() {
+            loggedInUser: function () {
                 return this.$store.state.user;
             },
             canEdit() {
-                if (! this.loggedIn) {
+                if (!this.loggedIn) {
                     return false;
                 }
 
@@ -131,11 +147,11 @@
                 return (this.loggedInUser.id === this.savedSearch.user_id);
             }
         },
-        metaInfo () {
+        metaInfo() {
             return {
                 title: this.unreadNotificationCount ? '(' + this.unreadNotificationCount + ') ' : '' +
-                (this.savedSearch ? this.savedSearch.name + " | " : "")
-                +  "pros.global",
+                    (this.savedSearch ? this.savedSearch.name + " | " : "")
+                    + "pros.global",
             }
         },
     }

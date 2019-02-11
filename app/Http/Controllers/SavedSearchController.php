@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use DB;
+
 use App\SavedSearch;
 use Illuminate\Http\Request;
 
@@ -65,13 +67,36 @@ class SavedSearchController extends Controller
         return $data;
     }
 
-    public function view($slugOrId)
+    public function related(Request $request, $slugOrId)
     {
-        $search = SavedSearch::findBySlug($slugOrId);
-        if (!$search) {
-            $search = SavedSearch::find($slugOrId);
+        $savedSearch = SavedSearch::findBySlugOrId($slugOrId);
+        $searches = SavedSearch::where('saved_searches.id', '>', 0)
+            ->leftJoin("saved_searches_related", function($join) use ($savedSearch) {
+                /** @var $join \Illuminate\Database\Query\JoinClause */
+                $join->on("saved_searches_related.saved_search_id", '=', DB::raw($savedSearch->id));
+                $join->on("saved_searches_related.related_saved_search_id", '=', 'saved_searches.id');
+            })->select([
+                'saved_searches.*',
+                'saved_searches_related.sort_order'
+            ])->whereNotNull('saved_searches_related.id')
+            ->orderBy('saved_searches_related.sort_order', 'desc');
+
+        if ($request->input('limit')) {
+            $searches->limit($request->input('limit'));
         }
 
+        $data = [];
+        foreach ($searches->get() as $search) {
+            /** @var SavedSearch $search */
+            $data[] = $request->input('with_users') ? $search->toArrayWithUsers() : $search->toArray();
+        }
+
+        return $data;
+    }
+
+    public function view($slugOrId)
+    {
+        $search = SavedSearch::findBySlugOrId($slugOrId);
         return $search->toArrayWithUsers();
     }
 

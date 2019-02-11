@@ -4,7 +4,6 @@ import PageHome from './pages/PageHome';
 import PageSearch from './pages/PageSearch';
 import PageUserProfile from './pages/PageUserProfile';
 import PageUpvote from './pages/PageUpvote';
-import PageSavedSearches from './pages/PageSavedSearches';
 import PageSavedSearch from './pages/PageSavedSearch';
 import PageTag from './pages/PageTag';
 import PageLinked from './pages/PageLinked';
@@ -19,11 +18,6 @@ let routes = [
         name: 'home',
         path: '/',
         component: PageHome
-    },
-    {
-        name: 'saved-searches',
-        path: '/saved-searches',
-        component: PageSavedSearches
     },
     {
         name: 'saved-search',
