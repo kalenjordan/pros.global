@@ -22,7 +22,6 @@
         </section>
         <hr class="mt-16 mb-16"/>
         <section class="max-w-3xl mb-8 mx-auto">
-            <h2 class="text-center mx-auto mb-8">Browse by category</h2>
             <div class="saved-searches m-2 mb-4 sm:mb-8 flex flex-wrap justify-center">
                 <saved-search-card class="mb-12 m-4" v-for="savedSearch in savedSearches" :key="savedSearches.id" :savedSearch="savedSearch"/>
             </div>
@@ -32,7 +31,7 @@
             <h2 class="text-center mx-auto mb-8">About</h2>
             <div class="font-120 mx-auto px-4" style="max-width: 40rem;">
                 <p class="mb-4">
-                    The goal of this platform is to faciliate various types of matchmaking. Having run a
+                    The goal of this platform is to facilitate various types of matchmaking. Having run a
                     <a href="https://commercehero.io">matchmaking platform</a> in a specific eCommerce developer niche successfully
                     for the last 2 years, I'm taking some of the learnings from that, and trying to create an offering that's a little bit more broad and flexible.
                 </p>

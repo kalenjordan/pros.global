@@ -43,11 +43,11 @@
         <section class="max-w-2xl mb-8 mx-auto">
             <div class="user-cards m-2 mb-4 sm:mb-8 flex flex-wrap justify-center">
                 <user-card class="hoverable w-full sm:max-w-xs m-2"
-                           v-for="user in savedSearch.users.slice(0, 24)"
+                           v-for="user in savedSearch.users.slice(0, 6)"
                            :user="user" :key="user.id"
                 />
             </div>
-            <div class="centered" v-if="savedSearch.users.length > 24">
+            <div class="centered" v-if="savedSearch.users.length > 6">
                 <router-link class="btn px-5 py-2" :to="{name: 'search-query', params: { query: savedSearch.query }}">
                     See more
                     <i class="fas fa-caret-right ml-2"></i>
