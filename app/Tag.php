@@ -21,15 +21,20 @@ class Tag extends \Conner\Tagging\Model\Tag
     public function toArray()
     {
         $data = parent::toArray();
+        $data['users'] = $this->users()->get()->toArray();
 
+        return $data;
+    }
+
+    public function users()
+    {
         $taggedIds = Tagged::where('tagging_tagged.id', '>', 0)
             ->where('tag_slug', $this->slug)
             ->get()->pluck('taggable_id');
 
-        $users = User::whereIn('users.id', $taggedIds)->get();
-        $data['users'] = $users->toArray();
+        $users = User::whereIn('users.id', $taggedIds);
 
-        return $data;
+        return $users;
     }
 
     public static function findBySlug($slug)

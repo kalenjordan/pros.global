@@ -17,7 +17,7 @@
                     >
                 </template>
                 <template v-else>
-                    {{ tag.name }}
+                    Tag: {{ tag.name }}
                     <i class="edit-icon fas fa-pencil-alt" v-if="canEdit"></i>
                 </template>
             </h1>
