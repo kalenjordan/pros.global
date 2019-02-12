@@ -6,9 +6,8 @@
 ?>
 
 @section('title')
-    <title>
-        {{ $user->name }} | pros.global
-    </title>
+    <title>{{ $user->name }} | pros.global</title>
+    <meta name="description" content="{{ $user->headline }}">
 @endsection
 
 @section('meta-twitter-card')
