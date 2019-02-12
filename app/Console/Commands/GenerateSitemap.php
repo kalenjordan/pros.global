@@ -65,7 +65,7 @@ class GenerateSitemap extends Command
         }
 
         $savedSearches = SavedSearch::all();
-        $this->info($users->count() . " saved searches");
+        $this->info($savedSearches->count() . " saved searches");
         foreach ($savedSearches as $savedSearch) {
             /** @var SavedSearch $savedSearch */
             $url = Url::create('/s/' . $savedSearch->getSlugOrId());
