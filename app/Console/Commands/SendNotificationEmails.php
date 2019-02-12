@@ -46,7 +46,7 @@ class SendNotificationEmails extends Command
 
     protected function _limit()
     {
-        return $this->option('limit') ? $this->option('limit') : 1;
+        return $this->option('limit') ? $this->option('limit') : 5;
     }
 
     protected $usersWithNotificationsToEmail = 0;
