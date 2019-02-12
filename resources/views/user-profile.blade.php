@@ -25,12 +25,19 @@
 @section('server-side-rendered')
     <h1>{{ $user->name }}</h1>
     <h2>{{ $user->headline }}</h2>
+    <ul>
+        @foreach ($user->tagged as $tagged)
+            <li><a href="/tag/{{ $tagged->tag_slug }}">{{ $tagged->tag_name }}</a></li>
+        @endforeach
+    </ul>
     @markdown($user->about)
 
     @foreach ($user->upvotes as $upvote)
         <div>
             @markdown($upvote->message())
-            <p>-- {{ $upvote->user->name }}</p>
+            <p>--
+                <a href="/{{ $upvote->user->username }}">{{ $upvote->user->name }}</a>
+            </p>
         </div>
     @endforeach
 @endsection

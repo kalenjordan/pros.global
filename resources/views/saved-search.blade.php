@@ -35,11 +35,15 @@
     <h3>Users: </h3>
     @foreach ($savedSearch->fetchUsers() as $user)
         <div>
-            <h4>{{ $user->name }}</h4>
+            <h4>
+                <a href="/{{ $user->username }}">{{ $user->name }}</a>
+            </h4>
             <h5>{{ $user->headline }}</h5>
-            @foreach ($user->tagged as $tagged)
-                {{ $tagged->tag_name }},
-            @endforeach
+            <ul>
+                @foreach ($user->tagged as $tagged)
+                    <li><a href="/tag/{{ $tagged->tag_slug }}">{{ $tagged->tag_name }}</a></li>
+                @endforeach
+            </ul>
         </div>
     @endforeach
 
@@ -48,11 +52,15 @@
         <h3>{{ $relatedSavedSearch->name }}</h3>
         @foreach ($relatedSavedSearch->fetchUsers() as $user)
             <div>
-                <h4>{{ $user->name }}</h4>
+                <h4>
+                    <a href="/{{ $user->username }}">{{ $user->name }}</a>
+                </h4>
                 <h5>{{ $user->headline }}</h5>
-                @foreach ($user->tagged as $tagged)
-                    {{ $tagged->tag_name }},
-                @endforeach
+                <ul>
+                    @foreach ($user->tagged as $tagged)
+                        <li><a href="/tag/{{ $tagged->tag_slug }}">{{ $tagged->tag_name }}</a></li>
+                    @endforeach
+                </ul>
             </div>
         @endforeach
     @endforeach
