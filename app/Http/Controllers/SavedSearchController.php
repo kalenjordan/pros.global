@@ -27,6 +27,7 @@ class SavedSearchController extends Controller
         $search = SavedSearch::find($id);
 
         $search->name = $request->input('name');
+        $search->description = $request->input('description');
         $search->query = $request->input('query');
         $search->featured_order = (int)$request->input('featured_order');
         $search->slug = $request->input('slug');
@@ -70,16 +71,7 @@ class SavedSearchController extends Controller
     public function related(Request $request, $slugOrId)
     {
         $savedSearch = SavedSearch::findBySlugOrId($slugOrId);
-        $searches = SavedSearch::where('saved_searches.id', '>', 0)
-            ->leftJoin("saved_searches_related", function($join) use ($savedSearch) {
-                /** @var $join \Illuminate\Database\Query\JoinClause */
-                $join->on("saved_searches_related.saved_search_id", '=', DB::raw($savedSearch->id));
-                $join->on("saved_searches_related.related_saved_search_id", '=', 'saved_searches.id');
-            })->select([
-                'saved_searches.*',
-                'saved_searches_related.sort_order'
-            ])->whereNotNull('saved_searches_related.id')
-            ->orderBy('saved_searches_related.sort_order', 'desc');
+        $searches = $savedSearch->relatedSavedSearches();
 
         if ($request->input('limit')) {
             $searches->limit($request->input('limit'));

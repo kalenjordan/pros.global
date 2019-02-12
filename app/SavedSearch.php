@@ -2,6 +2,7 @@
 
 namespace App;
 
+use DB;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -12,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static SavedSearch create($params)
  *
  * @property      $name
+ * @property      $description
  * @property      $query
  * @property      $icon
  * @property      $slug
@@ -81,5 +83,22 @@ class SavedSearch extends Model
         }
 
         return $users->get();
+    }
+
+    public function relatedSavedSearches()
+    {
+        $self = $this;
+        $savedSearches = SavedSearch::where('saved_searches.id', '>', 0)
+            ->leftJoin("saved_searches_related", function($join) use ($self) {
+                /** @var $join \Illuminate\Database\Query\JoinClause */
+                $join->on("saved_searches_related.saved_search_id", '=', DB::raw($self->id));
+                $join->on("saved_searches_related.related_saved_search_id", '=', 'saved_searches.id');
+            })->select([
+                'saved_searches.*',
+                'saved_searches_related.sort_order'
+            ])->whereNotNull('saved_searches_related.id')
+            ->orderBy('saved_searches_related.sort_order', 'desc');
+
+        return $savedSearches;
     }
 }

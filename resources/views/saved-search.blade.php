@@ -2,12 +2,14 @@
 
 <?php
 /** @var \App\SavedSearch $savedSearch */
+/** @var \App\User $user */
+/** @var \App\Tagged $tagged */
 ?>
 
 @section('title')
-    <title>
-        {{ $savedSearch->name }} | pros.global
-    </title>
+    <title>{{ $savedSearch->name }} | pros.global</title>
+    <meta name="description"
+          content="{{ $savedSearch->description ? $savedSearch->description : $savedSearch->name }}">
 @endsection
 
 @section('meta-twitter-card')
@@ -24,4 +26,34 @@
           content="https://image.thum.io/get/viewportWidth/900/viewportHeight/450/width/900/noanimate/?url={{ urlencode(env('APP_URL') . "/s/" . $savedSearch->getSlugOrId() . "/twitter-card") }}"
     />
     <meta property='og:url' content='{{ env('APP_URL') }}/s/{{ $savedSearch->getSlugOrId() }}'/>
+@endsection
+
+@section('server-side-rendered')
+    <h1>{{ $savedSearch->name }}</h1>
+    <h2>{{ $savedSearch->description }}</h2>
+
+    <h3>Users: </h3>
+    @foreach ($savedSearch->fetchUsers() as $user)
+        <div>
+            <h4>{{ $user->name }}</h4>
+            <h5>{{ $user->headline }}</h5>
+            @foreach ($user->tagged as $tagged)
+                {{ $tagged->tag_name }},
+            @endforeach
+        </div>
+    @endforeach
+
+    <h3>Related: </h3>
+    @foreach ($savedSearch->relatedSavedSearches()->get() as $relatedSavedSearch)
+        <h3>{{ $relatedSavedSearch->name }}</h3>
+        @foreach ($relatedSavedSearch->fetchUsers() as $user)
+            <div>
+                <h4>{{ $user->name }}</h4>
+                <h5>{{ $user->headline }}</h5>
+                @foreach ($user->tagged as $tagged)
+                    {{ $tagged->tag_name }},
+                @endforeach
+            </div>
+        @endforeach
+    @endforeach
 @endsection

@@ -17,11 +17,16 @@
                     >
                 </template>
                 <template v-else>
-                    {{ savedSearch.name }}
+                    {{ savedSearch.description ? savedSearch.description : savedSearch.name  }}
                     <i class="edit-icon fas fa-pencil-alt" v-if="canEdit"></i>
                 </template>
             </h1>
             <template v-if="editing">
+                <input ref="description" class="text-lg text-center no-border w-full"
+                       v-model="savedSearch.description"
+                       placeholder="Longer description (also serves as meta description tag)"
+                       v-shortkey="['enter']" @shortkey="save()"
+                >
                 <input ref="query" class="text-lg text-center no-border w-full"
                        v-model="savedSearch.query"
                        v-shortkey="['enter']" @shortkey="save()"
@@ -118,6 +123,7 @@
                 let auth = '?api_token=' + this.loggedInUser.api_token;
                 axios.post('/api/v1/saved-searches/' + this.savedSearch.id + auth, {
                     name: this.savedSearch.name,
+                    description: this.savedSearch.description,
                     query: this.savedSearch.query,
                     featured_order: this.savedSearch.featured_order,
                     icon: this.savedSearch.icon,
