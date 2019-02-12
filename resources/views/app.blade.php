@@ -56,6 +56,10 @@
     </noscript>
 </head>
 <body>
+    <div id="server-side-rendered">
+        @section('server-side-rendered')
+        @show
+    </div>
     <div id="app" class="wrapper">
         <router-view :key="$route.fullPath"></router-view>
     </div>

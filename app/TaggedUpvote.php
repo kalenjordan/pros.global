@@ -13,12 +13,13 @@ use \Illuminate\Database\Query\Builder;
  * @method static Builder find($id)
  *
  * @property Tagged $tagged
- * @property User $user
- * @property User $tagged_user
- * @property $message
+ * @property User   $user
+ * @property User   $tagged_user
+ * @property        $message
  */
 class TaggedUpvote extends Model
 {
+
     protected $guarded = [];
     protected $table = 'tagging_tagged_upvotes';
 
@@ -37,6 +38,22 @@ class TaggedUpvote extends Model
         return $this->belongsTo('App\Tagged');
     }
 
+    public function tagName()
+    {
+        return $this->tagged ? $this->tagged->tag_name : "Deleted Tag";
+    }
+
+    public function message()
+    {
+        return $this->message ? $this->message : (
+            $this->user->getFirstName()
+            . ' upvoted '
+            . $this->tagged_user->getFirstName()
+            . ' for '
+            . $this->tagName()
+        );
+    }
+
     public function toArray()
     {
         // Nothing for now
@@ -48,12 +65,9 @@ class TaggedUpvote extends Model
         $data['tagged_user_firstname'] = $this->tagged_user->getFirstName();
         $data['tagged_user_avatar'] = $this->tagged_user->avatar_path;
         $data['tagged_username'] = $this->tagged_user->username;
-
-        $tagName = $this->tagged ? $this->tagged->tag_name : "Deleted Tag";
-        $data['tag_name'] = $tagName;
+        $data['tag_name'] = $this->tagName();
         $data['tag_slug'] = $this->tagged ? $this->tagged->tag_slug : "deleted";
-        $data['message'] = $this->message ? $this->message :
-            ($data['author_firstname'] . ' upvoted ' . $data['tagged_user_firstname'] . ' for ' . $tagName);
+        $data['message'] = $this->message();
 
         return $data;
     }
