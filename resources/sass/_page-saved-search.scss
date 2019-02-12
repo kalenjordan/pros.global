@@ -3,6 +3,11 @@
 }
 
 .saved-search-card {
+    .user-name {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+    }
     .user-avatar {
         .is-present {
             right: 4%;

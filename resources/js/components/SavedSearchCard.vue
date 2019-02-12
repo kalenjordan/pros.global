@@ -29,7 +29,7 @@
                                 <i v-if="isPresent(user)" class="absolute is-present fas fa-circle"></i>
                             </div>
                             <div>
-                                <div class="text-sm mb-1">
+                                <div class="user-name text-sm mb-1" style="-webkit-box-orient: vertical">
                                     {{ user.name }}
                                 </div>
                                 <div class="headline text-xs" style="-webkit-box-orient: vertical">
