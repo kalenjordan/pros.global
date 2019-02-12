@@ -67,8 +67,16 @@ class SendNotificationEmails extends Command
             ->select([
                 'notifiable_id'
             ])
-            ->get();
+            ->leftJoin("users", function($join) {
+                /** @var $join \Illuminate\Database\Query\JoinClause */
+                $join->on("users.id", '=', 'notifications.notifiable_id');
+            });
 
+        if (env('DUMMY_EMAIL_PATTERN')) {
+            $notifications->where('users.email', 'NOT LIKE', '%' . env('DUMMY_EMAIL_PATTERN'));
+        }
+
+        $notifications = $notifications->get();
         $count = $notifications->count();
         $this->info("Sending $count notifications with limit of $limit ($dryRunMessage)");
 
