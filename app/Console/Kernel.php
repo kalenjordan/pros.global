@@ -29,6 +29,10 @@ class Kernel extends ConsoleKernel
         $schedule->command('notifications:send --limit=3 --live')
             ->hourly()
             ->sendOutputTo(storage_path('logs/cron.log'));
+
+        $schedule->command('sitemap:generate')
+            ->daily()
+            ->sendOutputTo(storage_path('logs/cron.log'));
     }
 
     /**
