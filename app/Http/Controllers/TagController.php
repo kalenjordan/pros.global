@@ -51,4 +51,17 @@ class TagController extends Controller
             'tag' => $tag,
         ]);
     }
+
+    public function edit(Request $request, $slug)
+    {
+        $tag = Tag::findBySlug($slug);
+
+        $tag->name = $request->input('name');
+        $tag->slug = $request->input('slug');
+        $tag->icon = $request->input('icon');
+
+        $tag->save();
+
+        return $tag;
+    }
 }

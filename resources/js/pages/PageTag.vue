@@ -17,8 +17,8 @@
                     >
                 </template>
                 <template v-else>
+                    <i v-if="tag.icon" class="text-gray" :class="tag.icon"></i>
                     Tag: {{ tag.name }}
-                    <i class="edit-icon fas fa-pencil-alt" v-if="canEdit"></i>
                 </template>
             </h1>
             <template v-if="editing">
@@ -91,10 +91,19 @@
             save() {
                 this.editing = false;
 
-                //let auth = '?api_token=' + this.loggedInUser.api_token;
+                axios.post('/api/v1/tag/' + this.tag.slug + '?' + this.auth, {
+                    name: this.tag.name,
+                    slug: this.tag.slug,
+                    icon: this.tag.icon,
+                }).then((response) => {
+                    this.$toasted.show("Saved!");
+                });
             }
         },
         computed: {
+            auth() {
+                return 'api_token=' + this.loggedInUser.api_token;
+            },
             loggedIn() {
                 return this.$store.state.user && this.$store.state.user.id;
             },

@@ -120,8 +120,7 @@
             save() {
                 this.editing = false;
 
-                let auth = '?api_token=' + this.loggedInUser.api_token;
-                axios.post('/api/v1/saved-searches/' + this.savedSearch.id + auth, {
+                axios.post('/api/v1/saved-searches/' + this.savedSearch.id + '?' + this.auth, {
                     name: this.savedSearch.name,
                     description: this.savedSearch.description,
                     query: this.savedSearch.query,
@@ -135,6 +134,9 @@
             }
         },
         computed: {
+            auth() {
+                return 'api_token=' + this.loggedInUser.api_token;
+            },
             loggedIn() {
                 return this.$store.state.user && this.$store.state.user.id;
             },

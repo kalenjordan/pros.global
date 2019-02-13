@@ -30,6 +30,8 @@ Route::prefix('v1')->group(function () {
         Route::post('saved-searches', 'SavedSearchController@create');
         Route::post('saved-searches/{id}', 'SavedSearchController@edit');
 
+        Route::post('tag/{slug}', 'TagController@edit');
+
         Route::get('twitter/add-user/{username}', 'TwitterController@addUser');
 
         Route::post('upvotes/{id}', 'UpvoteController@post');
