@@ -17,6 +17,7 @@
                     >
                 </template>
                 <template v-else>
+                    <i v-if="savedSearch.icon" class="text-gray" :class="savedSearch.icon"></i>
                     {{ savedSearch.description ? savedSearch.description : savedSearch.name  }}
                     <i class="edit-icon fas fa-pencil-alt" v-if="canEdit"></i>
                 </template>
