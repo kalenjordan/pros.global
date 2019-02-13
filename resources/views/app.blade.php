@@ -57,7 +57,7 @@
     </noscript>
 </head>
 <body>
-    <div id="server-side-rendered" style="display: none;">
+    <div id="server-side-rendered">
         @section('server-side-rendered')
         @show
     </div>
