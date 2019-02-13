@@ -34,6 +34,10 @@
                                 </div>
                                 <div class="headline text-xs" style="-webkit-box-orient: vertical">
                                     {{ user.headline }}
+                                    <br/>
+                                    <span v-for="(tag, index) in user.tags">
+                                        <span>{{ tag.name }}</span><span v-if="index+1 < user.tags.length">, </span>
+                                    </span>
                                 </div>
                             </div>
                         </div>
