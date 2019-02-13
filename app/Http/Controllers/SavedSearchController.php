@@ -71,6 +71,7 @@ class SavedSearchController extends Controller
     public function related(Request $request, $slugOrId)
     {
         $savedSearch = SavedSearch::findBySlugOrId($slugOrId);
+
         $searches = $savedSearch->relatedSavedSearches();
 
         if ($request->input('limit')) {
@@ -84,6 +85,46 @@ class SavedSearchController extends Controller
         }
 
         return $data;
+    }
+
+    /**
+     * @param Request $request
+     * @param         $slug
+     *
+     * @throws \Exception
+     */
+    public function newRelated(Request $request, $slug)
+    {
+        $search = SavedSearch::findBySlugOrId($slug);
+
+        $newSavedSearch = SavedSearch::findBySlug($request->input('slug'));
+        if (! $newSavedSearch) {
+            throw new \Exception("Saved search not found by slug: " . $request->input('slug'));
+        }
+
+        $search->related()->attach($newSavedSearch);
+
+        return $search->relatedSavedSearches()->get();
+    }
+
+    /**
+     * @param Request $request
+     * @param         $slug
+     *
+     * @throws \Exception
+     */
+    public function removeRelated(Request $request, $slug)
+    {
+        $search = SavedSearch::findBySlugOrId($slug);
+
+        $toRemove = SavedSearch::findBySlug($request->input('slug'));
+        if (! $toRemove) {
+            throw new \Exception("Saved search not found by slug: " . $request->input('slug'));
+        }
+
+        $search->related()->detach($toRemove);
+
+        return $search->relatedSavedSearches()->get();
     }
 
     public function view($slugOrId)

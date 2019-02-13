@@ -85,6 +85,11 @@ class SavedSearch extends Model
         return $users->get();
     }
 
+    public function related()
+    {
+        return $this->belongsToMany('App\SavedSearch', 'saved_searches_related', 'saved_search_id', 'related_saved_search_id');
+    }
+
     public function relatedSavedSearches()
     {
         $self = $this;

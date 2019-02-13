@@ -69,6 +69,15 @@
             </div>
         </section>
 
+        <div v-if="editing">
+            <input ref="relatedSavedSearchSlug" placeholder="Add related saved search (by slug)"
+                   @blur="addRelatedSavedSearch()"
+                   class="w-128 mx-auto my-2 p-2 block">
+            <input ref="relatedToRemove" placeholder="Remove related saved search (by slug)"
+                   @blur="removeRelatedSavedSearch()"
+                   class="w-128 mx-auto my-2 p-2 block">
+        </div>
+
         <hr class="mt-16 mb-16"/>
         <section class="max-w-lg mb-8 mx-auto p-4 text-center">
             <h2 class="mb-4">Want to be added to this list?</h2>
@@ -131,7 +140,23 @@
                     this.savedSearch = response.data;
                     this.$toasted.show("Saved!");
                 });
-            }
+            },
+            addRelatedSavedSearch() {
+                axios.post('/api/v1/saved-searches/' + this.savedSearch.id + '/related?' + this.auth, {
+                    slug: this.$refs.relatedSavedSearchSlug.value,
+                }).then((response) => {
+                    this.relatedSavedSearches = response.data;
+                    this.$toasted.show("Saved new related saved search!");
+                });
+            },
+            removeRelatedSavedSearch() {
+                axios.post('/api/v1/saved-searches/' + this.savedSearch.id + '/related/remove?' + this.auth, {
+                    slug: this.$refs.relatedToRemove.value,
+                }).then((response) => {
+                    this.relatedSavedSearches = response.data;
+                    this.$toasted.show("Saved new related saved search!");
+                });
+            },
         },
         computed: {
             auth() {
