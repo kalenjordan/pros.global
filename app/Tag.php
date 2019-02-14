@@ -65,6 +65,6 @@ class Tag extends \Conner\Tagging\Model\Tag
 
     public function searchIndexId()
     {
-        return env('APP_ENV') . '_user_' . $this->id;
+        return env('APP_ENV') . '_tag_' . $this->id;
     }
 }
