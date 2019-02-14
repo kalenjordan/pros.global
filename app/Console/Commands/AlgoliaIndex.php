@@ -81,6 +81,7 @@ class AlgoliaIndex extends Command
      * @throws \Algolia\AlgoliaSearch\Exceptions\MissingObjectId
      */
     protected function _indexUser(User $user) {
+        $this->info("Indexing user: " . $user->name  . " - " . $user->searchIndexId());
         $this->index->saveObjects([$user->toSearchIndexArray()], [
             'objectIDKey' => 'object_id',
         ]);
@@ -92,6 +93,7 @@ class AlgoliaIndex extends Command
      * @throws \Algolia\AlgoliaSearch\Exceptions\MissingObjectId
      */
     protected function _indexTag(Tag $tag) {
+        $this->info("Indexing tag: " . $tag->name  . " - " . $tag->searchIndexId());
         $this->index->saveObjects([$tag->toSearchIndexArray()], [
             'objectIDKey' => 'object_id',
         ]);
