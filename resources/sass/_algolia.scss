@@ -1,0 +1,62 @@
+.ais-index {
+    .ais-input {
+        padding: 0.5rem;
+        margin-right: 0.5rem;
+    }
+
+    .ais-clear {
+        display: none;
+    }
+
+    .ais-results {
+        position: absolute;
+        width: 18rem;
+        right: 2rem;
+        top: 6rem;
+        z-index: 2;
+        box-shadow: 0 13px 27px -5px rgba(50, 50, 93, .25), 0 8px 16px -8px rgba(0, 0, 0, .3);
+        border-radius: 8px;
+        background-color: white;
+
+        a:hover {
+            background-color: $grayLightest;
+        }
+
+        a {
+            display: block;
+            padding: 0.5rem 1rem;
+            &:first-child {
+                padding-top: 1rem;
+            }
+            &:last-child {
+                padding-bottom: 1rem;
+            }
+
+            img {
+                width: 1.5rem;
+                display: block;
+                float: left;
+                margin-right: 10px;
+                margin-top: -4px;
+            }
+
+            i {
+                color: $grayLighter;
+                display: block;
+                float: left;
+                margin-right: 14px;
+                margin-left: 4px;
+            }
+
+            .name {
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+            }
+        }
+    }
+
+    .ais-pagination {
+        display: none;
+    }
+}

@@ -51,4 +51,20 @@ class Tag extends \Conner\Tagging\Model\Tag
     {
         return $string;
     }
+
+    public function toSearchIndexArray()
+    {
+        $data = parent::toArray();
+
+        $data['url'] = '/tag/' . $this->slug;
+        $data['type'] = 'tag';
+        $data['object_id'] = $this->searchIndexId();
+
+        return $data;
+    }
+
+    public function searchIndexId()
+    {
+        return env('APP_ENV') . '_user_' . $this->id;
+    }
 }

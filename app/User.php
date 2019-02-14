@@ -254,4 +254,21 @@ class User extends Authenticatable
 
         return "/avatars/$fileName";
     }
+
+    public function toSearchIndexArray()
+    {
+        $data = parent::toArray();
+
+        $data['tags'] = $this->tagged()->pluck('tag_name');
+        $data['type'] = 'user';
+        $data['url'] = '/' . $this->username; // Has to be relative for <router-link>
+        $data['object_id'] = $this->searchIndexId();
+
+        return $data;
+    }
+
+    public function searchIndexId()
+    {
+        return env('APP_ENV') . '_user_' . $this->id;
+    }
 }

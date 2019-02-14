@@ -68,6 +68,11 @@
                     <a class="naked-link mr-2" href="https://github.com/kalenjordan/pros.global"><i class="fab fa-github"></i></a>
                     <a class="naked-link mr-2" href="https://www.linkedin.com/company/35561588/"><i class="fab fa-linkedin"></i></a>
                 </div>
+                <div class="mb-4">
+                    <ul class="list-reset">
+                        <li><a class="naked-link" href="/search">Search</a></li>
+                    </ul>
+                </div>
                 <div v-if="this.loggedInUser && this.loggedInUser.is_admin">
                     <a v-if="user" class="my-2 naked-link" href="javascript://" @click="mergeUser">Merge user</a>
                     <a class="my-2 naked-link" href="javascript://" @click="addUser">Add user</a>

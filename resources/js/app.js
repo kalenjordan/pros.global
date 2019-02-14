@@ -16,6 +16,7 @@ import Vuex from 'vuex'
 import Meta from 'vue-meta'
 import VueClipboard from 'vue-clipboard2'
 import Chat from 'vue-beautiful-chat'
+import InstantSearch from 'vue-instantsearch';
 
 Vue.use(Vuetify, {iconfont: 'fa'});
 Vue.use(VModal);
@@ -30,6 +31,7 @@ Vue.use(VueRouter);
 Vue.use(Toasted, {duration: 5000, position: 'bottom-right'});
 
 Vue.use(Chat);
+Vue.use(InstantSearch);
 
 Vue.use(require('vue-shortkey'));
 Vue.use(require('vue-moment'));
