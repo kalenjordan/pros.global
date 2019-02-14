@@ -48,7 +48,9 @@
                 </div>
             </div>
             <div class="ml-auto" v-if="isSearching" @blur="isSearching=0">
-                <ais-index app-id="UJI66HEBBA" api-key="9899f7fdc174009c06a93dbcdac2b71a" index-name="local_search">
+                <ais-index :app-id="process.env.MIX_ALGOLIA_APP_ID"
+                           :api-key="process.env.MIX_ALGOLIA_PUBLIC_KEY"
+                           :index-name="process.env.MIX_ALGOLIA_INDEX">
                     <ais-search-box autofocus></ais-search-box>
                     <ais-results>
                         <template slot-scope="{ result }">
@@ -58,7 +60,7 @@
                                 <span class="name" style="-webkit-box-orient: vertical;">{{ result.name }}</span>
                             </router-link>
                         </template>
-sl                    </ais-results>
+                    </ais-results>
                     <ais-pagination></ais-pagination>
                 </ais-index>
 
