@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Algolia\AlgoliaSearch\SearchClient;
 use Algolia\AlgoliaSearch\SearchIndex;
+use App\SavedSearch;
 use App\Tag;
 use App\User;
 use Illuminate\Console\Command;
@@ -72,6 +73,14 @@ class AlgoliaIndex extends Command
             $this->_indexTag($tag);
         }
 
+        $searches = SavedSearch::where('id', '>', 0)
+            ->limit($this->_limit());
+
+        $this->info($searches->count() . " saved searches");
+        foreach ($searches->get() as $search) {
+            $this->_indexSavedSearch($search);
+        }
+
         return;
     }
 
@@ -95,6 +104,18 @@ class AlgoliaIndex extends Command
     protected function _indexTag(Tag $tag) {
         $this->info("Indexing tag: " . $tag->name  . " - " . $tag->searchIndexId());
         $this->index->saveObjects([$tag->toSearchIndexArray()], [
+            'objectIDKey' => 'object_id',
+        ]);
+    }
+
+    /**
+     * @param User $user
+     *
+     * @throws \Algolia\AlgoliaSearch\Exceptions\MissingObjectId
+     */
+    protected function _indexSavedSearch(SavedSearch $search) {
+        $this->info("Indexing saved search: " . $search->name  . " - " . $search->searchIndexId());
+        $this->index->saveObjects([$search->toSearchIndexArray()], [
             'objectIDKey' => 'object_id',
         ]);
     }

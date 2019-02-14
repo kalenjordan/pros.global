@@ -106,4 +106,20 @@ class SavedSearch extends Model
 
         return $savedSearches;
     }
+
+    public function toSearchIndexArray()
+    {
+        $data = parent::toArray();
+
+        $data['url'] = '/s/' . $this->getSlugOrId();
+        $data['type'] = 'saved-search';
+        $data['object_id'] = $this->searchIndexId();
+
+        return $data;
+    }
+
+    public function searchIndexId()
+    {
+        return env('APP_ENV') . '_savedsearch_' . $this->id;
+    }
 }

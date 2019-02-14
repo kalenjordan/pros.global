@@ -52,11 +52,12 @@
                            :api-key="process.env.MIX_ALGOLIA_PUBLIC_KEY"
                            :index-name="process.env.MIX_ALGOLIA_INDEX">
                     <ais-search-box autofocus></ais-search-box>
-                    <ais-results>
+                    <ais-results results-per-page="2">
                         <template slot-scope="{ result }">
                             <router-link class="no-link" :to="{path: result.url}">
                                 <img v-if="result.type==='user'" class="w-8 rounded-full" :src="result.avatar_path">
                                 <i v-if="result.type==='tag'" class="fas fa-tag"></i>
+                                <i v-if="result.type==='saved-search'" class="fas fa-search"></i>
                                 <span class="name" style="-webkit-box-orient: vertical;">{{ result.name }}</span>
                             </router-link>
                         </template>
