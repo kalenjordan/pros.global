@@ -72,19 +72,18 @@
                 this.savedSearches = response.data;
             });
             let typewriter = new Typewriter('#typewriter', {
-                loop: false
+                loop: true
             });
 
             typewriter.typeString('Connect with awesome founders.')
-                .pauseFor(1000)
+                .pauseFor(700)
                 .deleteChars(9)
-                .typeString('technologists.')
-                .pauseFor(1000)
-                .deleteChars(14)
-                .typeString('eCommerce people.')
-                .pauseFor(1000)
-                .deleteChars(17)
-                .typeString('pros.')
+                .typeString('developers.')
+                .pauseFor(700)
+                .deleteChars(11)
+                .typeString('eCommerce pros.')
+                .pauseFor(700)
+                .deleteChars(15)
                 .start();
         },
         computed: {

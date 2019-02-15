@@ -70,7 +70,9 @@
                 </div>
                 <div class="mb-4">
                     <ul class="list-reset">
-                        <li><a class="naked-link" href="/search">Search</a></li>
+                        <li>
+                            <router-link class="naked-link" :to="{ path: '/search'}">Search</router-link>
+                        </li>
                     </ul>
                 </div>
                 <div v-if="this.loggedInUser && this.loggedInUser.is_admin">

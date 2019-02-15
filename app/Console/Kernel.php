@@ -33,6 +33,10 @@ class Kernel extends ConsoleKernel
         $schedule->command('sitemap:generate')
             ->daily()
             ->appendOutputTo(storage_path('logs/cron.log'));
+
+        $schedule->command('algolia:index --limit=999')
+            ->daily()
+            ->appendOutputTo(storage_path('logs/cron.log'));
     }
 
     /**
