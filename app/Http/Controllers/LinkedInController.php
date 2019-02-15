@@ -61,7 +61,7 @@ class LinkedInController extends Controller
             $user->password = md5(env('APP_KEY') . time());
             $user->username = User::generateUniqueUsername($user->name);
             $user->headline = $user->name . " is a pro who hasn't updated their headline yet";
-            $user->about = "Click here to edit";
+            //$user->about = "Click here to edit";
             $user->save();
         }
 
