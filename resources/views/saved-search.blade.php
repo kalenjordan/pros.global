@@ -18,12 +18,12 @@
     <meta name="twitter:creator" content="@kalenjordan">
     <meta name="twitter:title" content="{{ $savedSearch->name }}">
     <meta name="twitter:image"
-          content="https://image.thum.io/get/viewportWidth/900/viewportHeight/450/width/900/noanimate/?url={{ urlencode(env('APP_URL') . "/s/" . $savedSearch->getSlugOrId() . "/twitter-card") }}"
+          content="https://image.thum.io/get/viewportWidth/900/viewportHeight/450/width/900/noanimate/?url={{ urlencode(env('APP_URL') . "/s/" . $savedSearch->getSlugOrId() . "/twitter-card") }}?v2"
     />
 
     <meta property='og:title' content='{{ $savedSearch->name }} | pros.global'/>
     <meta property='og:image'
-          content="https://image.thum.io/get/viewportWidth/900/viewportHeight/450/width/900/noanimate/?url={{ urlencode(env('APP_URL') . "/s/" . $savedSearch->getSlugOrId() . "/twitter-card") }}"
+          content="https://image.thum.io/get/viewportWidth/900/viewportHeight/450/width/900/noanimate/?url={{ urlencode(env('APP_URL') . "/s/" . $savedSearch->getSlugOrId() . "/twitter-card") }}?v2"
     />
     <meta property='og:url' content='{{ env('APP_URL') }}/s/{{ $savedSearch->getSlugOrId() }}'/>
 @endsection

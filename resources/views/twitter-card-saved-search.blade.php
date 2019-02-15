@@ -11,21 +11,14 @@ $users = $savedSearch->fetchUsers();
     <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body class="flex items-center">
-    <div class="twitter-card-bigger twitter-card-saved-search relative bg-white p-8 mx-auto text-center flex items-center">
-        <img class="logo w-3rem absolute" src="/img/icon-200.png">
+    <div class="twitter-card-bigger twitter-card-saved-search relative p-0 mx-auto text-center flex items-center">
+        <div class="logo-wrapper absolute w-full">
+            <img class="logo mx-auto" src="/img/icon-200.png">
+        </div>
         <div class="w-full">
-            <h1 class="mb-4 w-full">{{ $savedSearch->name }}</h1>
             <div class="images mx-auto w-full ">
                 <?php $count = 0; ?>
-                @for ($i = 0; $i < count($users) && $i < 8; $i++)
-                    <?php $user = $users[$i]; ?>
-                    <img class="avatar inline-block rounded-full border-4 border-white" src="{{ $user->avatar_path }}">
-                @endfor
-                @for (; $i < count($users) && $i < 16; $i++)
-                    <?php $user = $users[$i]; ?>
-                    <img class="avatar inline-block rounded-full border-4 border-white" src="{{ $user->avatar_path }}">
-                @endfor
-                @for (; $i < count($users) && $i < 24; $i++)
+                @for ($i = 0; $i < count($users) && $i < 21; $i++)
                     <?php $user = $users[$i]; ?>
                     <img class="avatar inline-block rounded-full border-4 border-white" src="{{ $user->avatar_path }}">
                 @endfor
