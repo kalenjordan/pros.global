@@ -43,9 +43,9 @@ class TaggedUpvote extends Model
         return $this->tagged ? $this->tagged->tag_name : "Deleted Tag";
     }
 
-    public function message()
+    public function getMessage()
     {
-        return $this->message ? $this->message : (
+        return isset($this->message) ? $this->message : (
             $this->user->getFirstName()
             . ' upvoted '
             . $this->tagged_user->getFirstName()
@@ -67,7 +67,7 @@ class TaggedUpvote extends Model
         $data['tagged_username'] = $this->tagged_user->username;
         $data['tag_name'] = $this->tagName();
         $data['tag_slug'] = $this->tagged ? $this->tagged->tag_slug : "deleted";
-        $data['message'] = $this->message();
+        $data['message'] = $this->getMessage();
 
         return $data;
     }

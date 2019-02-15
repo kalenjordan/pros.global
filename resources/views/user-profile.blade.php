@@ -34,7 +34,7 @@
 
     @foreach ($user->upvotes as $upvote)
         <div>
-            @markdown($upvote->message())
+            @markdown($upvote->getMessage())
             <p>--
                 <a href="/{{ $upvote->user->username }}">{{ $upvote->user->name }}</a>
             </p>
