@@ -18,7 +18,10 @@ Route::prefix('v1')->group(function () {
     Route::group(['middleware' => ['auth:api']], function () {
 
         Route::get('me', function (Request $request) {
-            return $request->user();
+            header('Access-Control-Allow-Origin: *');
+            $user = $request->user()->toArray();
+            $user['api_token'] = $request->user()->api_token;
+            return $user;
         });
 
         Route::get('messages/with-other-user/{otherUserId}', 'MessageController@withOtherUser');
