@@ -156,6 +156,8 @@ class User extends Authenticatable
     {
         $data = parent::toArray();
 
+        $data['avatar_path'] = env('APP_URL') . $data['avatar_path'];
+
         $parts = explode(' ', $this->name);
         $data['first_name'] = isset($parts[0]) ? $parts[0] : null;
 
