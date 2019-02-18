@@ -15,6 +15,15 @@ use App\User;
 class UserController extends Controller
 {
 
+    public function me (Request $request) {
+        /** @var User $user */
+        $user = $request->user();
+        $data = $user->toArray();
+        $data['api_token'] = $user->api_token;
+
+        return $data;
+    }
+
     public function list(Request $request)
     {
         $users = User::with('tags');

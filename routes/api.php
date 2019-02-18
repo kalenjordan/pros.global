@@ -17,9 +17,7 @@ Route::prefix('v1')->group(function () {
 
     Route::group(['middleware' => ['auth:api']], function () {
 
-        Route::get('me', function (Request $request) {
-            return $request->user();
-        });
+        Route::get('me', 'UserController@me');
 
         Route::get('messages/with-other-user/{otherUserId}', 'MessageController@withOtherUser');
         Route::post('messages', 'MessageController@send');
