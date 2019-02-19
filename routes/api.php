@@ -3,21 +3,13 @@
 use Illuminate\Http\Request;
 
 Route::prefix('v1')->group(function () {
-    Route::options('{slug}', function() {
+    Route::options('{any}', function() {
         header('Access-Control-Allow-Origin: *');
         header('Access-Control-Allow-Methods: *');
         header('Access-Control-Allow-Headers: *');
 
         return ['success'];
-    });
-
-    Route::options('{slug}/{slug2}', function() {
-        header('Access-Control-Allow-Origin: *');
-        header('Access-Control-Allow-Methods: *');
-        header('Access-Control-Allow-Headers: *');
-
-        return ['success'];
-    });
+    })->where('any', '.*');
 
     Route::get('saved-searches', 'SavedSearchController@list');
     Route::get('saved-searches/{slug}', 'SavedSearchController@view');

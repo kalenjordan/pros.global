@@ -102,7 +102,8 @@ class UserController extends Controller
         $user->tag($tag);
         $user->notify(new BeenTagged($loggedInUser, $loggedInUser->name . " tagged you with: " . $tag));
 
-        return $user->tagged;
+        $user->load('tagged');
+        return $user->tagged()->get();
     }
 
     public function deleteTag(Request $request, $username, $taggedId)

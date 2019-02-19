@@ -117,7 +117,7 @@ class SavedSearchController extends Controller
     {
         $search = SavedSearch::findBySlugOrId($slug);
 
-        $toRemove = SavedSearch::findBySlug($request->input('slug'));
+        $toRemove = SavedSearch::findBySlugOrId($request->input('slug'));
         if (! $toRemove) {
             throw new \Exception("Saved search not found by slug: " . $request->input('slug'));
         }
