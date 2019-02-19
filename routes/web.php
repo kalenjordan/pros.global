@@ -28,7 +28,9 @@ Route::get('/s/{slug}/twitter-card', 'SavedSearchController@twitterCard');
 
 Route::get('/tag/{slug}', 'TagController@viewHtml');
 
-Route::get('/generate-sitemap', 'SitemapController@generate');
+Route::get('/home-twitter-card', function(Request $request) {
+    return view('twitter-home');
+});
 
 Route::get('{username}', 'UserController@viewHtml');
 Route::get('{username}/twitter-card', 'UserController@twitterCard');

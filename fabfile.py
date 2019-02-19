@@ -15,9 +15,7 @@ def printUsageAndExit():
 	print 'Example: fab deploy'
 	sys.exit(0)
 
-remoteDocumentRoot = '/home/forge/pros.global'
-remoteSkinPath = remoteDocumentRoot + '/public'
-remoteSkinPathAssets = remoteDocumentRoot + '/public/assets'
+remoteDocumentRoot = '/home/forge/api.pros.global'
 
 print(green("1. Starting deploy"))
 
