@@ -14,13 +14,13 @@
           rel="stylesheet">
 </head>
 <body class="flex items-center">
-    <div class="twitter-card-bigger twitter-card-user-profile relative mx-auto text-left flex items-center" >
+    <div class="twitter-card-bigger twitter-card-user-profile relative mx-auto text-left flex" >
         <div>
             <div class="image-wrapper relative inline-block">
                 <img class="avatar rounded-full" src="{{ $user->avatar_path }}">
                 <img class="logo absolute" src="/img/icon-200.png">
             </div>
-            <h1 class="font-15rem mb-4" style="-webkit-box-orient: vertical;">
+            <h1 class="font-15rem mb-2" style="-webkit-box-orient: vertical;">
                 {{ $user->headline }}
             </h1>
             <div class="tags font-80" >

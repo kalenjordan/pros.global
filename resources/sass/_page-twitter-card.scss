@@ -3,7 +3,7 @@
     height: 450px;
 
     h1 {
-        font-size: 3rem;
+        font-size: 2.5rem;
         font-weight: normal;
         line-height: inherit;
     }
@@ -12,11 +12,11 @@
 .twitter-card-user-profile {
     background-color: $secondaryColor;
     color: white;
-    padding: 2rem;
+    padding: 4rem;
 
     .image-wrapper {
         float: right;
-        margin-left: 2rem;
+        margin-left: 1rem;
 
         img.logo {
             top: 5rem;
@@ -34,7 +34,7 @@
     h1 {
         overflow: hidden;
         display: -webkit-box;
-        -webkit-line-clamp: 3;
+        -webkit-line-clamp: 4;
 
         // Had to inline style tag this because npm run watch is dropping it - rannnnndom
         // -webkit-box-orient: vertical;
@@ -46,7 +46,7 @@
         height: 7.2rem;
 
         .tag {
-            border-radius: 15px;
+            border-radius: 12px;
             margin: 2px;
             background-color: $secondaryColorLightest;
             border-color: $secondaryColorDark;
