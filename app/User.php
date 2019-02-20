@@ -156,7 +156,7 @@ class User extends Authenticatable
     {
         $data = parent::toArray();
 
-        if (strpos($data['avatar_path'], 'http:') === false && strpos($data['avatar_path'], 'https:') === false) {
+        if (isset($data['avatar_path']) && substr($data['avatar_path'], 0, 4) != 'http') {
             $data['avatar_path'] = env('APP_URL') . $data['avatar_path'];
         }
 
