@@ -37,6 +37,6 @@ def deploy():
 	#	print(green("5. Running npm install"))
 	#	run('npm install')
 
-	#with cd(remoteDocumentRoot):
-#		print(green("5. Running npm run"))
-		#run('npm run production')
+	with cd(remoteDocumentRoot):
+		print(green("5. Running npm run"))
+		run('npm run production')
