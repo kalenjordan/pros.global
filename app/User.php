@@ -268,7 +268,7 @@ class User extends Authenticatable
         $data['type'] = 'user';
         $data['url'] = '/' . $this->username; // Has to be relative for <router-link>
         $data['object_id'] = $this->searchIndexId();
-        
+
         return $data;
     }
 

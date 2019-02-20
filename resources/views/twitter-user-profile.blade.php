@@ -15,7 +15,7 @@
 </head>
 <body class="flex items-center">
     <div class="twitter-card-bigger twitter-card-user-profile relative mx-auto text-left flex" >
-        <div>
+        <div class="w-full">
             <div class="image-wrapper relative inline-block">
                 <img class="avatar rounded-full" src="{{ $user->avatar_path }}">
                 <img class="logo absolute" src="/img/icon-200.png">
