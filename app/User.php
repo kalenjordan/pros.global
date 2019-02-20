@@ -261,13 +261,14 @@ class User extends Authenticatable
 
     public function toSearchIndexArray()
     {
-        $data = parent::toArray();
+        $data = $this->toArray();
+        unset($data['being_impersonated']);
 
         $data['tags'] = $this->tagged()->pluck('tag_name');
         $data['type'] = 'user';
         $data['url'] = '/' . $this->username; // Has to be relative for <router-link>
         $data['object_id'] = $this->searchIndexId();
-
+        
         return $data;
     }
 

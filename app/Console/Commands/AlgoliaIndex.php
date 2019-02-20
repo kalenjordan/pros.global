@@ -19,7 +19,7 @@ class AlgoliaIndex extends Command
      *
      * @var string
      */
-    protected $signature = 'algolia:index {--limit=}';
+    protected $signature = 'algolia:index {--limit=} {--v}';
 
     /**
      * The console command description.
@@ -91,7 +91,13 @@ class AlgoliaIndex extends Command
      */
     protected function _indexUser(User $user) {
         $this->info("Indexing user: " . $user->name  . " - " . $user->searchIndexId());
-        $this->index->saveObjects([$user->toSearchIndexArray()], [
+        $data = $user->toSearchIndexArray();
+        if ($this->option('v')) {
+            foreach ($data as $key => $val) {
+                $this->info("    - $key: $val");
+            }
+        }
+        $this->index->saveObjects([$data], [
             'objectIDKey' => 'object_id',
         ]);
     }
