@@ -11,7 +11,7 @@
         <img class="avatar rounded-full" src="{{ $upvote['tagged_user_avatar'] }}">
         <div class="quote">&rdquo;</div>
         <div class="message" style="-webkit-box-orient: vertical;">
-            {!! $upvote['message'] !!}
+            {!! strip_tags(Markdown::convertToHtml($upvote['message'])) !!}
         </div>
         <div class="author-wrapper absolute flex items-center">
             <img class="rounded-full mr-4 border-2 border-primary" src="{{ $upvote['author_avatar'] }}">
