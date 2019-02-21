@@ -65,6 +65,9 @@ class UserController extends Controller
         }
 
         $user = User::with(['tags', 'upvotes'])->where('username', $username)->first();
+        if (! $user) {
+            return ['error_message' => "User not found"];
+        }
         return $user->toArray();
     }
 
