@@ -72,18 +72,32 @@
 }
 
 .twitter-card-upvote {
+    background-color: $secondaryColor;
+    color: white;
+    padding: 4rem;
+
     img.logo {
-        top: 9rem;
-        right: 3rem;
-        width: 4rem;
+        top: 12rem;
+        right: 5rem;
+        width: 5rem;
     }
 
     img.avatar {
+        border: solid 8px $secondaryColor;
         float: right;
         margin-left: 2rem;
         margin-right: 1rem;
-        width: 8rem;
-        height: 8rem;
+        width: 12rem;
+        height: 12rem;
+    }
+
+    .quote {
+        font-family: serif;
+        position: absolute;
+        font-size: 22rem;
+        top: 13rem;
+        right: 15rem;
+        opacity: .3;
     }
 
     .message {
@@ -92,18 +106,11 @@
         line-height: 1.2;
         font-size: 2.5rem;
 
+        display: -webkit-box;
+        -webkit-line-clamp: 6;
+
         h1 {
             display: none;
-        }
-
-        &:before {
-            content:'';
-            width:75%;
-            height:100%;
-            position:absolute;
-            left:0;
-            top:0;
-            background:linear-gradient(transparent 10px, white);
         }
     }
 
