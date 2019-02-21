@@ -68,6 +68,7 @@ class TaggedUpvote extends Model
         $data['tagged_user_firstname'] = $this->tagged_user->getFirstName();
         $data['tagged_user_avatar'] = $taggedUserData['avatar_path'];
         $data['tagged_username'] = $this->tagged_user->username;
+        $data['tagged_twitter_username'] = $this->tagged_user->twitter_username;
         $data['tag_name'] = $this->tagName();
         $data['tag_slug'] = $this->tagged ? $this->tagged->tag_slug : "deleted";
         $data['message'] = $this->getMessage();

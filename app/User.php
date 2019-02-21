@@ -27,6 +27,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property $email
  * @property $username
  * @property $about
+ * @property $twitter_username
  * @property $headline
  * @property $linkedin_url
  * @property $linkedin_token

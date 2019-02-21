@@ -80,6 +80,14 @@ class UserController extends Controller
             $user->avatar_path = $user->downloadAndSave($data['avatar_path']);
         }
         $user->name = $data['name'];
+
+        if ($data['twitter_username']) {
+            if (substr($data['twitter_username'], 0, 1) == '@') {
+                $data['twitter_username'] = substr($data['twitter_username'], 1, strlen($data['twitter_username']) - 1);
+            }
+        }
+        $user->twitter_username = $data['twitter_username'];
+
         $user->save();
 
         return $user->toArray();
