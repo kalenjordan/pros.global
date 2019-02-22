@@ -20,7 +20,7 @@ class GenerateSitemap extends Command
      *
      * @var string
      */
-    protected $signature = 'sitemap:generate';
+    protected $signature = 'sitemap:generate {--path=}';
 
     /**
      * The console command description.
@@ -88,7 +88,13 @@ class GenerateSitemap extends Command
             $sitemap->add($url);
         }
 
-        $path = public_path('sitemap.xml');
+        if ($this->option('path')) {
+            $path = $this->option('path');
+        } else {
+            $path = public_path('sitemap.xml');
+        }
+
+        $this->info("Saving to: " . $path);
         $sitemap->writeToFile($path);
 
         return;
