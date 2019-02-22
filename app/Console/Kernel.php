@@ -30,7 +30,7 @@ class Kernel extends ConsoleKernel
             ->hourly()
             ->appendOutputTo(storage_path('logs/cron.log'));
 
-        $schedule->command('sitemap:generate')
+        $schedule->command('sitemap:generate --path=/home/forge/pros.global/static/sitemap.xml')
             ->daily()
             ->appendOutputTo(storage_path('logs/cron.log'));
 
