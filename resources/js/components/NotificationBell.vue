@@ -33,8 +33,6 @@
 </template>
 
 <script>
-    import {mapMutations} from 'vuex'
-
     export default {
         props: ['hideSearch', 'user'],
         data() {
@@ -56,7 +54,7 @@
         methods: {
             initNotificatons() {
                 if (this.loggedInUser.api_token) {
-                    this.$axios.get(this.$api('notifications')).then((response) => {
+                    axios.get(this.api('notifications')).then((response) => {
                         this.$store.commit('updateUnreadNotificationCount', response.data.unread_count);
                         this.$store.commit('updateNotifications', response.data.notifications);
                     });
@@ -83,6 +81,14 @@
                 this.$axios.get(this.$api('notifications/mark-read')).then((response) => {
                     this.$store.commit('updateUnreadNotificationCount', 0);
                 });
+            },
+            api(path) {
+                path = '/api/v1/' + path;
+                if (this.loggedInUser) {
+                    path = path + (path.indexOf('?') !== -1 ? '&' : '?') + 'api_token=' + this.loggedInUser.api_token;
+                }
+
+                return path;
             },
         },
         computed: {

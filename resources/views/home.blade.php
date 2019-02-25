@@ -33,9 +33,9 @@
         <hr class="mt-16 mb-16"/>
         <section class="max-w-3xl mb-8 mx-auto">
             <div class="saved-searches m-2 mb-4 sm:mb-8 flex flex-wrap justify-center">
-                {{--<saved-search-card class="mb-12 m-4" v-for="savedSearch in savedSearches" :key="savedSearches.id"--}}
-                                   {{--:savedSearch="savedSearch"--}}
-                {{--></saved-search-card>--}}
+                @foreach ($home->relatedSavedSearches()->get() as $savedSearch)
+                    @include ('partials.saved-search', ['savedSearch' => $savedSearch, 'css' => 'mb-12 m-4'])
+                @endforeach
             </div>
         </section>
 

@@ -90,6 +90,9 @@ class SavedSearch extends Model
         return $this->belongsToMany('App\SavedSearch', 'saved_searches_related', 'saved_search_id', 'related_saved_search_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Query\Builder
+     */
     public function relatedSavedSearches()
     {
         $self = $this;
