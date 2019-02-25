@@ -1,8 +1,9 @@
 <template>
-    <div class="notification-wrapper relative">
-        <i class="fas fa-bell text-gray-dark text-xl cursor-pointer font-120"
-           @click="toggleNotifications()"></i>
-        <span v-if="this.unreadNotificationCount" class="alert-bubble absolute bg-primary rounded-full cursor-pointer"
+    <div class="notification-wrapper">
+        <i class="material-icons font-120 cursor-pointer animated" @click="toggleNotifications()">
+            notifications
+        </i>
+        <span v-if="this.unreadNotificationCount" class="alert-bubble absolute bg-highlight rounded-full cursor-pointer"
               @click="toggleNotifications()">
                         {{ this.unreadNotificationCount }}
                     </span>
@@ -32,6 +33,8 @@
 </template>
 
 <script>
+    import {mapMutations} from 'vuex'
+
     export default {
         props: ['hideSearch', 'user'],
         data() {
@@ -40,7 +43,7 @@
             }
         },
         mounted() {
-            this.listenForMessages();
+            // this.listenForMessages();
         },
         watch: {
             // Used to work from mounted() but then it stopped and now this works
@@ -53,33 +56,31 @@
         methods: {
             initNotificatons() {
                 if (this.loggedInUser.api_token) {
-                    let auth = '?api_token=' + this.loggedInUser.api_token;
-                    axios.get('/api/v1/notifications' + auth).then((response) => {
+                    this.$axios.get(this.$api('notifications')).then((response) => {
                         this.$store.commit('updateUnreadNotificationCount', response.data.unread_count);
                         this.$store.commit('updateNotifications', response.data.notifications);
                     });
                 }
             },
-            listenForMessages() {
-                let channel = 'user_notifications_' + this.loggedInUser.id;
-                window.Echo.private(channel)
-                    .listen('MessageSentNotificationEvent', (e) => {
-                        let count = this.unreadNotificationCount;
-                        count++;
-                        this.$store.commit('updateUnreadNotificationCount', count);
-
-                        let notifications = this.notifications;
-                        let notification = {data: e.notification};
-                        notification.read_at = null;
-                        notifications.unshift(notification);
-
-                        this.$store.commit('updateNotifications', notifications);
-                    });
-            },
+            // listenForMessages() {
+            //     let channel = 'user_notifications_' + this.loggedInUser.id;
+            //     window.Echo.private(channel)
+            //         .listen('MessageSentNotificationEvent', (e) => {
+            //             let count = this.unreadNotificationCount;
+            //             count++;
+            //             this.$store.commit('updateUnreadNotificationCount', count);
+            //
+            //             let notifications = this.notifications;
+            //             let notification = {data: e.notification};
+            //             notification.read_at = null;
+            //             notifications.unshift(notification);
+            //
+            //             this.$store.commit('updateNotifications', notifications);
+            //         });
+            // },
             toggleNotifications() {
                 this.showingNotifications = !this.showingNotifications;
-                let auth = '?api_token=' + this.loggedInUser.api_token;
-                axios.get('/api/v1/notifications/mark-read' + auth).then((response) => {
+                this.$axios.get(this.$api('notifications/mark-read')).then((response) => {
                     this.$store.commit('updateUnreadNotificationCount', 0);
                 });
             },

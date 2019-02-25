@@ -18,8 +18,8 @@
         </section>
         <section class="max-w-2xl mb-8 mx-auto">
             <div class="user-cards m-2 mb-4 sm:mb-8 flex flex-wrap justify-center">
-                @foreach ($home->fetchUsers()->get() as $homeUser)
-                    @include ('partials.user-card', ['user' => $homeUser])
+                @foreach ($home->fetchUsers()->limit(6)->get() as $homeUser)
+                    @include ('partials.user-card', ['user' => $homeUser, 'css' => 'w-full sm:max-w-xs m-2'])
                 @endforeach
             </div>
             <div class="centered">
@@ -33,9 +33,9 @@
         <hr class="mt-16 mb-16"/>
         <section class="max-w-3xl mb-8 mx-auto">
             <div class="saved-searches m-2 mb-4 sm:mb-8 flex flex-wrap justify-center">
-                <saved-search-card class="mb-12 m-4" v-for="savedSearch in savedSearches" :key="savedSearches.id"
-                                   :savedSearch="savedSearch"
-                ></saved-search-card>
+                {{--<saved-search-card class="mb-12 m-4" v-for="savedSearch in savedSearches" :key="savedSearches.id"--}}
+                                   {{--:savedSearch="savedSearch"--}}
+                {{--></saved-search-card>--}}
             </div>
         </section>
 

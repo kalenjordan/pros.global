@@ -58,12 +58,10 @@
 </head>
 
 <body class="{{ isset($bodyClass) ? $bodyClass : "" }}">
-    <div class="m-4 sm:m-8">
-        @include ('partials.top-nav')
+    <div id="app">
+        @section('content')
+        @show
     </div>
-
-    @section('content')
-    @show
 
     <script src="{{ mix('js/app.js') }}"></script>
 </body>
