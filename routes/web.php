@@ -28,23 +28,8 @@ Route::get('/s/{slug}/twitter-card', 'SavedSearchController@twitterCard');
 
 Route::get('/tag/{slug}', 'TagController@viewHtml');
 
-Route::get('/home-twitter-card', function(Request $request) {
-    return view('twitter-home');
-});
-
 Route::get('/', 'HomeController@index');
+Route::get('/home-twitter-card', 'HomeController@twitterCard');
 
-//
-//Route::get('{username}', 'UserController@viewHtml');
-//Route::get('{username}/twitter-card', 'UserController@twitterCard');
-//
-//
-//
-//Route::get('{any?}', function () {
-//    return view('app');
-//});
-//
-//Route::get('{thing1}/{thing2}', function () {
-//    return view('app');
-//});
-//
+Route::get('{username}', 'UserController@viewHtml');
+Route::get('{username}/twitter-card', 'UserController@twitterCard');

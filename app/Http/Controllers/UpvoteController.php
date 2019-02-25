@@ -43,7 +43,7 @@ class UpvoteController extends Controller
     {
         $upvote = TaggedUpvote::with('user')->find($id);
 
-        return view('twitter-upvote-card', [
+        return view('twitter-cards.upvote', [
             'upvote' => $upvote->toArray(),
         ]);
     }

@@ -163,7 +163,7 @@ class UserController extends Controller
     {
         $user = User::findByUsername($username);
 
-        return view('twitter-user-profile', [
+        return view('twitter-cards.user-profile', [
             'user' => $user,
         ]);
     }

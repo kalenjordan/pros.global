@@ -152,7 +152,7 @@ class SavedSearchController extends Controller
             $search = SavedSearch::find($slugOrId);
         }
 
-        return view('twitter-card-saved-search', [
+        return view('twitter-cards.saved-search', [
             'savedSearch' => $search,
         ]);
     }

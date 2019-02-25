@@ -18,4 +18,9 @@ class HomeController extends Controller
             'footerSavedSearches' => $footerSavedSearches,
         ]);
     }
+
+    public function twitterCard()
+    {
+        return view('twitter-cards.home');
+    }
 }
