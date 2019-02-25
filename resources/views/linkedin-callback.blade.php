@@ -5,7 +5,7 @@
             window.location='{{ env('AUTH_REDIRECT') }}?api_token={{ Auth::user()->getOrCreateApiToken() }}';
         @else
             window.opener.Events.$emit('user-authenticated', JSON.stringify({!! Auth::user() ? json_encode(Auth::user()->toArrayForCookie()) : null  !!}));
-            window.close();
+            // window.close();
         @endif
     </script>
 </body>

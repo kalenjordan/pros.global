@@ -20,7 +20,7 @@
                     <img v-if="loggedIn" class="animate avatar w-10 rounded-full cursor-pointer border-2"
                          @click="showingMenu = !showingMenu"
                          :src="loggedInUser.avatar_path">
-                    <a v-else class="btn px-5 py-2" :href="authUrl" target="_blank">Login</a>
+                    <a v-else class="btn px-5 py-2" href="/auth/linkedin" target="_blank">Login</a>
                 </div>
                 <div v-if="showingMenu" class="card logged-in-menu">
                     <div class="card-inner p-3 font-120">
@@ -61,7 +61,6 @@
             return {
                 isSearching: false,
                 showingMenu: false,
-                authUrl: process.env.AUTH_URL,
                 algoliaAppID: process.env.MIX_ALGOLIA_APP_ID,
                 algoliaPublicKey: process.env.MIX_ALGOLIA_PUBLIC_KEY,
                 algoliaIndexName: process.env.MIX_ALGOLIA_INDEX_NAME,

@@ -77,7 +77,7 @@ class LinkedInController extends Controller
         $user->last_online_at = Date::now();
         Auth::login($user, true);
 
-        return view('auth.linkedin-callback', [
+        return view('linkedin-callback', [
             'user' => $user,
         ]);
     }
