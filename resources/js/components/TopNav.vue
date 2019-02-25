@@ -127,7 +127,7 @@
                 this.$store.commit('updateUser', {});
                 this.$toasted.show("You're logged out! Don't be a stranger now, ya hear? 🤠", {duration: 2000});
             },
-        },
+       },
         computed: {
             loggedIn() {
                 return this.$store.state.user && this.$store.state.user.id;
@@ -135,6 +135,9 @@
             loggedInUser() {
                 return this.$store.state.user;
             },
+            canEdit() {
+                return true;
+            }
         },
     }
 </script>

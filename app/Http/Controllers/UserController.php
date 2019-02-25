@@ -15,7 +15,7 @@ use App\User;
 class UserController extends Controller
 {
 
-    public function me (Request $request) {
+    public function me(Request $request) {
         /** @var User $user */
         $user = $request->user();
         $data = $user->toArray();
@@ -148,15 +148,14 @@ class UserController extends Controller
         return ['upvote' => $upvote, 'all_upvotes' => $tagged->taggedUser()->upvotes];
     }
 
-    public function viewHtml($username)
+    public function profile($username)
     {
         $user = User::findByUsername($username);
 
-        if ($user) {
-            return view('user-profile', ['user' => $user,]);
-        } else {
-            return view('app');
-        }
+        return view('user-profile', [
+            'user' => $user,
+            'footerSavedSearches'
+        ]);
     }
 
     public function twitterCard($username)

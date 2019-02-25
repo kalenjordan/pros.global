@@ -8,6 +8,15 @@
     <title>Home</title>
 @stop
 
+@section('meta-twitter-card')
+    @include('partials.meta-twitter-card', [
+        'title' => 'Home',
+        'description' => 'Description',
+        'image' => env('APP_URL') . "/home-twitter-card",
+        'version' => 'v1',
+    ])
+@stop
+
 @section('content')
     <div class="page-home">
         <top-nav class="m-4 sm:m-8"></top-nav>
@@ -61,4 +70,7 @@
             </div>
         </section>
     </div>
+@stop
+
+@section('footer-script')
 @stop

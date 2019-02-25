@@ -95,6 +95,11 @@ let store = new Vuex.Store({
 
 const app = new Vue({
     el: '#app',
+    data() {
+        return typeof(pageData) !== 'undefined' ? pageData : {};
+    },
+    methods: typeof(pageMethods) !== 'undefined' ? pageMethods : {},
+    computed: typeof(pageComputed) !== 'undefined' ? pageComputed : {},
     router,
     store
 });

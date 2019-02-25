@@ -55,6 +55,7 @@
     <noscript>
         Javascript not enabled
     </noscript>
+
 </head>
 
 <body class="{{ isset($bodyClass) ? $bodyClass : "" }}">
@@ -65,7 +66,10 @@
         @include('partials.footer')
     </div>
 
+    @section('footer-script')
+    @show
 
     <script src="{{ mix('js/app.js') }}"></script>
+
 </body>
 </html>
