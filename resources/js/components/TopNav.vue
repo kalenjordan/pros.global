@@ -2,9 +2,9 @@
     <div>
         <div class="nav flex items-center">
             <div class="logo">
-                <router-link :to="{path: '/'}" class="naked-link" href="/">
+                <a href="/" class="naked-link">
                     <img class="logo w-3rem" src="/images/icon.png">
-                </router-link>
+                </a>
             </div>
             <div class="ml-auto mr-6" v-if="!isSearching" @click="focusSearch()">
                 <i class="search material-icons text-gray-dark font-120 cursor-pointer animated">
@@ -72,6 +72,11 @@
             if (this.$cookies.get('user')) {
                 this.$store.commit('updateUser', this.$cookies.get('user'));
             }
+
+            window.Events.$on('user-authenticated', (data) => {
+                this.$cookies.set('user', data);
+                window.location.reload();
+            });
         },
         methods: {
             focusSearch() {
@@ -120,7 +125,7 @@
                 this.showingMenu = false;
                 this.$cookies.set('user', null);
                 this.$store.commit('updateUser', {});
-                this.$toast.show("You're logged out! Don't be a stranger now, ya hear? 🤠", {duration: 2000});
+                this.$toasted.show("You're logged out! Don't be a stranger now, ya hear? 🤠", {duration: 2000});
             },
         },
         computed: {
