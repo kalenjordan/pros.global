@@ -33,7 +33,7 @@
     <h2>{{ $savedSearch->description }}</h2>
 
     <h3>Users: </h3>
-    @foreach ($savedSearch->fetchUsers() as $user)
+    @foreach ($savedSearch->fetchUsers()->get() as $user)
         <div>
             <h4>
                 <a href="/{{ $user->username }}">{{ $user->name }}</a>
@@ -50,7 +50,7 @@
     <h3>Related: </h3>
     @foreach ($savedSearch->relatedSavedSearches()->get() as $relatedSavedSearch)
         <h3>{{ $relatedSavedSearch->name }}</h3>
-        @foreach ($relatedSavedSearch->fetchUsers() as $user)
+        @foreach ($relatedSavedSearch->fetchUsers()->get() as $user)
             <div>
                 <h4>
                     <a href="/{{ $user->username }}">{{ $user->name }}</a>

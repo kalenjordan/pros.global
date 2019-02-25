@@ -82,7 +82,7 @@ class SavedSearch extends Model
             $search->query($this->query);
         }
 
-        return $users->get();
+        return $users;
     }
 
     public function related()

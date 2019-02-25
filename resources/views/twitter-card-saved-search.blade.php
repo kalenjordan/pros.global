@@ -1,6 +1,6 @@
 <?php
 /** @var \App\SavedSearch $savedSearch */
-$users = $savedSearch->fetchUsers();
+$users = $savedSearch->fetchUsers()->get();
 ?>
 
 <html>

@@ -32,16 +32,19 @@ Route::get('/home-twitter-card', function(Request $request) {
     return view('twitter-home');
 });
 
-Route::get('{username}', 'UserController@viewHtml');
-Route::get('{username}/twitter-card', 'UserController@twitterCard');
+Route::get('/', 'HomeController@index');
 
-
-
-Route::get('{any?}', function () {
-    return view('app');
-});
-
-Route::get('{thing1}/{thing2}', function () {
-    return view('app');
-});
-
+//
+//Route::get('{username}', 'UserController@viewHtml');
+//Route::get('{username}/twitter-card', 'UserController@twitterCard');
+//
+//
+//
+//Route::get('{any?}', function () {
+//    return view('app');
+//});
+//
+//Route::get('{thing1}/{thing2}', function () {
+//    return view('app');
+//});
+//
