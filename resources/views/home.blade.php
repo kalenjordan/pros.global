@@ -5,13 +5,13 @@
 ?>
 
 @section('title')
-    <title>Home</title>
+    <title>{{ $home->description }} | pros.global</title>
 @stop
 
 @section('meta-twitter-card')
     @include('partials.meta-twitter-card', [
-        'title' => 'Home',
-        'description' => 'Description',
+        'title' => 'pros.global',
+        'description' => $home->description,
         'image' => env('APP_URL') . "/home-twitter-card",
         'version' => 'v1',
     ])
