@@ -87,7 +87,7 @@
             <div class="mb-4">
                 <ul class="list-reset">
                     <li class="pb-2">
-                        <router-link class="naked-link" :to="{ path: '/search'}">Search</router-link>
+                        <a class="naked-link" href="/search">Search</a>
                     </li>
                     <li class="pb-2">
                         <a class="naked-link" href="javascript://" @click="showKeyboardShortcuts()">Keyboard shortcuts</a>

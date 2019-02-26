@@ -101,10 +101,10 @@
         pageMounted = function (Vue) {
             window.addEventListener('keyup', Vue.hotkeys);
 
-            if (`{{ app('request')->input('editing') ? 'true' : 'false' }}`) {
-                this.editing = true;
-                this.$nextTick(() => {
-                    this.$refs.message.focus();
+            if ({{ app('request')->input('editing') ? 'true' : 'false' }}) {
+                Vue.editing = true;
+                Vue.$nextTick(() => {
+                    Vue.$refs.message.focus();
                 });
             }
         };
@@ -158,7 +158,7 @@
                     'message': this.upvote.message
                 }).then((response) => {
                     this.$toasted.show('Saved your shout-out');
-                    this.user = response.data;
+                    this.upvote = response.data;
                 });
             },
             api(path) {

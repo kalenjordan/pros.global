@@ -12,7 +12,7 @@
                 <ul class="list-reset" v-if="notifications.length">
                     <li v-for="notification in notifications" class="px-4 py-2" :class="{'bg-primary-lightest' : notification.read_at === null}">
                         {{ notification.data.text }}
-                        {{ notification.data.link.cta }}
+                        <span v-if="notification.data.link">{{ notification.data.link.cta }}</span>
                         <span class="text-gray" v-if="notification.created_at">
                             {{ notification.created_at | moment("subtract", "6 hours") | moment("from") }}
                         </span>
@@ -75,7 +75,7 @@
             // },
             toggleNotifications() {
                 this.showingNotifications = !this.showingNotifications;
-                this.$axios.get(this.$api('notifications/mark-read')).then((response) => {
+                axios.get(this.api('notifications/mark-read')).then((response) => {
                     this.$store.commit('updateUnreadNotificationCount', 0);
                 });
             },

@@ -20,7 +20,7 @@ class UpvoteController extends Controller
         $upvote->message = $request->input('message');
         $upvote->save();
 
-        return $upvote->tagged_user->upvotes;
+        return $upvote->toArray();
     }
 
     public function view($id)
