@@ -82,4 +82,34 @@ class TaggedUpvote extends Model
             ->where('user_id', $userId)
             ->first();
     }
+
+    public function twitterShareUrl()
+    {
+        $hashtag = $this->tag_slug ? str_replace($this->tag_slug, '-', '') : null;
+        $url = env('APP_URL') . '/upvotes/' . $this->id;
+
+        $name = $this->tagged_user->twitter_username ? ('@' . $this->tagged_user->twitter_username) :
+            $this->tagged_user->name;
+
+        $text = "I just gave " . $name . " some props:\r\n\r\n" .
+        '"' . $this->shortenedMessage() . '"' . "\r\n\r\n" .
+        $url . "\r\n\r\n" .
+        '#' . $hashtag;
+
+        return 'https://twitter.com/intent/tweet?text=' . urlencode($text);
+    }
+
+    public function shortenedMessage()
+    {
+        $n = 180;
+        if (! $this->message) {
+            return null;
+        }
+
+        if (strlen($this->message) < $n) {
+            return $this->message;
+        }
+
+        return substr($this->message, 0, $n) . '...';
+    }
 }

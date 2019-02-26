@@ -34,8 +34,12 @@ class UpvoteController extends Controller
     {
         $upvote = TaggedUpvote::with('user')->find($id);
 
+        if (! $upvote) {
+            abort(404);
+        }
+
         return view('upvote', [
-            'upvote' => $upvote->toArray(),
+            'upvote' => $upvote,
         ]);
     }
     

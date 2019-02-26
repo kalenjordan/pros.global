@@ -127,9 +127,6 @@ $related = $savedSearch->relatedSavedSearches();
                 </p>
             </div>
         </section>
-        <hr class="mt-16 mb-16"/>
-        <keyboard-shortcuts></keyboard-shortcuts>
-        <footer-component></footer-component>
     </div>
 @stop
 

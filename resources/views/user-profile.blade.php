@@ -147,26 +147,6 @@
 
 @section('footer-script')
     <script type="text/javascript">
-        pageComputed = {
-            canEdit() {
-                if (!this.loggedIn) {
-                    return false;
-                }
-
-                if (this.loggedInUser.is_admin) {
-                    return true;
-                }
-
-                return (this.loggedInUser.id === this.user.id);
-            },
-            loggedIn() {
-                return this.$store.state.user && this.$store.state.user.id;
-            },
-            loggedInUser() {
-                return this.$store.state.user;
-            },
-        };
-
         pageData = {
             user: { {!! \App\Util::jsonEncodeWithoutBrackets($user->toArray()) !!} },
             editing: false,
@@ -227,5 +207,24 @@
             },
         };
 
+        pageComputed = {
+            canEdit() {
+                if (!this.loggedIn) {
+                    return false;
+                }
+
+                if (this.loggedInUser.is_admin) {
+                    return true;
+                }
+
+                return (this.loggedInUser.id === this.user.id);
+            },
+            loggedIn() {
+                return this.$store.state.user && this.$store.state.user.id;
+            },
+            loggedInUser() {
+                return this.$store.state.user;
+            },
+        };
     </script>
 @stop
