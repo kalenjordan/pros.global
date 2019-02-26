@@ -15,7 +15,8 @@ use App\User;
 class UserController extends Controller
 {
 
-    public function me(Request $request) {
+    public function me(Request $request)
+    {
         /** @var User $user */
         $user = $request->user();
         $data = $user->toArray();
@@ -56,6 +57,41 @@ class UserController extends Controller
         return $users->get();
     }
 
+    public function search(Request $request)
+    {
+        $users = User::with('tags');
+        $limit = $request->input('limit') ? $request->input('limit') : 10;
+
+        $users->limit($limit)
+            ->leftJoin("tagging_tagged_upvotes as upvotes", function ($join) {
+                /** @var $join \Illuminate\Database\Query\JoinClause */
+                $join->on("upvotes.tagged_user_id", '=', 'users.id');
+            })->leftJoin("tagging_tagged as tagged", function ($join) {
+                /** @var $join \Illuminate\Database\Query\JoinClause */
+                $join->on("tagged.taggable_id", '=', 'users.id');
+            })->select([
+                'users.*',
+            ])->groupBy('users.id');
+
+        if ($query = $request->input('q')) {
+            $search = new UserSearch($users);
+            $search->query($query);
+            //$count = $users->count();
+            //$filters = $search->parseSearchFilters($query);
+            //$users->skip($page * $limit);
+        }
+
+        if ($request->input('show_sql')) {
+            echo \SqlFormatter::format($users->toSql());
+            exit;
+        }
+
+        return view('search', [
+            'users' => $users,
+            'query' => $query,
+        ]);
+    }
+
     public function view(Request $request, $username)
     {
         if ($request->input('api_token')) {
@@ -65,7 +101,7 @@ class UserController extends Controller
         }
 
         $user = User::with(['tags', 'upvotes'])->where('username', $username)->first();
-        if (! $user) {
+        if (!$user) {
             return ['error_message' => "User not found"];
         }
         return $user->toArray();
@@ -99,7 +135,7 @@ class UserController extends Controller
     public function addTag(Request $request, $username)
     {
         $loggedInUser = Auth::user();
-        if (! $loggedInUser) {
+        if (!$loggedInUser) {
             return ['error_message' => "Please login first before you can add a tag"];
         }
 
@@ -151,7 +187,7 @@ class UserController extends Controller
     public function profile($username)
     {
         $user = User::findByUsername($username);
-        if (! $user) {
+        if (!$user) {
             return abort(404);
         }
 
@@ -186,7 +222,7 @@ class UserController extends Controller
             return ['success' => false, 'message' => "User already has a linkedin token, not going to merge"];
         }
 
-        if (! $user->linkedin_token && $mergingUser->linkedin_token) {
+        if (!$user->linkedin_token && $mergingUser->linkedin_token) {
             $user->name = $mergingUser->name;
             $user->linkedin_token = $mergingUser->linkedin_token;
             $user->email = $mergingUser->email;
@@ -215,12 +251,12 @@ class UserController extends Controller
             return ['error_message' => 'Not logged in'];
         }
 
-        if (! Auth::user()->is_admin) {
+        if (!Auth::user()->is_admin) {
             return ['error_message' => 'Access denied'];
         }
 
         $name = $request->input('name');
-        if (! $name) {
+        if (!$name) {
             return ['error_message' => 'Missing name'];
         }
         $user = User::findByName($name);
@@ -230,12 +266,12 @@ class UserController extends Controller
 
         $username = User::generateUniqueUsername($name);
         $user = User::create([
-            'name'        => $name,
-            'username'    => $username,
-            'email'       => $username . '@example.com',
-            'headline'    => $name . " is a pro who hasn't updated their headline yet",
-            'password'    => md5(time() . env('APP_KEY')),
-            'added_by'    => Auth::user()->id,
+            'name'     => $name,
+            'username' => $username,
+            'email'    => $username . '@example.com',
+            'headline' => $name . " is a pro who hasn't updated their headline yet",
+            'password' => md5(time() . env('APP_KEY')),
+            'added_by' => Auth::user()->id,
         ]);
 
         return $user->toArray();

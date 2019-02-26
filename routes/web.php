@@ -31,5 +31,7 @@ Route::get('/tag/{slug}', 'TagController@viewHtml');
 Route::get('/', 'HomeController@index');
 Route::get('/home-twitter-card', 'HomeController@twitterCard');
 
+Route::get('/search', 'UserController@search');
+
 Route::get('{username}', 'UserController@profile');
 Route::get('{username}/twitter-card', 'UserController@twitterCard');
