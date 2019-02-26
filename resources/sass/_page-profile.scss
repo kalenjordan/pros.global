@@ -9,7 +9,7 @@
             }
 
             img {
-                @apply .border-4 .border-secondary;
+                border: solid 4px $secondaryColor;
             }
             .is-present {
                 color: green;
@@ -35,18 +35,8 @@
         }
     }
 
-    .editable textarea {
-        height: 4em;
-        background: none;
-    }
-
-    .editable-about textarea {
-        height: 21em;
-        border: none;
-    }
-
     p {
-        @apply .mb-3;
+        margin-bottom: 0.75rem;
         &:last-child {
             margin-bottom: 0;
         }
@@ -58,8 +48,22 @@
         }
 
         h1 {
-            @apply .font-normal .italic .mb-2 .mt-3;
+            font-weight: normal;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+            margin-top: 0.75rem;
             font-size: inherit;
+        }
+
+        i.edit-upvote {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            color: $grayLighter;
+            &:hover {
+                color: $highlightColor;
+            }
+            font-size: 1rem;
         }
     }
 }

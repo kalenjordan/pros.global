@@ -151,6 +151,9 @@ class UserController extends Controller
     public function profile($username)
     {
         $user = User::findByUsername($username);
+        if (! $user) {
+            return abort(404);
+        }
 
         return view('user-profile', [
             'user' => $user,

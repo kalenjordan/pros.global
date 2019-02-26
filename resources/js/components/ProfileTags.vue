@@ -1,20 +1,14 @@
 <template>
     <div class="relative">
-        <template v-if="editing">
-            <tag-editable v-for="tag in user.tags" :user="user" :tag="tag" :key="tag.id"></tag-editable>
-        </template>
-        <template v-else >
-            <tag-clickable v-for="tag in user.tags" :user="user" :tag="tag" :key="tag.id"></tag-clickable>
-            <tag-endorsement user="user"></tag-endorsement>
-        </template>
+        <tag-component v-for="tag in user.tagged" :user="user" :tag="tag" :key="tag.id" :editing="editing"></tag-component>
         <div class="tag add-tag" @click="addTag()">
             <span class="tag-name">
-                <i class="tag-icon fas fa-plus"></i> Add tag
+                <i class="material-icons">add</i> Add tag
             </span>
         </div>
 
         <div class="tag-autocomplete card absolute" v-if="isAddingTag">
-            <div class="card--inner p-4">
+            <div class="card--inner">
                 <v-combobox
                         v-model="model"
                         :items="tagNames"
@@ -32,7 +26,8 @@
                         <v-list-tile>
                             <v-list-tile-content>
                                 <v-list-tile-title>
-                                    No results matching "<strong>{{ tagSearch }}</strong>". Press <kbd>enter</kbd> to create a new one
+                                    No results matching "<strong>{{ tagSearch }}</strong>". Press
+                                    <kbd>enter</kbd> to create a new one
                                 </v-list-tile-title>
                             </v-list-tile-content>
                         </v-list-tile>
@@ -56,13 +51,14 @@
         },
         mounted() {
             window.addEventListener('keyup', this.hotkeys);
-            axios.get('/api/v1/tags').then((response) => {
+            document.querySelector('.tags-server-side-rendered').remove();
+            axios.get(this.api('tags')).then((response) => {
                 this.tags = response.data;
             });
         },
         methods: {
             addTag() {
-                if (! this.loggedIn) {
+                if (!this.loggedIn) {
                     return alert("Please login first before you can add tags");
                 }
                 this.isAddingTag = true;
@@ -78,10 +74,8 @@
                     }
                 }
             },
-            tagInput: function(data) {
-                let auth = '?api_token=' + this.loggedInUser.api_token;
-
-                axios.post("/api/v1/users/" + this.user.username + "/add-tag" + auth, {
+            tagInput: function (data) {
+                axios.post(this.api("users/" + this.user.username + "/add-tag"), {
                     'tag': this.model
                 }).then((response) => {
                     this.user.tags = response.data;
@@ -91,15 +85,23 @@
             loggedInUserViewingOwnPage() {
                 return this.loggedInUser.id && this.loggedInUser.id === this.user.id;
             },
+            api(path) {
+                path = '/api/v1/' + path;
+                if (this.loggedInUser) {
+                    path = path + (path.indexOf('?') !== -1 ? '&' : '?') + 'api_token=' + this.loggedInUser.api_token;
+                }
+
+                return path;
+            },
         },
         computed: {
-            tagNames: function() {
-                return this.tags.map( tag => tag.name);
+            tagNames: function () {
+                return this.tags.map(tag => tag.name);
             },
-            loggedIn: function() {
+            loggedIn: function () {
                 return this.$store.state.user.id;
             },
-            loggedInUser: function() {
+            loggedInUser: function () {
                 return this.$store.state.user;
             }
         }

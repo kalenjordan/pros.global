@@ -22,7 +22,7 @@
         <top-nav class="m-4 sm:m-8"></top-nav>
         <section class="header text-center max-w-lg mx-auto mb-4">
             <h1 id="typewriter" class="mx-4 text-2xl sm:text-4xl">
-                {{ $home->name }}
+                {{ $home->description }}
             </h1>
         </section>
         <section class="max-w-2xl mb-8 mx-auto">

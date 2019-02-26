@@ -12,10 +12,7 @@
                 <ul class="list-reset" v-if="notifications.length">
                     <li v-for="notification in notifications" class="px-4 py-2" :class="{'bg-primary-lightest' : notification.read_at === null}">
                         {{ notification.data.text }}
-                        <router-link class="paragraph-link" v-if="notification.data.link"
-                                     :to="{ name: notification.data.link.name, params: notification.data.link.params}">
-                            {{ notification.data.link.cta }}
-                        </router-link>
+                        {{ notification.data.link.cta }}
                         <span class="text-gray" v-if="notification.created_at">
                             {{ notification.created_at | moment("subtract", "6 hours") | moment("from") }}
                         </span>

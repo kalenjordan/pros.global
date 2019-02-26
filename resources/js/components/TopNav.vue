@@ -25,9 +25,9 @@
                 <div v-if="showingMenu" class="card logged-in-menu">
                     <div class="card-inner p-3 font-120">
                         <div class="block p-2">
-                            <router-link class="naked-link" v-if="loggedIn" :to="{path: '/' + loggedInUser.username}">
+                            <a class="naked-link" v-if="loggedIn" :href="'/' + loggedInUser.username">
                                 View Profile
-                            </router-link>
+                            </a>
                         </div>
                         <div class="block p-2">
                             <a href="javascript://" class="naked-link" @click="logout">Log out</a>
@@ -40,12 +40,12 @@
                     <ais-search-box autofocus></ais-search-box>
                     <ais-results>
                         <template slot-scope="{ result }">
-                            <router-link class="ais-result-link no-link" :to="{path: result.url}">
+                            <a class="ais-result-link no-link" :href="result.url">
                                 <img v-if="result.type==='user'" class="w-8 rounded-full" :src="result.avatar_path">
                                 <i v-if="result.type==='tag'" class="fas fa-tag"></i>
                                 <i v-if="result.type==='saved-search'" class="fas fa-search"></i>
                                 <span class="name" style="-webkit-box-orient: vertical;">{{ result.name }}</span>
-                            </router-link>
+                            </a>
                         </template>
                     </ais-results>
                     <ais-pagination></ais-pagination>

@@ -84,10 +84,10 @@ $related = $savedSearch->relatedSavedSearches();
                 </div>
                 @if ($users->count() > 6)
                     <div class="centered">
-                        <router-link class="btn px-5 py-2 bold" :to="{ path: '/search?q=' + savedSearch.query }">
+                        <a class="btn px-5 py-2 bold" href="/search?q={{ $savedSearch->query }}">
                             See more
                             <i class="material-icons align-middle" style="margin-right: -7px;">keyboard_arrow_right</i>
-                        </router-link>
+                        </a>
                     </div>
                 @endif
             </section>
@@ -120,9 +120,9 @@ $related = $savedSearch->relatedSavedSearches();
             <div v-else class="text-xl">
                 <p>
                     If you want to be added to this list and aren't on it already, just
-                    <router-link :to="{ path: '/' + loggedInUser.username }">
+                    <a href="/{{ Auth::user()->username }}">
                         tag your profile
-                    </router-link>
+                    </a>
                     with the tags that this list is associated with.
                 </p>
             </div>
@@ -147,8 +147,6 @@ $related = $savedSearch->relatedSavedSearches();
 
         pageMethods = {
             hotkeys(e) {
-                console.log('hotkey: ' + e.key);
-                console.log(this);
                 if (e.key === 'Escape') {
                     this.editing = false;
                 }
@@ -160,7 +158,6 @@ $related = $savedSearch->relatedSavedSearches();
                 }
 
                 if (e.key === 'Enter') {
-                    console.log(document.activeElement.id);
                     if (document.activeElement.id === 'relatedSavedSearchSlug') {
                         this.addRelatedSavedSearch();
                     }

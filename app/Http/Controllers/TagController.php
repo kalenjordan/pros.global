@@ -21,9 +21,13 @@ class TagController extends Controller
         return $tags->toArray();
     }
 
-    public function view(Request $request, $slug)
+    public function view($slug)
     {
         $tag = Tag::findBySlug($slug);
+        if (! $tag) {
+            return abort(404);
+        }
+
         return $tag->toArray();
     }
 
@@ -46,6 +50,9 @@ class TagController extends Controller
     public function viewHtml($slug)
     {
         $tag = Tag::findBySlug($slug);
+        if (! $tag) {
+            abort(404);
+        }
 
         return view('tag', [
             'tag' => $tag,

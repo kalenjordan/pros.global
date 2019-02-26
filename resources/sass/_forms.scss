@@ -4,7 +4,11 @@ input.text, textarea.text {
     transition: all 0.25s ease;
 
     &::placeholder {
-        color: $grayLighter;
+        color: $grayLight;
+    }
+
+    &.bg-transparent-input {
+        background: #e1e1e140;
     }
 }
 
@@ -14,7 +18,7 @@ input.text, textarea.text {
 
 .v--modal-overlay {
     .v--modal {
-        padding: 2em; // todo figure out how to @apply here
+        padding: 2em;
 
         ul {
             list-style-type: none;
@@ -40,10 +44,18 @@ input.text, textarea.text {
         }
     }
 
+    .v-select__slot {
+        margin: 1rem;
+    }
+
     .v-select-list {
         margin-top: 0.5em;
         .v-list__tile__content {
-            padding: 0.25em;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            &:hover {
+                background-color: $grayLightest;
+            }
         }
 
         .v-list__tile--highlighted .v-list__tile__content {
@@ -61,13 +73,6 @@ input.text, textarea.text {
     .editable {
         .edit-icon {
             display: none;
-        }
-        &:hover {
-            // cursor: pointer;
-            .edit-icon {
-                display: inline;
-                @apply .text-gray-light;
-            }
         }
     }
 }

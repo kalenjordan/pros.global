@@ -1,7 +1,10 @@
 @extends('_layouts.base')
 
 <?php
+
 /** @var \App\User $user */
+/** @var \App\Tagged $tagged */
+/** @var \App\TaggedUpvote $upvote */
 ?>
 
 @section('title')
@@ -38,10 +41,9 @@
             <div class="m-4">
                 <div class="avatar inline-block mb-1 relative">
                     <img src="{{ $user->avatar_path }}" class="w-16 sm:w-32 h-16 sm:h-32 rounded-full">
-                    <!--<i v-if="this.isPresent(user)" class="absolute is-present fas fa-circle"></i>-->
                 </div>
                 <textarea cols=3 ref="headline" v-if="editing" v-text="user.headline"
-                          class="p-2 mb-2  block mx-auto w-full bg-transparent-input text font-150"
+                          class="p-2 mb-2 block mx-auto w-full bg-transparent-input text font-150"
                           placeholder="e.g. I am a person that does certain things!"></textarea>
                 <input ref="avatar_path" v-if="editing" v-model="user.avatar_path"
                        class="p-2 mb-2 block mx-auto w-128 text bg-transparent-input"
@@ -57,11 +59,25 @@
                 </h1>
             </div>
         </section>
-        {{--<section class="mx-auto max-w-md text-center">--}}
-        {{--<div class="m-4">--}}
-        {{--<profile-tags :user="user" :editing="editing"></profile-tags>--}}
-        {{--</div>--}}
-        {{--</section>--}}
+        <section class="mx-auto max-w-md text-center">
+            <div class="m-4 tags-server-side-rendered">
+                @foreach ($user->tagged as $tagged)
+                    <div class="tag tag-with-upvote border-1 fast text-sm sm:text-base">
+                        <a class="tag-name animated" href="/tag/{{ $tagged->tag_slug }}">
+                            @if ($tagged->icon)
+                                <i class="tag-icon material-icons">{{ $tagged->icon }}</i>
+                            @endif
+                            {{ $tagged->tag_name }}
+                        </a>
+                        <span class="separator">&nbsp;</span>
+                        <div class="count-and-upvote animated">
+                            <span class="tag-count">{{ $tagged->upvote_count }}</span>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            <profile-tags class="m-4 tags-client-side-render" :user="user"></profile-tags>
+        </section>
         <div class="section mx-auto max-w-md text-md" v-if="user.about || editing">
             <div class="card m-4">
                 <div class="card--inner text-left p-4">
@@ -74,34 +90,46 @@
                 </div>
             </div>
         </div>
-        {{--<section v-if="hasUpvotes" class="endorsements mx-auto p-4 max-w-sm text-sm leading-tight">--}}
-        {{--<div class="card hoverable endorsement-card mb-4" v-for="upvote in user.upvotes" :key="upvote.id">--}}
-        {{--<div class="card--inner p-4 flex">--}}
-        {{--<div class="avatar centered text-center -ml-3">--}}
-        {{--<router-link :to="{ path: '/' + upvote.author_username }">--}}
-        {{--<img v-bind:src="upvote.author_avatar" class="w-8 h-8 rounded-full">--}}
-        {{--</router-link>--}}
-        {{--</div>--}}
-        {{--<div class="endorsement-message flex-4 sm:flex-6">--}}
-        {{--<div>--}}
-        {{--<div v-if="upvote.message" class="mb-2" v-html="markdown(upvote.message)"></div>--}}
-        {{--<div v-else class="mb-2">{{ upvote.author_firstname }} upvoted</div>--}}
-        {{--<div class="inline-tag">{{ upvote.tag_name }}</div>--}}
-        {{--<router-link v-if="loggedInUser.id === upvote.author_id"--}}
-        {{--:to="{ path: '/upvotes/' + upvote.id + '?editing=1' }">--}}
-        {{--<i class="edit-upvote material-icons align-middle">edit</i>--}}
-        {{--</router-link>--}}
-        {{--<div class="inline text-gray-light">--}}
-        {{--<router-link class="naked-link text-xs ml-1"--}}
-        {{--:to="{ path: 'upvotes/' + upvote.id }">--}}
-        {{--{{ upvote.created_at | moment("subtract", "6 hours") | moment('from') }}--}}
-        {{--</router-link>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--</section>--}}
+        @if ($user->upvotes)
+            <section class="endorsements mx-auto p-4 max-w-sm text-sm leading-tight">
+                @foreach ($user->upvotes as $upvote)
+                    <div class="card hoverable endorsement-card mb-4">
+                        <div class="card--inner p-4 flex">
+                            <div class="avatar centered text-center -ml-3">
+                                <a href="/{{ $upvote->user->username }}">
+                                    <img src="{{ $upvote->user->avatar_path }}" class="w-8 h-8 rounded-full">
+                                </a>
+                            </div>
+                            <div class="endorsement-message flex-4 sm:flex-6">
+                                <div>
+                                    <div class="mb-2">
+                                        @if ($upvote->message)
+                                            {!! Markdown::convertToHtml($upvote->message) !!}
+                                        @else
+                                            {{ $upvote->user->getFirstName() }} upvoted
+                                            {{ $upvote->tagged_user->getFirstName() }} for
+                                            {{ $upvote->tagName() }}
+                                        @endif
+                                    </div>
+                                    <div class="inline-tag">{{ $upvote->tagName() }}</div>
+                                    @if (Auth::user() && Auth::user()->id == $upvote->user->id)
+                                        <a href="/upvotes/{{ $upvote->id }}?editing=1">
+                                            <i class="edit-upvote material-icons align-middle">edit</i>
+                                        </a>
+                                    @endif
+                                    <div class="inline text-gray-light">
+                                        <a class="naked-link text-xs ml-1" href="/upvotes/{{ $upvote->id }}">
+                                            {{ \App\Date::parse($upvote->created_at)->diffForHumans() }}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </section>
+        @endif
+
         <section class="mt-16 text-center text-4xl text-gray-light">
             <a class="naked-link mr-3" target="_blank"
                href="https://www.linkedin.com/search/results/all/?keywords={{ $user->name }}">
@@ -167,17 +195,13 @@
                 this.editing = false;
                 this.user.about = this.$refs.about.value;
                 this.user.headline = this.$refs.headline.value;
-                // Don't need to set avatar_path, headline or name because of v-model
+                // Don't need to set avatar_path or name because of v-model
 
                 axios.post(this.api("users/" + this.user.username), {
                     'data': this.user
                 }).then((response) => {
                     this.$toasted.show('Saved profile!');
                 });
-            },
-            markdown: function (content) {
-                // let converter = new showdown.Converter();
-                // return converter.makeHtml(content);
             },
             hotkeys(e) {
                 if (e.key === 'Escape') {
@@ -193,7 +217,6 @@
                     }
                 }
             },
-
             api(path) {
                 path = '/api/v1/' + path;
                 if (this.loggedInUser) {
@@ -202,15 +225,6 @@
 
                 return path;
             },
-
-            // isPresent(user) {
-            //     let ids = [];
-            //     let presentUsers = this.presentUsers;
-            //     for (let i in presentUsers) {
-            //         ids.push(presentUsers[i].id);
-            //     }
-            //     return ids.includes(user.id);
-            // },
         };
 
     </script>
