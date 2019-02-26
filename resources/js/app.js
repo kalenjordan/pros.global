@@ -98,6 +98,11 @@ const app = new Vue({
     data() {
         return typeof(pageData) !== 'undefined' ? pageData : {};
     },
+    mounted() {
+        if (typeof(pageMounted) === 'function') {
+            pageMounted(this);
+        }
+    },
     methods: typeof(pageMethods) !== 'undefined' ? pageMethods : {},
     computed: typeof(pageComputed) !== 'undefined' ? pageComputed : {},
     router,

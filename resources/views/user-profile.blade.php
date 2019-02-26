@@ -40,17 +40,17 @@
                     <img src="{{ $user->avatar_path }}" class="w-16 sm:w-32 h-16 sm:h-32 rounded-full">
                     <!--<i v-if="this.isPresent(user)" class="absolute is-present fas fa-circle"></i>-->
                 </div>
+                <textarea cols=3 ref="headline" v-if="editing" v-text="user.headline"
+                          class="p-2 mb-2  block mx-auto w-full bg-transparent-input text font-150"
+                          placeholder="e.g. I am a person that does certain things!"></textarea>
                 <input ref="avatar_path" v-if="editing" v-model="user.avatar_path"
                        class="p-2 mb-2 block mx-auto w-128 text bg-transparent-input"
                        placeholder="e.g. path to avatar">
                 <input ref="name" v-if="editing" v-model="user.name"
                        class="p-2 mb-2  block mx-auto w-128 bg-transparent-input text"
                        placeholder="e.g. Jane Smith">
-                <input ref="headline" v-if="editing" v-model="user.headline"
-                       class="p-2 mb-2  block mx-auto w-128 bg-transparent-input text"
-                       placeholder="e.g. I am a person that does certain things!">
                 <input ref="twitter_username" v-if="editing" v-model="user.twitter_username"
-                       class="p-2 mb-2  block mx-auto w-full bg-transparent-input text"
+                       class="p-2 mb-2  block mx-auto w-64 bg-transparent-input text"
                        placeholder="e.g. username">
                 <h1 v-if="!editing" class="text-xl sm:text-4xl animated" v-text="user.headline">
                     {{ $user->headline }}
@@ -68,7 +68,9 @@
                     <div class="editable-about" v-if="editing">
                         <textarea ref="about" class="font-90 width-100">@{{ user.about }}</textarea>
                     </div>
-                    <div v-else v-html="markdown(this.user.about)" @click="editIfOwner()"></div>
+                    <div v-else>
+                        {!! Markdown::convertToHtml($user->about) !!}
+                    </div>
                 </div>
             </div>
         </div>
@@ -138,9 +140,13 @@
         };
 
         pageData = {
-            user: {!! json_encode($user->toArray()) !!},
+            user: { {!! substr(json_encode($user->toArray()), 1, strlen(json_encode($user->toArray())) - 2) !!} },
             editing: false,
             messages: [],
+        };
+
+        pageMounted = function (Vue) {
+            window.addEventListener('keyup', Vue.hotkeys);
         };
 
         pageMethods = {
@@ -160,6 +166,7 @@
             save() {
                 this.editing = false;
                 this.user.about = this.$refs.about.value;
+                this.user.headline = this.$refs.headline.value;
                 // Don't need to set avatar_path, headline or name because of v-model
 
                 axios.post(this.api("users/" + this.user.username), {

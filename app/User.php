@@ -157,10 +157,6 @@ class User extends Authenticatable
     {
         $data = parent::toArray();
 
-        if (isset($data['avatar_path']) && substr($data['avatar_path'], 0, 4) != 'http') {
-            $data['avatar_path'] = env('APP_URL') . $data['avatar_path'];
-        }
-
         $parts = explode(' ', $this->name);
         $data['first_name'] = isset($parts[0]) ? $parts[0] : null;
 
