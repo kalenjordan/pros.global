@@ -230,6 +230,7 @@ return [
 
         'Markdown' => GrahamCampbell\Markdown\Facades\Markdown::class,
         'Twitter'  => Thujohn\Twitter\Facades\Twitter::class,
+        'Util'     => App\Util::class,
     ],
 
 ];

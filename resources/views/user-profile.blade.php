@@ -140,7 +140,7 @@
         };
 
         pageData = {
-            user: { {!! substr(json_encode($user->toArray()), 1, strlen(json_encode($user->toArray())) - 2) !!} },
+            user: { {!! \App\Util::jsonEncodeWithoutBrackets($user->toArray()) !!} },
             editing: false,
             messages: [],
         };
