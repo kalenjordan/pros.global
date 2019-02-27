@@ -15,7 +15,7 @@ def printUsageAndExit():
 	print 'Example: fab deploy'
 	sys.exit(0)
 
-remoteDocumentRoot = '/home/forge/api.pros.global'
+remoteDocumentRoot = '/home/forge/pros.global'
 
 print(green("1. Starting deploy"))
 
@@ -33,10 +33,10 @@ def deploy():
 		print(green("4. Running migrations"))
 		run('php artisan migrate')
 
-	#with cd(remoteDocumentRoot):
-	#	print(green("5. Running npm install"))
-	#	run('npm install')
+	with cd(remoteDocumentRoot):
+		print(green("5. Running npm install"))
+		run('npm install')
 
 	with cd(remoteDocumentRoot):
-		print(green("5. Running npm run"))
+		print(green("6. Running npm run"))
 		run('npm run production')
