@@ -95,6 +95,8 @@
                 }, 100);
             },
             hotkeys(e) {
+                this.instantSearchHotkeys(e);
+
                 if (e.key === 'Escape') {
                     this.isSearching = false;
                     if (document.querySelector('.ais-input')) document.querySelector('.ais-input').blur();
@@ -106,6 +108,37 @@
                 } else if (document.activeElement.tagName === 'BODY') {
                     if (e.key === '/') {
                         this.focusSearch();
+                    }
+                }
+            },
+            instantSearchHotkeys(e) {
+                let results = document.querySelector('.ais-results');
+                let activeLink = document.querySelector('.ais-result-link.active');
+
+                console.log(document.activeElement.className);
+                if (document.activeElement.className === 'ais-input' && ! activeLink) {
+                    if (e.key === 'ArrowDown') {
+                        results.firstElementChild.classList.add('active');
+                    }
+
+                    if (e.key === 'Enter') {
+                        results.firstElementChild.click();
+                    }
+                }
+
+                if (activeLink) {
+                    if (e.key === 'Enter') {
+                        activeLink.click();
+                    } else if (e.key === 'ArrowDown') {
+                        if (activeLink.nextElementSibling) {
+                            activeLink.classList.remove('active');
+                            activeLink.nextElementSibling.classList.add('active');
+                        }
+                    } else if (e.key === 'ArrowUp') {
+                        if (activeLink.previousElementSibling) {
+                            activeLink.classList.remove('active');
+                            activeLink.previousElementSibling.classList.add('active');
+                        }
                     }
                 }
             },

@@ -18,10 +18,6 @@
         border-radius: 8px;
         background-color: white;
 
-        a:hover {
-            background-color: $grayLightest;
-        }
-
         a {
             display: block;
             padding: 0.5rem 1rem;
@@ -30,6 +26,10 @@
             }
             &:last-child {
                 padding-bottom: 1rem;
+            }
+
+            &.active, a:hover {
+                background-color: $secondaryColorLighter;
             }
 
             img {
