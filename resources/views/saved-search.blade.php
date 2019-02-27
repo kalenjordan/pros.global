@@ -26,7 +26,7 @@ $related = $savedSearch->relatedSavedSearches();
 
 @section('content')
     <div class="page-saved-search" :class="{ 'can-edit' : canEdit }">
-        <top-nav class="m-4 sm:m-8">
+        <top-nav class="m-4 sm:m-8 hidden-before-vue">
             <div v-if="editing" class="m-1 inline-block">
                 <a class="paragraph-link mr-3" @click="editing=false">
                     Cancel
@@ -140,6 +140,11 @@ $related = $savedSearch->relatedSavedSearches();
 
         pageMounted = function (Vue) {
             window.addEventListener('keyup', Vue.hotkeys);
+
+            let list = document.querySelectorAll('.hidden-before-vue');
+            for (let i = 0; i < list.length; ++i) {
+                list[i].classList.remove('hidden-before-vue');
+            }
         };
 
         pageMethods = {
