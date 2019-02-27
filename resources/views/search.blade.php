@@ -15,7 +15,7 @@
         <top-nav class="m-4 sm:m-8"></top-nav>
         <section class="mb-6 max-w-md mx-auto">
             <form action="/search" class="flex m-4 mt-6">
-                <input name="q" placeholder="e.g. tag:founder"
+                <input name="q" ref="query" placeholder="e.g. tag:founder"
                        class="text font-100 flex-5 no-border mr-2 p-2"
                        value="{{ $query }}"
                 >
@@ -60,7 +60,7 @@
 
         pageMounted = function (Vue) {
             window.addEventListener('keyup', this.hotkeys);
-            Vue.$refs.search.focus();
+            Vue.$refs.query.focus();
         };
 
         pageMethods = {
