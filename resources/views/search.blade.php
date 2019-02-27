@@ -60,7 +60,7 @@
 
         pageMounted = function (Vue) {
             window.addEventListener('keyup', this.hotkeys);
-            this.$refs.search.focus();
+            Vue.$refs.search.focus();
         };
 
         pageMethods = {
