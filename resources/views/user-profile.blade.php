@@ -23,7 +23,7 @@
 
 @section('content')
     <div class="page page-profile" id="profile" :class="{ 'can-edit' : canEdit }">
-        <top-nav class="m-4 sm:m-8" :user="user">
+        <top-nav class="m-4 sm:m-8 hidden-before-vue" :user="user">
             <div v-if="editing" class="edit-profile-wrapper m-1 inline-block">
                 <div class="inline-block mr-3">
                     <a class="paragraph-link mr-3" @click="cancelEditing()">
@@ -43,18 +43,20 @@
                 <div class="avatar inline-block mb-1 relative">
                     <img src="{{ $user->avatar_path }}" class="w-16 sm:w-32 h-16 sm:h-32 rounded-full">
                 </div>
+                <div class="hidden-before-vue">
                 <textarea cols=3 ref="headline" v-if="editing" v-text="user.headline"
                           class="p-2 mb-2 block mx-auto w-full bg-transparent-input text font-150"
                           placeholder="e.g. I am a person that does certain things!"></textarea>
-                <input ref="avatar_path" v-if="editing" v-model="user.avatar_path"
-                       class="p-2 mb-2 block mx-auto w-128 text bg-transparent-input"
-                       placeholder="e.g. path to avatar">
-                <input ref="name" v-if="editing" v-model="user.name"
-                       class="p-2 mb-2  block mx-auto w-128 bg-transparent-input text"
-                       placeholder="e.g. Jane Smith">
-                <input ref="twitter_username" v-if="editing" v-model="user.twitter_username"
-                       class="p-2 mb-2  block mx-auto w-64 bg-transparent-input text"
-                       placeholder="e.g. username">
+                    <input ref="avatar_path" v-if="editing" v-model="user.avatar_path"
+                           class="p-2 mb-2 block mx-auto w-128 text bg-transparent-input"
+                           placeholder="e.g. path to avatar">
+                    <input ref="name" v-if="editing" v-model="user.name"
+                           class="p-2 mb-2  block mx-auto w-128 bg-transparent-input text"
+                           placeholder="e.g. Jane Smith">
+                    <input ref="twitter_username" v-if="editing" v-model="user.twitter_username"
+                           class="p-2 mb-2  block mx-auto w-64 bg-transparent-input text"
+                           placeholder="e.g. username">
+                </div>
                 <h1 v-if="!editing" class="text-xl sm:text-4xl animated" v-text="user.headline">
                     {{ $user->headline }}
                 </h1>
@@ -79,7 +81,7 @@
             </div>
             <profile-tags class="m-4 tags-client-side-render" :user="user"></profile-tags>
         </section>
-        <div class="section mx-auto max-w-md text-md" v-if="user.about || editing">
+        <div class="section mx-auto max-w-md text-md hidden-before-vue" v-if="user.about || editing">
             <div class="card m-4">
                 <div class="card--inner text-left p-4">
                     <div class="editable-about" v-if="editing">
@@ -155,6 +157,11 @@
         };
 
         pageMounted = function (Vue) {
+            let list = document.querySelectorAll('.hidden-before-vue');
+            for (let i = 0; i < list.length; ++i) {
+                list[i].classList.remove('hidden-before-vue');
+            }
+
             window.addEventListener('keyup', Vue.hotkeys);
         };
 

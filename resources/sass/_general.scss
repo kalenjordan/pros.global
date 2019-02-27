@@ -9,3 +9,7 @@
 img, .animated {
     transition: 0.25s all;
 }
+
+.hidden-before-vue {
+    display: none;
+}
