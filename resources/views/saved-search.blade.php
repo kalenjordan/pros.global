@@ -78,11 +78,11 @@ $related = $savedSearch->relatedSavedSearches();
         @if ($users && $users->count())
             <section class="max-w-2xl mb-8 mx-auto">
                 <div class="user-cards m-2 mb-4 sm:mb-8 flex flex-wrap justify-center">
-                    @foreach ($users->get() as $savedSearchUser)
+                    @foreach ($users->limit(12)->get() as $savedSearchUser)
                         @include ('partials.user-card', ['user' => $savedSearchUser, 'css' => 'hoverable w-full sm:max-w-xs m-2'])
                     @endforeach
                 </div>
-                @if ($users->count() > 6)
+                @if ($users->count() > 12)
                     <div class="centered">
                         <a class="btn px-5 py-2 bold" href="/search?q={{ $savedSearch->query }}">
                             See more

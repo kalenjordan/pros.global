@@ -3,7 +3,7 @@
 /** @var $tagged \App\Tagged */
 ?>
 
-<div class="card user-card {{ isset($css) ? $css : "" }}">
+<div class="card hoverable user-card {{ isset($css) ? $css : "" }}">
     <div class="card--background bg-primary"></div>
     <div class="card--inner p-4">
         <div class="card--avatar">
