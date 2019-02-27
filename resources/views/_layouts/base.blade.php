@@ -7,6 +7,7 @@
     @section('title')
         <title>{{ env('DEFAULT_TITLE') }}</title>
         <meta name="description" content="Connect with awesome founders, eCommerce professionals, and software developers">
+        <link rel="canonical" href="{{ env('APP_URL') }}">
     @show
 
     @section('meta-twitter-card')

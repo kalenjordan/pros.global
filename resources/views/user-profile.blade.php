@@ -9,6 +9,7 @@
 
 @section('title')
     <title>{{ $user->name }} | pros.global</title>
+    <link rel="canonical" href="{{ env('APP_URL') }}/{{ $user->username }}">
 @stop
 
 @section('meta-twitter-card')

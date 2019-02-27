@@ -10,6 +10,7 @@ $users = $tag->users();
 
 @section('title')
     <title>Tag: {{ $tag->name }}</title>
+    <link rel="canonical" href="{{ env('APP_URL') }}/tag/{{ $tag->slug }}">
 @stop
 
 @section('meta-twitter-card')
