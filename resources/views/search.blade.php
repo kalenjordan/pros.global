@@ -19,7 +19,7 @@
                        class="text font-100 flex-5 no-border mr-2 p-2"
                        value="{{ $query }}"
                 >
-                <input type="submit" class="btn flex-1 px-5 py-2 text-center" style="flex-basis: 50px; flex-grow: inherit;" @click="search">
+                <input type="submit" class="btn flex-1 px-5 py-2 text-center" style="flex-basis: 50px; flex-grow: inherit;">
                 <a class="btn px-5 py-2 ml-2" @click="saveSearch"><i class="fas fa-save"></i></a>
             </form>
         </section>
