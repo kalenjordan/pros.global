@@ -52,64 +52,68 @@
 
 @section('footer-script')
     <script type="text/javascript">
-        pageMounted = function (Vue) {
-            window.addEventListener('keyup', Vue.hotkeys);
+        pageData = {
+            users: [],
+            search_processing: false,
+            query: null,
+        };
 
-            if ({{ app('request')->input('editing') ? 'true' : 'false' }}) {
-                Vue.editing = true;
-                Vue.$nextTick(() => {
-                    Vue.$refs.message.focus();
-                });
-            }
+        pageMounted = function (Vue) {
+            window.addEventListener('keyup', this.hotkeys);
+            this.$refs.search.focus();
         };
 
         pageMethods = {
-            hotkeys(e) {
-            },
-            submit: function (content) {
-                let converter = new showdown.Converter();
-                return converter.makeHtml(content);
-            },
-            linkedinShare() {
-                this.$toasted.show('Copied message to clipboard. Opening LinkedIn share window now.');
-                setTimeout(() => {
-                    let url = 'https://www.linkedin.com/shareArticle?mini=true&url=' + window.location.href;
-                    window.open(url);
-                }, 1000);
-            },
-            linkedinShareContent() {
-                let hashtag = this.upvote.tag_slug ? this.upvote.tag_slug.replace('-', '') : null;
-                return "I just gave @" + this.upvote.tagged_user_firstname + " some props:\r\n\r\n" +
-                    '"' + this.shortenedMessage + '"' + "\r\n\r\n" +
-                    window.location.href + "\r\n\r\n" +
-                    '#' + hashtag;
-            },
-            editIfOwner() {
-                if (!this.loggedInUser.id) {
-                    return;
-                }
+            search() {
+                this.search_processing = true;
+                window.history.replaceState({}, null, '/search?q=' + this.query);
 
-                if (this.loggedInUser.id !== this.upvote.author_id) {
-                    return;
-                }
-
-                this.editing = true;
-                this.$nextTick(() => {
-                    this.$refs.message.focus();
+                axios.get(this.api('users?q=' + this.query)).then((response) => {
+                    this.search_processing = false;
+                    this.users = response.data;
                 });
             },
-            cancel() {
-                this.editing = false;
-            },
-            save() {
-                this.editing = false;
-                this.upvote.message = this.$refs.message.value;
+            saveSearch() {
+                let name = prompt("Name for saved search");
+                if (!name) {
+                    return;
+                }
 
-                axios.post(this.api("upvotes/" + this.upvote.id), {
-                    'message': this.upvote.message
+                axios.post(this.api('/api/v1/saved-searches'), {
+                    'name': name,
+                    'query': this.$refs.search.value,
                 }).then((response) => {
-                    this.$toasted.show('Saved your shout-out');
-                    this.upvote = response.data;
+                    this.$toasted.show("" +
+                        "Saved search: <a class='paragraph-link' href='/s/" + response.data.id + "'>" + name + "</a>" +
+                        "");
+                });
+            },
+            hotkeys(e) {
+                if (document.activeElement.tagName === 'INPUT') {
+                    if (e.key === 'Enter') {
+                        this.search();
+                    } else if (e.key === 'Escape') {
+                        this.$refs.search.blur();
+                    }
+                } else if (document.activeElement.tagName === 'BODY') {
+                    if (e.key === '/') {
+                        this.$refs.search.focus();
+                    }
+                }
+            },
+            addTwitterUser() {
+                if (!this.loggedIn) {
+                    return alert('Please login first');
+                }
+
+                axios.get(this.api('twitter/add-user/' + this.$refs.twitterUsername.value)).then((response) => {
+                    if (response.data.username) {
+                        this.$router.push({
+                            path: '/' + response.data.username,
+                        });
+                    } else if (response.data.message) {
+                        alert(response.data.message);
+                    }
                 });
             },
             api(path) {
@@ -123,8 +127,11 @@
         };
 
         pageComputed = {
+            loggedIn() {
+                return this.$store.state.user && this.$store.state.user.id;
+            },
             loggedInUser() {
-                return this.$cookies.get('user');
+                return this.$store.state.user;
             },
         };
     </script>
