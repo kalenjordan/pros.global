@@ -114,6 +114,9 @@
                     if (e.key === '/') {
                         this.focusSearch();
                     }
+                    if (e.key === 'N') {
+                        window.location.href = '/posts/new';
+                    }
                 }
             },
             instantSearchHotkeys(e) {
