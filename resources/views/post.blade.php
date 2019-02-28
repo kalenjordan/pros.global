@@ -42,7 +42,7 @@
             <div class="m-4 mb-8">
                 <div class="avatar inline-block mb-4 relative">
                     <a href="/{{ $author->username }}">
-                        <img src="{{ $author->avatar_path }}" class="w-16 avatar border-4">
+                        <img src="{{ $author->avatar_path }}" class="w-20 avatar border-4">
                     </a>
                 </div>
                 <div class="hidden-before-vue">
@@ -68,7 +68,7 @@
             </div>
             <div>
                 <input ref="slug" v-if="editing" v-model="post.slug"
-                       class="p-2 mb-4  block mx-auto w-full sm:w-64 bg-transparent-input text"
+                       class="p-2 mb-4  block mx-auto w-full sm:w-124 bg-transparent-input text"
                        placeholder="e.g. interesting-title-of-blog-post">
             </div>
         </div>
@@ -112,6 +112,7 @@
                 axios.post(this.api("posts/" + this.post.id), {
                     'data': this.post
                 }).then((response) => {
+                    this.post = response.data;
                     this.$toasted.show('Saved post!');
                 });
             },

@@ -76,8 +76,14 @@ class PostController extends Controller
         $data = $content['data'];
 
         $post->title = $data['title'];
-        $post->slug = $data['slug'];
         $post->body = $data['body'];
+
+        if (! $data['slug']) {
+            $title = str_replace(" ", "-", $post->title);
+            $post->slug = preg_replace("/[^a-z0-9.-]+/i", "", strtolower($title));
+        } else {
+            $post->slug = $data['slug'];
+        }
 
         $post->save();
 
