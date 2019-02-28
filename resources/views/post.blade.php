@@ -118,7 +118,6 @@
                             text : 'View',
                             href: response.data.url,
                         },
-                        duration: 100000,
                     });
                 });
             },
