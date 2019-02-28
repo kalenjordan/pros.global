@@ -30,6 +30,11 @@
                             </a>
                         </div>
                         <div class="block p-2">
+                            <a class="naked-link" v-if="loggedIn" href="/posts/new">
+                                New Post
+                            </a>
+                        </div>
+                        <div class="block p-2">
                             <a href="javascript://" class="naked-link" @click="logout">Log out</a>
                         </div>
                     </div>

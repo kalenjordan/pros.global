@@ -1,9 +1,9 @@
 <template>
     <div class="relative">
         <tag-component v-for="tag in user.tagged" :user="user" :tag="tag" :key="tag.id" :editing="editing"></tag-component>
-        <div class="tag add-tag" @click="addTag()">
+        <div class="tag text-sm sm:text-base" @click="addTag()">
             <span class="tag-name">
-                <i class="material-icons">add</i> Add tag
+                <i class="material-icons tag-icon bold">add</i> Add tag
             </span>
         </div>
 

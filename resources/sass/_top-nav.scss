@@ -1,4 +1,15 @@
 .nav {
+    @media screen and (min-width: 576px) {
+        opacity: 0.1;
+        filter: grayscale(100);
+        transition: 0.25s ease all;
+
+        &:hover {
+            opacity: 1;
+            filter: none;
+        }
+    }
+
     .logo img {
         &:hover {
             transform: scale(1.1);

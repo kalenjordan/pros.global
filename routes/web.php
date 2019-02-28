@@ -33,5 +33,9 @@ Route::get('/home-twitter-card', 'HomeController@twitterCard');
 
 Route::get('/search', 'UserController@search');
 
+Route::get('/{username}/posts/{slug}', 'PostController@view');
+Route::get('/{username}/posts/{slug}/twitter-card', 'PostController@twitterCard');
+Route::get('/posts/new', 'PostController@newPost');
+
 Route::get('{username}', 'UserController@profile');
 Route::get('{username}/twitter-card', 'UserController@twitterCard');

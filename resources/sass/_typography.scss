@@ -58,3 +58,19 @@ h3 {
 .text-3rem {
     font-size: 3rem;
 }
+
+.content-card {
+    font-size: 1.2rem;
+
+    p {
+        margin-bottom: 0.75rem;
+        line-height: 1.3;
+
+        &:first-child {
+            margin-top: 0;
+        }
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}

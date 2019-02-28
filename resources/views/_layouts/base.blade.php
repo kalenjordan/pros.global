@@ -57,6 +57,8 @@
         Javascript not enabled
     </noscript>
 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js"></script>
+
 </head>
 
 <body class="{{ isset($bodyClass) ? $bodyClass : "" }}">

@@ -76,3 +76,8 @@ input.text, textarea.text {
         }
     }
 }
+
+// Gets rid of blue outline on focused h1 when editing
+*:focus {
+    outline:0;
+}

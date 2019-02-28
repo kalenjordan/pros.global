@@ -23,7 +23,7 @@
 
 @section('content')
     <div class="page page-profile" id="profile" :class="{ 'can-edit' : canEdit }">
-        <top-nav class="m-4 sm:m-8 hidden-before-vue" :user="user">
+        <top-nav class="m-4 sm:m-8 sm:-mb-8 hidden-before-vue" :user="user">
             <div v-if="editing" class="edit-profile-wrapper m-1 inline-block">
                 <div class="inline-block mr-3">
                     <a class="paragraph-link mr-3" @click="cancelEditing()">
@@ -40,7 +40,7 @@
         </top-nav>
         <section class="header max-w-lg mx-auto text-center">
             <div class="m-4">
-                <div class="avatar inline-block mb-1 relative">
+                <div class="avatar inline-block mb-2 relative">
                     <img src="{{ $user->avatar_path }}" class="w-16 sm:w-32 h-16 sm:h-32 rounded-full">
                 </div>
                 <div class="hidden-before-vue">
@@ -79,10 +79,10 @@
                     </div>
                 @endforeach
             </div>
-            <profile-tags class="m-4 tags-client-side-render" :user="user"></profile-tags>
+            <profile-tags class="m-4 tags-client-side-render" :user="user" :editing="editing"></profile-tags>
         </section>
         <div class="section mx-auto max-w-md text-md hidden-before-vue" v-if="user.about || editing">
-            <div class="card m-4">
+            <div class="card content-card m-4">
                 <div class="card--inner text-left p-4">
                     <div class="editable-about" v-if="editing">
                         <textarea ref="about" class="font-90 width-100">@{{ user.about }}</textarea>

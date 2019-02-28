@@ -1,0 +1,10 @@
+img.avatar {
+    &.border-4 {
+        border: solid 4px $primaryColor;
+        border-radius: 50%;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+}

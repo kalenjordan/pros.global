@@ -1,4 +1,5 @@
 .twitter-card-bigger {
+    background-color: $secondaryColor;
     width: 900px;
     height: 450px;
 
@@ -7,12 +8,6 @@
         font-weight: normal;
         line-height: inherit;
     }
-}
-
-.twitter-card-user-profile {
-    background-color: $secondaryColor;
-    color: white;
-    padding: 4rem;
 
     .image-wrapper {
         float: right;
@@ -26,10 +21,15 @@
 
         img.avatar {
             width: 8rem;
+            height: 8rem;
             border: solid 8px white;
         }
     }
+}
 
+.twitter-card-user-profile {
+    color: white;
+    padding: 4rem;
 
     h1 {
         font-weight: bold;
@@ -73,7 +73,6 @@
 }
 
 .twitter-card-upvote {
-    background-color: $secondaryColor;
     color: white;
     padding: 4rem;
 
@@ -128,7 +127,6 @@
 }
 
 .twitter-card-saved-search {
-    background-color: $secondaryColorDark;
     .logo-wrapper {
         bottom: 2rem;
         img {
@@ -146,5 +144,19 @@
             margin-left: -2rem;
             margin-bottom: -2rem;
         }
+    }
+}
+
+.twitter-card-post {
+    color: white;
+    padding: 4rem;
+
+    .body {
+        overflow: hidden;
+        line-height: 1.2;
+        font-size: 2.8rem;
+
+        display: -webkit-box;
+        -webkit-line-clamp: 6;
     }
 }

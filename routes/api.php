@@ -33,6 +33,8 @@ Route::prefix('v1')->group(function () {
         Route::get('notifications', 'NotificationController@list');
         Route::get('notifications/mark-read', 'NotificationController@markRead');
 
+        Route::post('/posts/{id}', 'PostController@save');
+
         Route::post('saved-searches', 'SavedSearchController@create');
         Route::post('saved-searches/{id}', 'SavedSearchController@edit');
         Route::post('saved-searches/{slug}/related', 'SavedSearchController@newRelated');

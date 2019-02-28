@@ -15,8 +15,14 @@
     i.tag-icon {
         font-size: 1rem;
         float: left;
-        margin-right: 7px;
+        margin-right: 5px;
+        margin-left: -3px;
         color: $grayLight;
+
+        margin-top: -1px;
+        @media screen and (min-width: 576px) {
+            margin-top: 0;
+        }
 
         &.fa-location-arrow {
             opacity: 0.7;

@@ -25,16 +25,6 @@
         z-index: 1;
         position: relative;
 
-        p {
-            &:first-child {
-                margin-top: 0;
-            }
-
-            &:last-child {
-                margin-bottom: 0;
-            }
-        }
-
         .card--avatar {
             z-index: 1;
             img {
