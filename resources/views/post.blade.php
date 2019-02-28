@@ -23,7 +23,7 @@
 
 @section('content')
     <div class="page page-post" :class="{ 'can-edit' : canEdit }">
-        <top-nav class="m-4 sm:m-8 sm:-mb-8 hidden-before-vue">
+        <top-nav class="m-4 sm:m-8 sm:-mb-4 hidden-before-vue">
             <div v-if="editing" class="edit-profile-wrapper m-1 inline-block">
                 <div class="inline-block mr-3">
                     <a class="paragraph-link mr-3" @click="cancelEditing()">

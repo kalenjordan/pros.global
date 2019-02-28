@@ -3,7 +3,7 @@
         <div class="nav flex items-center">
             <div class="logo">
                 <a href="/" class="naked-link">
-                    <img class="logo w-3rem" src="/images/icon.png">
+                    <img class="logo w-25rem" src="/images/icon.png">
                 </a>
             </div>
             <div class="ml-auto mr-6" v-if="!isSearching" @click="focusSearch()">
