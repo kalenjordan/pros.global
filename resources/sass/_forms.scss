@@ -14,6 +14,10 @@ input.text, textarea.text {
 
 .toasted.toasted-primary {
     background-color: $thirdColor !important;
+
+    .action {
+        color: white !important;
+    }
 }
 
 .v--modal-overlay {

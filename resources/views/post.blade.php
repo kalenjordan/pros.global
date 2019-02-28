@@ -113,7 +113,13 @@
                     'data': this.post
                 }).then((response) => {
                     this.post = response.data;
-                    this.$toasted.show('Saved post!');
+                    this.$toasted.show("Saved post!", {
+                        action : {
+                            text : 'View',
+                            href: response.data.url,
+                        },
+                        duration: 100000,
+                    });
                 });
             },
             hotkeys(e) {

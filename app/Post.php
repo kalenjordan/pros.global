@@ -53,6 +53,14 @@ class Post extends Model
         return ($this->slug ? $this->slug : $this->id);
     }
 
+    public function toArray()
+    {
+        $data = parent::toArray();
+        $data['url'] = $this->url();
+
+        return $data;
+    }
+
     public function url()
     {
         return $this->user->url() . "/posts/" . $this->getSlugOrId();
