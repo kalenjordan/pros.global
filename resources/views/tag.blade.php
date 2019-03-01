@@ -97,7 +97,7 @@ $users = $tag->users();
         };
 
         pageMounted = function (Vue) {
-            window.addEventListener('keyup', Vue.hotkeys);
+            window.addEventListener('keydown', Vue.hotkeys);
         };
 
         pageMethods = {
@@ -108,7 +108,15 @@ $users = $tag->users();
 
                 if (document.activeElement.tagName === 'BODY') {
                     if (e.key === 'e') {
+                        e.preventDefault();
                         this.editIfOwner();
+                    }
+                }
+
+                if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA') {
+                    if (e.key === 'Enter' && e.metaKey) {
+                        e.preventDefault();
+                        this.save();
                     }
                 }
             },
@@ -128,7 +136,7 @@ $users = $tag->users();
                     slug: this.tag.slug,
                     icon: this.tag.icon,
                 }).then((response) => {
-                    this.$toasted.show("Saved!");
+                    this.$toasted.show("Saved tag!");
                 });
             },
             api(path) {

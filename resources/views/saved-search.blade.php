@@ -98,7 +98,7 @@ $related = $savedSearch->relatedSavedSearches();
             <section class="max-w-3xl mb-8 mx-auto">
                 <div class="saved-searches m-2 mb-4 sm:mb-8 flex flex-wrap justify-center">
                     @foreach ($related->get() as $relatedSavedSearch)
-                        @include ('partials.saved-search', ['savedSearch' => $relatedSavedSearch, 'css' => 'mb-12 m-4'])
+                        @include ('partials.saved-search-card', ['savedSearch' => $relatedSavedSearch, 'css' => 'mb-12 m-4'])
                     @endforeach
                 </div>
             </section>

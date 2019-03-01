@@ -82,6 +82,11 @@ class SavedSearch extends Model
             $search->query($this->query);
         }
 
+        if (app('request')->input('show_sql')) {
+            echo \SqlFormatter::format($users->toSql());
+            exit;
+        }
+
         return $users;
     }
 
