@@ -84,13 +84,19 @@
 
         pageData = {
             post: { {!! \App\Util::jsonEncodeWithoutBrackets($post->toArray()) !!} },
-            editing: false,
+            editing: ('{{ app('request')->input('editing') ? 'true' : 'false' }}' === 'true'),
         };
 
         pageMounted = function (Vue) {
             let list = document.querySelectorAll('.hidden-before-vue');
             for (let i = 0; i < list.length; ++i) {
                 list[i].classList.remove('hidden-before-vue');
+            }
+
+            if (Vue.editing) {
+                Vue.$nextTick(() => {
+                    Vue.$refs.title.focus();
+                });
             }
 
             window.addEventListener('keydown', Vue.hotkeys);
@@ -143,6 +149,13 @@
                     if (e.key === 'e') {
                         e.preventDefault();
                         this.editIfOwner();
+                    }
+                    if (e.key === 'p') {
+                        if (this.post.published_at) {
+                            this.unpublish();
+                        } else {
+                            this.publish();
+                        }
                     }
                 }
 

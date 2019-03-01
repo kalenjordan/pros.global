@@ -62,7 +62,7 @@ class PostController extends Controller
             'user_id' => Auth::user()->id,
         ]);
 
-        return redirect($post->url());
+        return redirect($post->url() . '?editing=1');
     }
 
     public function save(Request $request, $postId)
