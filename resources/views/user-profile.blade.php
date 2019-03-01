@@ -113,7 +113,7 @@
                 </div>
             </div>
         </div>
-        @if ($user->upvotes)
+        @if ($user->upvotes()->count())
             <section class="endorsements mx-auto p-4 max-w-sm text-sm leading-tight">
                 @foreach ($user->upvotes as $upvote)
                     <div class="card hoverable endorsement-card mb-4">
@@ -153,7 +153,7 @@
             </section>
         @endif
 
-        <section class="mt-16 text-center text-4xl text-gray-light">
+        <section class="text-center text-4xl text-gray-light">
             <a class="naked-link mr-3" target="_blank"
                href="https://www.linkedin.com/search/results/all/?keywords={{ $user->name }}">
                 <i class="fab fa-linkedin"></i>

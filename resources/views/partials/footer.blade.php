@@ -2,7 +2,6 @@
 /** @var \App\SavedSearch $savedSearch */
 ?>
 
-<hr class="mt-16 mb-16"/>
 <div class="footer animated mx-auto max-w-2xl leading-tight sm:mt-16 pb-16">
     <div class="section footer--inner flex flex-wrap">
         <div class="footer--column flex-2 m-4" style="flex-basis: 15rem;">
