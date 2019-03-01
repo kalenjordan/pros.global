@@ -50,11 +50,11 @@
                 });
             },
             deleteTag(tag) {
-                let index = this.user.tags.indexOf(tag);
-                this.$delete(this.user.tags, index);
+                let index = this.user.tagged.indexOf(tag);
+                this.$delete(this.user.tagged, index);
 
                 axios.get(this.api('users/' + this.user.username + '/delete-tag/' + tag.id)).then((response) => {
-                    this.user.tags = response.data;
+                    this.user.tagged = response.data;
                 });
             },
             api(path) {

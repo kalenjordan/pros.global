@@ -78,7 +78,7 @@
                 axios.post(this.api("users/" + this.user.username + "/add-tag"), {
                     'tag': this.model
                 }).then((response) => {
-                    this.user.tags = response.data;
+                    this.user.tagged = response.data;
                 });
                 this.isAddingTag = false;
             },
