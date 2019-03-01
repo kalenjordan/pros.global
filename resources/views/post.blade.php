@@ -60,10 +60,10 @@
             </div>
         </section>
         <div class="section mx-auto max-w-md text-md hidden-before-vue">
-            <div class="card content-card m-4 mb-8">
+            <div class="card content-card sm:m-4 sm:mb-8">
                 <div class="card--inner text-left p-4 sm:p-8">
                     <div class="editable-about" v-if="editing">
-                        <textarea ref="about" rows="20" class="font-90 width-100" v-model="post.body">@{{ post.body }}</textarea>
+                        <textarea ref="body" rows="20" class="font-90 width-100" v-model="post.body">@{{ post.body }}</textarea>
                     </div>
                     <div v-else v-html="markdown(post.body)">
                         {!! Markdown::convertToHtml($post->body) !!}
