@@ -12,6 +12,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property $body
  * @property $published_at
  * @property $user_id
+ * @property $created_at
+ * @property $updated_at
  *
  * @property User $user
  *

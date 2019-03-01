@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Post;
 use Illuminate\Console\Command;
 
 use App\SavedSearch;
@@ -83,6 +84,20 @@ class GenerateSitemap extends Command
             $url = Url::create(env('FRONTEND_APP_URL') . '/tag/' . $tag->slug);
             if ($tag->updated_at) {
                 $url->setLastModificationDate($tag->updated_at);
+            }
+
+            $sitemap->add($url);
+        }
+
+        $posts = Post::where('id', '>', 0)
+            ->whereNotNull('published_at');
+
+        $this->info($posts->count() . " posts");
+        foreach ($posts->get() as $post) {
+            /** @var Post $post */
+            $url = Url::create($post->url());
+            if ($post->updated_at) {
+                $url->setLastModificationDate($post->updated_at);
             }
 
             $sitemap->add($url);
