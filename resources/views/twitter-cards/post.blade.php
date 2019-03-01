@@ -22,7 +22,7 @@
                 <img class="logo absolute" src="/img/icon-200.png">
             </div>
             <p class="body" style="-webkit-box-orient: vertical;">
-                {!! strip_tags(Markdown::convertToHtml($post->body)) !!}
+                {{ $post->title() }}
             </p>
         </div>
     </div>

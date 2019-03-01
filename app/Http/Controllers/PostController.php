@@ -77,6 +77,7 @@ class PostController extends Controller
 
         $post->title = $data['title'];
         $post->body = $data['body'];
+        $post->published_at = $data['published_at'];
 
         if (! $data['slug']) {
             $title = str_replace(" ", "-", $post->title);

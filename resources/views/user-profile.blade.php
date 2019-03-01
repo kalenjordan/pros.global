@@ -90,6 +90,26 @@
                     <div v-else>
                         {!! Markdown::convertToHtml($user->about) !!}
                     </div>
+
+                    @if (Auth::user() && Auth::user()->id == $user->id)
+                        @if ($user->posts()->whereNull('published_at')->count())
+                            <p class="mt-4">My drafts:</p>
+                            <ul>
+                                @foreach ($user->posts()->whereNull('published_at')->get() as $post)
+                                    <li><a class="naked-link" href="{{ $post->url() }}">{{ $post->title() }}</a></li>
+                                @endforeach
+                            </ul>
+                        @endif
+                    @endif
+
+                    @if ($user->posts()->whereNotNull('published_at')->count())
+                        <p class="mt-4">My posts:</p>
+                        <ul>
+                            @foreach ($user->posts()->whereNotNull('published_at')->get() as $post)
+                                <li><a class="naked-link" href="{{ $post->url() }}">{{ $post->title() }}</a></li>
+                            @endforeach
+                        </ul>
+                    @endif
                 </div>
             </div>
         </div>

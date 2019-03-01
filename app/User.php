@@ -32,14 +32,16 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property $linkedin_url
  * @property $linkedin_token
  * @property $avatar_path
- * @property $upvotes
- * @property $tags
- * @property $tagged
  * @property $password
  * @property $api_token
  * @property $is_admin
  * @property $last_online_at
  * @property $updated_at
+ *
+ * @property $upvotes
+ * @property $tags
+ * @property $tagged
+ * @property $posts
  *
  * @property $notifications
  * @property DatabaseNotificationCollection $unreadNotifications
@@ -197,6 +199,17 @@ class User extends Authenticatable
             ])
             ->orderBy('tagging_tags.icon', 'desc')
             ->orderBy('upvote_count', 'desc');
+    }
+
+    public function posts()
+    {
+        return $this->hasMany('App\Post');
+    }
+
+    public function publishedPosts()
+    {
+        return Post::where('user_id', $this->id)
+            ->whereNotNull('published_at');
     }
 
     /**

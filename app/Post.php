@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $title
  * @property $slug
  * @property $body
+ * @property $published_at
  * @property $user_id
  *
  * @property User $user
@@ -64,5 +65,10 @@ class Post extends Model
     public function url()
     {
         return $this->user->url() . "/posts/" . $this->getSlugOrId();
+    }
+
+    public function title()
+    {
+        return $this->title ? $this->title : "(No title)";
     }
 }

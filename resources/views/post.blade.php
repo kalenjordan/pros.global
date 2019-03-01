@@ -29,7 +29,9 @@
                     <a class="paragraph-link mr-3" @click="cancelEditing()">
                         Cancel
                     </a>
-                    <a class="btn px-5 py-2" @click="save">Save</a>
+                    <a class="mr-3 btn px-5 py-2" @click="save">Save</a>
+                    <a v-if="post.published_at" class="btn px-5 py-2" @click="unpublish">Unpublish</a>
+                    <a v-if="!post.published_at" class="btn px-5 py-2" @click="publish">Publish</a>
                 </div>
             </div>
             <div v-if="canEdit && !editing">
@@ -47,12 +49,14 @@
                 </div>
                 <div class="hidden-before-vue">
                     <textarea cols=3 ref="title" v-if="editing" v-model="post.title"
-                              class="p-2 mb-4 block mx-auto w-full bg-transparent-input text font-150"
+                              class="text-center p-2 mb-4 block mx-auto w-full bg-transparent-input text font-150"
                               placeholder="e.g. Interesting title of blog post"></textarea>
                 </div>
                 <h1 v-if="!editing" class="text-2xl sm:text-4xl animated" v-text="post.title">
-                    {{ $post->title }}
+                    {{ $post->title() }}
                 </h1>
+                <div class="inline-block mx-auto mt-4 bg-gray-light p-2 px-4 hidden-before-vue rounded"
+                     v-if="!post.published_at">Draft</div>
             </div>
         </section>
         <div class="section mx-auto max-w-md text-md hidden-before-vue">
@@ -77,6 +81,7 @@
 
 @section('footer-script')
     <script type="text/javascript">
+
         pageData = {
             post: { {!! \App\Util::jsonEncodeWithoutBrackets($post->toArray()) !!} },
             editing: false,
@@ -120,6 +125,14 @@
                         },
                     });
                 });
+            },
+            publish() {
+                this.post.published_at = this.$moment().format("YYYY-MM-DD");
+                this.save();
+            },
+            unpublish() {
+                this.post.published_at = null;
+                this.save();
             },
             hotkeys(e) {
                 if (e.key === 'Escape') {
