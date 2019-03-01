@@ -58,6 +58,7 @@ class Post extends Model
     {
         $data = parent::toArray();
         $data['url'] = $this->url();
+        $data['title'] = $this->title();
 
         return $data;
     }
