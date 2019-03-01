@@ -118,13 +118,15 @@ $related = $savedSearch->relatedSavedSearches();
                 <a class="btn px-5 py-2" href="/auth/linkedin" target="_blank">Sign up for free</a>
             </div>
             <div v-else class="text-xl">
-                <p>
-                    If you want to be added to this list and aren't on it already, just
-                    <a href="/{{ Auth::user()->username }}">
-                        tag your profile
-                    </a>
-                    with the tags that this list is associated with.
-                </p>
+                @if (Auth::user())
+                    <p>
+                        If you want to be added to this list and aren't on it already, just
+                        <a href="/{{ Auth::user()->username }}">
+                            tag your profile
+                        </a>
+                        with the tags that this list is associated with.
+                    </p>
+                @endif
             </div>
         </section>
     </div>
