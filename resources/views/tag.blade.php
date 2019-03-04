@@ -16,7 +16,7 @@ $users = $tag->users();
 @section('meta-twitter-card')
     @include('partials.meta-twitter-card', [
         'title' => $tag->name,
-        'description' => "Pros that are tagged with: " . $tag->tag,
+        'description' => "Pros that are tagged with: " . $tag->name,
         'image' => env('APP_URL') . "/tag/" . $tag->slug . "/twitter-card",
         'version' => 'v1',
     ])
