@@ -78,13 +78,16 @@
                     return;
                 }
 
-                axios.post(this.api('/api/v1/saved-searches'), {
+                axios.post(this.api('saved-searches'), {
                     'name': name,
                     'query': this.$refs.query.value,
                 }).then((response) => {
-                    this.$toasted.show("" +
-                        "Saved search: <a class='paragraph-link' href='/s/" + response.data.id + "'>" + name + "</a>" +
-                        "");
+                    this.$toasted.show("Saved search!", {
+                        action : {
+                            text : 'View',
+                            href: '/s/' + response.data.id,
+                        },
+                    });
                 });
             },
             hotkeys(e) {

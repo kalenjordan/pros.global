@@ -141,7 +141,7 @@ $related = $savedSearch->relatedSavedSearches();
         };
 
         pageMounted = function (Vue) {
-            window.addEventListener('keyup', Vue.hotkeys);
+            window.addEventListener('keydown', Vue.hotkeys);
 
             let list = document.querySelectorAll('.hidden-before-vue');
             for (let i = 0; i < list.length; ++i) {
@@ -157,6 +157,7 @@ $related = $savedSearch->relatedSavedSearches();
 
                 if (document.activeElement.tagName === 'BODY') {
                     if (e.key === 'e') {
+                        e.preventDefault();
                         this.editIfOwner();
                     }
                 }
@@ -168,6 +169,13 @@ $related = $savedSearch->relatedSavedSearches();
 
                     if (document.activeElement.id === 'relatedToRemove') {
                         this.removeRelatedSavedSearch();
+                    }
+                }
+
+                if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA') {
+                    if (e.key === 'Enter' && e.metaKey) {
+                        e.preventDefault();
+                        this.save();
                     }
                 }
             },
@@ -193,13 +201,12 @@ $related = $savedSearch->relatedSavedSearches();
                     slug: this.savedSearch.slug,
                 }).then((response) => {
                     this.savedSearch = response.data;
-                    this.$toasted.show("Saved!");
-
-                    if (this.savedSearch.slug) {
-                        this.$router.push({
-                            path: '/s/' + this.savedSearch.slug,
-                        });
-                    }
+                    this.$toasted.show("Saved!", {
+                        action: {
+                            text: 'View',
+                            href: response.data.url,
+                        },
+                    });
                 });
             },
             addRelatedSavedSearch() {

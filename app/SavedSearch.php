@@ -55,9 +55,17 @@ class SavedSearch extends Model
         return $this->hasOne('App\User');
     }
 
-    public function toArrayWithUsers()
+    public function toArray()
     {
         $data = parent::toArray();
+        $data['url'] = '/s/' . $this->getSlugOrId();
+
+        return $data;
+    }
+
+    public function toArrayWithUsers()
+    {
+        $data = $this->toArray();
         $data['users'] = $this->fetchUsers();
 
         return $data;
@@ -92,7 +100,8 @@ class SavedSearch extends Model
 
     public function related()
     {
-        return $this->belongsToMany('App\SavedSearch', 'saved_searches_related', 'saved_search_id', 'related_saved_search_id');
+        return $this->belongsToMany('App\SavedSearch', 'saved_searches_related', 'saved_search_id',
+            'related_saved_search_id');
     }
 
     /**
@@ -102,7 +111,7 @@ class SavedSearch extends Model
     {
         $self = $this;
         $savedSearches = SavedSearch::where('saved_searches.id', '>', 0)
-            ->leftJoin("saved_searches_related", function($join) use ($self) {
+            ->leftJoin("saved_searches_related", function ($join) use ($self) {
                 /** @var $join \Illuminate\Database\Query\JoinClause */
                 $join->on("saved_searches_related.saved_search_id", '=', DB::raw($self->id));
                 $join->on("saved_searches_related.related_saved_search_id", '=', 'saved_searches.id');
@@ -117,9 +126,8 @@ class SavedSearch extends Model
 
     public function toSearchIndexArray()
     {
-        $data = parent::toArray();
+        $data = $this->toArray();
 
-        $data['url'] = '/s/' . $this->getSlugOrId();
         $data['type'] = 'saved-search';
         $data['object_id'] = $this->searchIndexId();
 

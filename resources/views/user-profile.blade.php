@@ -189,7 +189,7 @@
                 list[i].classList.remove('hidden-before-vue');
             }
 
-            window.addEventListener('keyup', Vue.hotkeys);
+            window.addEventListener('keydown', Vue.hotkeys);
         };
 
         pageMethods = {
@@ -228,7 +228,15 @@
                         window.location = '/admin/impersonate/' + this.user.username;
                     }
                     if (e.key === 'e') {
+                        e.preventDefault();
                         this.editIfOwner();
+                    }
+                }
+
+                if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA') {
+                    if (e.key === 'Enter' && e.metaKey) {
+                        e.preventDefault();
+                        this.save();
                     }
                 }
             },
