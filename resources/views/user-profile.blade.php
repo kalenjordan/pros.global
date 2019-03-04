@@ -40,7 +40,7 @@
         </top-nav>
         <chat-component :user="user" :is-open="isChatOpen"></chat-component>
         <section class="header max-w-lg mx-auto text-center">
-            <div class="m-4 mb-8">
+            <div class="m-4">
                 <div class="avatar inline-block mb-2 relative">
                     <img src="{{ $user->avatar_path }}" class="w-16 sm:w-32 h-16 sm:h-32 rounded-full">
                 </div>
