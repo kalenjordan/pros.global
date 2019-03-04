@@ -80,7 +80,7 @@
             <profile-tags class="m-4 tags-client-side-render" :user="user" :editing="editing"></profile-tags>
         </section>
         <div class="hidden-before-vue">
-            <div class="section mx-auto max-w-md text-md" v-if="editing || user.about || user.posts">
+            <div class="section mx-auto max-w-md text-md" v-if="editing || user.about || user.posts.length">
                 <div class="card content-card m-4">
                     <div class="card--inner text-left p-4">
                         <div class="editable-about" v-if="editing">
