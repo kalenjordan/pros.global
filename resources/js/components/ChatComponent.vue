@@ -113,7 +113,7 @@
                 window.Echo.private(chatKey)
                     .listen('MessageSent', (e) => {
                         if (! ('Notification' in window)) {
-                            console.log('Web Notification is not supported');
+                            // console.log('Web Notification is not supported');
                             return;
                         }
                         this.messageList.push(

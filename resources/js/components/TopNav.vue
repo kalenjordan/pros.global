@@ -117,31 +117,35 @@
                     this.isSearching = false;
                     if (document.querySelector('.ais-input')) document.querySelector('.ais-input').blur();
                 }
-                if (document.activeElement.id === 'top-nav-search') {
-                    if (e.key === 'Enter') {
-                        this.search();
-                    }
-                } else if (document.activeElement.tagName === 'BODY') {
+
+                if (document.activeElement.tagName === 'BODY') {
                     if (e.key === '/') {
                         this.focusSearch();
                     }
                     if (e.key === 'N') {
                         window.location.href = '/posts/new';
                     }
+                    if (e.key === 'h') {
+                        window.location.href = '/';
+                    }
                 }
             },
             instantSearchHotkeys(e) {
                 let results = document.querySelector('.ais-results');
                 let activeLink = document.querySelector('.ais-result-link.active');
+                let input = document.querySelector('.ais-input');
 
-                if (document.activeElement.className === 'ais-input' && ! activeLink) {
+                if (document.activeElement.className === 'ais-input' && !activeLink) {
                     if (e.key === 'ArrowDown') {
                         results.firstElementChild.classList.add('active');
                     }
+                }
 
-                    if (e.key === 'Enter') {
-                        results.firstElementChild.click();
-                    }
+                // The active element gets unset from the input and set to body for some
+                // reason when hitting enter
+                if (!activeLink && input && input.value && e.key === 'Enter') {
+                    window.location.href = '/search/?q=' + input.value;
+                    return;
                 }
 
                 if (activeLink) {
@@ -159,12 +163,6 @@
                         }
                     }
                 }
-            },
-            search() {
-                this.$router.push({
-                    name: 'search-query',
-                    params: {query: this.$refs.search.value},
-                });
             },
             isAdminViewingProfilePage() {
                 return this.loggedInUser.is_admin && this.user && this.user.id;
@@ -198,7 +196,7 @@
                 this.$store.commit('updateUser', {});
                 this.$toasted.show("You're logged out! Don't be a stranger now, ya hear? 🤠", {duration: 2000});
             },
-       },
+        },
         computed: {
             loggedIn() {
                 return this.$store.state.user && this.$store.state.user.id;

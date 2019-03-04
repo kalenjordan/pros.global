@@ -86,9 +86,6 @@
             <div class="mb-4">
                 <ul class="list-reset">
                     <li class="pb-2">
-                        <a class="naked-link" href="/search">Search</a>
-                    </li>
-                    <li class="pb-2">
                         <a class="naked-link" href="javascript://" @click="showKeyboardShortcuts()">Keyboard shortcuts</a>
                     </li>
                 </ul>

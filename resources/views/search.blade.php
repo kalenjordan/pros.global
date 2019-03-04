@@ -28,8 +28,7 @@
                 @foreach ($users->get() as $searchUser)
                     @include ('partials.search-result-card', ['user' => $searchUser, 'css' => 'hoverable mb-4'])
                 @endforeach
-            @endif
-            <div v-else>
+            @else
                 <div class="p-4 text-center">
                     <div class="italic mb-4 text-gray-dark">
                         No pros were found. Want to add someone you know from Twitter?
@@ -45,7 +44,7 @@
                         </a>
                     </div>
                 </div>
-            </div>
+            @endif
         </section>
     </div>
 @stop
@@ -64,15 +63,15 @@
         };
 
         pageMethods = {
-            search() {
-                this.search_processing = true;
-                window.history.replaceState({}, null, '/search?q=' + this.query);
-
-                axios.get(this.api('users?q=' + this.query)).then((response) => {
-                    this.search_processing = false;
-                    this.users = response.data;
-                });
-            },
+            // search() {
+            //     this.search_processing = true;
+            //     window.history.replaceState({}, null, '/search?q=' + this.query);
+            //
+            //     axios.get(this.api('users?q=' + this.query)).then((response) => {
+            //         this.search_processing = false;
+            //         this.users = response.data;
+            //     });
+            // },
             saveSearch() {
                 let name = prompt("Name for saved search");
                 if (!name) {
@@ -81,7 +80,7 @@
 
                 axios.post(this.api('/api/v1/saved-searches'), {
                     'name': name,
-                    'query': this.$refs.search.value,
+                    'query': this.$refs.query.value,
                 }).then((response) => {
                     this.$toasted.show("" +
                         "Saved search: <a class='paragraph-link' href='/s/" + response.data.id + "'>" + name + "</a>" +
@@ -91,13 +90,13 @@
             hotkeys(e) {
                 if (document.activeElement.tagName === 'INPUT') {
                     if (e.key === 'Enter') {
-                        this.search();
+                        // this.search();
                     } else if (e.key === 'Escape') {
-                        this.$refs.search.blur();
+                        this.$refs.query.blur();
                     }
                 } else if (document.activeElement.tagName === 'BODY') {
                     if (e.key === '/') {
-                        this.$refs.search.focus();
+                        this.$refs.query.focus();
                     }
                 }
             },
