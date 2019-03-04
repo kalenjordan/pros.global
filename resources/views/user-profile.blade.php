@@ -79,35 +79,37 @@
             </div>
             <profile-tags class="m-4 tags-client-side-render" :user="user" :editing="editing"></profile-tags>
         </section>
-        <div class="section mx-auto max-w-md text-md hidden-before-vue" v-if="user.about || editing">
-            <div class="card content-card m-4">
-                <div class="card--inner text-left p-4">
-                    <div class="editable-about" v-if="editing">
-                        <textarea ref="about" class="font-90 width-100">@{{ user.about }}</textarea>
-                    </div>
-                    <div v-else>
-                        {!! Markdown::convertToHtml($user->about) !!}
-                    </div>
+        <div class="hidden-before-vue">
+            <div class="section mx-auto max-w-md text-md" v-if="editing || user.about || user.posts">
+                <div class="card content-card m-4">
+                    <div class="card--inner text-left p-4">
+                        <div class="editable-about" v-if="editing">
+                            <textarea ref="about" class="font-90 width-100">@{{ user.about }}</textarea>
+                        </div>
+                        <template v-else>
+                            {!! Markdown::convertToHtml($user->about) !!}
+                        </template>
 
-                    @if (Auth::user() && Auth::user()->id == $user->id)
-                        @if ($user->posts()->whereNull('published_at')->count())
-                            <p class="mt-4">My drafts:</p>
+                        @if (Auth::user() && Auth::user()->id == $user->id)
+                            @if ($user->posts()->whereNull('published_at')->count())
+                                <p class="mt-4">My drafts:</p>
+                                <ul>
+                                    @foreach ($user->posts()->whereNull('published_at')->get() as $post)
+                                        <li><a class="naked-link" href="{{ $post->url() }}">{{ $post->title() }}</a></li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        @endif
+
+                        @if ($user->posts()->whereNotNull('published_at')->count())
+                            <p class="mt-4">My posts:</p>
                             <ul>
-                                @foreach ($user->posts()->whereNull('published_at')->get() as $post)
+                                @foreach ($user->posts()->whereNotNull('published_at')->get() as $post)
                                     <li><a class="naked-link" href="{{ $post->url() }}">{{ $post->title() }}</a></li>
                                 @endforeach
                             </ul>
                         @endif
-                    @endif
-
-                    @if ($user->posts()->whereNotNull('published_at')->count())
-                        <p class="mt-4">My posts:</p>
-                        <ul>
-                            @foreach ($user->posts()->whereNotNull('published_at')->get() as $post)
-                                <li><a class="naked-link" href="{{ $post->url() }}">{{ $post->title() }}</a></li>
-                            @endforeach
-                        </ul>
-                    @endif
+                    </div>
                 </div>
             </div>
         </div>

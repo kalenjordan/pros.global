@@ -105,7 +105,7 @@ class User extends Authenticatable
 
     public static function findByUsername($username)
     {
-        return self::with('tagged')->where('username', $username)->first();
+        return self::with(['tagged', 'posts'])->where('username', $username)->first();
     }
 
     public static function findByEmail($username)
