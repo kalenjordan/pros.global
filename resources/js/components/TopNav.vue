@@ -123,7 +123,6 @@
                 let results = document.querySelector('.ais-results');
                 let activeLink = document.querySelector('.ais-result-link.active');
 
-                console.log(document.activeElement.className);
                 if (document.activeElement.className === 'ais-input' && ! activeLink) {
                     if (e.key === 'ArrowDown') {
                         results.firstElementChild.classList.add('active');

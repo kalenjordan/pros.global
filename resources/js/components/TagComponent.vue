@@ -44,7 +44,6 @@
                     if (upvote.is_deleted) {
                         this.$root.$emit('upvote-removed', upvote, allUpvotes);
                     } else {
-                        console.log('emit added');
                         this.$root.$emit('upvote-added', upvote, allUpvotes);
                     }
                 });

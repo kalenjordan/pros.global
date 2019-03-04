@@ -1,3 +1,4 @@
+// empty on purpose
 // let cacheName = 'pros.global-v0.1';
 // let filesToCache = [
 //     '/js/bootstrap.js',

@@ -39,26 +39,23 @@
             </div>
         </top-nav>
         <section class="header max-w-lg mx-auto text-center">
-            <div class="m-4">
+            <div class="m-4 mb-8">
                 <div class="avatar inline-block mb-2 relative">
                     <img src="{{ $user->avatar_path }}" class="w-16 sm:w-32 h-16 sm:h-32 rounded-full">
                 </div>
                 <div class="hidden-before-vue">
                 <textarea cols=3 ref="headline" v-if="editing" v-text="user.headline"
-                          class="p-2 mb-2 block mx-auto w-full bg-transparent-input text font-150"
+                          class="p-2 mb-2 block mx-auto w-full text-center bg-transparent-input text font-150"
                           placeholder="e.g. I am a person that does certain things!"></textarea>
                     <input ref="avatar_path" v-if="editing" v-model="user.avatar_path"
-                           class="p-2 mb-2 block mx-auto w-128 text bg-transparent-input"
+                           class="p-2 mb-2 block mx-auto w-128 text-center text bg-transparent-input"
                            placeholder="e.g. path to avatar">
                     <input ref="name" v-if="editing" v-model="user.name"
-                           class="p-2 mb-2  block mx-auto w-128 bg-transparent-input text"
+                           class="p-2 mb-2  block mx-auto w-128 text-center bg-transparent-input text"
                            placeholder="e.g. Jane Smith">
-                    <input ref="twitter_username" v-if="editing" v-model="user.twitter_username"
-                           class="p-2 mb-2  block mx-auto w-64 bg-transparent-input text"
-                           placeholder="e.g. username">
                 </div>
-                <h1 v-if="!editing" class="text-xl sm:text-4xl animated" v-text="user.headline">
-                    {{ $user->headline }}
+                <h1 v-if="!editing" class="text-xl sm:text-4xl animated" v-text="user.name + '. ' + user.headline">
+                    {{ $user->name }}. {{ $user->headline }}
                 </h1>
             </div>
         </section>
@@ -114,7 +111,7 @@
             </div>
         </div>
         @if ($user->upvotes()->count())
-            <section class="endorsements mx-auto p-4 max-w-sm text-sm leading-tight">
+            <section v-if="!editing" class="endorsements mx-auto p-4 max-w-sm text-sm leading-tight">
                 @foreach ($user->upvotes as $upvote)
                     <div class="card hoverable endorsement-card mb-4">
                         <div class="card--inner p-4 flex">
@@ -164,6 +161,12 @@
                     <i class="fab fa-twitter"></i>
                 </a>
             @endif
+        </section>
+
+        <section v-if="editing" class="mt-4">
+            <input ref="twitter_username" v-model="user.twitter_username"
+                   class="p-2 mb-2  block mx-auto w-64 bg-transparent-input text"
+                   placeholder="Twitter username">
         </section>
     </div>
 @stop

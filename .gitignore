@@ -7,6 +7,8 @@ _ide_helper.php
 /public/js/app.js.map
 /public/service-worker.js
 /public/service-worker.js.map
+/public/sw.js
+/public/sw.js.map
 /public/mix-manifest.json
 /public/avatars
 /public/img/generated/*.png

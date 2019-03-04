@@ -13,7 +13,8 @@ let tailwindcss = require('tailwindcss');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    // .js('resources/js/service-worker.js', 'public')
+    .js('resources/js/service-worker.js', 'public')
+    .js('resources/js/service-worker.js', 'public/sw.js')
     .sass('resources/sass/app.scss', 'public/css')
     .webpackConfig({
         devtool: 'source-map'
