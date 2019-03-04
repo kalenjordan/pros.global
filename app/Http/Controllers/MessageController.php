@@ -24,13 +24,10 @@ class MessageController extends Controller
             'to_user_id' => $toUser->id,
         ]);
 
-        $text = $user->name . " sent you a";
+        $text = $user->name . " sent you a ";
         $link = [
             'cta'    => 'message',
-            'name'   => 'profile',
-            'params' => [
-                'username' => $user->username,
-            ],
+            'link'   => $user->url() . '?messages=1',
         ];
 
         $notification = new MessageSentNotification($message, $text, $link);

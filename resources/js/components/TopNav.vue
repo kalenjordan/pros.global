@@ -34,6 +34,16 @@
                                 New Post
                             </a>
                         </div>
+                        <div class="block p-2" v-if="isAdminViewingProfilePage() && ! isAdminImpersonating()">
+                            <a class="naked-link" href="javascript://" @click="impersonate(user)">
+                                Impersonate {{ user.first_name }}
+                            </a>
+                        </div>
+                        <div class="block p-2" v-if="isAdminImpersonating()">
+                            <a class="naked-link" href="javascript://" @click="leaveImpersonation">
+                                Leave impersonation
+                            </a>
+                        </div>
                         <div class="block p-2">
                             <a href="javascript://" class="naked-link" @click="logout">Log out</a>
                         </div>
@@ -62,6 +72,7 @@
 
 <script>
     export default {
+        props: ['user'],
         data() {
             return {
                 isSearching: false,
@@ -160,6 +171,26 @@
             },
             isAdmin() {
                 return (this.loggedInUser.is_admin || this.loggedInUser.being_impersonated);
+            },
+            isAdminImpersonating() {
+                return this.loggedInUser.being_impersonated;
+            },
+            impersonate(user) {
+                axios.get('/admin/impersonate/' + user.username).then((response) => {
+                    if (response.data.username) {
+                        this.$cookies.set('user', JSON.stringify(response.data));
+                        this.$store.commit('updateUser', response.data);
+                        window.location.reload();
+                    }
+                });
+            },
+            leaveImpersonation() {
+                axios.get('/admin/leave-impersonation').then((response) => {
+                    if (response.data.username) {
+                        this.$cookies.set('user', JSON.stringify(response.data));
+                        this.$store.commit('updateUser', response.data);
+                    }
+                });
             },
             logout() {
                 this.showingMenu = false;

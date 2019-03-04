@@ -19,7 +19,7 @@
 
 <script>
     export default {
-        props: ['user'],
+        props: ['user', 'isOpen'],
         data() {
             return {
                 participants: [
@@ -43,6 +43,12 @@
             window.Events.$on('clicked-chat-notification', () => {
                 this.openChat();
             });
+
+            // If I use the property on the chat component then the rest of the stuff
+            // that gts initializes in openChat() isn't initialized
+            if (this.isOpen) {
+                this.openChat();
+            }
         },
 
         methods: {
@@ -62,8 +68,7 @@
                 }
             },
             onMessageWasSent (message) {
-                let auth = '?api_token=' + this.loggedInUser.api_token;
-                axios.post('/api/v1/messages' + auth, {
+                axios.post(this.api('messages'), {
                     message: message.data.text,
                     to_user_id: this.user.id,
                 }).then((response) => {
@@ -91,7 +96,7 @@
 
                 if (this.messageList.length === 0) {
                     let auth = '?api_token=' + this.loggedInUser.api_token;
-                    axios.get('/api/v1/messages/with-other-user/' + this.user.id + auth).then((response) => {
+                    axios.get(this.api('messages/with-other-user/' + this.user.id)).then((response) => {
                         this.messageList = response.data;
                     });
                 }
@@ -119,6 +124,14 @@
             closeChat () {
                 // called when the user clicks on the botton to close the chat
                 this.isChatOpen = false
+            },
+            api(path) {
+                path = '/api/v1/' + path;
+                if (this.loggedInUser) {
+                    path = path + (path.indexOf('?') !== -1 ? '&' : '?') + 'api_token=' + this.loggedInUser.api_token;
+                }
+
+                return path;
             },
         },
         computed: {

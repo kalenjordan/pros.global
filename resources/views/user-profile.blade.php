@@ -38,6 +38,7 @@
                 </div>
             </div>
         </top-nav>
+        <chat-component :user="user" :is-open="isChatOpen"></chat-component>
         <section class="header max-w-lg mx-auto text-center">
             <div class="m-4 mb-8">
                 <div class="avatar inline-block mb-2 relative">
@@ -175,6 +176,7 @@
     <script type="text/javascript">
         pageData = {
             user: { {!! \App\Util::jsonEncodeWithoutBrackets($user->toArray()) !!} },
+            isChatOpen: ('{{ app('request')->input('messages') ? 'true' : 'false' }}' === 'true'),
             editing: false,
             messages: [],
         };
