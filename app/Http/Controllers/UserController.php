@@ -147,7 +147,9 @@ class UserController extends Controller
         }
 
         $user->tag($tag);
-        $user->notify(new BeenTagged($loggedInUser, $loggedInUser->name . " tagged you with: " . $tag));
+        if ($loggedInUser->id != $user->id) {
+            $user->notify(new BeenTagged($loggedInUser, $loggedInUser->name . " tagged you with: " . $tag));
+        }
 
         $user->load('tagged');
         return $user->tagged()->get();
