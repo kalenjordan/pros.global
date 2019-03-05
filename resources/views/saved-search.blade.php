@@ -113,18 +113,24 @@ $related = $savedSearch->relatedSavedSearches();
 
         <hr class="mt-16 mb-16"/>
         <section class="max-w-lg mb-8 mx-auto p-4 text-center">
-            <h2 class="mb-4">Want to be added to this list?</h2>
+            <h2 class="mb-4">Should someone be added to this list?</h2>
             <div v-if="!this.loggedIn">
                 <a class="btn px-5 py-2" href="/auth/linkedin" target="_blank">Sign up for free</a>
             </div>
             <div v-else class="text-xl">
                 @if (Auth::user())
                     <p>
-                        If you want to be added to this list and aren't on it already, just
+                        If you or someone that you know should be on this list, you can add them.
+                        To add yourself, just
                         <a href="/{{ Auth::user()->username }}">
                             tag your profile
                         </a>
-                        with the tags that this list is associated with.
+                        with the tags that this list is associated with. If there is someone who isn't
+                        already on pros.global, you can
+                        <a href="https://pros.global/kalenjordan/posts/add-someone-else-to-pros.global-using-their-twitter-handle">
+                            add them using their twitter handle
+                        </a>,
+                        then tag them.
                     </p>
                 @endif
             </div>
