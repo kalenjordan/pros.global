@@ -129,7 +129,7 @@ $related = $savedSearch->relatedSavedSearches();
                         already on pros.global, you can
                         <a href="https://pros.global/kalenjordan/posts/add-someone-else-to-pros.global-using-their-twitter-handle">
                             add them using their twitter handle
-                        </a>,
+                        </a>
                         then tag them.
                     </p>
                 @endif
