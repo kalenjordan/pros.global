@@ -54,6 +54,9 @@
                     <input ref="name" v-if="editing" v-model="user.name"
                            class="p-2 mb-2  block mx-auto w-128 text-center bg-transparent-input text"
                            placeholder="e.g. Jane Smith">
+                    <input v-if="editing" value="{{ $user->email }}" disabled="disabled"
+                           class="p-2 mb-2  block mx-auto w-128 text-center bg-transparent-input text text-gray"
+                           placeholder="Email">
                 </div>
                 <h1 v-if="!editing" class="text-xl sm:text-4xl animated" v-text="user.name + '. ' + user.headline">
                     {{ $user->name }}. {{ $user->headline }}
