@@ -21,7 +21,7 @@
                 <img class="avatar rounded-full" src="{{ $author->avatar_path }}">
                 <img class="logo absolute" src="/img/icon-200.png">
             </div>
-            <p class="body" style="-webkit-box-orient: vertical;">
+            <p class="body {{ strlen($post->title()) < 35 ? "big" : "" }}" style="-webkit-box-orient: vertical;" >
                 {{ $post->title() }}
             </p>
         </div>

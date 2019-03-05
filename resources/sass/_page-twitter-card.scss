@@ -155,6 +155,10 @@
         overflow: hidden;
         line-height: 1.2;
         font-size: 4rem;
+        &.big {
+            font-size: 5.5rem;
+        }
+        
         font-weight: bold;
 
         display: -webkit-box;
