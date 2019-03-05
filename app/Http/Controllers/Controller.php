@@ -17,6 +17,8 @@ class Controller extends BaseController
     public function __construct()
     {
         $footerSavedSearches = SavedSearch::where('featured_order', '>=', 10)
+            ->orderBy('featured_order')
+            ->orderBy('name')
             ->where('featured_order', '<=', 99);
 
         View::share('footerSavedSearches', $footerSavedSearches);
